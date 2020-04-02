@@ -250,7 +250,7 @@ header .contenedor--flex {
     }
 }
 
-@media screen and (min-width:1028px) {
+@media screen and (min-width:1020px) {
     .u1cont {
         display: none;    
     }
@@ -277,6 +277,7 @@ header .contenedor--flex {
         display: block;   
     }
     .cuerpa {
+        top: 80px;
         width: 10%;
         
     }

@@ -115,10 +115,11 @@ tr:hover td{
 
 #ContenedorDeFormulario{
     position: absolute;
-    top: 50px;
+    top: 0px;
     border-radius: 10px;
     width:60%;
     height: auto;
+    max-height: 480px;
     overflow-y: auto;
     background-color: white;
     text-align: left;
@@ -163,9 +164,8 @@ tr:hover td{
     margin: 0;
 }
 .formularioInput{
-    padding: 13px;
+    padding: 5px 10px;
     width: 95%;
-    height: 10px;
     margin: 0px;
     border-radius: 5px;
     padding-left: 5px;
@@ -223,5 +223,21 @@ tr:hover td{
 
 .hidden{
     display:none;
+}
+
+@media screen and (min-width: 768px){
+    #ContenedorDeFormulario{
+        top: 50px;
+    }
+}
+@media screen and (min-width: 1024px){
+    #ContenedorDeFormulario{
+        top: 0px;
+    }
+}
+@media screen and (min-width: 1125px){
+    #ContenedorDeFormulario{
+        top: 50px;
+    }
 }
 
