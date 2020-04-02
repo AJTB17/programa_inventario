@@ -8,8 +8,6 @@
         $descuento=$_POST['descuento'];
         $departamento=$_POST['departamento'];
         $reorden=$_POST['reorden'];
-        $fechault=$_POST['fechault'];
-        $nroultimopedido=$_POST['nroultimopedido'];
         $IVA=$_POST['IVA'];
         $busqueda="SELECT codigo FROM productos";
         $result=$conexion->query($busqueda);
@@ -33,9 +31,16 @@
             '0',
             '0',
             '$reorden',
-            '$fechault',
-            '$nroultimopedido',
+            '0000-00-00',
+            '0',
             '$IVA')";
+            $resultado=$conexion->query($query);
+
+            $query = "INSERT INTO depositos(producto,
+                                            deposito,
+                                            ubicacion,
+                                            cantidad) 
+                       VALUES ('$nombre','1','No especificada','0')";
             $resultado=$conexion->query($query);
         }
 ?>

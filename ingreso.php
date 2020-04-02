@@ -53,16 +53,15 @@
              <!-- Cabecera End -->
             <div class="contenedor--flex">
 
-                <div  class="gg">
-                    <nav>
-                        <a href="proveedoreshtml.php"  id="btna">Provedores</a>
-                        <a href="productoshtml.php" id="btnc">Productos</a>
-                        <a href="tablaDeIngresos.php" id="btnb">Ingresos</a>
-                        <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
-                        <a href="movimiento.php"  id="btne">Movimientos</a>
-                    </nav>
-                </div>
-            </div>
+            <div  class="gg">
+                <nav>
+                    <a href="proveedoreshtml.php"  id="btna">Provedores</a>
+                    <a href="productoshtml.php" id="btnc">Productos</a>
+                    <a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
+                    <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+                    <a href="movimiento.php" id="btne">Movimientos</a> 
+                </nav>
+            </div>    
 
         </header>
         <main>
@@ -168,9 +167,9 @@
                                     <thead>
                                         <th>Codigo</th>
                                         <th>Producto</th>
-                                        <th>Departamento</th>
                                         <th>Cantidad</th>
-                                        <th>Unidad</th>
+                                        <th>Medida en almacén</th>
+                                        <th>Unidad a ingresar</th>
                                         <th>Deposito</th>
                                         <th>Ubicación</th>
                                         <th>P/U</th>

@@ -46,49 +46,33 @@
                         <div>
                             <label>Depósito:</label>
                             <input type="text" list="DepositosExistentes" placeholder="N° deposito" id="deposito-input">
-                                <datalist id="DepositosExistentes">
-                                        <?php
-                                            include("phpurl/bdacceso.php");
-                                            $query="SELECT DISTINCT deposito FROM depositos ORDER BY deposito";
-                                            $resultado=$conexion->query($query);
-                                            while($row=$resultado->fetch_assoc()){
-                                        ?>
-                                            <option><?php echo $row['deposito']; ?></option>
-                                        <?php
-                                            };
-                                        ?>
-                                </datalist>
-                        </div>
-                        <div>
-                            <label>Proveedor:</label>
-                            <input type="text" list="proveedoreslista" placeholder="Proveedor" id="proveedor-input"> 
-                                <datalist id="proveedoreslista">
-                                        <?php
-                                            include("phpurl/bdacceso.php");
-                                            $query="SELECT nombre FROM proveedor";
-                                            $resultado=$conexion->query($query);
-                                            while($row=$resultado->fetch_assoc()){
-                                        ?>
-                                            <option><?php echo $row['nombre']; ?></option>
-                                        <?php
-                                            };
-                                        ?>
+                            <datalist id="DepositosExistentes">
+                                    <?php
+                                        include("phpurl/bdacceso.php");
+                                        $query="SELECT DISTINCT deposito FROM depositos ORDER BY deposito";
+                                        $resultado=$conexion->query($query);
+                                        while($row=$resultado->fetch_assoc()){
+                                    ?>
+                                        <option><?php echo $row['deposito']; ?></option>
+                                    <?php
+                                        };
+                                    ?>
                             </datalist>
                         </div>
                         <div>
                             <label>Tipo producto:</label>
                             <input type="text" list="tiposproductoslista" placeholder="Default" id="tipoproducto-input">
-                                <datalist id="tiposproductoslista">
-                                        <?php
-                                            include("phpurl/bdacceso.php");
-                                            $query="SELECT DISTINCT departamento FROM productos";
-                                            $resultado=$conexion->query($query);
-                                            while($row=$resultado->fetch_assoc()){
-                                        ?>
-                                            <option><?php echo $row['departamento']; ?></option>
-                                        <?php
-                                            };
-                                        ?>
+                            <datalist id="tiposproductoslista">
+                                    <?php
+                                        include("phpurl/bdacceso.php");
+                                        $query="SELECT DISTINCT departamento FROM productos";
+                                        $resultado=$conexion->query($query);
+                                        while($row=$resultado->fetch_assoc()){
+                                    ?>
+                                        <option><?php echo $row['departamento']; ?></option>
+                                    <?php
+                                        };
+                                    ?>
                             </datalist>
                         </div>
                         <div>
@@ -134,7 +118,8 @@
                 <thead id="reference">
                     <tr>
                         <th colspan="1">Codigo</th>
-                        <th width="60%">Descripción</th>
+                        <th width="40%">Producto</th>
+                        <th colspan="1">Deposito</th>
                         <th colspan="1">Costo actual</th>
                         <th colspan="1">Costo nuevo</th>
                         <th colspan="1">Existencia<br> anterior</th>
@@ -158,10 +143,14 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <td></td>
                         <td>
                             <button id="clearAll">Borrar</button>
                         </td>
-                        <td></td><td></td><td></td><td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button id="actualizarbd">Guardar</button>
                         </td>

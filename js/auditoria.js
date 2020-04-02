@@ -1,7 +1,5 @@
-var numero = 0,
+let numero = 0,
     n_ajuste = document.getElementById("n-ajuste");
-
-
 $('#one').click(onerow);
 $('#add2').click(rellebartabla);
 $('#actualizarbd').click(actualizarDatos);
@@ -23,7 +21,7 @@ function onerow(){
         contenido5 = document.createElement("td"),
         contenido6 = document.createElement("td"),
         contenido7 = document.createElement("td");
-    numero++;
+    numero++
         
     var cont1 = document.createElement("input");
     cont1.id = "codigo_" + numero;
@@ -89,7 +87,7 @@ function onerow(){
     table.appendChild(elemento);
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
-}
+};
 function autocomplete() {
     var num = parseFloat(numero),
         negativoparce = true,
@@ -100,7 +98,7 @@ function autocomplete() {
     if (this.classList[0] === "cp"){
         for (var i = 1; i<=num ; i++){
             arreeperro[i] = document.getElementById("codigo_" + i).value;
-        }
+        };
         
     // filtro de productos ya ingresados
         var indices = [];
@@ -116,17 +114,17 @@ function autocomplete() {
              }
             else if (indices.length > 1) {
                 alert("codigo ya ingresado");
-                this.value = "";
+                this.value = ""
                 negativoparce = false;
                 borrar();
                 break;
             }
-        }
+        };
     } else if(this.classList[0] === "desc"){
     //for para descripcion recolecta todos los nombre de productos
-        for (var b = 1; b<=num ; b++){
-            arreegato[b] = document.getElementById("descripcion_" + b).value;
-        }
+        for (var i = 1; i<=num ; i++){
+            arreegato[i] = document.getElementById("descripcion_" + i).value;
+        };
     
     // filtro de productos ya ingresados
         var indices2 = [];
@@ -139,16 +137,16 @@ function autocomplete() {
 
             if (indices2.length > 1) {
                 alert("codigo ya ingresado");
-                this.value = "";
+                this.value = ""
                 negativoparce = false;
                 borrar();
                 break;
             }
-        }
+        };
     }
 
     //variables de auto completado por td-codigo o td-descripcion por ajax
-    var cadena = "id=" + this.value,
+    let cadena = "id=" + this.value,
         codigo = this.parentNode.parentNode.id,
         descripcion = "descripcion_" + codigo,
         codi = "codigo_" + codigo,
@@ -180,7 +178,7 @@ function autocomplete() {
         error:function(){
                     alert("Error, producto no encontrado");
         }
-    });
+    })
     function borrar(){
         fakeson.childNodes[0].childNodes[0].value = "";
         fakeson.childNodes[1].childNodes[0].value = "";
@@ -189,43 +187,49 @@ function autocomplete() {
         fakeson.childNodes[4].childNodes[0].value = "";
         fakeson.childNodes[5].childNodes[0].value = "";
     }
-}
+};
 function rellebartabla(){
-    
-    var tbody = document.getElementById("bodyud"),
+    let department = document.getElementById("tipoproducto-input").value;
+    let deposit = document.getElementById("deposito-input").value;
+    let order = document.getElementById("ordenar-input").value;
+    let cadena = "department=" + department +
+                 "&deposit=" + deposit +
+                 "&order=" + order;
+    let tbody = document.getElementById("bodyud"),
         num;
     
-    if (tbody !== null){
+    if (tbody != null){
         tbody.innerHTML = "";
     }
         
     $.ajax({
         type:'POST',
         url:"/inventariogg/phpurl/ingresardatostable.php",
+        data: cadena,
         success:function(data){
-            var split = data.split("||");
+            let split = data.split("||");
             tbody.innerHTML += split[0];
             numero = split[1];
             
             for (var i = 1; i <= numero; i++){
-                
+                console.log(i);
                 var cuerpo = document.getElementById(i);       
                 cuerpo.addEventListener("keyup", actcosto);
                 cuerpo.addEventListener("click", actcosto);
                 $(".clearRow").off();
                 $('.clearRow').click(clearRow);
                 
-            }
+            };
             $('#actualizarbd').click(actualizarDatos);
             $('#clearAll').click(clearall);
         },
         error:function(){
             alert("Error, productos no encontrado");
         }
-    });
-}
+    })
+};
 function actcosto(){
-    var m1= document.getElementById("costo1"),
+    let m1= document.getElementById("costo1"),
         m2 = document.getElementById("costo2"),
         m3 = document.getElementById("prodM"),
         num = parseFloat(numero),
@@ -233,35 +237,35 @@ function actcosto(){
         resulto = 0;
         
     for (var i = 1 ; i <= num ; i++){
-        var c3 = document.getElementById("costo_" + i).value;
+        let c3 = document.getElementById("costo_" + i).value;
         
         
-        if (c3 !== ""){
+        if (c3 != ""){
             var num1 = parseFloat(c3);
             result = result + num1;
         }
-    }
+    };
     
-    for (var a = 1 ; a <= num ; a++){
-        var c4 = document.getElementById("coston_" + a).value;
+    for (var i = 1 ; i <= num ; i++){
+        let c4 = document.getElementById("coston_" + i).value;
         
         
-        if (c4 !== ""){
+        if (c4 != ""){
             var num1 = parseFloat(c4);
             resulto = resulto + num1;
         }
-    }
+    };
     
     
     m1.innerHTML = result;
     m2.innerHTML = resulto;
     m3.innerHTML = numero;
         
-}
+};
 function reporte(){
     for(var n = 1; n<=numero; n++) {
         
-        var costoN = document.getElementById("coston_" + n).value,
+        let costoN = document.getElementById("coston_" + n).value,
             cantidadN = document.getElementById("cantidadn_" + n).value;
             
         if(n==1){
@@ -279,8 +283,8 @@ function reporte(){
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
-            }
-    }
+            };
+    } console.log(n_ajuste.innerHTML);
     cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML;
     
     $.ajax({
@@ -294,9 +298,9 @@ function reporte(){
                 alert("Reporte no realizado");
             }
     });
-}
+};
 function moverarchivo(){
-    var dato = "n_ajuste=" + n_ajuste.innerHTML;
+    let dato = "n_ajuste=" + n_ajuste.innerHTML;
     setTimeout(function(){
     $.ajax({
         type: 'POST',
@@ -310,62 +314,68 @@ function moverarchivo(){
     });
  } ,1000);
 
-}
+};
 function actualizarDatos(){
-    var cadena = "",
+    let cadena = "",
         thereAreChange = true;
         
     
     for(var n = 1; n<=numero; n++) {
         
-        var costoN = document.getElementById("coston_" + n).value,
+        let costoN = document.getElementById("coston_" + n).value,
             cantidadN = document.getElementById("cantidadn_" + n).value;
             
         
-        if(costoN !== "" && cantidadN !== ""){
+        if(costoN != "" && cantidadN != ""){
             if(n==1){
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             } else{
                 cadena = cadena +
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
-            }
-        } else if (costoN === "" && cantidadN !== ""){
+            };
+        } else if (costoN === "" && cantidadN != ""){
             if(n==1){
                 cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
-                             "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
-                             "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
-                             "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
+                            "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                            "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
+                            "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                            "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
                 } else{
                     cadena = cadena +
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
+                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
-            }
-        } else if (costoN !== "" && cantidadN === ""){
+            };
+        } else if (costoN != "" && cantidadN === ""){
             if(n==1){
                 cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+                            "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
                 } else{
                     cadena = cadena +
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
+                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
-            }  
+            };     
         } else if (costoN === "" && cantidadN === ""){
             alert("Valores sin rellenar. Por favor rellenar para continuar");
             thereAreChange = false;
-        }
-    }
+        };
+    };
 
     if (thereAreChange){
         cadena = cadena + "&numero=" + numero;
@@ -376,38 +386,38 @@ function actualizarDatos(){
             type: 'POST',
             url: "/inventariogg/phpurl/audiroria-actualizadatos.php",
             data:cadena,
-            success: function(dato){
-                alert("Operación completa");
-                location.reload();
+            success: function(){
+                //alert("Operación completa")
+                //location.reload();
             },
             error: function(){
                 alert("No se ha podido establecer conexión con la base de datos");
             }
         });
     }
-}
+};
 function cuadroinfoajuste(){  
     $.ajax({
         type:'POST',
         url:"/inventariogg/phpurl/numerodeajuste.php",
         success:function(data){
-            n_ajuste.innerHTML = parseInt(data) + 1; 
+            n_ajuste.innerHTML = parseInt(data) + 1;           
         },
         error:function(){
                     alert("Error, productos no encontrado");
         }
-    });
-}
+    })
+};
 function clearRow(){
     var mensaje = confirm("¿Desea eliminar ésta fila?");
-    if(this.parentNode.id == numero && mensaje === true){
+    if(this.parentNode.id == numero && mensaje == true){
         var column = this.parentNode,
             rowx = column.parentNode;
         rowx.removeChild(column);
         numero--;
         actcosto();
         
-    } else if (mensaje === true){
+    } else if (mensaje == true){
         var num1 = parseInt(this.parentNode.nextSibling.id),
             column = this.parentNode,
             rowx = column.parentNode;
@@ -421,17 +431,17 @@ function clearRow(){
             document.getElementById("coston_" + i).id = "coston_" + x;
             document.getElementById("cant_" + i).id = "cant_" + x;
             document.getElementById("cantidadn_" + i).id = "cantidadn_" + x;
-        }
+        };
         numero--;
         actcosto();
-    }
-}
+    };
+};
 function clearall(){
     var mensaje = confirm("¿Desea eliminar todo");
-    if(mensaje === true){
-        var aborto = document.getElementById("bodyud");
+    if(mensaje == true){
+        let aborto = document.getElementById("bodyud");
 
-        if (aborto !== null){
+        if (aborto != null){
             aborto.innerHTML = "";
             $('#one').off();
             $('#one').click(onerow);
@@ -440,4 +450,3 @@ function clearall(){
         }
     }
 }
-
