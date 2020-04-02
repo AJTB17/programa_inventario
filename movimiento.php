@@ -26,7 +26,7 @@
         <script src='packages-premium/timeline/main.js'></script>
         <script src='packages-premium/resource-common/main.js'></script>
         <script src='packages-premium/resource-timeline/main.js'></script>
-        <script src='moment-timezone/main.js'></script>
+<!--        <script src='moment-timezone/main.js'></script>-->
         <script src='js2/jquery-3.4.1.min.js'></script>
         <script src='js2/jquery-ui.min.js'></script>
         <script src='js2/popper.min.js'></script>

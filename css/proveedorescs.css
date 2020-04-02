@@ -119,6 +119,7 @@ tr:hover td{
     border-radius: 10px;
     width:60%;
     height: auto;
+    overflow-y: auto;
     background-color: white;
     text-align: left;
     margin: auto;
@@ -134,7 +135,6 @@ tr:hover td{
     width:50%;
     height:auto;
     max-height: 75%;
-    overflow-y: auto;
     background-color: white;
     text-align: left;
     margin: auto;
