@@ -1,0 +1,89 @@
+.gg {
+    width: 90%;
+    position: absolute;
+    display: block;
+    left: 8%;
+    top: 80PX;
+}
+
+nav {
+    display: inline-flex;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    background:#00aa00;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13.5px;
+    padding: 12.5px 0px;
+    width:20%;
+    text-align: center;
+    border: 0px;
+    box-shadow: inset 2px 0px 0px 0 #333;
+    display: inline-block;
+    list-style: none;
+    
+    transition: 0.3s;
+
+    -moz-transition: 0.3s;
+}
+nav a:hover {
+    background: #fff;
+    color: #00aa00;
+}
+.active {
+    background: #fff;
+    color: #00aa00;   
+}
+#btna {
+    box-shadow: inset 0px 0px 0px 0 #333; 
+}
+
+@media screen and (min-width:320px) {
+    .gg {
+        width: 90%;
+        position: absolute;
+        display: block;
+        left: 10%;
+        top: 80PX;
+    }
+}
+@media screen and (min-width:768px) {
+    .gg {
+        width: 90%;
+        position: absolute;
+        display: block;
+        left: 10%;
+        top: 120PX;
+    }
+}
+@media screen and (min-width:1024px) {
+    .gg {
+        top: 80PX;
+    }
+}
+
+@media screen and (min-width:1080px) {
+    .gg {
+        width: 90%;
+        left: 10%;
+        top: 120PX;
+    }
+}
+@media screen and (min-width:1400px) {
+    .gg {
+        width: 93%;
+        left: 7%;
+    }
+}
+@media screen and (min-width:1800px) {
+    .gg {
+        width: 93%;
+        left: 7%;
+    }
+}

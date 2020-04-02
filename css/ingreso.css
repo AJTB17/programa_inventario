@@ -1,0 +1,434 @@
+.contenedor {
+    width: 98%;
+}
+.ti {
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.caja-exe {
+    margin: auto;
+    width: auto;
+    max-width: auto;
+    border-radius: 5px;
+    padding: 10px;
+        
+    background: #fff;
+    color: #000;
+}
+.cp, .cap, .pup, .elim, .clearRow, button {
+    cursor: pointer;
+}
+
+.pp, .dp, .depp, .ubip, .ip {
+    cursor:auto;
+}
+
+input:focus {
+    outline: none;
+}
+.cont-pregunta {
+    width: 100%;
+    margin: 10px;
+    padding: 0;
+}
+.cont-pregunta button {
+    width: 90px;
+    margin: 5px;
+    padding: 6px 15px;
+    border: 2px solid #222;
+    border-radius: 5px;
+    background: #2222ff;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 100;
+}
+/*-------panel 1 start---------*/
+.factura {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #aaa;
+}
+.panel-1 {
+    display:flex; 
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+    width: 100%;
+    margin: 10px;
+    padding: 0;
+}
+.panel-1 .cont-input {
+    width: 31.5%;
+
+    
+}
+.panel-1 .cont-input label {
+    width: 100%;
+    margin-bottom: 0;
+}
+.panel-1 .cont-input input {
+    width: 100%;
+    margin-top: 0;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+/*-------panel 2 start---------*/
+.panel-2 {
+    display:flex; 
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+    width: 100%;
+    margin: 10px;
+    padding: 0;
+}
+.panel-2b {
+    width: 100%;
+    margin: 10px;
+    padding: 0;
+}
+
+.panel-2 .cont-input {
+    width: 31.5%;
+}
+.panel-2b .cont-input {
+    width: 31.5%;
+}
+.panel-2b .cont-input label {
+    width: 100%;
+    margin-bottom: 0;
+}
+.panel-2b .cont-input label {
+    width: 100%;
+    margin-bottom: 0;
+}
+.panel-2b .cont-input input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+.panel-2b .cont-input input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 0;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+.panel-2b .cont-input select {
+    padding: 7px;
+    width: 105%;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+
+.panel-2b-a {
+    width: 48%;
+    height: auto;
+    padding: 5px;
+    margin: auto;
+}
+.panel-2b-a .cont-input {
+   margin: auto;
+    width: 90%
+}
+
+.panel-2b-a .cont-input textarea {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    text-decoration: none;
+    width: 100%;
+    height: 137px;
+    padding: 5px;
+}
+
+
+.panel-2c {
+    width: 100%;
+    margin: 10px;
+    padding: 0;
+}
+
+.panel-2c .cont-input {
+    width: 31.5%;
+    margin-bottom: 10px;
+}
+.panel-2c .cont-input label {
+    width: 100%;
+    margin-bottom: 0;
+}
+.panel-2c .cont-input label {
+    width: 100%;
+    margin-bottom: 0;
+}
+.panel-2c .cont-input input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+.panel-2c .cont-input input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 0;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+.panel-2c .cont-input select {
+    padding: 7px;
+    width: 105%;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+
+.panel-2c-a {
+    width: 48%;
+    height: auto;
+    padding: 5px;
+    margin: auto;
+}
+.panel-2c-a .cont-input {
+   margin: auto;
+    width: 90%
+}
+
+.panel-2c-a .cont-input textarea {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    text-decoration: none;
+    width: 100%;
+    height: 137px;
+    padding: 5px;
+}
+/*-------panel 3 start---------*/
+.panel-3 {
+    display:flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+    width: 100%;
+    margin: 10px;
+    padding: 0;
+}
+.panel-3 .cont-input {
+    width: 31.5%;
+
+}
+.panel-3 .cont-input label {
+    width: 100%;
+    margin-bottom: 0;
+}
+.panel-3 .cont-input input {
+    width: 100%;
+    margin-top: 0;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+/*-------panel end---------*/
+.cont-submit {
+    width: 100%;
+    float: right;
+    text-align: right;
+    margin: 10px;
+}
+.cont-submit input, button{
+    width: 80px;
+    margin: 0;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 2px solid #222222;
+}
+
+.cont-submit .verde {
+    font-weight: bold;
+    color: #fff;
+    background: #11aa11;
+}
+.cont-submit .rojo {
+    font-weight: bold;
+    color: #fff;
+    background: #dd1111;
+}
+/*-------tabla productos--------*/
+.ingresoProductos {
+    margin-top: 10px;
+}
+
+#one{
+    background: #fff;
+    width: 120px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #777;
+    margin: 10px; 
+}
+#one span{
+    
+    color: #444;
+    font-weight: bolder;
+    font-size: 14px;
+}
+
+.contenedor--t {
+    margin: 0px;
+}
+
+.ban h2 {
+    text-align: center;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size: 25px;
+}
+table {
+    background: #fff;
+    color: #000;
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+th, td {
+    padding: 20px 5px;
+}
+td {
+    font-size: 13.4px;
+    font-weight: bold;
+}
+
+thead {
+    background-color: #22aa33;
+    color: #fff;
+    border-bottom: solid 5px #222222;
+    font-size: 14px;
+    font-weight: bold;
+}
+tfoot {
+    background-color: #222222;
+    color: #fff;
+    border-bottom: solid 5px #222222;
+    font-size: 14px;
+    font-weight: bold;
+}
+.ext {
+    text-align: center;
+    background-color: #222222;
+    color: #fff;
+    border: 0px;
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+tr:hover{
+    background: #119933;
+    color: #fff;
+}
+
+.mod, .clear {
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    padding: 20px 0px;
+    
+    transition: 0.2s;
+}
+
+.mod:hover, .clear:hover {
+    background: #fff;
+}
+.mod:hover  {
+    color: #22aa33;
+}
+.clear {
+    color: #dd1111;
+}
+.clear:hover  {
+    color: #dd1111;
+}
+
+/*--------inputs tabla--------*/
+table input {
+    background: rgba(0,0,0,0);
+    border: 0;
+    padding: 5px;
+
+}
+
+::placeholder { 
+    text-align: center;
+    color: #000;
+    opacity: 1;
+}
+
+tr:hover ::placeholder{ 
+    color: #fff;
+    caret-color: #fff;
+}
+.clearRow {
+    color: #ff0000;
+}
+.clearRow:hover {
+    background: #fff;
+    color: #ff0000;
+}
+table .cp {
+    width: 55px;
+}
+table .pp {
+    width: 150px;
+}
+table .dp {
+    width: 100px;
+}
+table .cap {
+    width: 65px;
+}
+table .depp {
+    width: 80px;
+}
+table .und {
+    width: 60px
+}
+table .ubip {
+    width: 100px;
+}
+table .pup {
+    width: 50px;
+}
+table .ip {
+    width: 50px;
+}
+table .top {
+    text-align: center;
+    width: 55px;
+    font-weight: bolder;
+    font-size: 14px;
+}
+tfoot:hover tr {
+    background-color: #aaa;
+    color: #000;
+}
+/*--------funciones js------*/
+.hidden {
+    display: none;
+}
+.entry{
+    display: 
+}
+
+#totalConIva {
+    text-align: left;
+    font-size: 14px;

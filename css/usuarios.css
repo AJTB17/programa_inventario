@@ -1,0 +1,86 @@
+.contenedor--t {
+    margin: 0;
+}
+
+.ban h2 {
+    text-align: center;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size: 25px;
+}
+table {
+    background: #fff;
+    color: #000;
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+th, td {
+    padding: 20px;
+}
+td {
+    font-size: 13.4px;
+    font-weight: bold;
+}
+
+thead {
+    background-color: #22aa33;
+    color: #fff;
+    border-bottom: solid 5px #222222;
+    font-size: 14px;
+    font-weight: bold;
+}
+.ext {
+    text-align: center;
+    background-color: #222222;
+    color: #fff;
+    border: 0px;
+    font-size: 14px;
+}
+.add {
+    color: #fff;
+    background: #222;
+    padding: 0px 20px;
+    border: 1px solid #666;
+    border-bottom: 0px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.add:hover {
+    background: #22aa33;
+    border: #22aa33;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+tr:hover td{
+    background: #119933;
+    color: #fff;
+}
+
+.mod, .clear {
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    padding: 20px 0px;
+    
+    transition: 0.2s;
+}
+
+.mod:hover, .clear:hover {
+    background: #fff;
+}
+.mod:hover  {
+    color: #22aa33;
+}
+.clear {
+    color: #dd1111;
+}
+.clear:hover  {
+    color: #dd1111;
+}
+

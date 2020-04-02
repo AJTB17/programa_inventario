@@ -1,0 +1,62 @@
+.back2 {
+    color: #000;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px 5px 0px 0px;
+    margin: auto;
+    margin-bottom: 0;
+    width: 100%; 
+}
+
+.back2 h2 {
+    margin-top: 0;
+    font-size: 25px;
+    font-weight: 100;
+}
+
+.Cinput {
+    display: block;
+    margin: auto;
+    width: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.Cinput input, select{
+    width: 150px;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    background: #fff;
+}
+.Cinput select{
+    width: 170px;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.eb {
+    color: #fff;
+    padding: 15px;
+
+    margin: auto;
+    padding-bottom: 0;
+    text-align: right;
+    width: 100%; 
+}
+
+.eb button {
+    padding: 10px 15px;
+    width: 80px;
+    font-size: 14.5px;
+    font-weight: 100;
+    background: #008800;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+}
+.eb button:hover {
+    background: #009900;
+}

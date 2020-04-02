@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css?family=Catamaran&display=swap');
+
+
+body {
+    font-family: 'Poppins', sans-serif, cursive;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background: #222222;
+}
+
+main {
+    font-size: 12px;
+    margin: 0;
+    margin-top: 85px;
+}
+
+input {
+    cursor: pointer;
+}
+
+header .contenedor {
+    width: 100%;
+    height: 85px;
+    color: #fff;
+    display: table;
+    background-image: url(../img/logos/f-madera.jpg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:100;       
+}
+
+header .contenedor--flex {
+    width: 100%;
+}
+header .clm-33 {
+    width: auto;
+}
+.contenedor--flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img {
+    width: 75px;
+    height: 75px;
+    float: left;
+    align-items:center;
+    margin:auto;
+    padding: 5px 5px 0px;
+}
+
+.logo {
+    margin: 0;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h5 {
+    color: #00DD00;
+    font-weight: bolder;
+    font-size:1.5em ;
+    transform: translateY(-20%)
+}
+
+/* estilos de la cabecera y el body end */
+
+.cdb {
+    background: #323232;
+    height: 30px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    border-bottom: #f0f0f0 solid 1px;
+}
+
+.cdb div {
+    width: 50%;
+    margin: 0;
+    margin-left: 5px;
+    
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    
+}
+.cdb h2 {
+    margin-top: 5px;
+    font-weight: 100;
+    font-size: 18px;
+}
+.cdb .go {
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: center;
+}
+.cdb .go a {
+    margin: 0;
+    margin-left: auto;
+    width: 30px;
+    line-height: 30px;
+    
+    font-size: 14px;
+    border-left:  1px solid #f0f0f0;
+    color: #fff;
+    text-decoration: none;
+    
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.cdb .go a:hover {
+    background: #fff;
+    color: #ee0000;
+}
+
+/* cdb end */
+
+.ofbc {
+    height: 150px;
+    background: #303030;
+    
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.of1 {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.of1-1 {
+    width: 100%;
+
+    padding: 10px;
+    margin: 0;
+}
+
+.of1-1 label {
+    display: inline-block;
+    
+    width: 80px;
+}
+
+.of1-1 input[type="date"]{
+    display: inline-block;
+    width: 199px;
+}
+.of1-1 input{
+    display: inline-block;
+    width: 200px;
+}
+.of1-1 select{
+    width: 204px;
+    display: inline-block;
+    
+}
+
+/* of1-1 end*/
+
+.of1-3  {
+    
+    width: 110px;
+    
+    margin-left: auto;
+    margin-right: 10px;
+    
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+
+/* of 1 end */
+
+.of2 {
+    width: 20%;
+    min-width: 300px;
+    max-width: 400px;
+    background: #fff;
+}
+
+.of2 table {
+    background: #fff;
+    color: #000;
+    margin: 0;
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%; 
+}
+
+.of2 thead {
+    color: #000;
+    border-bottom: solid 5px #222222;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.of2 th, td {
+    padding: 10px 15px;
+}
+
+.of2 td {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.of2 td:nth-child(even) {
+    text-align: right;
+}
+
+.of2 tr:hover td{
+    background: #fff;
+    color: #000;
+}
+/* of 2 end */
+
+/* orden busqueda filtrado y total end */
+.overtable {
+    max-height: 428px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+}
+.tablemain {
+    background: #fff;
+    color: #000;
+    margin: 0;
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablemain th, td {
+    padding: 10px 15px;
+}
+.tablemain td {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tablemain thead {
+    background-color: #505050;
+    color: #fff;
+    border-bottom: solid 5px #222222;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tablemain tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+.tablemain tr:hover td{
+    background: #bbb;
+    color: #fff;
+}
+.tablemain tr:hover .clearRow {
+    background: #fff;
+    color: #ff0000;
+}
+
+.clearRow {
+    text-align: center;
+    color: #ff0000;
+}
+
+.tablemain tfoot {
+    width: 100%;
+    background-color: #505050;
+    color: #fff;
+    border-bottom: solid 5px #222222;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.tablemain tfoot tr:hover td {
+    background-color: #505050;
+    color: #fff;
+}
+/*diseño general tabla end*/
+
+.tablemain input {
+    background: rgba(0,0,0,0);
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tablemain .cp {
+    width: 50px;
+}
+.tablemain .clearRow {
+    width: 30px;
+}
+
+.tablemain .desc {
+    width: 100%;
+}
+
+.tablemain .co, .cap, .cant, .cantn{
+    width: 70px
+}
+
+
+@media screen and (min-width:1600px) {
+    .overtable {
+        max-height: 475px;
+
+    }
+}
+@media screen and (min-width:1700px) {
+    .overtable {
+        max-height: 510px;
+
+    }
+}
+@media screen and (min-width:1800px) {
+    .overtable {
+        max-height: 560px;
+
+    }
+}
+@media screen and (min-width:1900px) {
+    .overtable {
+        max-height: 610px;
+
+    }
+}
+@media screen and (min-width:2000px) {
+    .overtable {
+        max-height: 690px;
+
+    }
+}

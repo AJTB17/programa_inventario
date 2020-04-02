@@ -1,0 +1,419 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet);
+@import url('https://fonts.googleapis.com/css?family=Catamaran&display=swap');
+body {
+    font-family: 'Poppins', sans-serif, cursive;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background: #222222;
+}
+
+main {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+section {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.contenedor {
+    width: 98%;
+    margin: auto;
+}
+/*----modulo central----*/
+.banner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    
+    margin-top: 80px;
+    width: 100%;
+    background: rgba(30,30,30,1);
+    height: 200px;
+}
+
+.banner h2 {
+    font-size: 15px;
+    font-weight:100;
+    letter-spacing: 5px;
+}
+
+.cont-box {
+    margin: 10px;
+    height: 400px
+}
+.box {
+    width: 43%;
+    height: 150px;
+    margin: 5px;
+    font-size: 16px;
+    font-weight: 100;
+    font-family: 'Catamaran', sans-serif;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    
+    border: 5px solid rgba(0,0,0,0) ;
+
+    border-radius: 5px;
+    
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    
+    transition: 0.5s;
+}
+
+.red {
+    background: rgba(235,30,85)
+}
+.blue {
+    background: rgba(10,210,180)
+}
+.verde {
+    background: rgba(10,215,85)
+}
+.naranja {
+    background: rgba(250,70,10)
+}
+
+.box:hover {
+    text-decoration: none;
+    color: white;
+    border: 5px solid #fff;
+    height: 150px;
+    width: 43%;
+}
+/*----modulo central end----*/
+/*--------style header-----------*/
+
+.logo {
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+h5 {
+    color: #00DD00;
+    font-weight: bolder;
+    font-size:1em ;
+    transform: translateY(-20%)
+}
+
+.img {
+    width: 70px;
+    height: 72px;
+    float: left;
+    align-items:center;
+    padding: 5px 5px 0px;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    color: #fff;
+    background-image: url(../img/logos/f-madera.jpg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:100;       
+}
+header .index {
+    position: relative;
+    z-index:100;       
+}
+
+header .contenedor {
+    display: table;
+}
+header .contenedor--flex {
+    width: 100%;
+}
+header .clm-33 {
+    width: auto;
+}
+.contenedor--flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/*--------style responsive------*/
+@media screen and (min-width:360px) {
+    h1 {
+        font-size: 1.4em;
+    }
+
+    h5 {
+        font-size: 1.1em;
+    }
+}
+@media screen and (min-width:375px) {
+    .img {
+        width: 70px;
+        height: 73px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h5 {
+        font-size: 1.25em ;
+    }
+}
+@media screen and (min-width:414px) {
+    h1 {
+        font-size: 1.6em;
+    }
+
+    h5 {
+        font-size: 19px;
+    }
+}
+@media screen and (min-width:480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+}
+@media screen and (min-width:525px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h5 {
+        font-size: 23px;
+    }
+}
+@media screen and (min-width:620px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h5 {
+        font-size: 1.5em;
+    }
+}
+@media screen and (min-width:675px) {
+    h5 {
+        transform: translateY(-20%);
+    }
+}
+@media screen and (min-width:768px) {
+    header {
+        height:120px;
+    }
+    .img {
+        width: 105px;
+        height: 105px;
+        padding-left: 15px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h5 {
+        font-size: 2em;
+    }
+    header label {
+    font-size: 45px;
+    margin: 25px 5px 0px;
+    }
+    
+    .banner {
+        margin-top: 120px;
+        height: 300px;
+    }
+
+    .banner h2 {
+        font-size: 25px;
+    }
+
+    .cont-box {
+        margin: 30px;
+    }
+    .box {
+        width: 45%;
+        height: 220px;
+        margin: 10px;
+        font-size: 25px;
+    }
+
+    .box:hover {
+        border: 10px solid #fff;
+        height: 230px;
+        width: 45%;
+    }
+}
+@media screen and (min-width:800px) {
+    h1 {
+        font-size:2.8em;
+    }
+    h5 {
+        font-size:2.2em;
+    }
+}
+@media screen and (min-width:979px) {
+    h1 {
+        font-size:3em;
+    }
+    h5 {
+        transform: translateY(-35%);
+        font-size:2.1em;   
+    }
+}
+@media screen and (min-width:1024px) {
+    main p {
+        font-size: 15px;
+    }
+    .main-footer {
+        font-size: 12px
+    }
+    h1 {
+        font-size:2em;
+    }
+    h5 {
+        font-size:25px;   
+    }
+    header {
+        height:80px;
+    }
+    .img {
+        width: 70px;
+        height: 70px;
+        padding: 0;
+        padding-left: 15px;
+
+    }
+    header label {
+        font-size: 38px;
+        margin: 0px 5px 5px;
+    }
+    .banner {
+        margin-top: 80px;
+        height: 300px;
+    }
+
+    .banner h2 {
+        font-size: 27px;
+    }
+
+    .cont-box {
+        margin: 20px;
+        height: 270px;
+    }
+    .box {
+        width: 22%;
+        height: 220px;
+        margin: 5px;
+        font-size: 25px;
+    }
+
+    .box:hover {
+        border: 8px solid #fff;
+        height: 225px;
+        width: 22.5%;
+    }
+}
+@media screen and (min-width:1080px) {
+    header {
+        height:120px;
+    }
+    .header .contenedor--flex {
+        height: 120px;
+    }
+    .img {
+        width: 112px;
+        height: 112px;
+        padding-left: 15px;
+    }
+    h1 {
+        font-size: 2.8em;
+    }
+    h5 {
+        font-size: 2em;   
+    }
+}
+@media screen and (min-width:1180px) {
+    h1 {
+        font-size:3.2em;
+    }
+    h5 {
+        font-size:2.2em;   
+    }
+}
+@media screen and (min-width:1280px) {
+    header label {
+        font-size: 60px;
+        margin: 18px 5px 5px;
+        padding: 1px 5px 1px;
+    }
+    .banner {
+        margin-top: 120px;
+        height: 350px;
+    }
+
+    .banner h2 {
+        font-size: 30px;
+    }
+
+    .cont-box {
+        margin: 20px;
+        height: 270px;
+    }
+    .box {
+        width: 23%;
+        height: 240px;
+        margin: 5px;
+        font-size: 28px;
+    }
+
+    .box:hover {
+        border: 8px solid #fff;
+        height: 240px;
+        width: 23.5%;
+    }
+}
+@media screen and (min-width:1440px) {
+    .banner {
+        margin-top: 120px;
+        height: 325px;
+    }
+
+    .banner h2 {
+        font-size: 34px;
+    }
+
+    .cont-box {
+        margin: 30px;
+        height: 270px;
+    }
+    .box {
+        width: 22%;
+        height: 250px;
+        margin: 8px;
+        font-size: 30px;
+    }
+
+    .box:hover {
+        border: 12px solid #fff;
+        height: 250px;
+        width: 22.5%;
+    }
+}

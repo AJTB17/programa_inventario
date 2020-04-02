@@ -1,0 +1,401 @@
+main {
+    width: 80%;
+    margin-left: 12.5%;
+    margin-right: auto;
+}
+
+header .contenedor--flex {
+    z-index: -100000000;
+}
+
+.cuerpa {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    background: #555;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+
+.v1 {
+    display: table;
+    width: 100%;
+    margin-top: 0;
+    border-bottom: 3px solid #222;
+    cursor: pointer;
+}
+
+.v2 {
+    display: flex;
+    width: 100%;
+    border-bottom: 3px solid #222;
+    height: 150px;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.v2 a {
+    color: #eee;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+.v2:hover {
+    background: #666;
+}
+
+.v3 {
+    display: flex;
+    width: 100%;
+    border-bottom: 3px solid #222;
+    height: 100px;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.v3 a {
+
+    height: 101.5px;
+    color: #eee;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    flex-direction: column
+}
+
+.v3active a  {
+    background: #fff;
+    color: #000;
+}
+
+.v3 label {
+
+    height: 101.5px;
+    color: #eee;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    margin: 0;
+    
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    flex-direction: column
+}
+.v3 a:hover, .v4:hover, .v4 a:hover, .v3 label:hover {
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+}
+
+
+
+.v4 {
+    width: 100%;
+    border-bottom: 3px solid #222;
+    height: 30px;
+
+}
+.v4 a {
+    
+    height: 31.5px;
+    color: #eee;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    flex-direction: row;
+    align-content: center;
+    
+    
+}
+
+.v4 hr {
+    width: 50%;
+    margin: auto;
+    
+}
+.v4 span {
+
+    height: 30px;
+    width: 50%;
+    margin: auto;
+    
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    flex-direction: column;
+    
+}
+.u1 {
+    width: 80%;
+    margin: 10%;
+    margin-bottom: 0;
+    border-radius: 110%;
+    border:5px solid #fff;
+    background: rgba(0,0,0,6);
+}
+
+
+.ut1 h3 {
+    text-align: center;
+    font-weight: 100;
+    font-size: 21px;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    color: #eee;
+    letter-spacing: 1px;
+}
+
+
+
+/*---------------------*/
+.bloque {
+    width: 100%;
+}
+.sle {
+    display: block;
+}
+
+.sle .elnero {
+        display: none;
+    }
+
+/*----------------------*/
+
+#maa {
+    display: none;
+}
+
+.menuext {
+    display: none;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+#maa:checked + .menuext {
+    display: block;
+    
+    animation: bar forwards;
+    animation-duration: 0.3s;
+    visibility: hidden; 
+}
+@media screen and (min-width:320px) {
+    .sle .elnero {
+        display: block;
+    }
+    .cuerpa {
+        width: 10%;
+    }
+    .v3 a {
+        font-size: 12px;
+    }
+    
+    .v3 label {
+        font-size: 12px;
+    }
+    .u1cont {
+        display: flex;    
+    }
+    
+    .u1 {
+        width: 50%;
+        margin: auto;
+    }
+    .ut1 h3 {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+
+}
+
+@media screen and (min-width:760px) {
+    .v3 a {
+        font-size: 12.5px;
+    }
+    .u1 {
+        width: 70%;
+        margin: auto;
+    }
+    .ut1 h3 {
+        font-size: 14.5px;
+        letter-spacing: 1px;
+    }
+    .cuerpa {
+        top: 120px;
+    }
+}
+
+@media screen and (min-width:1028px) {
+    .u1cont {
+        display: none;    
+    }
+    .v1 {
+        height: 80px
+    }
+    .ut1 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .v3 {
+        height: 70px;
+    }
+    .v3 a {
+        height: 71.5px;
+    }
+    .v3 label {
+        height: 71.5px;
+    }
+    .sle {
+        display: none;
+    }
+    .escoba {
+        display: block;   
+    }
+    .cuerpa {
+        width: 10%;
+        
+    }
+    .v2 a {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .ut1 h3 {
+        font-size: 15px;
+    }
+}
+@media screen and (min-width:1080px) {
+    .cuerpa {
+        width: 10%;
+    }
+    .v2 a {
+        font-size: 18px;
+    }
+    .ut1 h3 {
+        font-size: 21px;
+    }
+    .v3 a {
+        font-size: 16px;
+    }
+    .v3 label {
+        font-size: 16px;
+    }
+    .u1 {
+        width: 70%;
+        margin: auto;
+    }
+}
+@media screen and (min-width:1125px) {
+    .u1cont {
+        margin-top: 5px;
+        display: flex;    
+    }
+    .v1 {
+        height: auto;
+    }
+    .ut1 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .v3 {
+        height: 80px;
+    }
+    .v3 a {
+        height: 81.5px;
+    }
+    .v3 label {
+        height: 81.5px;
+    }
+    .cuerpa {
+        top: 120px;
+    }
+}
+@media screen and (min-width:1400px) {
+    .cuerpa {
+        width: 8%;
+    }
+    .ut1 h3 {
+        font-size: 22px;
+    }
+    .v3 {
+        height: 100px
+    }
+    .v3 a {
+        font-size: 18px;
+        height: 101.5px;
+    }
+    .v3 label {
+        font-size: 18px;
+        height: 101.5px;
+    }
+
+    
+    .u1 {
+        width: 70%;
+        margin: auto;
+    }
+}
+@media screen and (min-width:1400px) {
+    .cuerpa {
+        width: 7%;
+        top: 120px;
+    }
+    .ut1 h3 {
+        font-size: 20px;
+    }
+    .v3 a {
+        font-size: 18px;
+    }
+    .v3 label {
+        font-size: 18px;
+    }
+    
+    .u1 {
+        width: 70%;
+        margin: auto;
+    }
+}
+
+@keyframes bar{
+    0% {
+        visibility:visible;
+        opacity: 0
+    }
+    25% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.5;
+     }
+    75% {
+        opacity: 0.7;
+     }
+    100% {
+        opacity: 1;
+        visibility:visible;
+     }
+    
