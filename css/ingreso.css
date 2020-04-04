@@ -299,7 +299,7 @@ table {
 }
 
 th, td {
-    padding: 20px;
+    padding: 20px 5px;
 }
 td {
     font-size: 13.4px;
@@ -394,10 +394,13 @@ table .dp {
     width: 100px;
 }
 table .cap {
-    width: 45px;
+    width: 65px;
 }
 table .depp {
-    width: 120px;
+    width: 80px;
+}
+table .und {
+    width: 60px
 }
 table .ubip {
     width: 100px;

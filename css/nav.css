@@ -7,23 +7,11 @@
 }
 
 nav {
-    display: inline-table;
+    display: inline-flex;
     width: 100%;
     padding: 0;
     margin: 0;
     list-style: none;
-}
-
-ul {
-    display: table;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    align-items: center;
-    justify-content:space-around;
-    text-align: center;
-
-    
 }
 
 nav a {
@@ -33,14 +21,16 @@ nav a {
     font-weight: bold;
     font-size: 13.5px;
     padding: 12.5px 0px;
-    margin: 0px;
     width:20%;
+    text-align: center;
     border: 0px;
     box-shadow: inset 2px 0px 0px 0 #333;
     display: inline-block;
     list-style: none;
     
     transition: 0.3s;
+
+    -moz-transition: 0.3s;
 }
 nav a:hover {
     background: #fff;
