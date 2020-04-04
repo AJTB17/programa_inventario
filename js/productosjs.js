@@ -76,9 +76,7 @@ function addProducto(){
     $("#descuentoProductInput").val("");
     $("#departamentoProductInput").val("");
     $("#reordenProductInput").val("");
-    $("#fechaultProductInput").val("");
-    $("#nroultimopedidoProductInput").val("");
-    $("#IVAinput").val("")
+    $("#IVAinput").val("");
 };
 function aceptarNuevoProducto() {
     cadena = "id=" + $('#idProductInput').val() +
@@ -88,8 +86,6 @@ function aceptarNuevoProducto() {
              "&descuento=" + $('#descuentoProductInput').val() +
              "&departamento=" + $('#departamentoProductInput').val() +
              "&reorden=" + $('#reordenProductInput').val() +
-             "&fechault=" + $('#fechaultProductInput').val() +
-             "&nroultimopedido=" + $('#nroultimopedidoProductInput').val() +
              "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
     
     $.ajax({
@@ -145,9 +141,7 @@ function modProducto(datos){
     $("#descuentoProductInput").val(d[4]);
     $("#departamentoProductInput").val(d[5]);
     $("#reordenProductInput").val(d[6]);
-    $("#fechaultProductInput").val(d[7]);
-    $("#nroultimopedidoProductInput").val(d[8]);
-    $("#IVAinput").val(d[9]);
+    $("#IVAinput").val(d[7]);
 };
 function modDatosProducto(){
     if($('#codigoProductInput').val() == codigoProduct){
@@ -158,8 +152,6 @@ function modDatosProducto(){
              "&descuento=" + $('#descuentoProductInput').val() +
              "&departamento=" + $('#departamentoProductInput').val() +
              "&reorden=" + $('#reordenProductInput').val() +
-             "&fechault=" + $('#fechaultProductInput').val() +
-             "&nroultimopedido=" + $('#nroultimopedidoProductInput').val() +
              "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
     } else {
         cadena = "id=" + $('#idProductInput').val() +
@@ -169,8 +161,6 @@ function modDatosProducto(){
                  "&descuento=" + $('#descuentoProductInput').val() +
                  "&departamento=" + $('#departamentoProductInput').val() +
                  "&reorden=" + $('#reordenProductInput').val() +
-                 "&fechault=" + $('#fechaultProductInput').val() +
-                 "&nroultimopedido=" + $('#nroultimopedidoProductInput').val() +
                  "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
     }
     $.ajax({

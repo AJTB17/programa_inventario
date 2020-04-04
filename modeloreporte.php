@@ -114,6 +114,7 @@ $fs = 0;
 $fecha=date("d-m-Y");
 $nombrearc = "auditoria-reporte".$najuste.".pdf";
 $direccion= "C:/wamp/www/inventariogg/phpurl/reportesauditoria/" .$nombrearc ;
+$najuste = $_POST['n_ajuste'];
 
  include('C:/wamp/www/inventariogg/phpurl/bdacceso.php');
         $boolean = true;
@@ -129,7 +130,7 @@ $direccion= "C:/wamp/www/inventariogg/phpurl/reportesauditoria/" .$nombrearc ;
         };
         if($boolean){
             $query="INSERT INTO
-            auditoria(fecha, nombreArchivo, direccion) VALUES ('$fecha','$nombrearc','$direccion')";
+            auditoria(fecha, nombreArchivo, direccion, numerodeAjuste) VALUES ('$fecha','$nombrearc','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
 //

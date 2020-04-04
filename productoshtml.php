@@ -53,11 +53,13 @@
             <div class="contenedor--flex">
                 <div  class="gg">
                     <nav>
-                        <a href="proveedoreshtml.php"  id="btna">Provedores</a>
-                        <a href="productoshtml.php" class="active" id="btnc">Productos</a>
-                        <a href="tablaDeIngresos.php" id="btnb">Ingresos</a>
-                        <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
-                        <a href="movimiento.php"  id="btne">Movimientos</a>
+                        <ul>
+                            <a href="proveedoreshtml.php"  id="btna">Provedores</a>
+                            <a href="productoshtml.php" class="active" id="btnc">Productos</a>
+                            <a href="tablaDeIngresos.php" id="btnb">Ingresos</a>
+                            <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+                            <a href="movimiento.php"  id="btne">Movimientos</a>
+                        </ul>
                     </nav>
                 </div>
             </div>
@@ -75,8 +77,8 @@
                     <div id="ContenedorDePeticiones" class="contenedor--flex">
                         <input type="text" hidden="" id="idProductInput" name="">
                         <div class="inpcont" style="width: 50%">
-                            <label id="codigoProductLabel" class="formularioLabel">Código</label><br>
-                            <input id="codigoProductInput" type="number" class="formularioInput">
+                            <label id="codigoProductLabel" for="codigoProductInput" class="formularioLabel">Código</label><br>
+                            <input id="codigoProductInput" type="text" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
@@ -87,12 +89,19 @@
                         <div class="inpcont" style="width: 50%">
                             <label id="unidadesProductLabel" class="formularioLabel">Unidad</label>
                             <br>
-                            <input type="text" list="unidadesExistentes" id="unidadesProductInput" class="formularioInput">
+                            <select value="1" type="text" list="unidadesExistentes" id="unidadesProductInput" class="formularioInput">
+                                <option value="Kilogramos">Kilogramos</option>
+                                <option value="Litros">Litros</option>
+                                <option value="Gramos">Gramos</option>
+                                <option value="Metros">Metros</option>
+                                <option value="Mililitros">Mililitros</option>
+                                <option value="Centímetros">Centímetros</option>
+                            </select>
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="descuentoProductLabel" class="formularioLabel">Descuento</label><br>
-                            <input id="descuentoProductInput" type="number" class="formularioInput">
+                            <input id="descuentoProductInput" type="text" class="formularioInput">
                         </div>
 
                         <div class="inpcont" style="width: 50%">
@@ -102,22 +111,12 @@
 
                         <div class="inpcont" style="width: 50%">
                             <label id="reordenProductLabel" class="formularioLabel">Reorden</label><br>
-                            <input id="reordenProductInput" type="number" class="formularioInput">
-                        </div>
-                        
-                        <div class="inpcont" style="width: 50%">
-                            <label id="fechaultProductLabel" class="formularioLabel">Fecha de último pedido</label><br>
-                            <input type="date" id="fechaultProductInput" class="formularioInput">
-                        </div>
-                        
-                        <div class="inpcont" style="width: 50%">
-                            <label id="nroultimopedidoProductLabel" class="formularioLabel">Nro de último pedido</label><br>
-                            <input id="nroultimopedidoProductInput" type="number" class="formularioInput">
+                            <input id="reordenProductInput" type="text" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                            <input id="IVAinput" type="number" class="formularioInput">
+                            <input id="IVAinput" type="text" class="formularioInput">
                         </div>
                         
                         <div class="cont-formularioButton">
@@ -189,13 +188,21 @@
                     <table>
                         <thead class="ext">
                                 <th id="addProducto"><p style="text-decoration: none; color:
-                                 #fff">Agregar</p></th><th></th><th></th><th></th><th></th>
+                                 #fff">Agregar</p></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
                                  <th></th>
                             </thead>
                         <tr style="background-color: #222">
                             <thead>
-                                <th>Código</th><th>Nombre</th><th>Cantidad</th><th>Unidad</th>
-                                <th>Editar</th><th>Eliminar</th>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Unidad</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                             </thead>
                         </tr>
                         <?php
@@ -215,8 +222,6 @@
                                     $row["descuento"]."||".
                                     $row["departamento"]."||".
                                     $row["reorden"]."||".
-                                    $row["fechaultpedido"]."||".
-                                    $row["noultimopedido"]."||".
                                     $row["IVA"]."||";
                             
                             $nombre = $row['nombre'];

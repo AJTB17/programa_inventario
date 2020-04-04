@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet);
 @import url('https://fonts.googleapis.com/css?family=Catamaran&display=swap');
 
 
@@ -163,16 +164,15 @@ h5 {
     width: 200px;
 }
 .of1-1 select{
-    width: 204px;
     display: inline-block;
-    
+    width: 204px;
 }
 
 /* of1-1 end*/
 
 .of1-3  {
     
-    width: 110px;
+    width: 100px;
     
     margin-left: auto;
     margin-right: 10px;
@@ -181,7 +181,6 @@ h5 {
     justify-content: flex-end;
     flex-direction: column;
 }
-
 
 /* of 1 end */
 

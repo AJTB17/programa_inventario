@@ -115,9 +115,9 @@ tr:hover td{
 
 #ContenedorDeFormulario{
     position: absolute;
-    top: 50px;
+    top: 120px;
     border-radius: 10px;
-    width:60%;
+    width:50%;
     height: auto;
     background-color: white;
     text-align: left;
@@ -144,7 +144,7 @@ tr:hover td{
 }
 
 #ContenedorDePeticiones{
-    padding: 5px;
+    padding: 15px;
 }
 .inpcont {
     display: flex;
@@ -154,21 +154,14 @@ tr:hover td{
 }
 .titlemodal {
     text-align: center;
-    font-weight: 80;
+    font-weight: 100;
     padding: 10px 0px 0px;
 }
-.inpcont {
-    text-align: left;
-    justify-content: center;
-    margin: 0;
-}
 .formularioInput{
-    padding: 13px;
-    width: 95%;
-    height: 10px;
-    margin: 0px;
+    width: 90%;
+    height: 18px;
+    margin: 0px 0px 5px;
     border-radius: 5px;
-    padding-left: 5px;
     border:1px solid rgba(170,170,170,0.9);
     background-color: white;
 }
@@ -180,8 +173,7 @@ tr:hover td{
 }
 
 .formularioLabel{
-    margin-top: 3px;
-    padding: 0px;
+    padding: 10px;
     width: 100%;
     height: 20px;
     float:left;

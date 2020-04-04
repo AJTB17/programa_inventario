@@ -14,6 +14,11 @@
 
     // Comprobación de existencia de la factura
 
+    if ($numFactura == "" || $codProveedor == "") {
+        echo "Rellene el número de factura y el código de proveedor";
+        $boolean = false;
+    };
+
     while($conjunto=$result->fetch_assoc()){
         if ($conjunto['numerodefactura'] == $numFactura &&
             $conjunto['codproveedor'] == $codProveedor){
