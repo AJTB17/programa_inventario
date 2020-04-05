@@ -54,21 +54,15 @@
                 </div>
             </div>
              <!-- Cabecera End -->
-            <div class="contenedor--flex">
                 <div  class="gg">
                     <nav>
-                        <ul>
-                            <a href="proveedoreshtml.php"  id="btna">Provedores</a>
-                            <a href="productoshtml.php" id="btnc">Productos</a>
-                            <a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
-                            <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
-                            <a href="movimiento.php" class="active" id="btne">Movimientos</a>
-                        </ul>
+                        <a href="proveedoreshtml.php"  id="btna">Provedores</a>
+                        <a href="productoshtml.php" id="btnc">Productos</a>
+                        <a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
+                        <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+                        <a href="movimiento.php" class="active" id="btne">Movimientos</a> 
                     </nav>
-                </div>
-            </div>
-                    
-                
+                </div>    
         </header>
         <main>
            <div id="ventanaDeDepositos" class="GrayBackground hidden">

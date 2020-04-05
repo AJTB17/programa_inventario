@@ -50,19 +50,15 @@
                 </div>
             </div>
              <!-- Cabecera End -->
-            <div class="contenedor--flex">
-                <div  class="gg">
-                    <nav>
-                        <ul>
-                            <a href="proveedoreshtml.php"  id="btna">Provedores</a>
-                            <a href="productoshtml.php" id="btnc">Productos</a>
-                            <a href="tablaDeIngresos.php" id="btnb" class="active">Ingresos</a>
-                            <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
-                            <a href="movimiento.php"  id="btne">Movimientos</a>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+             <div  class="gg">
+                <nav>
+                    <a href="proveedoreshtml.php" id="btna">Provedores</a>
+                    <a href="productoshtml.php" id="btnc">Productos</a>
+                    <a href="tablaDeIngresos.php" class="active" id="btnb">Ingresos</a>
+                    <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+                    <a href="movimiento.php" id="btne">Movimientos</a> 
+                </nav>
+            </div>    
                     
                 
         </header>
