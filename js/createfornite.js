@@ -303,7 +303,7 @@ function enviarDatos() {
         url: "/inventariogg/phpurl/actualizacionDeDatos.php",
         data: cadena,
         success: function(dato) {
-            if (dato == "Factura existente" || dato == "Rellene el número de factura y el código de proveedor") {
+            if (dato != "") {
                 alert(dato);
             } else {
                 location.reload();
