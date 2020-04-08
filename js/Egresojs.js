@@ -1,4 +1,7 @@
-let numero = 0;
+let numero = 0,
+    positon = "egresos",
+    numRef= "",
+    accion="";
 
 document.getElementById("trasp").addEventListener("click", desplegarTraslados);
 document.getElementById("sacarp").addEventListener("click", desplegarSalidas);
@@ -20,7 +23,7 @@ function desplegarTraslados(){
         document.getElementById("ubicacion_" + n).removeAttribute("list");
         document.getElementById("ubicacion_" + n).setAttribute("list", "DepositosExistentes");
     }
-};
+}
 function desplegarSalidas(){
     document.getElementById("changer").innerHTML = "Motivo";
     document.getElementById("trasp").checked = false;
@@ -35,7 +38,7 @@ function desplegarSalidas(){
         document.getElementById("ubicacion_" + n).setAttribute("list", "Motivos");
 
     }
-};
+}
 function createTable(){
     if (document.getElementById("sacarp").checked){
         var table = document.getElementById("mesa"),
@@ -51,7 +54,7 @@ function createTable(){
     }
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
-};
+}
 function onerow(){
     if (document.getElementById("sacarp").checked){
         var table = document.getElementById("mesa"),
@@ -144,7 +147,7 @@ function onerow(){
     
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
-};
+}
 function clearRow(){
     var mensaje = confirm("¿Desea eliminar ésta fila?");
     if(this.parentNode.id == numero && mensaje == true){
@@ -169,7 +172,7 @@ function clearRow(){
         };
         numero--;
     };
-};
+}
 function autocomplete() {
     var cadena = "id=" + this.value;
     var codigo = this.parentNode.parentNode.id;
@@ -178,7 +181,7 @@ function autocomplete() {
     var id = this.id;
     $.ajax({
         type:'POST',
-        url:"/inventariogg/phpurl/traerDatos.php",
+        url:"/inventariogg/phpurl/traerDatos_i.php",
         data:cadena,
         success:function(data){
             if (id === producto){
@@ -196,7 +199,7 @@ function autocomplete() {
                     alert("Error, producto no encontrado");
         }
     })
-};
+}
 function enviarDatos(){
     var cadena = "";
     for(var n = 1; n<=numero; n++) {
@@ -216,7 +219,7 @@ function enviarDatos(){
     if(document.getElementById("sacarp").checked){
         var solicitante = document.getElementById("solicitanteTras2").value;
         var razon = document.getElementById("razpro2").value;
-        var accion = "Egreso";
+        var accion = "egreso";
         let numRef = document.getElementById("numref2").value;
         cadena = cadena +
                  "&solicitante=" + solicitante +
@@ -227,7 +230,7 @@ function enviarDatos(){
     } else if (document.getElementById("trasp").checked) {
         var solicitante = document.getElementById("solicitanteTras1").value;
         var razon = document.getElementById("razpro1").value;
-        var accion = "Traslado";
+        var accion = "traslado";
         let numRef = document.getElementById("numref1").value;
         cadena = cadena +
                  "&solicitante=" + solicitante +
@@ -246,11 +249,91 @@ function enviarDatos(){
             } else if (dato.slice(0, 47) == "Cantidad en depósito insuficiente para producto" || dato.slice(0, 8) == "Producto") {
                 alert(dato);
             } else {
-                location.reload();
+                reporte();
             }
         },
         error: function(){
             alert("No se ha podido establecer conexión con la base de datos");
         }
     });
-};
+}
+function reporte(){
+    var cadena = "";
+    for(var n = 1; n<=numero; n++) {
+        if (n == 1) {
+            cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value;
+        } else {
+            cadena = cadena +
+                "&id" + n + "=" + document.getElementById("codigo_" + n).value;
+        };
+        cadena = cadena +
+            "&producto" + n + "=" + document.getElementById("producto_" + n).value +
+            "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+            "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+            "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
+    };
+    
+    if(document.getElementById("sacarp").checked){
+        var solicitante = document.getElementById("solicitanteTras2").value,
+            razon = document.getElementById("razpro2").value;
+        accion = "egreso";
+        numRef = document.getElementById("numref2").value;
+        cadena = cadena +
+                 "&solicitante=" + solicitante +
+                 "&razon=" + razon +
+                 "&accion=" + accion +
+                 "&numero=" + numero +
+                 "&numRef=" + numRef;
+        for(var n = 1; n<=numero; n++) {
+            cadena = cadena +
+                "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
+        }
+    } else if (document.getElementById("trasp").checked) {
+        var solicitante = document.getElementById("solicitanteTras1").value,
+            razon = document.getElementById("razpro1").value;
+        accion = "traslado";
+        numRef = document.getElementById("numref1").value;
+        cadena = cadena +
+                 "&solicitante=" + solicitante +
+                 "&razon=" + razon +
+                 "&accion=" + accion +
+                 "&numero=" + numero +
+                 "&numRef=" + numRef;
+        for(var n = 1; n<=numero; n++) {
+            cadena = cadena +
+                "&ubicacion" + n + "=" + " Deposito " + document.getElementById("ubicacion_" + n).value;
+        }
+    };   
+    $.ajax({
+            type: 'POST',
+            url: "/inventariogg/modeloreporte_egresos.php",
+            data:cadena,
+            success: function(){
+                moverarchivo();
+            },
+            error: function(){
+                alert("Reporte no realizado");
+            }
+    });
+}
+function moverarchivo(){
+    let dato = "n_ajuste=" + numRef +
+               "&posicion=" + positon +
+               "&accion=" + accion;
+    
+    setTimeout(function(){
+    $.ajax({
+        type: 'POST',
+        url: "/inventariogg/phpurl/moverarchivo.php",
+        data:dato,
+        success: function(){
+            window.open("./phpurl/reportes" + accion + "/" + accion + "-reporte" + numRef + ".pdf", '_blank');
+            location.reload();
+        },
+        error: function(){
+            alert("movimiento no realizado");
+        }
+    });
+ } ,1000);
+
+}

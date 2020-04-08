@@ -430,6 +430,8 @@ function moverarchivo(){
         data:dato,
         success: function(){
             window.open("./phpurl/reportesauditoria/auditoria-reporte" + n_ajuste.innerHTML + ".pdf", '_blank');
+            alert("Operación completa");
+            location.reload();
         },
         error: function(){
             alert("movimiento no realizado");
@@ -503,15 +505,14 @@ function actualizarDatos(){
     if (thereAreChange){
         cadena = cadena + "&numero=" + numero;
         
-        reporte();
+        
         
         $.ajax({
             type: 'POST',
             url: "/inventariogg/phpurl/audiroria-actualizadatos.php",
             data:cadena,
             success: function(){
-                //alert("Operación completa")
-                //location.reload();
+                reporte();
             },
             error: function(){
                 alert("No se ha podido establecer conexión con la base de datos");

@@ -214,7 +214,7 @@ function autocomplete() {
     var id = this.id;
     $.ajax({
         type: 'POST',
-        url: "/inventariogg/phpurl/traerDatos.php",
+        url: "/inventariogg/phpurl/traerDatos_i.php",
         data: cadena,
         success: function(data) {
             if (id === producto) {
@@ -281,7 +281,9 @@ function reporte(){
         };
         cadena = cadena +
             "&cantidad" + n + "=" + newValue +
+            "&unidad" + n + "=" + initialUnit +
             "&preciou" + n + "=" + document.getElementById("p/u_" + n).value +
+            "&producto" + n + "=" + document.getElementById("producto_" + n).value +
             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
             "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
     }
@@ -317,6 +319,9 @@ function moverarchivo(){
         url: "/inventariogg/phpurl/moverarchivo.php",
         data:dato,
         success: function(){
+            window.open("./phpurl/reportesingresos/ingreso-reporte" + numFactura + ".pdf", '_blank');
+            alert("Operación completa");
+            location.reload();
         },
         error: function(){
             alert("movimiento no realizado");
@@ -366,7 +371,7 @@ function enviarDatos() {
         "&subtotal=" + document.getElementById("totalFinal").innerHTML +
         "&subtotalIva=" + document.getElementById("TotalIva").innerHTML;
     
-    reporte();
+    
     
     $.ajax({
         type: 'POST',
@@ -376,7 +381,7 @@ function enviarDatos() {
             if (dato != "") {
                 alert(dato);
             } else {
-                location.reload();
+                reporte();
             }
         },
         error: function() {

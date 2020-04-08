@@ -10,7 +10,7 @@
 
     /* Determinación de acción */
 
-    if ($accion == "Egreso"){
+    if ($accion == "egreso"){
         $boolean = true;
         $query = "SELECT id FROM kardexsalidas";
         $resultado = $conexion->query($query);
@@ -20,7 +20,7 @@
                 echo "Número de movimiento existente";
             }
         }
-    } else if ($accion == "Traslado"){
+    } else if ($accion == "traslado"){
         $boolean = false;
         $query = "SELECT id FROM kardextraslados";
         $resultado = $conexion->query($query);
