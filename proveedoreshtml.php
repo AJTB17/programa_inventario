@@ -181,7 +181,7 @@
                         </div>
                             <!--  <li><a href="javascript:void(0);" onClick="hrefprueba();" title="Acceso al menu prueba.">Acerca de</a></li>-->
                 </div>
-            <div style="margin-top:200px">
+            <div style="margin-top:120px">
                 <div class="ban"><h2>Proveedores</h2></div>
                 <div class="contenedor--t">
                     <table>

@@ -121,7 +121,7 @@
                         </div>
                 </div> 
                 
-                <div style="margin-top: 200px">
+                <div style="margin-top: 130px">
                     <div class="ban"><h2>Control administrativo de los movimientos</h2></div>
                     <div class="contenedor--flex">
                         <div class="back2">

@@ -107,7 +107,7 @@
                         <a href="#">Cerrar sesión</a>
                     </div>
                 </div>
-                <div class="caja-exe" style="margin-top:200px">
+                <div class="caja-exe" style="margin-top:130px">
                     <h2 class="ti">Cargo de inventario</h2>
                     <div class="factura" id="factura">
                         <div class="contenedor--flex">
