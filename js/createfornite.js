@@ -3,7 +3,8 @@ var numero = 0,
 
 $('#add2').click(createTable);
 $('#one').click(onerow);
-document.querySelector("#codigopro").addEventListener("keyup", autocompletePro);
+document.querySelector("#codigopro").addEventListener("input", autocompletePro);
+document.querySelector("#nombrepro").addEventListener("input", autocompletePro);
 document.querySelector("#send").addEventListener("click", enviarDatos);
 
 function createTable() {
@@ -217,21 +218,16 @@ function autocomplete() {
         url: "/inventariogg/phpurl/traerDatos_i.php",
         data: cadena,
         success: function(data) {
+            var everything = JSON.parse(data);
             if (id === producto) {
-                var everything = JSON.parse(data);
                 document.getElementById("codigo_" + codigo).value = everything.codigo;
-                document.getElementById("medida_" + codigo).value = everything.unidad;
-                document.getElementById("iva_" + codigo).value = everything.iva;
-
-                calculate();
             } else if (id === codi) {
-                var everything = JSON.parse(data);
                 document.getElementById("producto_" + codigo).value = everything.producto;
-                document.getElementById("medida_" + codigo).value = everything.unidad;
-                document.getElementById("iva_" + codigo).value = everything.iva;
-
-                calculate();
             }
+            document.getElementById("medida_" + codigo).value = everything.unidad;
+            document.getElementById("iva_" + codigo).value = everything.iva;
+
+            calculate();
         },
         error: function() {
             alert("Error, producto no encontrado");
@@ -240,13 +236,18 @@ function autocomplete() {
 }
 function autocompletePro() {
     var cadena = "codigo=" + this.value;
+    let id = this.id;
     $.ajax({
         type: "POST",
         url: "/inventariogg/phpurl/traerProveedor.php",
         data: cadena,
         success: function(data) {
             var todo = JSON.parse(data);
-            document.getElementById("nombrepro").value = todo.nombre;
+            if (id == "codigopro") {
+                document.getElementById("nombrepro").value = todo.nombre;
+            } else if (id == "nombrepro") {
+                document.getElementById("codigopro").value = todo.codigo;
+            }
             document.getElementById("rifpro").value = todo.rif;
         },
         error: function() {

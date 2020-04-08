@@ -65,7 +65,7 @@
                 </div>    
         </header>
         <main>
-           <div id="ventanaDeDepositos" class="GrayBackground hidden">
+            <div id="ventanaDeDepositos" class="GrayBackground hidden">
                 <div id="muestraDeDepositos">
                     <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
                     <table id="depositos">

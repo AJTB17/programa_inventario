@@ -9,6 +9,7 @@
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
+        <link href="css/BF.css" rel="stylesheet">
 <!----- Estilos de css end -----> 
         
         <link href='packages/core/main.css' rel='stylesheet' />
@@ -122,61 +123,110 @@
                 </div>
             <div style="margin-top:200px">
                 <div class="ban"><h2>Ingresos</h2></div>
+                <div class="contenedor--flex">
+                    <div class="back2">
+                        <h2>Busqueda filtrada</h2>
+                        <div class="contenedor--flex">
+                            <div class="Cinput">
+                                <label for="movementNumberFilter">Número de factura</label><br>
+                                <input type="number" placeholder="Número de factura" id="movementNumberFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="fechaFilter">Fecha:</label><br>
+                                <input type="date" placeholder="fecha de entrada" id="fechaFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="proveedorCodeFilter">Código de proveedor:</label><br>
+                                <input type="text" placeholder="Código" id="proveedorCodeFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="nameFilter">Nombre:</label><br>
+                                <input type="text" placeholder="Nombre de proveedor" id="nameFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="solicitanteFilter">Nombre de producto:</label><br>
+                                <input type="text" placeholder="Nombre de producto" id="productNameFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="departmentFilter">Departamento:</label><br>
+                                <input type="text" placeholder="Departamento" id="departmentFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="orderFilter">Ordenar por:</label><br>
+                                <select name="orden" id="orderFilter">
+                                    <option>Más recientes</option>
+                                    <option>Más antiguos</option>
+                                </select>
+                            </div>
+                            <div class="Cinput">
+                                <label for="depositFilter">Deposito:</label><br>
+                                <input type="number" placeholder="numero de deposito" id="depositFilter">
+                            </div>
+                        </div>
+                        <div class="contenedor--flex">
+                            <div class="eb">
+                                <button id="filterButton">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="contenedor--t">
                     <table>
-                        <tr style="background-color: #222">
-                            <thead>
+                        <thead>
+                            <tr>
                                 <th>Número de Factura</th><th>Fecha de Ingreso</th>
                                 <th>Código de Proveedor</th><th>Nombre de proveedor</th><th>Subtotal</th>
                                 <th>IVA</th><th>Total</th>
-                            </thead>
-                        </tr>
-                        <?php
-                        include("phpurl/bdacceso.php");
-                        $query="SELECT kardexingresos.numerodefactura,
-                               kardexingresos.fechadeingreso,
-                               kardexingresos.codproveedor,
-                               proveedor.nombre,
-                               kardexingresos.subtotal,
-                               kardexingresos.iva,
-                               kardexingresos.total
-                               FROM kardexingresos INNER JOIN proveedor ON proveedor.codigo = kardexingresos.codproveedor
-                               ORDER BY fechadeingreso DESC";
-                        $resultado=$conexion->query($query);
-                        while($row=$resultado->fetch_assoc()){
-                            $numeroDeFactura =$row['numerodefactura'];
-                            $codigoDeProveedor = $row['codproveedor'];
-                            $query2 = "SELECT * FROM movimientoskardexi WHERE
-                            numerodefactura='$numeroDeFactura' AND
-                            codigoproveedor='$codigoDeProveedor'";
-                            $resultado2=$conexion->query($query2);
-                            $movimientos = $numeroDeFactura."--".$codigoDeProveedor."!!";
-                            while ($row2=$resultado2->fetch_assoc()){
-                                $movimientos = $movimientos.$row2['producto']."||".
-                                                $row2['cantidad']."||".
-                                                $row2['precio']."||".
-                                                $row2['deposito']."--";
-                            };
-                        ?>
-                        <tr>
-                            <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                            <?php echo $numeroDeFactura; ?></td>
-                            <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                            <?php echo $row["fechadeingreso"]; ?></td>
-                            <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                            <?php echo $row["codproveedor"]; ?></td>
-                            <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                            <?php echo $row["nombre"]; ?></td>
-                            <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                            <?php echo $row["subtotal"]; ?></td>
-                            <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                            <?php echo $row["iva"]; ?></td>
-                            <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                            <?php echo $row["total"]; ?></td>
-                        </tr>
-                        <?php
-                        }
-                        ?>
+                            </tr>
+                        </thead>
+                        <tbody id="incomesTableBody">
+                            <?php
+                            include("phpurl/bdacceso.php");
+                            $query="SELECT kardexingresos.numerodefactura,
+                                kardexingresos.fechadeingreso,
+                                kardexingresos.codproveedor,
+                                proveedor.nombre,
+                                kardexingresos.subtotal,
+                                kardexingresos.iva,
+                                kardexingresos.total
+                                FROM kardexingresos INNER JOIN proveedor ON proveedor.codigo = kardexingresos.codproveedor
+                                ORDER BY fechadeingreso DESC";
+                            $resultado=$conexion->query($query);
+                            while($row=$resultado->fetch_assoc()){
+                                $numeroDeFactura =$row['numerodefactura'];
+                                $codigoDeProveedor = $row['codproveedor'];
+                                $query2 = "SELECT * FROM movimientoskardexi WHERE
+                                numerodefactura='$numeroDeFactura' AND
+                                codigoproveedor='$codigoDeProveedor'";
+                                $resultado2=$conexion->query($query2);
+                                $movimientos = $numeroDeFactura."--".$codigoDeProveedor."!!";
+                                while ($row2=$resultado2->fetch_assoc()){
+                                    $movimientos = $movimientos.$row2['producto']."||".
+                                                    $row2['cantidad']."||".
+                                                    $row2['precio']."||".
+                                                    $row2['deposito']."--";
+                                };
+                            ?>
+                            <tr>
+                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <?php echo $numeroDeFactura; ?></td>
+                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <?php echo $row["fechadeingreso"]; ?></td>
+                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <?php echo $row["codproveedor"]; ?></td>
+                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <?php echo $row["nombre"]; ?></td>
+                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <?php echo $row["subtotal"]; ?></td>
+                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <?php echo $row["iva"]; ?></td>
+                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <?php echo $row["total"]; ?></td>
+                            </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -9,6 +9,7 @@
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
+        <link href="css/BF.css" rel="stylesheet">
 <!----- Estilos de css end -----> 
         
         <link href='packages/core/main.css' rel='stylesheet' />
@@ -119,6 +120,58 @@
                 </div>
             <div style="margin-top:200px">
                 <div class="ban"><h2>Egresos</h2></div>
+                <div class="contenedor--flex">
+                    <div class="back2">
+                        <h2>Busqueda filtrada</h2>
+                        <div class="contenedor--flex">
+                            <div class="Cinput">
+                                <label for="nameFilter">Nombre:</label><br>
+                                <input type="text" placeholder="Producto nombre" id="nameFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="movementNumberFilter">Número de Movimiento</label><br>
+                                <input type="number" placeholder="Codigo producto" id="movementNumberFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="solicitanteFilter">Solicitante:</label><br>
+                                <input type="text" placeholder="Solicitante" id="solicitanteFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="fechaFilter">Fecha:</label><br>
+                                <input type="date" placeholder="fecha de entrada" id="fechaFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="departmentFilter">Departamento:</label><br>
+                                <input type="text" placeholder="Departamento" id="departmentFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="orderFilter">Ordenar por:</label><br>
+                                <select name="orden" id="orderFilter">
+                                    <option>Más recientes</option>
+                                    <option>Más antiguos</option>
+                                </select>
+                            </div>
+                            <div class="Cinput">
+                                <label for="depositFilter">Deposito:</label><br>
+                                <input type="number" placeholder="numero de deposito" id="depositFilter">
+                            </div>
+                            <div class="Cinput">
+                                <label for="movementFilter">Movimiento:</label><br>
+                                <select name="movement" id="movementFilter">
+                                    <option>Todos</option>
+                                    <option>Salida</option>
+                                    <option>Ingreso</option>
+                                    <option>Traslado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="contenedor--flex">
+                            <div class="eb">
+                                <button id="filterButton">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="contenedor--t">
                     <table>
                         <tr style="background-color: #222">
