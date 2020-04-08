@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="Cinput">
                                     <label for="movementNumberFilter">Número de Movimiento</label><br>
-                                    <input type="number" placeholder="Codigo producto" id="movementNumberFilter">
+                                    <input type="number" placeholder="Número Movimiento" id="movementNumberFilter">
                                 </div>
                                 <div class="Cinput">
                                     <label for="solicitanteFilter">Solicitante:</label><br>
