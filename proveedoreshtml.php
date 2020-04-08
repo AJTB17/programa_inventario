@@ -1,20 +1,12 @@
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
-        <meta name="description" content="Estancia los otros">
-        <meta name="keywords" content="campamento hotel restaurant eventos campestre">
-        <meta name="author" content="Estancia los otros">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta http-equiv="pragma" content="no-cache" />
+        <meta charset="utf-8">>
 <!----- metas end ----------->
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/menuacceso.css" rel="stylesheet">
         <link href="img/logos/logo0.ico" rel="icon">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
 <!----- Estilos de css end ----->        
