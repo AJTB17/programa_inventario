@@ -1,4 +1,5 @@
-var numero = 0;
+var numero = 0,
+    positon = "ingreso";
 
 $('#add2').click(createTable);
 $('#one').click(onerow);
@@ -17,8 +18,7 @@ function createTable() {
     }
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
-};
-
+}
 function onerow() {
     var table = document.getElementById("mesa"),
         fornite = document.getElementById("cant-prod").value,
@@ -155,8 +155,7 @@ function onerow() {
 
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
-};
-
+}
 function clearRow() {
     var mensaje = confirm("¿Desea eliminar ésta fila?");
     if (this.parentNode.id == numero && mensaje == true) {
@@ -187,8 +186,7 @@ function clearRow() {
         numero--;
         calculate();
     };
-};
-
+}
 function calc() {
     let result = 0,
         id = this.id,
@@ -207,8 +205,7 @@ function calc() {
 
     document.getElementById("total_" + variableId).innerHTML = resultado;
     calculate();
-};
-
+}
 function autocomplete() {
     var cadena = "id=" + this.value;
     var codigo = this.parentNode.parentNode.id;
@@ -240,8 +237,7 @@ function autocomplete() {
             alert("Error, producto no encontrado");
         }
     })
-};
-
+}
 function autocompletePro() {
     var cadena = "codigo=" + this.value;
     $.ajax({
@@ -257,19 +253,18 @@ function autocompletePro() {
             alert("Error, código de proveedor no encontrado.");
         }
     })
-};
-
-function enviarDatos() {
+}
+function reporte(){
     var cadena = "",
-        total = "",
-        variante = document.getElementById("totalConIva").innerHTML,
+//        total = "",
+//        variante = document.getElementById("totalConIva").innerHTML,
         codProveedor = document.getElementById("codigopro").value,
         numFactura = document.getElementById("numeroFactura").value,
         fechaDeIng = document.getElementById("fechadeing").value;
 
-    for (var z = 10; z < variante.length; z++) {
-        total = total + variante[z]
-    };
+//    for (var z = 10; z < variante.length; z++) {
+//        total = total + variante[z]
+//    };
     for (var n = 1; n <= numero; n++) {
         let value = document.getElementById("cant_" + n).value;
         let finalUnit = document.getElementById("medida_" + n).value;
@@ -291,6 +286,78 @@ function enviarDatos() {
             "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
     }
     cadena = cadena +
+//        "&total=" + total +
+        "&codProveedor=" + codProveedor +
+        "&numFactura=" + numFactura +
+        "&fechaDeIng=" + fechaDeIng +
+        "&numero=" + numero ;
+//        "&subtotal=" + document.getElementById("totalFinal").innerHTML +
+//        "&subtotalIva=" + document.getElementById("TotalIva").innerHTML;
+    
+    $.ajax({
+            type: 'POST',
+            url: "/inventariogg/modeloreporte_ingreso.php",
+            data:cadena,
+            success: function(){
+                moverarchivo();
+            },
+            error: function(){
+                alert("Reporte no realizado");
+            }
+    });
+}
+function moverarchivo(){
+    let numFactura = document.getElementById("numeroFactura").value,
+        dato = "n_ajuste=" + numFactura +
+               "&posicion=" + positon;
+    
+    setTimeout(function(){
+    $.ajax({
+        type: 'POST',
+        url: "/inventariogg/phpurl/moverarchivo.php",
+        data:dato,
+        success: function(){
+        },
+        error: function(){
+            alert("movimiento no realizado");
+        }
+    });
+ } ,1000);
+
+}
+function enviarDatos() {
+    var cadena = "",
+        total = "",
+        variante = document.getElementById("totalConIva").innerHTML,
+        codProveedor = document.getElementById("codigopro").value,
+        numFactura = document.getElementById("numeroFactura").value,
+        fechaDeIng = document.getElementById("fechadeing").value;
+
+    for (var z = 10; z < variante.length; z++) {
+        total = total + variante[z]
+    };
+    for (var n = 1; n <= numero; n++) {
+        let value = document.getElementById("cant_" + n).value;
+        let finalUnit = document.getElementById("medida_" + n).value;
+        let initialUnit = document.getElementById("unidad_" + n).value;
+        let newValue = convertUnits(initialUnit, finalUnit, value);
+        if (!newValue) {
+            return;
+        }
+        
+        if (n == 1) {
+            cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value;
+        } else {
+            cadena = cadena +
+                "&id" + n + "=" + document.getElementById("codigo_" + n).value;
+        };
+        cadena = cadena +
+            "&cantidad" + n + "=" + newValue +
+            "&preciou" + n + "=" + document.getElementById("p/u_" + n).value +
+            "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+            "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
+    }
+    cadena = cadena +
         "&total=" + total +
         "&codProveedor=" + codProveedor +
         "&numFactura=" + numFactura +
@@ -298,6 +365,9 @@ function enviarDatos() {
         "&numero=" + numero +
         "&subtotal=" + document.getElementById("totalFinal").innerHTML +
         "&subtotalIva=" + document.getElementById("TotalIva").innerHTML;
+    
+    reporte();
+    
     $.ajax({
         type: 'POST',
         url: "/inventariogg/phpurl/actualizacionDeDatos.php",
@@ -313,8 +383,7 @@ function enviarDatos() {
             alert("No se ha podido establecer conexión con la base de datos");
         }
     });
-};
-
+}
 function calculate() {
     var num = parseFloat(numero);
     var result = 0;
@@ -336,8 +405,7 @@ function calculate() {
         final = number1 + number2;
     document.getElementById("TotalIva").innerHTML = resultadoIva;
     document.getElementById("totalConIva").innerHTML = "Total+Iva:" + final;
-};
-
+}
 function convertUnits(initialUnit, finalUnit, value) {
     const equivalencies = {
         Centímetros: {

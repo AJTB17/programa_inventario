@@ -30,7 +30,7 @@
             "<tr id='$numero'>
                 <td><input class='cp'  id='codigo_$numero' placeholder='Codigo' value='".$row['codigo']."'></td>
                 <td><input class='desc' id='descripcion_$numero' placeholder='Descripción' value='".$row['producto']."'></td>
-                <td><input class='depositosInput' id='deposito_$numero' placeholder='Depósito' value='".$row['deposito']."'></td>
+                <td><input class='co' id='deposito_$numero' placeholder='Depósito' value='".$row['deposito']."'></td>
                 <td><input class='co' id='costo_$numero' readonly='true' placeholder='Precio' value='".$row['costo']."'></td>
                 <td><input class='co' id='coston_$numero' placeholder='Precio'></td>
                 <td><input class='cap' id='cant_$numero' placeholder='Ctd' value='".$row['cantidad']."'></td>

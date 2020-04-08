@@ -1,10 +1,16 @@
 <?php
     include('bdacceso.php');
-    $boolean = true;
     $filas = $_POST['numero'];
-    $busqueda="SELECT * FROM kardexingresos";
-    $result=$conexion->query($busqueda);
+    $cantidad_total= 0;
+    $cantidadpre_total= 0;
 
+    for($x = 1 ; $x <= $filas ; $x++){
+        $cantidadnueva = (int)$_POST['cantidad2' .$x];
+        $cantidadpre = (int)$_POST['cantidad' .$x];
+        
+        $cantidad_total= $cantidad_total + $cantidadnueva;
+        $cantidadpre_total= $cantidadpre_total + $cantidadpre;
+    }
 
     for ($x = 1 ; $x <= $filas ; $x++){
         $id = $_POST['id' .$x];
@@ -12,15 +18,20 @@
         $cantidadactual = $_POST['cantidad' .$x];
         $cantidadnueva = $_POST['cantidad2' .$x];
         $costo2 = $_POST['costo2' .$x];
-
-
-        $busquedaProducto = mysqli_fetch_array(my_sqli_query($conexion, 
-        "SELECT nombre,ctaprevia FROM productos WHERE id='$id'"));
-
+      
+        $query="UPDATE productos SET cta='$cantidad_total',
+                                     ctaprevia='$cantidadpre_total',
+                                     costo='$costo2'
+                WHERE codigo='$id'";
+        $resultado=$conexion->query($query);
+        
+        
+//      Actualizando la cantidad actual y costo de los producto
+        $busquedaProducto = mysqli_fetch_array(mysqli_query($conexion, "SELECT nombre FROM productos WHERE codigo='$id'"));
         $producto = $busquedaProducto['nombre'];
-        // Actualizando la cantidad actual y costo de los producto
+        
         $query="UPDATE depositos SET cantidad='$cantidadnueva'
-                                     WHERE producto='$producto' AND deposito='$deposito'";
+                WHERE producto='$producto' AND deposito='$deposito'";
         $resultado=$conexion->query($query);
     }
 ?>

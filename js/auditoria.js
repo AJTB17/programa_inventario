@@ -1,9 +1,14 @@
 let numero = 0,
-    n_ajuste = document.getElementById("n-ajuste");
+    positon = "auditoria",
+    n_ajuste = document.getElementById("n-ajuste"),
+    max_n,
+    dep_a = "negativo";
+
 $('#one').click(onerow);
 $('#add2').click(rellebartabla);
 $('#actualizarbd').click(actualizarDatos);
 $('#clearAll').click(clearall);
+
 cuadroinfoajuste();
 
 
@@ -20,7 +25,8 @@ function onerow(){
         contenido4 = document.createElement("td"),
         contenido5 = document.createElement("td"),
         contenido6 = document.createElement("td"),
-        contenido7 = document.createElement("td");
+        contenido7 = document.createElement("td"),
+        contenido8 = document.createElement("td");
     numero++
         
     var cont1 = document.createElement("input");
@@ -37,29 +43,34 @@ function onerow(){
     cont2.addEventListener("dblclick", autocomplete);
     cont2.setAttribute("list", "Productos");
 
-        
     var cont3 = document.createElement("input");
-    cont3.id = "costo_" + numero;
-    cont3.readOnly = true;
+    cont3.id = "deposito_" + numero;
     cont3.classList.add("co");
-    cont3.placeholder = "Costo";
+    cont3.placeholder = "Deposito";
+    cont3.addEventListener("keyup", autocomplete);
     
     var cont4 = document.createElement("input");
-    cont4.id = "coston_" + numero;
+    cont4.id = "costo_" + numero;
+    cont4.readOnly = true;
     cont4.classList.add("co");
     cont4.placeholder = "Costo";
-        
+    
     var cont5 = document.createElement("input");
-    cont5.id = "cant_" + numero;
-    cont5.classList.add("cap");
-    cont5.placeholder = "Ctd";
+    cont5.id = "coston_" + numero;
+    cont5.classList.add("co");
+    cont5.placeholder = "Costo";
         
     var cont6 = document.createElement("input");
-    cont6.id = "cantidadn_" + numero;
-    cont6.classList.add("cantn");
+    cont6.id = "cant_" + numero;
+    cont6.classList.add("cap");
     cont6.placeholder = "Ctd";
+        
+    var cont7 = document.createElement("input");
+    cont7.id = "cantidadn_" + numero;
+    cont7.classList.add("cantn");
+    cont7.placeholder = "Ctd";
     
-    var cont7 = document.createTextNode("X");    
+    var cont8 = document.createTextNode("X");    
         
     
     contenido1.appendChild(cont1);
@@ -69,7 +80,8 @@ function onerow(){
     contenido5.appendChild(cont5);   
     contenido6.appendChild(cont6);   
     contenido7.appendChild(cont7); 
-    contenido7.classList.add("clearRow");
+    contenido8.appendChild(cont8); 
+    contenido8.classList.add("clearRow");
         
         
     elemento.id = numero;
@@ -83,6 +95,7 @@ function onerow(){
     elemento.appendChild(contenido5);
     elemento.appendChild(contenido6);
     elemento.appendChild(contenido7);
+    elemento.appendChild(contenido8);
            
     table.appendChild(elemento);
     $(".clearRow").off();
@@ -90,95 +103,174 @@ function onerow(){
 };
 function autocomplete() {
     var num = parseFloat(numero),
-        negativoparce = true,
-        arreeperro = new Array(num),
-        arreegato = new Array(num);
-    
-    // for para codigo recolecta todos los codigos de productos
-    if (this.classList[0] === "cp"){
-        for (var i = 1; i<=num ; i++){
-            arreeperro[i] = document.getElementById("codigo_" + i).value;
-        };
-        
-    // filtro de productos ya ingresados
-        var indices = [];
-        var element = this.value;
-        var idx = arreeperro.indexOf(element);
-        
-        while (idx != -1) {
-            indices.push(idx);    
-            idx = arreeperro.indexOf(element, idx +1);
-
-            if (element === ""){
-                alert("ingrese un codigo");
-             }
-            else if (indices.length > 1) {
-                alert("codigo ya ingresado");
-                this.value = ""
-                negativoparce = false;
-                borrar();
-                break;
-            }
-        };
-    } else if(this.classList[0] === "desc"){
-    //for para descripcion recolecta todos los nombre de productos
-        for (var i = 1; i<=num ; i++){
-            arreegato[i] = document.getElementById("descripcion_" + i).value;
-        };
-    
-    // filtro de productos ya ingresados
-        var indices2 = [];
-        var element2 = this.value;
-        var idx2 = arreegato.indexOf(element2);
-
-        while (idx2 != -1) {
-            indices2.push(idx2);  
-            idx2 = arreegato.indexOf(element2, idx2 +1);
-
-            if (indices2.length > 1) {
-                alert("codigo ya ingresado");
-                this.value = ""
-                negativoparce = false;
-                borrar();
-                break;
-            }
-        };
-    }
+        tbody = document.getElementById("bodyud"),
+        negativoparce = true;
 
     //variables de auto completado por td-codigo o td-descripcion por ajax
-    let cadena = "id=" + this.value,
-        codigo = this.parentNode.parentNode.id,
+    let codigo = this.parentNode.parentNode.id,
         descripcion = "descripcion_" + codigo,
         codi = "codigo_" + codigo,
+        deposito = "deposito_" + codigo,
         id = this.id,
+        cadena = "id=" + this.value + "&numero=" + numero,
         fakeson = this.parentNode.parentNode;
-
     
-    $.ajax({
-        type:'POST',
-        url:"/inventariogg/phpurl/traerDatos.php",
-        data:cadena,
-        success:function(data){
-            if (negativoparce === false){
-                borrar();
-            } else if (id === codi){
-                var everything = JSON.parse(data);
-                document.getElementById("descripcion_" + codigo).value = everything.producto;
-                document.getElementById("cant_" + codigo).value = everything.cantidad;
-                document.getElementById("costo_" + codigo).value = everything.costo;
-                actcosto();
-            } else if (id === descripcion){
-                var everything = JSON.parse(data);
-                document.getElementById("codigo_" + codigo).value = everything.codigo;
-                document.getElementById("cant_" + codigo).value = everything.cantidad;      
-                document.getElementById("costo_" + codigo).value = everything.costo;  
-                actcosto();
+    
+    if (id === codi || id === descripcion){
+        $.ajax({
+            type:'POST',
+            url:"/inventariogg/phpurl/traerDatos.php",
+            data:cadena,
+            success:function(data){
+                if (negativoparce === false){
+                    borrar();
+                } else if (id === codi){
+                    var everything = JSON.parse(data);
+                    document.getElementById("descripcion_" + codigo).value = everything.producto;
+                    document.getElementById("costo_" + codigo).value = everything.costo;
+                    
+                    camino = "hermanos";
+                    buscar_deposito();
+                    
+                    var prueba = document.createElement("tbody");
+                    prueba.innerHTML = everything.html;
+                    
+                    var hijo = prueba.childNodes,
+                        ref = document.getElementById("descripcion_" + codigo).parentNode.parentNode;
+                    
+                    for (var i = 0; i < hijo.length; i++){
+                        tbody.insertBefore(hijo[i], ref.nextSibling);
+                        i--;
+                    }
+                    numero = everything.numero;
+
+                    for (var i = 1; i <= numero; i++){
+                        var cuerpo = document.getElementById(i);       
+                        cuerpo.addEventListener("keyup", actcosto);
+                        cuerpo.addEventListener("click", actcosto);
+                        $(".clearRow").off();
+                        $('.clearRow').click(clearRow);
+
+                    };
+                    var num1 = parseInt(ref.id);
+                    var num2 = parseInt(ref.nextSibling.id);
+
+                    for (var i = num1; i < numero ; i++){
+                        var x = i + 1;
+                        if(num2 !== x){
+                            document.getElementById(x).id = num2;
+                            document.getElementById("codigo_" + x).id = "codigo_" + num2;
+                            document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
+                            document.getElementById("costo_" + x).id = "costo_" + num2;
+                            document.getElementById("coston_" + x).id = "coston_" + num2;
+                            document.getElementById("cant_" + x).id = "cant_" + num2;
+                            document.getElementById("cantidadn_" + x).id = "cantidadn_" + num2;
+
+                            document.getElementById(num2).id = x;
+                            document.getElementById("codigo_" + num2).id = "codigo_" + x;
+                            document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
+                            document.getElementById("costo_" + num2).id = "costo_" + x;
+                            document.getElementById("coston_" + num2).id = "coston_" + x;
+                            document.getElementById("cant_" + num2).id = "cant_" + x;
+                            document.getElementById("cantidadn_" + num2).id = "cantidadn_" + x;
+
+                            var ref_i = document.getElementById(x);
+                            if(i !== numero -1){
+                               num2 = ref_i.nextSibling.id;
+                            }
+                        }
+                        else {
+                            var ref_i = document.getElementById(x);
+                            num2 = ref_i.nextSibling.id;
+                        }
+                    };
+                    actcosto();
+                } else if (id === descripcion){
+                    var everything = JSON.parse(data);
+                    document.getElementById("codigo_" + codigo).value = everything.codigo;     
+                    document.getElementById("costo_" + codigo).value = everything.costo;
+
+                    camino = "hermanos";
+                    buscar_deposito();
+                    
+                    var prueba = document.createElement("tbody");
+                    prueba.innerHTML = everything.html;
+                    
+                    var hijo = prueba.childNodes,
+                        ref = document.getElementById("descripcion_" + codigo).parentNode.parentNode;
+                    
+                    for (var i = 0; i < hijo.length; i++){
+                        tbody.insertBefore(hijo[i], ref.nextSibling);
+                        i--;
+                    }
+                    numero = everything.numero;
+
+                    for (var i = 1; i <= numero; i++){
+                        var cuerpo = document.getElementById(i);       
+                        cuerpo.addEventListener("keyup", actcosto);
+                        cuerpo.addEventListener("click", actcosto);
+                        $(".clearRow").off();
+                        $('.clearRow').click(clearRow);
+
+                    };
+                    var num1 = parseInt(ref.id);
+                    var num2 = parseInt(ref.nextSibling.id);
+
+                    for (var i = num1; i < numero ; i++){
+                        var x = i + 1;
+                        if(num2 !== x){
+                            document.getElementById(x).id = num2;
+                            document.getElementById("codigo_" + x).id = "codigo_" + num2;
+                            document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
+                            document.getElementById("costo_" + x).id = "costo_" + num2;
+                            document.getElementById("coston_" + x).id = "coston_" + num2;
+                            document.getElementById("cant_" + x).id = "cant_" + num2;
+                            document.getElementById("cantidadn_" + x).id = "cantidadn_" + num2;
+
+                            document.getElementById(num2).id = x;
+                            document.getElementById("codigo_" + num2).id = "codigo_" + x;
+                            document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
+                            document.getElementById("costo_" + num2).id = "costo_" + x;
+                            document.getElementById("coston_" + num2).id = "coston_" + x;
+                            document.getElementById("cant_" + num2).id = "cant_" + x;
+                            document.getElementById("cantidadn_" + num2).id = "cantidadn_" + x;
+
+                            var ref_i = document.getElementById(x);
+                            if(i !== numero -1){
+                               num2 = ref_i.nextSibling.id;
+                            }
+                        }
+                        else {
+                            var ref_i = document.getElementById(x);
+                            num2 = ref_i.nextSibling.id;
+                        }
+                    };
+                    actcosto();
+                }
+            },
+            error:function(){
+                        alert("Error, producto no encontrado");
             }
-        },
-        error:function(){
-                    alert("Error, producto no encontrado");
-        }
-    })
+        })
+    } else if (id === deposito){
+        camino = "deposito";
+        let descripcion = "descripcion=" + document.getElementById("descripcion_" + codigo).value + "&deposito=" + this.value + "&camino=" + camino;
+            
+        $.ajax({
+            type:'POST',
+            url:"/inventariogg/phpurl/traerDeposito.php",
+            data:descripcion,
+            success:function(data){
+                var everything = JSON.parse(data);
+                document.getElementById("cant_" + codigo).value = everything.cantidad;
+                max_n = everything.contador;
+                camino = "";
+            },
+            error:function(){
+                alert("Error, producto no encontrado");
+            }
+        });
+    } 
     function borrar(){
         fakeson.childNodes[0].childNodes[0].value = "";
         fakeson.childNodes[1].childNodes[0].value = "";
@@ -187,7 +279,33 @@ function autocomplete() {
         fakeson.childNodes[4].childNodes[0].value = "";
         fakeson.childNodes[5].childNodes[0].value = "";
     }
-};
+    function buscar_deposito(){
+        let descripcion = "descripcion=" + document.getElementById("descripcion_" + codigo).value + "&camino=" + camino + "&depa=" + dep_a ;
+        $.ajax({
+            type:'POST',
+            url:"/inventariogg/phpurl/traerDeposito.php",
+            data:descripcion,
+            success:function(data){
+
+                var everything = JSON.parse(data);
+                if (data === '{"vacio":"vacio"}'){
+                    alert("producto ya ingresado totalmente");
+                    borrar();
+                } else{
+                    document.getElementById("deposito_" + codigo).value = everything.deposito;
+                    document.getElementById("cant_" + codigo).value = everything.cantidad;      
+                    camino = "";
+
+                    dep_a = everything.deposito;
+                }
+            },
+            error:function(){
+                alert("Error, producto no encontrado");
+            }
+        })    
+
+    }
+}
 function rellebartabla(){
     let department = document.getElementById("tipoproducto-input").value;
     let deposit = document.getElementById("deposito-input").value;
@@ -227,7 +345,7 @@ function rellebartabla(){
             alert("Error, productos no encontrado");
         }
     })
-};
+}
 function actcosto(){
     let m1= document.getElementById("costo1"),
         m2 = document.getElementById("costo2"),
@@ -261,8 +379,10 @@ function actcosto(){
     m2.innerHTML = resulto;
     m3.innerHTML = numero;
         
-};
+}
 function reporte(){
+    let cadenar = "";
+    
     for(var n = 1; n<=numero; n++) {
         
         let costoN = document.getElementById("coston_" + n).value,
@@ -284,7 +404,7 @@ function reporte(){
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             };
-    } console.log(n_ajuste.innerHTML);
+    }
     cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML;
     
     $.ajax({
@@ -298,15 +418,18 @@ function reporte(){
                 alert("Reporte no realizado");
             }
     });
-};
+}
 function moverarchivo(){
-    let dato = "n_ajuste=" + n_ajuste.innerHTML;
+    let dato = "n_ajuste=" + n_ajuste.innerHTML +
+               "&posicion=" + positon;
+    
     setTimeout(function(){
     $.ajax({
         type: 'POST',
         url: "/inventariogg/phpurl/moverarchivo.php",
         data:dato,
         success: function(){
+            window.open("./phpurl/reportesauditoria/auditoria-reporte" + n_ajuste.innerHTML + ".pdf", '_blank');
         },
         error: function(){
             alert("movimiento no realizado");
@@ -314,7 +437,7 @@ function moverarchivo(){
     });
  } ,1000);
 
-};
+}
 function actualizarDatos(){
     let cadena = "",
         thereAreChange = true;
@@ -351,7 +474,7 @@ function actualizarDatos(){
                 } else{
                     cadena = cadena +
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
-                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                           "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
@@ -395,7 +518,7 @@ function actualizarDatos(){
             }
         });
     }
-};
+}
 function cuadroinfoajuste(){  
     $.ajax({
         type:'POST',
@@ -407,7 +530,7 @@ function cuadroinfoajuste(){
                     alert("Error, productos no encontrado");
         }
     })
-};
+}
 function clearRow(){
     var mensaje = confirm("¿Desea eliminar ésta fila?");
     if(this.parentNode.id == numero && mensaje == true){
@@ -435,7 +558,7 @@ function clearRow(){
         numero--;
         actcosto();
     };
-};
+}
 function clearall(){
     var mensaje = confirm("¿Desea eliminar todo");
     if(mensaje == true){
@@ -450,3 +573,7 @@ function clearall(){
         }
     }
 }
+
+
+
+

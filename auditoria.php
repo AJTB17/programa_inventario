@@ -143,10 +143,10 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td></td>
                         <td>
                             <button id="clearAll">Borrar</button>
                         </td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -160,7 +160,8 @@
                 </tfoot>
             </table>
             </div>
-            
+            <div id="prueba" style="display: none;">
+            </div>
         </main>
         <script src="js/auditoria.js"></script>
     </body>
