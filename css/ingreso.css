@@ -360,7 +360,7 @@ tr:hover{
 }
 
 /*--------inputs tabla--------*/
-table input {
+table input, table select {
     background: rgba(0,0,0,0);
     border: 0;
     padding: 5px;
@@ -399,8 +399,11 @@ table .cap {
 table .depp {
     width: 80px;
 }
+table .med {
+    width: 70px;
+}
 table .und {
-    width: 60px
+    width: 80px
 }
 table .ubip {
     width: 100px;
