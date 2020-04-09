@@ -120,7 +120,7 @@
                                 <div class="cont-input">
                                     <label>Nombre de proveedor:</label>
                                     <br>
-                                    <input type="text" id="nombrepro">
+                                    <input type="text" list="Proveedores" id="nombrepro">
                                 </div>
                                 <div class="cont-input">
                                     <label>RIF proveedor:</label>
@@ -182,6 +182,18 @@
                                 <?php
                                     include("phpurl/bdacceso.php");
                                     $query="SELECT nombre FROM productos ORDER BY nombre";
+                                    $resultado=$conexion->query($query);
+                                    while($row=$resultado->fetch_assoc()){
+                                ?>
+                                    <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
+                                <?php
+                                    };
+                                ?>
+                                </datalist>
+                                <datalist id="Proveedores">
+                                <?php
+                                    include("phpurl/bdacceso.php");
+                                    $query="SELECT nombre FROM proveedor ORDER BY nombre";
                                     $resultado=$conexion->query($query);
                                     while($row=$resultado->fetch_assoc()){
                                 ?>

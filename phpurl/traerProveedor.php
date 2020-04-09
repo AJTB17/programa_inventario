@@ -1,11 +1,12 @@
 <?php
     $codigo=$_POST['codigo'];
-    $arr= array("nombre"=>'',"rif"=>'');
+    $arr= array("codigo"=>'',"nombre"=>'',"rif"=>'');
 
     include('bdacceso.php');
-    $resultado = mysqli_query($conexion, "SELECT * FROM proveedor WHERE codigo='$codigo'");
+    $resultado = mysqli_query($conexion, "SELECT codigo,nombre,rif FROM proveedor WHERE 
+                                            codigo='$codigo' OR nombre = '$codigo'");
     While ($row = mysqli_fetch_array($resultado)) {
-                $arr = array("nombre"=>$row['nombre'],"rif"=>$row['rif']);
+                $arr = array("codigo"=>$row['codigo'],"nombre"=>$row['nombre'],"rif"=>$row['rif']);
     }
     echo json_encode($arr);
 ?>
