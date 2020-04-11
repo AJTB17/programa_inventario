@@ -7,10 +7,10 @@ let nameFilter = document.getElementById("nameFilter"),
     orderFilter = document.getElementById("orderFilter"),
     depositFilter = document.getElementById("depositFilter"),
     movementFilter = document.getElementById("movementFilter");
-    
-function desplegarInformacion (datos, movimiento, calculos) {
+
+function desplegarInformacion(datos, movimiento, calculos) {
     document.getElementById("ventanaDeDepositos").classList.remove("hidden");
-    if(datos != "" && movimiento === "Traslado" || movimiento === "Salida") {
+    if (datos != "" && movimiento === "Traslado" || movimiento === "Salida") {
         let cantidadDeDatos = datos.split("--");
         let tabla = document.getElementById("depositos");
         for (let i = 0; i < cantidadDeDatos.length - 1; i++) {
@@ -65,19 +65,20 @@ function desplegarInformacion (datos, movimiento, calculos) {
         document.getElementById("tableHeaderVariable").innerHTML = "Depósito de entrada";
         document.getElementById("tableHeaderVariable2").innerHTML = "Precio unitario";
     };
-    if(movimiento === "Traslado") {
+    if (movimiento === "Traslado") {
         document.getElementById("tableHeaderVariable").innerHTML = "Nuevo Depósito";
-    } else if(movimiento === "Salida") {
+    } else if (movimiento === "Salida") {
         document.getElementById("tableHeaderVariable").innerHTML = "Razón";
     };
     document.getElementById("depositCancelButton").addEventListener("click", cerrarInformacion);
 };
+
 function cerrarInformacion() {
     let tabla = document.getElementById("depositos");
     let tableFoot = document.getElementById("depositTableFoot");
-    if (numero != 0){
+    if (numero != 0) {
         let tableBody = document.getElementsByClassName("tableBody");
-        for (let i = 0; i < numero ; i++) {
+        for (let i = 0; i < numero; i++) {
             tabla.removeChild(tableBody[0]);
         }
     };
@@ -85,49 +86,35 @@ function cerrarInformacion() {
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
     numero = 0;
 };
-function filtrado(){
+
+function filtrado() {
     let cadena = "name=" + nameFilter.value +
-                 "&movementNumber=" + movementNumberFilter.value +
-                 "&solicitante=" + solicitanteFilter.value +
-                 "&fecha=" + fechaFilter.value +
-                 "&department=" + departmentFilter.value +
-                 "&order=" + orderFilter.value +
-                 "&deposit=" + depositFilter.value +
-                 "&movement=" + movementFilter.value;
+        "&movementNumber=" + movementNumberFilter.value +
+        "&solicitante=" + solicitanteFilter.value +
+        "&fecha=" + fechaFilter.value +
+        "&department=" + departmentFilter.value +
+        "&order=" + orderFilter.value +
+        "&deposit=" + depositFilter.value +
+        "&movement=" + movementFilter.value;
     $.ajax({
-        type:'POST',
-        url:'/inventariogg/phpurl/filtrar.php',
-        data:cadena,
-        success: function(data){
-            let table = document.getElementById("movementsTable");
-            table.innerHTML = "";
-            let tableStructure = `<table id="movementsTable">
-                            <thead>
-                               <tr>
-                                    <th>Número de Movimiento</th>
-                                    <th>Solicitante</th>
-                                    <th>Fecha de Acción</th>
-                                    <th>Movimiento</th>                                   
-                                   </tr>
-                            </thead>
-                            <tbody id="movementsTableBody">
-                            </tbody>
-                        </table>`
-            table.innerHTML = tableStructure;
+        type: 'POST',
+        url: '/inventariogg/phpurl/filtrar.php',
+        data: cadena,
+        success: function(data) {
             let tableBody = document.getElementById("movementsTableBody");
             tableBody.innerHTML = data;
         },
-        error: function(){
+        error: function() {
             alert("Not connected");
         }
     });
 };
 
-nameFilter.addEventListener("keyup", filtrado);
-movementNumberFilter.addEventListener("keyup", filtrado);
-solicitanteFilter.addEventListener("keyup", filtrado);
-fechaFilter.addEventListener("change", filtrado);
-departmentFilter.addEventListener("keyup", filtrado);
-orderFilter.addEventListener("change", filtrado);
-depositFilter.addEventListener("keyup", filtrado);
-movementFilter.addEventListener("change", filtrado);
+nameFilter.addEventListener("input", filtrado);
+movementNumberFilter.addEventListener("input", filtrado);
+solicitanteFilter.addEventListener("input", filtrado);
+fechaFilter.addEventListener("input", filtrado);
+departmentFilter.addEventListener("input", filtrado);
+orderFilter.addEventListener("input", filtrado);
+depositFilter.addEventListener("input", filtrado);
+movementFilter.addEventListener("input", filtrado);
