@@ -78,7 +78,6 @@ function filter() {
         success: function(data) {
             let table = document.getElementById("incomesTableBody");
             table.innerHTML = data;
-
         }
     })
 }
