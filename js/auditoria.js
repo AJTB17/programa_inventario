@@ -161,6 +161,7 @@ function autocomplete() {
                             document.getElementById(x).id = num2;
                             document.getElementById("codigo_" + x).id = "codigo_" + num2;
                             document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
+                            document.getElementById("deposito_" + x).id = "deposito_" + num2;
                             document.getElementById("costo_" + x).id = "costo_" + num2;
                             document.getElementById("coston_" + x).id = "coston_" + num2;
                             document.getElementById("cant_" + x).id = "cant_" + num2;
@@ -169,6 +170,7 @@ function autocomplete() {
                             document.getElementById(num2).id = x;
                             document.getElementById("codigo_" + num2).id = "codigo_" + x;
                             document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
+                            document.getElementById("deposito_" + num2).id = "deposito_" + x;
                             document.getElementById("costo_" + num2).id = "costo_" + x;
                             document.getElementById("coston_" + num2).id = "coston_" + x;
                             document.getElementById("cant_" + num2).id = "cant_" + x;
@@ -222,6 +224,7 @@ function autocomplete() {
                             document.getElementById(x).id = num2;
                             document.getElementById("codigo_" + x).id = "codigo_" + num2;
                             document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
+							document.getElementById("deposito_" + x).id = "deposito_" + num2;
                             document.getElementById("costo_" + x).id = "costo_" + num2;
                             document.getElementById("coston_" + x).id = "coston_" + num2;
                             document.getElementById("cant_" + x).id = "cant_" + num2;
@@ -230,6 +233,7 @@ function autocomplete() {
                             document.getElementById(num2).id = x;
                             document.getElementById("codigo_" + num2).id = "codigo_" + x;
                             document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
+                            document.getElementById("deposito_" + num2).id = "deposito_" + x;
                             document.getElementById("costo_" + num2).id = "costo_" + x;
                             document.getElementById("coston_" + num2).id = "coston_" + x;
                             document.getElementById("cant_" + num2).id = "cant_" + x;
@@ -550,6 +554,7 @@ function clearRow(){
             document.getElementById(i).id = x;
             document.getElementById("codigo_" + i).id = "codigo_" + x;
             document.getElementById("descripcion_" + i).id = "descripcion_" + x;
+            document.getElementById("deposito_" + i).id = "deposito_" + x;
             document.getElementById("costo_" + i).id = "costo_" + x;
             document.getElementById("coston_" + i).id = "coston_" + x;
             document.getElementById("cant_" + i).id = "cant_" + x;
