@@ -68,32 +68,40 @@ $fs = 0;
     //preguntar 
     $pdf->SetFillColor(0, 0, 255);
     //
-    $pdf->Cell(32.5,8,'Codigo',1,0,'C',0);
+    $pdf->Cell(28.5,8,'Codigo',1,0,'C',0);
     $pdf->Cell(32.5,8,'Producto',1,0,'C');
-    $pdf->Cell(32.5,8,'Costo original',1,0,'C');
-    $pdf->Cell(32,8,'costo nuevo',1,0,'C');
-    $pdf->Cell(32.5,8,'Cantidad original',1,0,'C');
-    $pdf->Cell(32.5,8,'Cantidad nueva',1,0,'C');
+    $pdf->Cell(26,8,'deposito',1,0,'C');
+    $pdf->Cell(26,8,'Costo original',1,0,'C');
+    $pdf->Cell(26,8,'costo nuevo',1,0,'C');
+    $pdf->Cell(28,8,'Cantidad original',1,0,'C');
+    $pdf->Cell(28,8,'Cantidad nueva',1,0,'C');
     $pdf->Ln(8);
-
-
+	
+	include('phpurl/bdacceso.php');
+	$najuste = $_POST['n_ajuste'];
     $filas = $_POST['numero'];
     for ($x = 1 ; $x <= $filas ; $x++){
         $id = $_POST['id' .$x];
         $producto = $_POST['Producto' .$x];
+        $deposito = $_POST['deposito' .$x];
         $costo1 = $_POST['costo1' .$x];
         $costo2 = $_POST['costo2' .$x];
         $cantidadactual = $_POST['cantidad' .$x];
         $cantidadnueva = $_POST['cantidad2' .$x];
         
 
-        $pdf->Cell(32.5,8,$id,1,0,'L',0);
+        $pdf->Cell(28.5,8,$id,1,0,'L',0);
         $pdf->Cell(32.5,8,$producto,1,0,'L');
-        $pdf->Cell(32.5,8,$costo1,1,0,'l');
-        $pdf->Cell(32,8,$costo2,1,0,'l');
-        $pdf->Cell(32.5,8,$cantidadactual,1,0,'l');
-        $pdf->Cell(32.5,8,$cantidadnueva,1,0,'l');
+        $pdf->Cell(26,8,$deposito,1,0,'L');
+        $pdf->Cell(26,8,$costo1,1,0,'l');
+        $pdf->Cell(26,8,$costo2,1,0,'l');
+        $pdf->Cell(28,8,$cantidadactual,1,0,'l');
+        $pdf->Cell(28,8,$cantidadnueva,1,0,'l');
         $pdf->Ln(8);
+		
+		$query="INSERT INTO movimientoskardexauditoria(numerodereferencia, producto, deposito, cantidad, nuevacantidad, precio, nuevoprecio) 
+				VALUES ('$najuste', '$producto', '$deposito','$cantidadactual','$cantidadnueva','$costo1','$costo2')";
+        $resultado=$conexion->query($query);
     }
 
 
@@ -113,10 +121,11 @@ $fs = 0;
 
 $fecha=date("d-m-Y");
 $nombrearc = "auditoria-comprobante".$najuste.".pdf";
+$nombrearc2 = "Auditoria";
 $direccion= "./phpurl/comprobantesauditoria/" .$nombrearc ;
 $najuste = $_POST['n_ajuste'];
 
- include('C:/wamp/www/inventariogg/phpurl/bdacceso.php');
+ include('phpurl/bdacceso.php');
         $boolean = true;
         $busqueda="SELECT numerodeAjuste FROM auditoria";
         $result=$conexion->query($busqueda);
@@ -129,8 +138,8 @@ $najuste = $_POST['n_ajuste'];
             };
         };
         if($boolean){
-            $query="INSERT INTO auditoria(id, fecha, nombreArchivo, direccion, numerodeAjuste) 
-					VALUES ('$najuste', '$fecha','$nombrearc','$direccion','$najuste')";
+            $query="INSERT INTO auditoria(id, fecha, nombreMovimiento, direccion, numerodeAjuste) 
+					VALUES ('$najuste', '$fecha','$nombrearc2','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
 ?>

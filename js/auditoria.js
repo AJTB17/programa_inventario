@@ -395,6 +395,7 @@ function reporte(){
         if(n==1){
             cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
@@ -403,6 +404,7 @@ function reporte(){
                 cadenar = cadenar +
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
@@ -434,7 +436,8 @@ function moverarchivo(){
         data:dato,
         success: function(){
             window.open("./phpurl/comprobantesauditoria/auditoria-comprobante" + n_ajuste.innerHTML + ".pdf", '_blank');
-            alert("Operación completa");
+            setTimeout(location.reload, 3000);
+			
         },
         error: function(){
             alert("movimiento no realizado");
@@ -459,6 +462,7 @@ function actualizarDatos(){
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+						 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             } else{
@@ -466,6 +470,7 @@ function actualizarDatos(){
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+						 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             };
@@ -473,13 +478,15 @@ function actualizarDatos(){
             if(n==1){
                 cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                            "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                             "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                             "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                             "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
                 } else{
                     cadena = cadena +
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
-                           "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                             "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
@@ -489,6 +496,7 @@ function actualizarDatos(){
                 cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+							 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
                 } else{
@@ -496,6 +504,7 @@ function actualizarDatos(){
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
                              "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+							 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
             };     

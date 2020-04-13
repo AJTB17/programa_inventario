@@ -88,7 +88,10 @@ function cerrarInformacion() {
             tabla.removeChild(tableBody[0]);
         }
     };
-    tabla.removeChild(tableFoot);
+	if(tableFoot !== null){
+		tabla.removeChild(tableFoot);
+	}
+    
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
     numero = 0;
 	

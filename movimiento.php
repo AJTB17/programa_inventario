@@ -193,7 +193,9 @@
 										UNION ALL SELECT id,solicitante,fechadetraslado,movimiento 
 										FROM `kardextraslados` 
 										UNION ALL SELECT numerodefactura,codproveedor,fechadeingreso,movimiento 
-										FROM `kardexingresos` 
+										FROM `kardexingresos`
+										UNION ALL SELECT numerodeAjuste,usuario,fecha,nombreMovimiento
+										FROM `auditoria` 
 										ORDER BY fechadesalida DESC";
 								
                                 $resultado=$conexion->query($query);
@@ -219,7 +221,8 @@
                                                       $row2['nuevodeposito']."--";
 
                                         }
-                                    } elseif ($row['movimiento'] === "Salida"){
+                                    } 
+									else if ($row['movimiento'] === "Salida"){
 										$burqueda_link="SELECT direccion FROM `egresoreporte` WHERE id=".$row['id']."";
 										$result=$conexion->query($burqueda_link);
 										
@@ -237,7 +240,8 @@
                                                       $row2['motivo']."--";
 
                                         }
-                                    } else {
+                                    }
+									else if ($row['movimiento'] === "Ingreso") {
 										$burqueda_link="SELECT direccion FROM `ingresoreporte` WHERE id=".$row['id']."";
 										$result=$conexion->query($burqueda_link);
 										
@@ -260,17 +264,30 @@
                                                       $row2['deposito']."--";
 
                                         };
+                                    } 
+									
+									else if ($row['movimiento'] === "Auditoria") {
+										
+										$burqueda_link="SELECT `direccion` FROM `auditoria` WHERE numerodeAjuste = '1'";
+										$result=$conexion->query($burqueda_link);
+										
+										$row3 = $result->fetch_assoc();
+										$link = $row3['direccion'];
+
                                     }
-                                ?>
-                                <tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
-                                    <td><?php echo $row['id']; ?></td>
-                                    <td><?php echo $row["solicitante"]; ?></td>
-                                    <td><?php echo $row["fechadesalida"]; ?></td>
-                                    <td><?php echo $row["movimiento"]; ?></td>
-                                </tr>
+									
+									if($row['id'] !== "0" ){
+								?>
+									<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
+										<td><?php echo $row['id']; ?></td>
+										<td><?php echo $row["solicitante"]; ?></td>
+										<td><?php echo $row["fechadesalida"]; ?></td>
+										<td><?php echo $row["movimiento"]; ?></td>
+									</tr>
                                 <?php
+									}
                                 }
-                                ?>
+                                ?>									
                             </tbody>
                         </table>
                     </div>
