@@ -239,7 +239,7 @@ header .contenedor--flex {
         margin: auto;
     }
     .ut1 h3 {
-        font-size: 14px;
+        font-size: 11px;
         letter-spacing: 1px;
     }
 
@@ -347,7 +347,7 @@ header .contenedor--flex {
         display: flex;    
     }
     .v1 {
-        height: 110px;
+        height: 125px;
     }
     .u1 {
         width: 50%;

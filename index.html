@@ -158,9 +158,10 @@ function prove(){
            var niv5 = document.getElementById('txtuser').innerHTML= javaobj.Nivel5;
            var ubicacion = document.getElementById('txtuser').innerHTML= javaobj.Ubicacion;
            var nombre = "";
-                           
+            
+			var conjugacion = javaobj.Nombres + " " + javaobj.Apellidos;
 			localStorage.setItem("getvalue",javaobj.Usuario);
-    		localStorage.setItem("getvalue2",javaobj.Nombres);
+    		localStorage.setItem("getvalue2", conjugacion);
 		
            $("#estatusacceso").val(est);
             for (var i = 0; i < nom.length; i++){

@@ -3,7 +3,8 @@ let numero = 0,
     n_ajuste = document.getElementById("n-ajuste"),
     max_n,
     dep_a = "negativo",
-	usuario = "";
+	usuario = "",
+	usuario2 = "";
 
 $('#one').click(onerow);
 $('#add2').click(rellebartabla);
@@ -452,7 +453,7 @@ function reporte(){
             };
 		}
     }
-    cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML + "&usuario=" + usuario;
+    cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML + "&usuario=" + usuario + "&usuario2=" + usuario2;
     
     $.ajax({
             type: 'POST',
@@ -632,5 +633,6 @@ function usuarioT() {
 //	console.log(localStorage.getItem("getvalue"));
 //	console.log(localStorage.getItem("getvalue2"));
 	usuario = localStorage.getItem("getvalue2");
+	usuario2 = localStorage.getItem("getvalue");
 }
 usuarioT();
