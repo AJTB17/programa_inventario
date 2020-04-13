@@ -129,7 +129,7 @@ tr:hover td{
     color:black;
 }
 
-#muestraDeDepositos{
+#muestraDeDepositos, #muestraDeDepositos_auditoria{
     position: absolute;
     top: 100px;
     border-radius: 10px;

@@ -2,7 +2,8 @@ let numero = 0,
     positon = "auditoria",
     n_ajuste = document.getElementById("n-ajuste"),
     max_n,
-    dep_a = "negativo";
+    dep_a = "negativo",
+	usuario = "";
 
 $('#one').click(onerow);
 $('#add2').click(rellebartabla);
@@ -392,8 +393,9 @@ function reporte(){
         let costoN = document.getElementById("coston_" + n).value,
             cantidadN = document.getElementById("cantidadn_" + n).value;
             
-        if(n==1){
-            cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+		if(costoN != "" && cantidadN != ""){
+        	if(n==1){
+            	cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
                          "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
@@ -410,8 +412,47 @@ function reporte(){
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             };
+        } else if (costoN === "" && cantidadN != ""){
+        	if(n==1){
+            	cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
+            } else{
+                cadenar = cadenar +
+                         "&id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
+            };
+        } else if (costoN != "" && cantidadN === ""){
+        	if(n==1){
+            	cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
+            } else{
+                cadenar = cadenar +
+                         "&id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
+            };
+		}
     }
-    cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML;
+    cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML + "&usuario=" + usuario;
     
     $.ajax({
             type: 'POST',
@@ -587,7 +628,9 @@ function clearall(){
         }
     }
 }
-
-
-
-
+function usuarioT() {
+//	console.log(localStorage.getItem("getvalue"));
+//	console.log(localStorage.getItem("getvalue2"));
+	usuario = localStorage.getItem("getvalue2");
+}
+usuarioT();

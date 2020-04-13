@@ -1,7 +1,8 @@
 $('#Reporte_1').click(reporte_1);
 $('#Reporte_2').click(reporte_2);
 $('#Reporte_3').click(reporte_3);
-
+//console.log(localStorage.getItem("getvalue"));
+//console.log(localStorage.getItem("getvalue2"));
 
 function reporte_1(){
     $.ajax ({
@@ -51,3 +52,7 @@ function reporte_3(){
         }
     });
 }
+function usuario() {
+	document.getElementById("txtusuarionombre").innerHTML = localStorage.getItem("getvalue2");
+}
+usuario();

@@ -143,7 +143,7 @@
 				<div class="v1">
 					<div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
 					<div class="ut1">
-						<h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre"></span>usuario</h3>
+						<h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
 					</div>
 				</div>
 				<div class="v3">

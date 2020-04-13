@@ -132,6 +132,7 @@ $('#restaurant').click(function(){
     localStorage.setItem("getvalue2",usernombre);
     localStorage.setItem("getvalue21",userubicacion);
 })
+
 function prove(){
     $.ajax({
     url:'phpurl/inicioseccion.php?accion=acceso',
@@ -141,8 +142,8 @@ function prove(){
          clave:$('#txtclave').val(),
         
     }),
-    success: function(resultado){
-      //  alert(resultado);
+    success: function(resultado){	
+		
            var javaobj = JSON.parse(resultado);
            var usu = document.getElementById('txtuser').innerHTML= javaobj.Usuario;
            var cla = document.getElementById('txtclave').innerHTML= javaobj.Clave;
@@ -158,6 +159,9 @@ function prove(){
            var ubicacion = document.getElementById('txtuser').innerHTML= javaobj.Ubicacion;
            var nombre = "";
                            
+			localStorage.setItem("getvalue",javaobj.Usuario);
+    		localStorage.setItem("getvalue2",javaobj.Nombres);
+		
            $("#estatusacceso").val(est);
             for (var i = 0; i < nom.length; i++){
                 nombre = nombre + nom[i];

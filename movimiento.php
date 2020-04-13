@@ -78,12 +78,25 @@
                     formularioButton">Cerrar</button>
                 </div>
             </div>
+            <div id="ventanaDeDepositos_auditoria" class="GrayBackground hidden">
+                <div id="muestraDeDepositos_auditoria">
+                    <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
+                    <table id="depositos_auditoria">
+                        <thead id="tableHeader">
+                            <th>Producto</th><th>Deposito</th><th>Cantidad pasada</th><th>Cantidad actual</th><th>Precio pasado</th><th>Precio actual</th>
+                        </thead>
+                    </table>
+                    <button id="descargar_auditoria" class="descargar">Descargar comprobante</button>
+                    <button id="depositCancelButton_auditoria" class="productCancelButton 
+                    formularioButton">Cerrar</button>
+                </div>
+            </div>
             <div class="contenedor--flex">
                 <div id="menuvertical" class="cuerpa">
                         <div class="v1">
                             <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
                             <div class="ut1">
-                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre"></span>usuario</h3>
+                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
                             </div>
                         </div>
                         <div class="v3">
@@ -273,7 +286,22 @@
 										
 										$row3 = $result->fetch_assoc();
 										$link = $row3['direccion'];
+										
+                                        $query2 = "SELECT * FROM movimientoskardexauditoria WHERE numerodereferencia=".$row['id']."";
+                                        $resultado2=$conexion->query($query2);
+                                        while ($row2 = $resultado2->fetch_assoc()) {
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
 
+											
+                                            $cadena = $cadena.$row2['producto']."||".
+													  $row2['deposito']."||".
+                                                      $row2['cantidad']."||".
+                                                      $row2['nuevacantidad']."||".
+                                                      $row2['precio']."||".
+                                                      $row2['nuevoprecio']."--";
+
+                                        }
                                     }
 									
 									if($row['id'] !== "0" ){

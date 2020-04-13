@@ -124,6 +124,7 @@ $nombrearc = "auditoria-comprobante".$najuste.".pdf";
 $nombrearc2 = "Auditoria";
 $direccion= "./phpurl/comprobantesauditoria/" .$nombrearc ;
 $najuste = $_POST['n_ajuste'];
+$usuario = $_POST['usuario'];
 
  include('phpurl/bdacceso.php');
         $boolean = true;
@@ -138,8 +139,8 @@ $najuste = $_POST['n_ajuste'];
             };
         };
         if($boolean){
-            $query="INSERT INTO auditoria(id, fecha, nombreMovimiento, direccion, numerodeAjuste) 
-					VALUES ('$najuste', '$fecha','$nombrearc2','$direccion','$najuste')";
+            $query="INSERT INTO auditoria(id, usuario, fecha, nombreMovimiento, direccion, numerodeAjuste) 
+					VALUES ('$najuste', '$usuario', '$fecha','$nombrearc2','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
 ?>
