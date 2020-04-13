@@ -202,6 +202,22 @@ tr:hover td{
     border-color: rgba(0,0,0,0.9);
 }
 
+.descargar {
+	float: left;
+    padding: 8px 15px;
+    font-weight: bold;
+	width: auto;
+    margin: 5px;
+    border-radius: 5px;
+    color: white;
+	background: #00aa00;
+    border: 2px solid;
+    border-color: rgba(0,0,0,0.9);
+}
+.descargar:hover {
+	background: #00bb00;
+}
+
 #proveedorCancelButton, .productCancelButton {
     background: #dd2222;
 }

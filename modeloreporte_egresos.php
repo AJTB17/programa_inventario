@@ -129,7 +129,7 @@ $najuste = $_POST['numRef'];
 $accion= $_POST['accion'];
 $fecha=date("d-m-Y");
 $nombrearc = $accion."-comprobante".$najuste.".pdf";
-$direccion= "C:/wamp/www/inventariogg/phpurl/comprobantes".$accion."/" .$nombrearc ;
+$direccion= "./phpurl/comprobantes".$accion."/" .$nombrearc ;
 
 
  include('phpurl/bdacceso.php');
@@ -145,8 +145,8 @@ $direccion= "C:/wamp/www/inventariogg/phpurl/comprobantes".$accion."/" .$nombrea
             };
         };
         if($boolean){
-            $query="INSERT INTO ".$accion."reporte(fecha, nombreArchivo, direccion, numerodeAjuste) 
-                    VALUES ('$fecha','$nombrearc','$direccion','$najuste')";
+            $query="INSERT INTO ".$accion."reporte(id, fecha, nombreArchivo, direccion, numerodeAjuste) 
+                    VALUES ('$najuste','$fecha','$nombrearc','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
 

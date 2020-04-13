@@ -6,9 +6,10 @@ let nameFilter = document.getElementById("nameFilter"),
     departmentFilter = document.getElementById("departmentFilter"),
     orderFilter = document.getElementById("orderFilter"),
     depositFilter = document.getElementById("depositFilter"),
-    movementFilter = document.getElementById("movementFilter");
+    movementFilter = document.getElementById("movementFilter"),
+	link_click = "";
 
-function desplegarInformacion(datos, movimiento, calculos) {
+function desplegarInformacion(datos, movimiento, calculos, link) {
     document.getElementById("ventanaDeDepositos").classList.remove("hidden");
     if (datos != "" && movimiento === "Traslado" || movimiento === "Salida") {
         let cantidadDeDatos = datos.split("--");
@@ -36,7 +37,9 @@ function desplegarInformacion(datos, movimiento, calculos) {
                     </tfoot>`;
         document.getElementById("depositos").innerHTML += html;
         document.getElementById("tableHeaderVariable2").innerHTML = "Antiguo Depósito";
-    } else if (movimiento === "Ingreso") {
+    }
+	else if (movimiento === "Ingreso") {
+		console.log(link);
         let cantidadDeDatos = datos.split("--");
         let tabla = document.getElementById("depositos");
         let calcs = calculos.split("!!");
@@ -67,12 +70,15 @@ function desplegarInformacion(datos, movimiento, calculos) {
     };
     if (movimiento === "Traslado") {
         document.getElementById("tableHeaderVariable").innerHTML = "Nuevo Depósito";
-    } else if (movimiento === "Salida") {
+    }
+	else if (movimiento === "Salida") {
         document.getElementById("tableHeaderVariable").innerHTML = "Razón";
     };
     document.getElementById("depositCancelButton").addEventListener("click", cerrarInformacion);
-};
-
+	
+	document.getElementById("descargar").addEventListener("click", downfile);
+	link_click = link;
+}
 function cerrarInformacion() {
     let tabla = document.getElementById("depositos");
     let tableFoot = document.getElementById("depositTableFoot");
@@ -85,8 +91,10 @@ function cerrarInformacion() {
     tabla.removeChild(tableFoot);
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
     numero = 0;
-};
-
+	
+	document.getElementById("descargar").removeEventListener("click", downfile);
+	link_click = "";
+}
 function filtrado() {
     let cadena = "name=" + nameFilter.value +
         "&movementNumber=" + movementNumberFilter.value +
@@ -109,6 +117,10 @@ function filtrado() {
         }
     });
 };
+function downfile(){
+	console.log(link_click);
+	window.open(link_click, '_blank');
+}
 
 nameFilter.addEventListener("input", filtrado);
 movementNumberFilter.addEventListener("input", filtrado);

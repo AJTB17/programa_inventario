@@ -6,7 +6,6 @@
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/BF.css" rel="stylesheet">
@@ -74,6 +73,7 @@
                             <th id="tableHeaderVariable">Nuevo Depósito</th>
                         </thead>
                     </table>
+                    <button id="descargar" class="descargar">Descargar comprobante</button>
                     <button id="depositCancelButton" class="productCancelButton 
                     formularioButton">Cerrar</button>
                 </div>
@@ -120,7 +120,6 @@
                             <a href="#">Cerrar sesión</a>
                         </div>
                 </div> 
-                
                 <div style="margin-top: 130px">
                     <div class="ban"><h2>Control administrativo de los movimientos</h2></div>
                     <div class="contenedor--flex">
@@ -187,18 +186,33 @@
                             </thead>
                             <tbody id="movementsTableBody">
                                 <?php
-                                $conexion = mysqli_connect("localhost", "root", "lp12345..",
-                                                           "bdlospotros");
-                                $query="SELECT id,solicitante,fechadesalida,movimiento FROM `kardexsalidas` UNION ALL SELECT id,solicitante,fechadetraslado,movimiento FROM `kardextraslados` UNION ALL SELECT numerodefactura,codproveedor,fechadeingreso,movimiento FROM `kardexingresos` ORDER BY fechadesalida DESC";
+                                $conexion = mysqli_connect("localhost", "root", "lp12345..", "bdlospotros");
+								
+                                $query="SELECT id,solicitante,fechadesalida,movimiento 
+										FROM `kardexsalidas` 
+										UNION ALL SELECT id,solicitante,fechadetraslado,movimiento 
+										FROM `kardextraslados` 
+										UNION ALL SELECT numerodefactura,codproveedor,fechadeingreso,movimiento 
+										FROM `kardexingresos` 
+										ORDER BY fechadesalida DESC";
+								
                                 $resultado=$conexion->query($query);
                                 while($row=$resultado->fetch_assoc()){
+									$link = "";
                                     $cadena = "";
                                     $calculos = "";
                                     if ($row['movimiento'] === "Traslado") {
+										$burqueda_link="SELECT direccion FROM `trasladoreporte` WHERE id=".$row['id']."";
+										$result=$conexion->query($burqueda_link);
+										
+										
                                         $query2 = "SELECT * FROM movimientoskardext WHERE id=".$row['id']."";
                                         $resultado2=$conexion->query($query2);
                                         while ($row2 = $resultado2->fetch_assoc()) {
-
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
+												
+												
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
                                                       $row2['antiguodeposito']."||".
@@ -206,10 +220,17 @@
 
                                         }
                                     } elseif ($row['movimiento'] === "Salida"){
+										$burqueda_link="SELECT direccion FROM `egresoreporte` WHERE id=".$row['id']."";
+										$result=$conexion->query($burqueda_link);
+										
+										
                                         $query2 = "SELECT * FROM movimientoskardexs WHERE id=".$row['id']."";
                                         $resultado2=$conexion->query($query2);
                                         while ($row2 = $resultado2->fetch_assoc()) {
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
 
+											
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
                                                       $row2['antiguodeposito']."||".
@@ -217,7 +238,9 @@
 
                                         }
                                     } else {
-
+										$burqueda_link="SELECT direccion FROM `ingresoreporte` WHERE id=".$row['id']."";
+										$result=$conexion->query($burqueda_link);
+										
                                         $datosDeMovimiento=mysqli_fetch_array(mysqli_query($conexion,
                                         "SELECT subtotal,iva,total FROM kardexingresos WHERE numerodefactura=".$row['id']." AND codproveedor=".$row['solicitante']));
                                         $calculos = $calculos.$datosDeMovimiento['subtotal']."!!".
@@ -227,6 +250,9 @@
                                         $query2 = "SELECT * FROM movimientoskardexi WHERE numerodefactura=".$row['id']." AND codigoproveedor=".$row['solicitante'];
                                         $resultado2=$conexion->query($query2);
                                         while ($row2 = $resultado2->fetch_assoc()) {
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
+											
 
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
@@ -236,7 +262,7 @@
                                         };
                                     }
                                 ?>
-                                <tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>')">
+                                <tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
                                     <td><?php echo $row['id']; ?></td>
                                     <td><?php echo $row["solicitante"]; ?></td>
                                     <td><?php echo $row["fechadesalida"]; ?></td>

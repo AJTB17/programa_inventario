@@ -119,7 +119,7 @@ $najuste = $nr[0] + 1;
 
 $fecha=date("d-m-Y");
 $nombrearc = "reporte-de-producto-en-cta-de-reorden".$najuste.".pdf";
-$direccion= "C:/wamp/www/inventariogg/phpurl/reportesProductosenReorden/" .$nombrearc ;
+$direccion= "./phpurl/reportesProductosenReorden/" .$nombrearc ;
 
 
  include('phpurl/bdacceso.php');

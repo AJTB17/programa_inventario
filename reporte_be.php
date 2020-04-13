@@ -201,7 +201,7 @@ $najuste = $nr[0] + 1;
 
 $fecha=date("d-m-Y");
 $nombrearc = "reporte-de-egresos-del-inventario".$najuste.".pdf";
-$direccion= "C:/wamp/www/inventariogg/phpurl/reportesEgresosInventario/" .$nombrearc ;
+$direccion= "./phpurl/reportesEgresosInventario/" .$nombrearc ;
 
 
  include('phpurl/bdacceso.php');

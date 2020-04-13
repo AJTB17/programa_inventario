@@ -113,7 +113,7 @@ $fs = 0;
 
 $fecha=date("d-m-Y");
 $nombrearc = "ingreso-comprobante".$najuste.".pdf";
-$direccion= "C:/wamp/www/inventariogg/phpurl/comprobantesingresos/" .$nombrearc ;
+$direccion= "./phpurl/comprobantesingresos/" .$nombrearc ;
 $najuste = $_POST['numFactura'];
 
  include('phpurl/bdacceso.php');
@@ -129,8 +129,8 @@ $najuste = $_POST['numFactura'];
             };
         };
         if($boolean){
-            $query="INSERT INTO
-            ingresoreporte(fecha, nombreArchivo, direccion, numerodeAjuste) VALUES ('$fecha','$nombrearc','$direccion','$najuste')";
+            $query="INSERT INTO ingresoreporte(id, fecha, nombreArchivo, direccion, numerodeAjuste) 
+					VALUES ('$najuste', '$fecha','$nombrearc','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
 
