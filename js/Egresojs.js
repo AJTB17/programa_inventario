@@ -328,6 +328,7 @@ function moverarchivo(){
         data:dato,
         success: function(){
             window.open("./phpurl/comprobantes" + accion + "/" + accion + "-comprobante" + numRef + ".pdf", '_blank');
+			location.reload();
         },
         error: function(){
             alert("movimiento no realizado");

@@ -321,7 +321,7 @@ function moverarchivo(){
         data:dato,
         success: function(){
             window.open("./phpurl/comprobantesingresos/ingreso-comprobante" + numFactura + ".pdf", '_blank');
-            alert("Operación completa");
+            location.reload();
         },
         error: function(){
             alert("movimiento no realizado");
