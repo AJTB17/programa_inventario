@@ -100,7 +100,7 @@ $fs = 0;
   //  $pdf->Cell(25,6,"final",1,0,'C');
     $najuste = $_POST['n_ajuste'];
     $nb_pages = $pdf->PageNo();
-    $nombrearc = "auditoria-reporte".$najuste.".pdf";
+    $nombrearc = "auditoria-comprobante".$najuste.".pdf";
     $file1=$nombrearc;
     $pdf->Output("F",$file1);
     print ("  >> File '$file1' generated:  " . "$nb_pages pages  -  " . filesize($file1) . " bytes\n");
@@ -112,8 +112,8 @@ $fs = 0;
 //guardado del pdf en bd
 
 $fecha=date("d-m-Y");
-$nombrearc = "auditoria-reporte".$najuste.".pdf";
-$direccion= "C:/wamp/www/inventariogg/phpurl/reportesauditoria/" .$nombrearc ;
+$nombrearc = "auditoria-comprobante".$najuste.".pdf";
+$direccion= "C:/wamp/www/inventariogg/phpurl/comprobantesauditoria/" .$nombrearc ;
 $najuste = $_POST['n_ajuste'];
 
  include('C:/wamp/www/inventariogg/phpurl/bdacceso.php');
@@ -123,7 +123,7 @@ $najuste = $_POST['n_ajuste'];
 
         while($conjunto=$result->fetch_assoc()){
             if ($conjunto['numerodeAjuste'] == $najuste){
-                echo "reporte existente";
+                echo "comprobante existente";
                 $boolean = false;
                 break;
             };
@@ -133,35 +133,4 @@ $najuste = $_POST['n_ajuste'];
             auditoria(fecha, nombreArchivo, direccion, numerodeAjuste) VALUES ('$fecha','$nombrearc','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
-//
-
-
-
-
-
-
-/*
-if($tipoenvio=="Correo") {
-    $doc = $pdf->Output('','S');
-    $mail = new PHPMailer;
-    $mail->IsSMTP();        //Sets Mailer to send message using SMTP
-    $mail->SMTPAuth = false;             
-    $mail->Username = 'info@estancialospotros.com';  
-    $mail->Password = md5('0c01935efa720e04067eed2b28382e94'); 	
-    $mail->SMTPAutoTLS = false; 
-    $mail->Port = 25;                     
-    $mail->setFrom('info@estancialospotros.com','Estancia los Potros');
-    $mail->SMTPAutoTLS = false; 
-    $mail->FromName = "ESTANCIA LOS POTROS ";
-    $mail->Subject = $chpcli . ' Reporte Ministerio del poder popular para relaciones interiores y justicia';
-    $mail->Body = 'Se adjunta Reporte. Quedando de usted, Gracias';
-    $mail->addAddress($chpcor);
-    $mail->isHTML(true);
-    $mail->AddStringAttachment($doc, 'doc.pdf' , 'base64', 'application/pdf' );
-    $mail->Send();
-    //echo "Correo enviado";
-   
-
-  }  
-*/
 ?>

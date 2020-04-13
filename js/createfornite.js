@@ -320,7 +320,7 @@ function moverarchivo(){
         url: "/inventariogg/phpurl/moverarchivo.php",
         data:dato,
         success: function(){
-            window.open("./phpurl/reportesingresos/ingreso-reporte" + numFactura + ".pdf", '_blank');
+            window.open("./phpurl/comprobantesingresos/ingreso-comprobante" + numFactura + ".pdf", '_blank');
             alert("Operación completa");
             location.reload();
         },

@@ -53,16 +53,16 @@
              <!-- Cabecera End -->
             <div class="contenedor--flex">
 
-            <div  class="gg">
-                <nav>
-                    <a href="proveedoreshtml.php"  id="btna">Provedores</a>
-                    <a href="productoshtml.php" id="btnc">Productos</a>
-                    <a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
-                    <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
-                    <a href="movimiento.php" id="btne">Movimientos</a> 
-                </nav>
-            </div>    
-
+				<div  class="gg">
+					<nav>
+						<a href="proveedoreshtml.php"  id="btna">Provedores</a>
+						<a href="productoshtml.php" id="btnc">Productos</a>
+						<a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
+						<a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+						<a href="movimiento.php" id="btne">Movimientos</a> 
+					</nav>
+				</div>    
+			</div>
         </header>
         <main>
             <div class="contenedor--flex contenedor">
@@ -80,17 +80,17 @@
                     <ul class="menuext">
                         <li>
                            <div class="v4">
-                                <a href="#"><hr><span>prueba</span></a>
+                                <a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
                             </div>
                         </li>
                         <li>
                            <div class="v4">
-                                <a href="#"><hr><span>prueba</span></a>
+                                <a id="Reporte_2"><hr><span>Egresos del mes</span></a>
                             </div>
                         </li>
                         <li>
                            <div class="v4">
-                                <a href="#"><hr><span>prueba</span></a>
+                                <a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
                             </div>
                         </li>
                     </ul>
@@ -234,6 +234,7 @@
                 </div>
             </div>
         </main>
+        <script src="js/reportes_enlace.js"></script>
         <script src="js/createfornite.js"></script>
     </body>
 </html>

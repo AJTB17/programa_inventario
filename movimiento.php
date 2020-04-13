@@ -90,23 +90,23 @@
                             <label for="maa" onclick="ovejo">Reportes</label>
                         </div> 
                         <input class="checkeo" type="checkbox" id="maa">
-                        <ul class="menuext">
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                        </ul>
+						<ul class="menuext">
+							<li>
+							   <div class="v4">
+									<a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
+								</div>
+							</li>
+							<li>
+							   <div class="v4">
+									<a id="Reporte_2"><hr><span>Egresos del mes</span></a>
+								</div>
+							</li>
+							<li>
+							   <div class="v4">
+									<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+								</div>
+							</li>
+						</ul>
                         <div class="v3">
                             <a href="ingreso.php">Entradas</a>
                         </div>
@@ -251,6 +251,7 @@
                 </div>
             </div>
         </main>
+        <script src="js/reportes_enlace.js"></script>
         <script src="js/movimientojs.js"></script> 
     </body>
 </html>

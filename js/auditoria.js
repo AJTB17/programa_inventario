@@ -429,7 +429,7 @@ function moverarchivo(){
         url: "/inventariogg/phpurl/moverarchivo.php",
         data:dato,
         success: function(){
-            window.open("./phpurl/reportesauditoria/auditoria-reporte" + n_ajuste.innerHTML + ".pdf", '_blank');
+            window.open("./phpurl/comprobantesauditoria/auditoria-comprobante" + n_ajuste.innerHTML + ".pdf", '_blank');
             alert("Operación completa");
             location.reload();
         },
