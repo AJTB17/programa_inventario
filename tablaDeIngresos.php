@@ -56,7 +56,7 @@
                     <a href="proveedoreshtml.php" id="btna">Provedores</a>
                     <a href="productoshtml.php" id="btnc">Productos</a>
                     <a href="tablaDeIngresos.php" class="active" id="btnb">Ingresos</a>
-                    <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+                    <a href="tablaDeEgresos.php" id="btnd">Egresos</a>
                     <a href="movimiento.php" id="btne">Movimientos</a> 
                 </nav>
             </div>    
@@ -117,7 +117,7 @@
 					<a href="auditoria.php">Auditoria de inventario</a>
 				</div>
 				<div class="v3">
-					<a href="#">Cerrar sesión</a>
+					<a href="index.html">Cerrar sesión</a>
 				</div>
             </div>
             <div style="margin-top:130px">
@@ -203,7 +203,8 @@
                                     $movimientos = $movimientos.$row2['producto']."||".
                                                     $row2['cantidad']."||".
                                                     $row2['precio']."||".
-                                                    $row2['deposito']."--";
+                                                    $row2['deposito']."||".
+													$row2['und']."--";
                                 };
                             ?>
                             <tr>

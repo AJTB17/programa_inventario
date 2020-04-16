@@ -24,7 +24,7 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
             let html = `<tbody class="tableBody">
                             <tr>
                                 <td>${dato[0]}</td>
-                                <td>${dato[1]}</td>
+                                <td>${dato[1] + " " + dato[4]}</td>
                                 <td>${dato[2]}</td>
                                 <td>${dato[3]}</td>
                             </tr>
@@ -32,14 +32,27 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
             document.getElementById("depositos").innerHTML += html;
             numero++
         };
-        let html = `<tfoot id="depositTableFoot">
+		let html;
+		if (movimiento === "Traslado"){
+            html = `<tfoot id="depositTableFoot">
                         <tr>
                             <td></td>
-                            <td id="subtotal">subtotal:</td>
-                            <td id="iva">iva:</td>
-                            <td id="total">total:</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
-                    </tfoot>`;
+                    </tfoot>`;			
+		} else if (movimiento === "Salida"){
+			html = `<tfoot id="depositTableFoot">
+					<tr>
+						<td></td>
+						<td id="subtotal">subtotal:</td>
+						<td id="iva">iva:</td>
+						<td id="total">total:</td>
+					</tr>
+				</tfoot>`;			
+		}
+
         document.getElementById("depositos").innerHTML += html;
         document.getElementById("tableHeaderVariable2").innerHTML = "Antiguo Depósito";
     }
@@ -52,7 +65,7 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
             let html = `<tbody class="tableBody">
                             <tr>
                                 <td>${dato[0]}</td>
-                                <td>${dato[1]}</td>
+                                <td>${dato[1] + " " + dato[4]}</td>
                                 <td>${dato[2]}</td>
                                 <td>${dato[3]}</td>
                             </tr>
@@ -115,18 +128,20 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
 	link_click = link;
 }
 function cerrarInformacion() {
-    let tabla = document.getElementById("depositos");
-    let tabla2 = document.getElementById("depositos_auditoria");
-    let tableFoot = document.getElementById("depositTableFoot");
-    let tableFoot2 = document.getElementById("depositTableFoot_auditoria");
+    let tabla = document.getElementById("depositos"),
+        tabla2 = document.getElementById("depositos_auditoria"),
+        tableFoot = document.getElementById("depositTableFoot"),
+        tableFoot2 = document.getElementById("depositTableFoot_auditoria"),
+	    ventanaapagada = document.getElementsByClassName("hidden")[0].id;
+	
     if (numero != 0) {
         let tableBody = document.getElementsByClassName("tableBody");
         let tableBody2 = document.getElementsByClassName("tableBody_auditoria");
         for (let i = 0; i < numero; i++) {
-			console.log(tableBody[i]);
-			if(tableBody[i] !== undefined){
+			
+			if(ventanaapagada === "ventanaDeDepositos_auditoria"){
 				tabla.removeChild(tableBody[0]);
-			} else {
+			} else if (ventanaapagada === "ventanaDeDepositos") {
 				tabla2.removeChild(tableBody2[0]);
 			}
             
@@ -138,8 +153,8 @@ function cerrarInformacion() {
 		tabla2.removeChild(tableFoot2);
 	}
 	
-    var ventanaapagada = document.getElementsByClassName("hidden")[0].id;
-	console.log(ventanaapagada);
+    
+
 	if(ventanaapagada === "ventanaDeDepositos_auditoria"){
 		document.getElementById("ventanaDeDepositos").classList.add("hidden");
 		document.getElementById("descargar").removeEventListener("click", downfile);
@@ -174,7 +189,6 @@ function filtrado() {
     });
 }
 function downfile(){
-	console.log(link_click);
 	window.open(link_click, '_blank');
 }
 

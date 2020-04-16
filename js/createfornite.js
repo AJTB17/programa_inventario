@@ -78,7 +78,8 @@ function onerow() {
         "Toneladas",
         "Onzas",
         "Libras",
-        "Galones"
+        "Galones",
+		"Unidades"
     ];
     for (let i = 0; i < options.length; i++) {
         let option = document.createElement("option");
@@ -111,7 +112,7 @@ function onerow() {
     cont9.id = "iva_" + numero;
     cont9.placeholder = "Iva";
     cont9.classList.add("ip");
-    cont9.readOnly = true;
+	cont9.addEventListener("keyup", calc);
 
     var cont10 = document.createTextNode("0");
 
@@ -192,18 +193,30 @@ function calc() {
     let result = 0,
         id = this.id,
         variableId = id.split("_")[1],
-        dato2;
+        dato2,
+		dato1,
+		dato3 = document.getElementById("medida_" + variableId).value,
+        dato4 = document.getElementById("unidad_" + variableId).value,
+		resultado;
 
     if (this.id == "cant_" + variableId) {
+		dato1 = this.value;
         dato2 = document.getElementById("p/u_" + variableId).value;
+		
     } else if (this.id == "p/u_" + variableId) {
         dato2 = document.getElementById("cant_" + variableId).value;
+		dato1 = this.value;
+	
+    } else if (this.id == "iva_" + variableId) {
+        dato2 = document.getElementById("cant_" + variableId).value;
+        dato1 = document.getElementById("p/u_" + variableId).value;
+		
     }
+	
+	
+	resultado = dato1 * dato2;
 
-    let dato1 = this.value,
-        resultado = dato1 * dato2;
-
-
+    
     document.getElementById("total_" + variableId).innerHTML = resultado;
     calculate();
 }
@@ -268,12 +281,19 @@ function reporte(){
 //    };
     for (var n = 1; n <= numero; n++) {
         let value = document.getElementById("cant_" + n).value;
-        let finalUnit = document.getElementById("medida_" + n).value;
-        let initialUnit = document.getElementById("unidad_" + n).value;
-        let newValue = convertUnits(initialUnit, finalUnit, value);
-        if (!newValue) {
-            return;
-        }
+        let initialUnit = document.getElementById("medida_" + n).value;
+        let finalUnit = document.getElementById("unidad_" + n).value;
+		let newValue = value;
+		
+		if (finalUnit === "Unidades"){
+
+		} else {
+			newValue = convertUnits(initialUnit, finalUnit, value);
+			if (!newValue) {
+				return;
+			}
+		}
+        
         if (n == 1) {
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value;
         } else {
@@ -282,8 +302,9 @@ function reporte(){
         };
         cadena = cadena +
             "&cantidad" + n + "=" + newValue +
-            "&unidad" + n + "=" + initialUnit +
+            "&unidad" + n + "=" + finalUnit +
             "&preciou" + n + "=" + document.getElementById("p/u_" + n).value +
+			"&iva" + n + "=" + document.getElementById("iva_" + n).value +
             "&producto" + n + "=" + document.getElementById("producto_" + n).value +
             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
             "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
@@ -321,10 +342,10 @@ function moverarchivo(){
         data:dato,
         success: function(){
             window.open("./phpurl/comprobantesingresos/ingreso-comprobante" + numFactura + ".pdf", '_blank');
-            location.reload();
+//            location.reload();
         },
         error: function(){
-            alert("movimiento no realizado");
+//            alert("movimiento no realizado");
         }
     });
  } ,1000);
@@ -343,12 +364,19 @@ function enviarDatos() {
     };
     for (var n = 1; n <= numero; n++) {
         let value = document.getElementById("cant_" + n).value;
-        let finalUnit = document.getElementById("medida_" + n).value;
-        let initialUnit = document.getElementById("unidad_" + n).value;
-        let newValue = convertUnits(initialUnit, finalUnit, value);
-        if (!newValue) {
-            return;
-        }
+        let initialUnit = document.getElementById("medida_" + n).value;
+        let  finalUnit = document.getElementById("unidad_" + n).value;
+		let newValue = value;
+		console.log(finalUnit);
+		if (finalUnit === "Unidades"){
+
+		} else {
+			newValue = convertUnits(initialUnit, finalUnit, value);
+			if (!newValue) {
+				return;
+			}
+		}
+        
         
         if (n == 1) {
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value;
@@ -358,7 +386,9 @@ function enviarDatos() {
         };
         cadena = cadena +
             "&cantidad" + n + "=" + newValue +
+			"&unidad" + n + "=" + finalUnit +
             "&preciou" + n + "=" + document.getElementById("p/u_" + n).value +
+            "&iva" + n + "=" + document.getElementById("iva_" + n).value +
             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
             "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
     }
@@ -412,51 +442,51 @@ function calculate() {
     document.getElementById("totalConIva").innerHTML = "Total+Iva:" + final;
 }
 function convertUnits(initialUnit, finalUnit, value) {
-    const equivalencies = {
-        Centímetros: {
-            Centímetros: 1,
-            Metros: 100,
-            Pulgadas: 2.54,
-            Pies: 30.48,
-            Yarda: 91.44,
-        },
-        Metros: {
-            Centímetros: 100,
-            Metros: 1,
-            Pulgadas: 0.0254,
-            Pies: 0.3047992424196,
-            Yarda: 0.9144,
-        },
-        Mililitros: {
-            Mililitros: 1,
-            Litros: 1000,
-            Galones: 3785.41,
-        },
-        Litros: {
-            Mililitros: 0.001,
-            Litros: 1,
-            Galones: 3.78541,
-        },
-        Kilogramos: {
-            Kilogramos: 1,
-            Gramos: 0.001,
-            Toneladas: 1000,
-            Onzas: 0.0283495,
-            Libras: 0.453592,
-        },
-        Gramos: {
-            Kilogramos: 1000,
-            Gramos: 1,
-            Toneladas: 1000000,
-            Onzas: 28.3495,
-            Libras: 453.592,
-        },
-    };
-    const newValue = value * equivalencies[finalUnit][initialUnit];
-    if (!newValue) {
-        alert(`No se puede convertir de ${initialUnit} a ${finalUnit}`);
-        return null;
-    } else {
-        return newValue;
-    };
+	const equivalencies = {
+		Centímetros: {
+			Centímetros: 1,
+			Metros: 100,
+			Pulgadas: 2.54,
+			Pies: 30.48,
+			Yarda: 91.44,
+		},
+		Metros: {
+			Centímetros: 100,
+			Metros: 1,
+			Pulgadas: 0.0254,
+			Pies: 0.3047992424196,
+			Yarda: 0.9144,
+		},
+		Mililitros: {
+			Mililitros: 1,
+			Litros: 1000,
+			Galones: 3785.41,
+		},
+		Litros: {
+			Mililitros: 0.001,
+			Litros: 1,
+			Galones: 3.78541,
+		},
+		Kilogramos: {
+			Kilogramos: 1,
+			Gramos: 0.001,
+			Toneladas: 1000,
+			Onzas: 0.0283495,
+			Libras: 0.453592,
+		},
+		Gramos: {
+			Kilogramos: 1000,
+			Gramos: 1,
+			Toneladas: 1000000,
+			Onzas: 28.3495,
+			Libras: 453.592,
+		},
+	};
+	const newValue = value * equivalencies[initialUnit][finalUnit];
+	if (!newValue) {
+		alert(`No se puede convertir de ${initialUnit} a ${finalUnit}`);
+		return null;
+	} else {
+		return newValue;
+	};
 }
