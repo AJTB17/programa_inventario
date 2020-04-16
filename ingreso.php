@@ -170,7 +170,7 @@
                                         <th>Cantidad</th>
                                         <th>Medida en almacén</th>
                                         <th>Unidad a ingresar</th>
-                                        <th>Deposito</th>
+                                        <th>Depósito</th>
                                         <th>Ubicación</th>
                                         <th>P/U</th>
                                         <th>Iva</th>

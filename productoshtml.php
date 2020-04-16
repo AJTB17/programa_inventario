@@ -127,6 +127,42 @@
             <div id="ventanaDeDepositos" class="GrayBackground hidden">
                 <div id="muestraDeDepositos">
                     <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                    </div>
                     <table id="depositos">
                         <thead id="tableHeader">
                             <th>Deposito</th><th>Ubicacion</th><th>Cantidad</th>
