@@ -7,6 +7,7 @@
     $fecha = date("Y-m-d");
     $numRef = $_POST['numRef'];
     $boolean3 = true;
+    $usuario = $_POST['usuario'];
 
     /* Determinación de acción */
 
@@ -69,11 +70,13 @@
             if(!$boolean){
                 $query = "INSERT INTO kardextraslados(id,
                                                       solicitante,
+                                                      usuario,
                                                       razon,
                                                       fechadetraslado,
                                                       movimiento) VALUES 
                                                       ('$numRef',
                                                       '$solicitante',
+                                                      '$usuario',
                                                       '$razon',
                                                       '$fecha',
                                                       'Traslado')";
@@ -81,10 +84,12 @@
             } else if ($boolean){
                 $query = "INSERT INTO kardexsalidas(id,
                                                     solicitante,
+                                                    usuario,
                                                     razon,
                                                     fechadesalida,
                                                     movimiento) VALUES 
                                                     ('$numRef',
+                                                    '$usuario',
                                                     '$solicitante',
                                                     '$razon',
                                                     '$fecha',
@@ -97,9 +102,10 @@
                 $deposito = $_POST['deposito' .$n];
                 $ubicacion = $_POST['ubicacion' .$n];
                 $doDepositExist = false;
-                $busquedaNombre = mysqli_fetch_array(mysqli_query($conexion, "SELECT nombre FROM
+                $busquedaNombre = mysqli_fetch_array(mysqli_query($conexion, "SELECT und,nombre FROM
                 productos WHERE codigo='$codigo'"));
                 $producto = $busquedaNombre['nombre'];
+                $unidad = $busquedaNombre['und'];
                 $busquedaDepositos="SELECT producto,deposito,cantidad FROM depositos";
                 $result=$conexion->query($busquedaDepositos);
                 while($conjunto=$result->fetch_assoc()){
@@ -134,10 +140,11 @@
                     /* Inserción de datos en movimientoskardexs */
 
                     $query= "INSERT INTO
-                    movimientoskardexs(id,producto,cantidad,antiguodeposito,motivo) VALUES
+                    movimientoskardexs(id,producto,cantidad,und,antiguodeposito,motivo) VALUES
                     ('$numRef',
                     '$producto',
                     '$cantidad',
+                    '$unidad',
                     '$deposito',
                     '$ubicacion')";
                     $resultado = $conexion->query($query);
@@ -175,10 +182,11 @@
                     /* Incersión de datos en movimientoskardext */
 
                     $query= "INSERT INTO
-                    movimientoskardext(id,producto,cantidad,antiguodeposito,nuevodeposito) VALUES
+                    movimientoskardext(id,producto,cantidad,und,antiguodeposito,nuevodeposito) VALUES
                     ('$numRef',
                     '$producto',
                     '$cantidad',
+                    '$unidad',
                     '$deposito',
                     '$ubicacion')";
                     $resultado = $conexion->query($query);

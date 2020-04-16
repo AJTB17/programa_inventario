@@ -238,6 +238,7 @@ function enviarDatos() {
             "&numero=" + numero +
             "&numRef=" + numRef;
     };
+    cadena += "&usuario=" + localStorage.getItem("getvalue");
     $.ajax({
         type: 'POST',
         url: "/inventariogg/phpurl/movilizarProductos.php",
