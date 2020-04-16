@@ -117,14 +117,14 @@ $fs = 0;
             $productos = mysqli_query($conexion, "SELECT * FROM `movimientoskardexi` WHERE numerodefactura='$row[numerodefactura]'");
             while  ($filas = mysqli_fetch_array($productos)){    
 
-                $pdf->Cell(48.75,8,$filas['producto'],1,0,'L');
-                $pdf->Cell(48.75,8,$filas['deposito'],1,0,'l');
-                $pdf->Cell(48.75,8,$filas['cantidad'],1,0,'l');
-                $pdf->Cell(48.75,8,$filas['precio'].'$',1,0,'l');
+                $pdf->Cell(48.75,8,$filas['producto'],1,0,'C');
+                $pdf->Cell(48.75,8,$filas['deposito'],1,0,'C');
+                $pdf->Cell(48.75,8,$filas['cantidad']. " " . $filas['und'],1,0,'C');
+                $pdf->Cell(48.75,8,$filas['precio'].'$',1,0,'C');
                 $pdf->Ln(8);
             }
 
-            $pdf->Ln(10);
+            $pdf->Ln(15);
         }
     }
 

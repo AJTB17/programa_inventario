@@ -192,7 +192,8 @@
                                     $cadena = $cadena.$row2['producto']."||".
                                               $row2['cantidad']."||".
                                               $row2['antiguodeposito']."||".
-                                              $row2['nuevodeposito']."--";
+                                              $row2['nuevodeposito']."||".
+											  $row2['und']."--";
                                 }
                             } else {
                                 $query2 = "SELECT * FROM movimientoskardexs WHERE id=".$row['id']."";

@@ -103,18 +103,18 @@ $pdf->AddPage();
 
 
             $pdf->Cell(48.75,8,'Producto',1,0,'C');
-            $pdf->Cell(24.375,8,'Cantidad',1,0,'C');
+            $pdf->Cell(48.75,8,'Cantidad',1,0,'C');
             $pdf->Cell(24.375,8,'Deposito antiguo',1,0,'C');
-            $pdf->Cell(97.5,8,'Motivo',1,0,'C');
+            $pdf->Cell(73.125,8,'Motivo',1,0,'C');
             $pdf->Ln(8);
 
             $productos = mysqli_query($conexion, "SELECT * FROM `movimientoskardexs` WHERE id='$row[id]'");
             while  ($filas = mysqli_fetch_array($productos)){    
 
-                $pdf->Cell(48.75,8,$filas['producto'],1,0,'L');
-                $pdf->Cell(24.375,8,$filas['cantidad'],1,0,'C');
+                $pdf->Cell(48.75,8,$filas['producto'],1,0,'C');
+                $pdf->Cell(48.75,8,$filas['cantidad']. " " .$filas['und'],1,0,'C');
                 $pdf->Cell(24.375,8,$filas['antiguodeposito'],1,0,'C');
-                $pdf->Cell(97.5,8,$filas['motivo'],1,0,'C');
+                $pdf->Cell(73.125,8,$filas['motivo'],1,0,'C');
                 $pdf->Ln(8);
             }
 
@@ -167,8 +167,8 @@ $pdf->AddPage();
             $productos2 = mysqli_query($conexion, "SELECT * FROM `movimientoskardext` WHERE id='$row2[id]'");
             while  ($filas = mysqli_fetch_array($productos2)){    
 
-                $pdf->Cell(97.5,8,$filas['producto'],1,0,'L');
-                $pdf->Cell(48.75,8,$filas['cantidad'],1,0,'C');
+                $pdf->Cell(97.5,8,$filas['producto'],1,0,'C');
+                $pdf->Cell(48.75,8,$filas['cantidad']. " " .$filas['und'],1,0,'C');
                 $pdf->Cell(24.375,8,$filas['antiguodeposito'],1,0,'C');
                 $pdf->Cell(24.375,8,$filas['nuevodeposito'],1,0,'C');
                 $pdf->Ln(8);

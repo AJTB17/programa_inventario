@@ -20,7 +20,6 @@ function createTable() {
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
 }
-
 function onerow() {
     var table = document.getElementById("mesa"),
         fornite = document.getElementById("cant-prod").value,
@@ -159,7 +158,6 @@ function onerow() {
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
 }
-
 function clearRow() {
     var mensaje = confirm("¿Desea eliminar ésta fila?");
     if (this.parentNode.id == numero && mensaje == true) {
@@ -191,7 +189,6 @@ function clearRow() {
         calculate();
     };
 }
-
 function calc() {
     let result = 0,
         id = this.id,
@@ -223,7 +220,6 @@ function calc() {
     document.getElementById("total_" + variableId).innerHTML = resultado;
     calculate();
 }
-
 function autocomplete() {
     var cadena = "id=" + this.value;
     var codigo = this.parentNode.parentNode.id;
@@ -251,7 +247,6 @@ function autocomplete() {
         }
     })
 }
-
 function autocompletePro() {
     var cadena = "codigo=" + this.value;
     let id = this.id;
@@ -273,7 +268,6 @@ function autocompletePro() {
         }
     })
 }
-
 function reporte() {
     var cadena = "",
         total = "",
@@ -340,7 +334,6 @@ function reporte() {
         }
     });
 }
-
 function moverarchivo() {
     let numFactura = document.getElementById("numeroFactura").value,
         dato = "n_ajuste=" + numFactura +
@@ -362,7 +355,6 @@ function moverarchivo() {
     }, 1000);
 
 }
-
 function enviarDatos() {
     var cadena = "",
         total = "",
@@ -426,7 +418,6 @@ function enviarDatos() {
         }
     });
 }
-
 function calculate() {
     var num = parseFloat(numero);
     var result = 0;
@@ -449,7 +440,6 @@ function calculate() {
     document.getElementById("TotalIva").innerHTML = resultadoIva;
     document.getElementById("totalConIva").innerHTML = "Total+Iva:" + final;
 }
-
 function convertUnits(initialUnit, finalUnit, value) {
     const equivalencies = {
         Centímetros: {

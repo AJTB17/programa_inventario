@@ -69,7 +69,7 @@
                     <table id="depositos">
                         <thead id="tableHeader">
                         	<tr>
-								<th>Código De Producto</th>
+								<th>Producto</th>
 								<th>Cantidad</th>
 								<th>Precio</th>
 								<th>Depósito de Entrada</th>
