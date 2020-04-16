@@ -114,7 +114,7 @@ $razon= $_POST['razon'];
     $najuste = $_POST['numRef'];
     $accion= $_POST['accion'];
     $nb_pages = $pdf->PageNo();
-    $nombrearc = $accion."-reporte".$najuste.".pdf";
+    $nombrearc = $accion."-comprobante".$najuste.".pdf";
     $file1=$nombrearc;
     $pdf->Output("F",$file1);
     print ("  >> File '$file1' generated:  " . "$nb_pages pages  -  " . filesize($file1) . " bytes\n");
@@ -128,8 +128,8 @@ $razon= $_POST['razon'];
 $najuste = $_POST['numRef'];
 $accion= $_POST['accion'];
 $fecha=date("d-m-Y");
-$nombrearc = $accion."-reporte".$najuste.".pdf";
-$direccion= "C:/wamp/www/inventariogg/phpurl/reportes".$accion."/" .$nombrearc ;
+$nombrearc = $accion."-comprobante".$najuste.".pdf";
+$direccion= "./phpurl/comprobantes".$accion."/" .$nombrearc ;
 
 
  include('phpurl/bdacceso.php');
@@ -139,14 +139,14 @@ $direccion= "C:/wamp/www/inventariogg/phpurl/reportes".$accion."/" .$nombrearc ;
 
         while($conjunto=$result->fetch_assoc()){
             if ($conjunto['numerodeAjuste'] == $najuste){
-                echo "reporte existente";
+                echo "comprobante existente";
                 $boolean = false;
                 break;
             };
         };
         if($boolean){
-            $query="INSERT INTO ".$accion."reporte(fecha, nombreArchivo, direccion, numerodeAjuste) 
-                    VALUES ('$fecha','$nombrearc','$direccion','$najuste')";
+            $query="INSERT INTO ".$accion."reporte(id, fecha, nombreArchivo, direccion, numerodeAjuste) 
+                    VALUES ('$najuste','$fecha','$nombrearc','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
 

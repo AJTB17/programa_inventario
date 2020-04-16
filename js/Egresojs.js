@@ -327,8 +327,7 @@ function moverarchivo(){
         url: "/inventariogg/phpurl/moverarchivo.php",
         data:dato,
         success: function(){
-            window.open("./phpurl/reportes" + accion + "/" + accion + "-reporte" + numRef + ".pdf", '_blank');
-            location.reload();
+            window.open("./phpurl/comprobantes" + accion + "/" + accion + "-comprobante" + numRef + ".pdf", '_blank');
         },
         error: function(){
             alert("movimiento no realizado");

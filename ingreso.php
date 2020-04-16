@@ -53,16 +53,16 @@
              <!-- Cabecera End -->
             <div class="contenedor--flex">
 
-            <div  class="gg">
-                <nav>
-                    <a href="proveedoreshtml.php"  id="btna">Provedores</a>
-                    <a href="productoshtml.php" id="btnc">Productos</a>
-                    <a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
-                    <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
-                    <a href="movimiento.php" id="btne">Movimientos</a> 
-                </nav>
-            </div>    
-
+				<div  class="gg">
+					<nav>
+						<a href="proveedoreshtml.php"  id="btna">Provedores</a>
+						<a href="productoshtml.php" id="btnc">Productos</a>
+						<a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
+						<a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+						<a href="movimiento.php" id="btne">Movimientos</a> 
+					</nav>
+				</div>    
+			</div>
         </header>
         <main>
             <div class="contenedor--flex contenedor">
@@ -70,7 +70,7 @@
                     <div class="v1">
                         <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
                         <div class="ut1">
-                            <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre"></span>usuario</h3>
+                            <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
                         </div>
                     </div>
                     <div class="v3">
@@ -80,17 +80,17 @@
                     <ul class="menuext">
                         <li>
                            <div class="v4">
-                                <a href="#"><hr><span>prueba</span></a>
+                                <a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
                             </div>
                         </li>
                         <li>
                            <div class="v4">
-                                <a href="#"><hr><span>prueba</span></a>
+                                <a id="Reporte_2"><hr><span>Egresos del mes</span></a>
                             </div>
                         </li>
                         <li>
                            <div class="v4">
-                                <a href="#"><hr><span>prueba</span></a>
+                                <a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
                             </div>
                         </li>
                     </ul>
@@ -107,7 +107,7 @@
                         <a href="#">Cerrar sesión</a>
                     </div>
                 </div>
-                <div class="caja-exe" style="margin-top:200px">
+                <div class="caja-exe" style="margin-top:130px">
                     <h2 class="ti">Cargo de inventario</h2>
                     <div class="factura" id="factura">
                         <div class="contenedor--flex">
@@ -234,6 +234,7 @@
                 </div>
             </div>
         </main>
+        <script src="js/reportes_enlace.js"></script>
         <script src="js/createfornite.js"></script>
     </body>
 </html>

@@ -68,39 +68,47 @@ $fs = 0;
     //preguntar 
     $pdf->SetFillColor(0, 0, 255);
     //
-    $pdf->Cell(32.5,8,'Codigo',1,0,'C',0);
+    $pdf->Cell(28.5,8,'Codigo',1,0,'C',0);
     $pdf->Cell(32.5,8,'Producto',1,0,'C');
-    $pdf->Cell(32.5,8,'Costo original',1,0,'C');
-    $pdf->Cell(32,8,'costo nuevo',1,0,'C');
-    $pdf->Cell(32.5,8,'Cantidad original',1,0,'C');
-    $pdf->Cell(32.5,8,'Cantidad nueva',1,0,'C');
+    $pdf->Cell(26,8,'deposito',1,0,'C');
+    $pdf->Cell(26,8,'Costo original',1,0,'C');
+    $pdf->Cell(26,8,'costo nuevo',1,0,'C');
+    $pdf->Cell(28,8,'Cantidad original',1,0,'C');
+    $pdf->Cell(28,8,'Cantidad nueva',1,0,'C');
     $pdf->Ln(8);
-
-
+	
+	include('phpurl/bdacceso.php');
+	$najuste = $_POST['n_ajuste'];
     $filas = $_POST['numero'];
     for ($x = 1 ; $x <= $filas ; $x++){
         $id = $_POST['id' .$x];
         $producto = $_POST['Producto' .$x];
+        $deposito = $_POST['deposito' .$x];
         $costo1 = $_POST['costo1' .$x];
         $costo2 = $_POST['costo2' .$x];
         $cantidadactual = $_POST['cantidad' .$x];
         $cantidadnueva = $_POST['cantidad2' .$x];
         
 
-        $pdf->Cell(32.5,8,$id,1,0,'L',0);
+        $pdf->Cell(28.5,8,$id,1,0,'L',0);
         $pdf->Cell(32.5,8,$producto,1,0,'L');
-        $pdf->Cell(32.5,8,$costo1,1,0,'l');
-        $pdf->Cell(32,8,$costo2,1,0,'l');
-        $pdf->Cell(32.5,8,$cantidadactual,1,0,'l');
-        $pdf->Cell(32.5,8,$cantidadnueva,1,0,'l');
+        $pdf->Cell(26,8,$deposito,1,0,'L');
+        $pdf->Cell(26,8,$costo1,1,0,'l');
+        $pdf->Cell(26,8,$costo2,1,0,'l');
+        $pdf->Cell(28,8,$cantidadactual,1,0,'l');
+        $pdf->Cell(28,8,$cantidadnueva,1,0,'l');
         $pdf->Ln(8);
+		
+		$query="INSERT INTO movimientoskardexauditoria(numerodereferencia, producto, deposito, cantidad, nuevacantidad, precio, nuevoprecio) 
+				VALUES ('$najuste', '$producto', '$deposito','$cantidadactual','$cantidadnueva','$costo1','$costo2')";
+        $resultado=$conexion->query($query);
     }
 
 
   //  $pdf->Cell(25,6,"final",1,0,'C');
     $najuste = $_POST['n_ajuste'];
     $nb_pages = $pdf->PageNo();
-    $nombrearc = "auditoria-reporte".$najuste.".pdf";
+    $nombrearc = "auditoria-comprobante".$najuste.".pdf";
     $file1=$nombrearc;
     $pdf->Output("F",$file1);
     print ("  >> File '$file1' generated:  " . "$nb_pages pages  -  " . filesize($file1) . " bytes\n");
@@ -112,56 +120,28 @@ $fs = 0;
 //guardado del pdf en bd
 
 $fecha=date("d-m-Y");
-$nombrearc = "auditoria-reporte".$najuste.".pdf";
-$direccion= "C:/wamp/www/inventariogg/phpurl/reportesauditoria/" .$nombrearc ;
+$nombrearc = "auditoria-comprobante".$najuste.".pdf";
+$nombrearc2 = "Auditoria";
+$direccion= "./phpurl/comprobantesauditoria/" .$nombrearc ;
 $najuste = $_POST['n_ajuste'];
+$usuario = $_POST['usuario'];
+$usuario2 = $_POST['usuario2'];
 
- include('C:/wamp/www/inventariogg/phpurl/bdacceso.php');
+ include('phpurl/bdacceso.php');
         $boolean = true;
         $busqueda="SELECT numerodeAjuste FROM auditoria";
         $result=$conexion->query($busqueda);
 
         while($conjunto=$result->fetch_assoc()){
             if ($conjunto['numerodeAjuste'] == $najuste){
-                echo "reporte existente";
+                echo "comprobante existente";
                 $boolean = false;
                 break;
             };
         };
         if($boolean){
-            $query="INSERT INTO
-            auditoria(fecha, nombreArchivo, direccion, numerodeAjuste) VALUES ('$fecha','$nombrearc','$direccion','$najuste')";
+            $query="INSERT INTO auditoria(id, usercode ,usuario, fecha, nombreMovimiento, direccion, numerodeAjuste) 
+					VALUES ('$najuste', '$usuario2', '$usuario', '$fecha','$nombrearc2','$direccion','$najuste')";
             $resultado=$conexion->query($query);
         }
-//
-
-
-
-
-
-
-/*
-if($tipoenvio=="Correo") {
-    $doc = $pdf->Output('','S');
-    $mail = new PHPMailer;
-    $mail->IsSMTP();        //Sets Mailer to send message using SMTP
-    $mail->SMTPAuth = false;             
-    $mail->Username = 'info@estancialospotros.com';  
-    $mail->Password = md5('0c01935efa720e04067eed2b28382e94'); 	
-    $mail->SMTPAutoTLS = false; 
-    $mail->Port = 25;                     
-    $mail->setFrom('info@estancialospotros.com','Estancia los Potros');
-    $mail->SMTPAutoTLS = false; 
-    $mail->FromName = "ESTANCIA LOS POTROS ";
-    $mail->Subject = $chpcli . ' Reporte Ministerio del poder popular para relaciones interiores y justicia';
-    $mail->Body = 'Se adjunta Reporte. Quedando de usted, Gracias';
-    $mail->addAddress($chpcor);
-    $mail->isHTML(true);
-    $mail->AddStringAttachment($doc, 'doc.pdf' , 'base64', 'application/pdf' );
-    $mail->Send();
-    //echo "Correo enviado";
-   
-
-  }  
-*/
 ?>

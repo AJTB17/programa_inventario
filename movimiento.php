@@ -6,7 +6,6 @@
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/BF.css" rel="stylesheet">
@@ -74,7 +73,21 @@
                             <th id="tableHeaderVariable">Nuevo Depósito</th>
                         </thead>
                     </table>
+                    <button id="descargar" class="descargar">Descargar comprobante</button>
                     <button id="depositCancelButton" class="productCancelButton 
+                    formularioButton">Cerrar</button>
+                </div>
+            </div>
+            <div id="ventanaDeDepositos_auditoria" class="GrayBackground hidden">
+                <div id="muestraDeDepositos_auditoria">
+                    <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
+                    <table id="depositos_auditoria">
+                        <thead id="tableHeader">
+                            <th>Producto</th><th>Deposito</th><th>Cantidad pasada</th><th>Cantidad actual</th><th>Precio pasado</th><th>Precio actual</th>
+                        </thead>
+                    </table>
+                    <button id="descargar_auditoria" class="descargar">Descargar comprobante</button>
+                    <button id="depositCancelButton_auditoria" class="productCancelButton 
                     formularioButton">Cerrar</button>
                 </div>
             </div>
@@ -83,30 +96,30 @@
                         <div class="v1">
                             <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
                             <div class="ut1">
-                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre"></span>usuario</h3>
+                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
                             </div>
                         </div>
                         <div class="v3">
                             <label for="maa" onclick="ovejo">Reportes</label>
                         </div> 
                         <input class="checkeo" type="checkbox" id="maa">
-                        <ul class="menuext">
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                        </ul>
+						<ul class="menuext">
+							<li>
+							   <div class="v4">
+									<a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
+								</div>
+							</li>
+							<li>
+							   <div class="v4">
+									<a id="Reporte_2"><hr><span>Egresos del mes</span></a>
+								</div>
+							</li>
+							<li>
+							   <div class="v4">
+									<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+								</div>
+							</li>
+						</ul>
                         <div class="v3">
                             <a href="ingreso.php">Entradas</a>
                         </div>
@@ -120,8 +133,7 @@
                             <a href="#">Cerrar sesión</a>
                         </div>
                 </div> 
-                
-                <div style="margin-top: 200px">
+                <div style="margin-top: 130px">
                     <div class="ban"><h2>Control administrativo de los movimientos</h2></div>
                     <div class="contenedor--flex">
                         <div class="back2">
@@ -187,37 +199,65 @@
                             </thead>
                             <tbody id="movementsTableBody">
                                 <?php
-                                $conexion = mysqli_connect("localhost", "root", "lp12345..",
-                                                           "bdlospotros");
-                                $query="SELECT id,solicitante,fechadesalida,movimiento FROM `kardexsalidas` UNION ALL SELECT id,solicitante,fechadetraslado,movimiento FROM `kardextraslados` UNION ALL SELECT numerodefactura,codproveedor,fechadeingreso,movimiento FROM `kardexingresos` ORDER BY fechadesalida DESC";
+                                $conexion = mysqli_connect("localhost", "root", "lp12345..", "bdlospotros");
+								
+                                $query="SELECT id,solicitante,fechadesalida,movimiento 
+										FROM `kardexsalidas` 
+										UNION ALL SELECT id,solicitante,fechadetraslado,movimiento 
+										FROM `kardextraslados` 
+										UNION ALL SELECT numerodefactura,codproveedor,fechadeingreso,movimiento 
+										FROM `kardexingresos`
+										UNION ALL SELECT numerodeAjuste,usuario,fecha,nombreMovimiento
+										FROM `auditoria` 
+										ORDER BY fechadesalida DESC";
+								
                                 $resultado=$conexion->query($query);
                                 while($row=$resultado->fetch_assoc()){
+									$link = "";
                                     $cadena = "";
                                     $calculos = "";
                                     if ($row['movimiento'] === "Traslado") {
+										$burqueda_link="SELECT direccion FROM `trasladoreporte` WHERE id=".$row['id']."";
+										$result=$conexion->query($burqueda_link);
+										
+										
                                         $query2 = "SELECT * FROM movimientoskardext WHERE id=".$row['id']."";
                                         $resultado2=$conexion->query($query2);
                                         while ($row2 = $resultado2->fetch_assoc()) {
-
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
+												
+												
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
                                                       $row2['antiguodeposito']."||".
                                                       $row2['nuevodeposito']."--";
 
                                         }
-                                    } elseif ($row['movimiento'] === "Salida"){
+                                    } 
+									else if ($row['movimiento'] === "Salida"){
+										$burqueda_link="SELECT direccion FROM `egresoreporte` WHERE id=".$row['id']."";
+										$result=$conexion->query($burqueda_link);
+										
+										
                                         $query2 = "SELECT * FROM movimientoskardexs WHERE id=".$row['id']."";
                                         $resultado2=$conexion->query($query2);
                                         while ($row2 = $resultado2->fetch_assoc()) {
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
 
+											
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
                                                       $row2['antiguodeposito']."||".
                                                       $row2['motivo']."--";
 
                                         }
-                                    } else {
-
+                                    }
+									else if ($row['movimiento'] === "Ingreso") {
+										$burqueda_link="SELECT direccion FROM `ingresoreporte` WHERE id=".$row['id']."";
+										$result=$conexion->query($burqueda_link);
+										
                                         $datosDeMovimiento=mysqli_fetch_array(mysqli_query($conexion,
                                         "SELECT subtotal,iva,total FROM kardexingresos WHERE numerodefactura=".$row['id']." AND codproveedor=".$row['solicitante']));
                                         $calculos = $calculos.$datosDeMovimiento['subtotal']."!!".
@@ -227,6 +267,9 @@
                                         $query2 = "SELECT * FROM movimientoskardexi WHERE numerodefactura=".$row['id']." AND codigoproveedor=".$row['solicitante'];
                                         $resultado2=$conexion->query($query2);
                                         while ($row2 = $resultado2->fetch_assoc()) {
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
+											
 
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
@@ -234,23 +277,52 @@
                                                       $row2['deposito']."--";
 
                                         };
+                                    } 
+									
+									else if ($row['movimiento'] === "Auditoria") {
+										
+										$burqueda_link="SELECT `direccion` FROM `auditoria` WHERE numerodeAjuste = '1'";
+										$result=$conexion->query($burqueda_link);
+										
+										$row3 = $result->fetch_assoc();
+										$link = $row3['direccion'];
+										
+                                        $query2 = "SELECT * FROM movimientoskardexauditoria WHERE numerodereferencia=".$row['id']."";
+                                        $resultado2=$conexion->query($query2);
+                                        while ($row2 = $resultado2->fetch_assoc()) {
+											$row3 = $result->fetch_assoc();
+											$link = $row3['direccion'];
+
+											
+                                            $cadena = $cadena.$row2['producto']."||".
+													  $row2['deposito']."||".
+                                                      $row2['cantidad']."||".
+                                                      $row2['nuevacantidad']."||".
+                                                      $row2['precio']."||".
+                                                      $row2['nuevoprecio']."--";
+
+                                        }
                                     }
-                                ?>
-                                <tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>')">
-                                    <td><?php echo $row['id']; ?></td>
-                                    <td><?php echo $row["solicitante"]; ?></td>
-                                    <td><?php echo $row["fechadesalida"]; ?></td>
-                                    <td><?php echo $row["movimiento"]; ?></td>
-                                </tr>
+									
+									if($row['id'] !== "0" ){
+								?>
+									<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
+										<td><?php echo $row['id']; ?></td>
+										<td><?php echo $row["solicitante"]; ?></td>
+										<td><?php echo $row["fechadesalida"]; ?></td>
+										<td><?php echo $row["movimiento"]; ?></td>
+									</tr>
                                 <?php
+									}
                                 }
-                                ?>
+                                ?>									
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </main>
+        <script src="js/reportes_enlace.js"></script>
         <script src="js/movimientojs.js"></script> 
     </body>
 </html>

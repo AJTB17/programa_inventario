@@ -5,7 +5,6 @@
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
@@ -173,48 +172,47 @@
                 </div>
             </div>
             <div id="menuvertical" class="cuerpa">
-                        <div class="v1">
-                            <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
-                            <div class="ut1">
-                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre"></span>usuario</h3>
-                            </div>
-                        </div>
-                        <div class="v3">
-                            <label for="maa" onclick="ovejo">Reportes</label>
-                        </div> 
-                        <input class="checkeo" type="checkbox" id="maa">
-                        <ul class="menuext">
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="v3">
-                            <a href="ingreso.php">Entradas</a>
-                        </div>
-                        <div class="v3">
-                            <a href="traslados.php">Salidas o traslados</a>
-                        </div>
-                        <div class="v3">
-                            <a href="auditoria.php">Auditoria de inventario</a>
-                        </div>                       
-                        <div class="v3">
-                            <a href="#">Cerrar sesión</a>
-                        </div>
-                            <!--  <li><a href="javascript:void(0);" onClick="hrefprueba();" title="Acceso al menu prueba.">Acerca de</a></li>-->
-                </div>
-            <div style="margin-top:200px">
+				<div class="v1">
+					<div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
+					<div class="ut1">
+						<h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
+					</div>
+				</div>
+				<div class="v3">
+					<label for="maa" onclick="ovejo">Reportes</label>
+				</div> 
+				<input class="checkeo" type="checkbox" id="maa">
+				<ul class="menuext">
+					<li>
+					   <div class="v4">
+							<a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
+						</div>
+					</li>
+					<li>
+					   <div class="v4">
+							<a id="Reporte_2"><hr><span>Egresos del mes</span></a>
+						</div>
+					</li>
+					<li>
+					   <div class="v4">
+							<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+						</div>
+					</li>
+				</ul>
+				<div class="v3">
+					<a href="ingreso.php">Entradas</a>
+				</div>
+				<div class="v3">
+					<a href="traslados.php">Salidas o traslados</a>
+				</div>
+				<div class="v3">
+					<a href="auditoria.php">Auditoria de inventario</a>
+				</div>                       
+				<div class="v3">
+					<a href="#">Cerrar sesión</a>
+				</div>
+            </div>
+            <div style="margin-top:120px">
                 <div class="ban"><h2>Productos</h2></div>
                 <div class="contenedor--t">
                     <table>
@@ -304,6 +302,7 @@
                 ?>
             </datalist>
         </main>
+        <script src="js/reportes_enlace.js"></script>
         <script src="js/productosjs.js"></script>
     </body>
 </html>

@@ -66,47 +66,47 @@
         <main>
             <div class="contenedor--flex contenedor">
                 <div id="menuvertical" class="cuerpa">
-                        <div class="v1">
-                            <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
-                            <div class="ut1">
-                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre"></span>usuario</h3>
-                            </div>
-                        </div>
-                        <div class="v3">
-                            <label for="maa" onclick="ovejo">Reportes</label>
-                        </div> 
-                        <input class="checkeo" type="checkbox" id="maa">
-                        <ul class="menuext">
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="v3">
-                            <a href="ingreso.php">Entradas</a>
-                        </div>
-                        <div class="v3 v3active">
-                            <a href="traslados.php">Salidas o traslados</a>
-                        </div>
-                        <div class="v3">
-                            <a href="auditoria.php">Auditoria de inventario</a>
-                        </div>
-                        <div class="v3">
-                            <a href="#">Cerrar sesión</a>
-                        </div>
+					<div class="v1">
+						<div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
+						<div class="ut1">
+							<h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
+						</div>
+					</div>
+					<div class="v3">
+						<label for="maa" onclick="ovejo">Reportes</label>
+					</div> 
+					<input class="checkeo" type="checkbox" id="maa">
+					<ul class="menuext">
+						<li>
+						   <div class="v4">
+								<a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
+							</div>
+						</li>
+						<li>
+						   <div class="v4">
+								<a id="Reporte_2"><hr><span>Egresos del mes</span></a>
+							</div>
+						</li>
+						<li>
+						   <div class="v4">
+								<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+							</div>
+						</li>
+					</ul>
+					<div class="v3">
+						<a href="ingreso.php">Entradas</a>
+					</div>
+					<div class="v3 v3active">
+						<a href="traslados.php">Salidas o traslados</a>
+					</div>
+					<div class="v3">
+						<a href="auditoria.php">Auditoria de inventario</a>
+					</div>
+					<div class="v3">
+						<a href="#">Cerrar sesión</a>
+					</div>
                 </div>
-                <div class="caja-exe" style="margin-top:200px">
+                <div class="caja-exe" style="margin-top:140px">
                     <h2 class="ti" style="margin-top: 0">Traslados y salidas del inventario</h2>
                     <div class="factura" id="factura">
                         <div class="contenedor--flex">
@@ -257,6 +257,7 @@
                 </div>
             </div>
         </main>
+        <script src="js/reportes_enlace.js"></script>
         <script src="js/Egresojs.js"></script>
     </body>
 </html>

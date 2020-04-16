@@ -50,29 +50,22 @@ nav a:hover {
         position: absolute;
         display: block;
         left: 10%;
-        top: 80PX;
     }
 }
 @media screen and (min-width:768px) {
     .gg {
-        width: 90%;
+        width: 92%;
         position: absolute;
         display: block;
-        left: 10%;
-        top: 120PX;
-    }
-}
-@media screen and (min-width:1024px) {
-    .gg {
-        top: 80PX;
-    }
-}
+        left: 8%;
 
+    }
+}
 @media screen and (min-width:1080px) {
     .gg {
-        width: 90%;
-        left: 10%;
-        top: 120PX;
+        width: 92%;
+        left: 8%;
+
     }
 }
 @media screen and (min-width:1400px) {

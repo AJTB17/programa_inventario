@@ -32,6 +32,6 @@
         
         $query="UPDATE depositos SET cantidad='$cantidadnueva'
                 WHERE producto='$producto' AND deposito='$deposito'";
-        $resultado=$conexion->query($query);
+        $resultado=$conexion->query($query);        
     }
 ?>

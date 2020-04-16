@@ -1,20 +1,12 @@
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
-        <meta name="description" content="Estancia los otros">
-        <meta name="keywords" content="campamento hotel restaurant eventos campestre">
-        <meta name="author" content="Estancia los otros">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta http-equiv="pragma" content="no-cache" />
+        <meta charset="utf-8">>
 <!----- metas end ----------->
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/menuacceso.css" rel="stylesheet">
         <link href="img/logos/logo0.ico" rel="icon">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
 <!----- Estilos de css end ----->        
@@ -148,48 +140,47 @@
             </div>
             <!--ventana modal end-->
             <div id="menuvertical" class="cuerpa">
-                        <div class="v1">
-                            <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
-                            <div class="ut1">
-                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre"></span>usuario</h3>
-                            </div>
-                        </div>
-                        <div class="v3">
-                            <label for="maa" onclick="ovejo">Reportes</label>
-                        </div> 
-                        <input class="checkeo" type="checkbox" id="maa">
-                        <ul class="menuext">
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                            <li>
-                               <div class="v4">
-                                    <a href="#"><hr><span>prueba</span></a>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="v3">
-                            <a href="ingreso.php">Entradas</a>
-                        </div>
-                        <div class="v3">
-                            <a href="traslados.php">Salidas o traslados</a>
-                        </div>
-                        <div class="v3">
-                            <a href="auditoria.php">Auditoria de inventario</a>
-                        </div>                        
-                        <div class="v3">
-                            <a href="#">Cerrar sesión</a>
-                        </div>
-                            <!--  <li><a href="javascript:void(0);" onClick="hrefprueba();" title="Acceso al menu prueba.">Acerca de</a></li>-->
-                </div>
-            <div style="margin-top:200px">
+				<div class="v1">
+					<div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
+					<div class="ut1">
+						<h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
+					</div>
+				</div>
+				<div class="v3">
+					<label for="maa" onclick="ovejo">Reportes</label>
+				</div> 
+				<input class="checkeo" type="checkbox" id="maa">
+				<ul class="menuext">
+					<li>
+					   <div class="v4">
+							<a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
+						</div>
+					</li>
+					<li>
+					   <div class="v4">
+							<a id="Reporte_2"><hr><span>Egresos del mes</span></a>
+						</div>
+					</li>
+					<li>
+					   <div class="v4">
+							<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+						</div>
+					</li>
+				</ul>
+				<div class="v3">
+					<a href="ingreso.php">Entradas</a>
+				</div>
+				<div class="v3">
+					<a href="traslados.php">Salidas o traslados</a>
+				</div>
+				<div class="v3">
+					<a href="auditoria.php">Auditoria de inventario</a>
+				</div>                        
+				<div class="v3">
+					<a href="#">Cerrar sesión</a>
+				</div>
+            </div>
+            <div style="margin-top:120px">
                 <div class="ban"><h2>Proveedores</h2></div>
                 <div class="contenedor--t">
                     <table>
@@ -238,6 +229,7 @@
                 </div>
             </div>
         </main>
+        <script src="js/reportes_enlace.js"></script>
         <script src="js/proveedoresjsC.js"></script>
     </body>
 </html>

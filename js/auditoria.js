@@ -2,7 +2,9 @@ let numero = 0,
     positon = "auditoria",
     n_ajuste = document.getElementById("n-ajuste"),
     max_n,
-    dep_a = "negativo";
+    dep_a = "negativo",
+	usuario = "",
+	usuario2 = "";
 
 $('#one').click(onerow);
 $('#add2').click(rellebartabla);
@@ -161,6 +163,7 @@ function autocomplete() {
                             document.getElementById(x).id = num2;
                             document.getElementById("codigo_" + x).id = "codigo_" + num2;
                             document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
+                            document.getElementById("deposito_" + x).id = "deposito_" + num2;
                             document.getElementById("costo_" + x).id = "costo_" + num2;
                             document.getElementById("coston_" + x).id = "coston_" + num2;
                             document.getElementById("cant_" + x).id = "cant_" + num2;
@@ -169,6 +172,7 @@ function autocomplete() {
                             document.getElementById(num2).id = x;
                             document.getElementById("codigo_" + num2).id = "codigo_" + x;
                             document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
+                            document.getElementById("deposito_" + num2).id = "deposito_" + x;
                             document.getElementById("costo_" + num2).id = "costo_" + x;
                             document.getElementById("coston_" + num2).id = "coston_" + x;
                             document.getElementById("cant_" + num2).id = "cant_" + x;
@@ -222,6 +226,7 @@ function autocomplete() {
                             document.getElementById(x).id = num2;
                             document.getElementById("codigo_" + x).id = "codigo_" + num2;
                             document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
+							document.getElementById("deposito_" + x).id = "deposito_" + num2;
                             document.getElementById("costo_" + x).id = "costo_" + num2;
                             document.getElementById("coston_" + x).id = "coston_" + num2;
                             document.getElementById("cant_" + x).id = "cant_" + num2;
@@ -230,6 +235,7 @@ function autocomplete() {
                             document.getElementById(num2).id = x;
                             document.getElementById("codigo_" + num2).id = "codigo_" + x;
                             document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
+                            document.getElementById("deposito_" + num2).id = "deposito_" + x;
                             document.getElementById("costo_" + num2).id = "costo_" + x;
                             document.getElementById("coston_" + num2).id = "coston_" + x;
                             document.getElementById("cant_" + num2).id = "cant_" + x;
@@ -388,9 +394,11 @@ function reporte(){
         let costoN = document.getElementById("coston_" + n).value,
             cantidadN = document.getElementById("cantidadn_" + n).value;
             
-        if(n==1){
-            cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+		if(costoN != "" && cantidadN != ""){
+        	if(n==1){
+            	cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
@@ -399,13 +407,53 @@ function reporte(){
                 cadenar = cadenar +
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             };
+        } else if (costoN === "" && cantidadN != ""){
+        	if(n==1){
+            	cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
+            } else{
+                cadenar = cadenar +
+                         "&id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
+            };
+        } else if (costoN != "" && cantidadN === ""){
+        	if(n==1){
+            	cadenar = "id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
+            } else{
+                cadenar = cadenar +
+                         "&id" + n + "=" + document.getElementById("codigo_" + n).value +
+                         "&Producto" + n + "=" + document.getElementById("descripcion_" + n).value +
+                         "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                         "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
+                         "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+                         "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                         "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
+            };
+		}
     }
-    cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML;
+    cadenar = cadenar + "&numero=" + numero + "&n_ajuste=" + n_ajuste.innerHTML + "&usuario=" + usuario + "&usuario2=" + usuario2;
     
     $.ajax({
             type: 'POST',
@@ -429,9 +477,9 @@ function moverarchivo(){
         url: "/inventariogg/phpurl/moverarchivo.php",
         data:dato,
         success: function(){
-            window.open("./phpurl/reportesauditoria/auditoria-reporte" + n_ajuste.innerHTML + ".pdf", '_blank');
-            alert("Operación completa");
-            location.reload();
+            window.open("./phpurl/comprobantesauditoria/auditoria-comprobante" + n_ajuste.innerHTML + ".pdf", '_blank');
+            setTimeout(location.reload, 3000);
+			
         },
         error: function(){
             alert("movimiento no realizado");
@@ -456,6 +504,7 @@ function actualizarDatos(){
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+						 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             } else{
@@ -463,6 +512,7 @@ function actualizarDatos(){
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
                          "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+						 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
             };
@@ -470,13 +520,15 @@ function actualizarDatos(){
             if(n==1){
                 cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                            "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                             "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                             "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                             "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
                 } else{
                     cadena = cadena +
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
-                           "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+                             "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value;
@@ -486,6 +538,7 @@ function actualizarDatos(){
                 cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
                             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+							 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
                 } else{
@@ -493,6 +546,7 @@ function actualizarDatos(){
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
                              "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                              "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
+							 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
             };     
@@ -551,6 +605,7 @@ function clearRow(){
             document.getElementById(i).id = x;
             document.getElementById("codigo_" + i).id = "codigo_" + x;
             document.getElementById("descripcion_" + i).id = "descripcion_" + x;
+            document.getElementById("deposito_" + i).id = "deposito_" + x;
             document.getElementById("costo_" + i).id = "costo_" + x;
             document.getElementById("coston_" + i).id = "coston_" + x;
             document.getElementById("cant_" + i).id = "cant_" + x;
@@ -574,7 +629,10 @@ function clearall(){
         }
     }
 }
-
-
-
-
+function usuarioT() {
+//	console.log(localStorage.getItem("getvalue"));
+//	console.log(localStorage.getItem("getvalue2"));
+	usuario = localStorage.getItem("getvalue2");
+	usuario2 = localStorage.getItem("getvalue");
+}
+usuarioT();
