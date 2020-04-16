@@ -5,7 +5,6 @@
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">

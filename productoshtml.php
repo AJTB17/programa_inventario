@@ -126,58 +126,40 @@
             <div id="ventanaDeDepositos" class="GrayBackground hidden">
                 <div id="muestraDeDepositos">
                     <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="codigoLabel" class="formularioLabel">Código</label><br>
-                        <input id="codigoInput" type="text" readonly class="formularioInput">
+                    <div class="inpcont-2">
+						<div>
+							<label id="descuentoLabel" class="formularioLabel">Descuento</label><br>
+							<input id="descuentoInput" type="text" readonly class="formularioInput">
+						</div>
+						<div>
+							<label id="departamentoLabel" class="formularioLabel">Departamento</label><br>
+							<input id="departamentoInput" type="text" readonly class="formularioInput">
+						</div>
+						<div>
+							<label id="reordenLabel" class="formularioLabel">Reorden</label><br>
+							<input id="reordenInput" type="text" readonly class="formularioInput">
+						</div>
+						<div>
+							<label id="fechaultpedidoLabel" class="formularioLabel">Fecha de último pedido</label><br>
+							<input id="fechaultpedidoInput" type="text" readonly class="formularioInput">
+						</div>
+						<div>
+							<label id="noultimopedidoLabel" class="formularioLabel">Factura del último pedido</label><br>
+							<input id="noultimopedidoInput" type="text" readonly class="formularioInput">
+						</div>
                     </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="nombreLabel" class="formularioLabel">Nombre</label><br>
-                        <input id="nombreInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="undLabel" class="formularioLabel">Unidad</label><br>
-                        <input id="undInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="costoLabel" class="formularioLabel">Costo</label><br>
-                        <input id="costoInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="descuentoLabel" class="formularioLabel">Descuento</label><br>
-                        <input id="descuentoInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="departamentoLabel" class="formularioLabel">Departamento</label><br>
-                        <input id="departamentoInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="ctaLabel" class="formularioLabel">Cantidad</label><br>
-                        <input id="ctaInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="ctapreviaLabel" class="formularioLabel">Cantidad previa</label><br>
-                        <input id="ctapreviaInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="reordenLabel" class="formularioLabel">Reorden</label><br>
-                        <input id="reordenInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="fechaultpedidoLabel" class="formularioLabel">Fecha de último pedido</label><br>
-                        <input id="fechaultpedidoInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="noultimopedidoLabel" class="formularioLabel">Número de último pedido</label><br>
-                        <input id="noultimopedidoInput" type="text" readonly class="formularioInput">
-                    </div>
-                    <div class="inpcont" style="width: 50%">
-                        <label id="IVALabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAInput" type="text" readonly class="formularioInput">
-                    </div>
+                    
                     <table id="depositos">
                         <thead id="tableHeader">
                             <th>Deposito</th><th>Ubicacion</th><th>Cantidad</th>
                         </thead>
+                        <tfoot>
+                    		<tr>
+                    			<td></td>
+                    			<td></td>
+                    			<td></td>
+                    		</tr>
+                    	</tfoot>
                     </table>
                     <button id="depositCancelButton" class="productCancelButton 
                     formularioButton">Cerrar</button>
@@ -236,76 +218,79 @@
                                  <th></th>
                                  <th></th>
                                  <th></th>
-                            </thead>
-                        <tr style="background-color: #222">
-                            <thead>
-                                <th>Código</th>
-                                <th>Nombre</th>
-                                <th>Cantidad</th>
-                                <th>Unidad</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
-                            </thead>
-                        </tr>
-                        <?php
-                        include("phpurl/bdacceso.php");
-                        include("phpurl/functions.php");
-                        $query="SELECT * FROM productos ORDER BY codigo";
-                        $resultado=$conexion->query($query);
-                        while($row=$resultado->fetch_assoc()){
-                            $isOnReorder = $row['cta'] <= $row['reorden'];
-                            
-                            $decimalCta = changeDecimalNotation($row['cta']);
-                            $decimalCosto = changeDecimalNotation($row['costo']);
-                            
-                            $productos=$row['id']."||".
-                                    $row["codigo"]."||".
-                                    $row["nombre"]."||".
-                                    $row['und']."||".
-                                    $row["descuento"]."||".
-                                    $row["departamento"]."||".
-                                    $row["reorden"]."||".
-                                    $row["IVA"]."||";
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                        </thead>
+						<thead>
+							<th>Código</th>
+							<th>Nombre</th>
+							<th>Cantidad</th>
+							<th>Cta previa</th>
+							<th>Unidad</th>
+							<th>Costo</th>
+							<th>IVA</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</thead>
+                       	<tbody>
+							<?php
+							include("phpurl/bdacceso.php");
+							include("phpurl/functions.php");
+							$query="SELECT * FROM productos ORDER BY codigo";
+							$resultado=$conexion->query($query);
+							while($row=$resultado->fetch_assoc()){
+								$isOnReorder = $row['cta'] <= $row['reorden'];
 
-                            $caracts = $row['codigo']."||".
-                                    $row['nombre']."||".
-                                    $row['und']."||".
-                                    $row['costo']."||".
-                                    $row['descuento']."||".
-                                    $row['departamento']."||".
-                                    $row['cta']."||".
-                                    $row['ctaprevia']."||".
-                                    $row['reorden']."||".
-                                    $row['fechaultpedido']."||".
-                                    $row['noultimopedido']."||".
-                                    $row['IVA'];
-                            
-                            $nombre = $row['nombre'];
-                            
-                            $query2 = "SELECT deposito,ubicacion,cantidad FROM depositos WHERE
-                            producto='$nombre' ORDER BY deposito";
-                            $resultado2=$conexion->query($query2);
-                            $depositos="";
-                            while($row2=$resultado2->fetch_assoc()){
-                                $depositos = $depositos.$row2['deposito']."||".
-                                        $row2['ubicacion']."||".
-                                        $row2['cantidad']."__";
-                            };
-                        ?>
-                        <tr onclick="desplegarDepositos('<?php echo $caracts; ?>',
-                            '<?php echo $depositos ?>',
-                            '<?php echo $row['nombre'] ?>')">
-                            <td><?php echo $row['codigo']; ?></td>
-                            <td><?php echo $row["nombre"]; ?></td>
-                            <td class="<?php echo ($isOnReorder ? "reorden" : ""); ?>"><?php echo $decimalCta; ?></td>
-                            <td><?php echo $row["und"]; ?></td>
-                            <td>Modificar</td>
-                            <td class="clearProducto" onclick="clearProduct('<?php echo $productos
-                            ?>')">X</td>
-                        </tr>
-                        <?php
-                        }
-                        ?>
+								$decimalCta = changeDecimalNotation($row['cta']);
+								$decimalCosto = changeDecimalNotation($row['costo']);
+
+								$productos=$row['id']."||".
+										$row["codigo"]."||".
+										$row["nombre"]."||".
+										$row['und']."||".
+										$row["descuento"]."||".
+										$row["departamento"]."||".
+										$row["reorden"]."||".
+										$row["IVA"]."||";
+
+								$caracts = $row['und']."||".
+										$row['descuento']."||".
+										$row['departamento']."||".
+										$row['reorden']."||".
+										$row['fechaultpedido']."||".
+										$row['noultimopedido'];
+
+								$nombre = $row['nombre'];
+
+								$query2 = "SELECT deposito,ubicacion,cantidad FROM depositos WHERE
+								producto='$nombre' ORDER BY deposito";
+								$resultado2=$conexion->query($query2);
+								$depositos="";
+								while($row2=$resultado2->fetch_assoc()){
+									$depositos = $depositos.$row2['deposito']."||".
+											$row2['ubicacion']."||".
+											$row2['cantidad']."__";
+								};
+							?>
+							<tr onclick="desplegarDepositos('<?php echo $caracts; ?>',
+								'<?php echo $depositos ?>',
+								'<?php echo $row['nombre'] ?>')">
+								<td><?php echo $row['codigo']; ?></td>
+								<td><?php echo $row["nombre"]; ?></td>
+								<td class="<?php echo ($isOnReorder ? "reorden" : ""); ?>"><?php echo $decimalCta; ?></td>
+								<td><?php echo $row['ctaprevia']; ?></td>
+								<td><?php echo $row["und"]; ?></td>
+								<td><?php echo $row['costo']."$"; ?></td>
+								<td><?php echo $row["IVA"]."%"; ?></td>
+								<td>Modificar</td>
+								<td class="clearProducto" onclick="clearProduct('<?php echo $productos
+								?>')">X</td>
+							</tr>
+							<?php
+							}
+							?>
+						</tbody>
                     </table>
                 </div>
             </div>

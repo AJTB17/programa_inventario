@@ -9,6 +9,7 @@
     $fechaDeIng = $_POST['fechaDeIng'];
     $subtotal = $_POST['subtotal'];
     $subtotalIva = $_POST['subtotalIva'];
+    $user = $_POST['usuario'];
     $busqueda="SELECT * FROM kardexingresos";
     $result=$conexion->query($busqueda);
 
@@ -120,8 +121,9 @@
         // Creando el movimiento de entrada en el kardex
         
         $query3="INSERT INTO 
-        kardexingresos(numerodefactura, fechadeingreso, codproveedor, subtotal, iva, total, movimiento)
-        VALUES('$numFactura',
+        kardexingresos(numerodefactura, usuario, fechadeingreso, codproveedor, subtotal, iva, total, movimiento)
+        VALUES('$numFactura', 
+		'$user',
         '$fechaDeIng',
         '$codProveedor',
         '$subtotal',

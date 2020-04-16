@@ -270,15 +270,17 @@ function autocompletePro() {
 }
 function reporte(){
     var cadena = "",
-//        total = "",
-//        variante = document.getElementById("totalConIva").innerHTML,
+        total = "",
+		variante = document.getElementById("totalConIva").innerHTML,
         codProveedor = document.getElementById("codigopro").value,
         numFactura = document.getElementById("numeroFactura").value,
-        fechaDeIng = document.getElementById("fechadeing").value;
+        fechaDeIng = document.getElementById("fechadeing").value,
+		nombrepro = document.getElementById("nombrepro").value,
+		rifpro = document.getElementById("rifpro").value;
 
-//    for (var z = 10; z < variante.length; z++) {
-//        total = total + variante[z]
-//    };
+    for (var z = 10; z < variante.length; z++) {
+        total = total + variante[z]
+    };
     for (var n = 1; n <= numero; n++) {
         let value = document.getElementById("cant_" + n).value;
         let initialUnit = document.getElementById("medida_" + n).value;
@@ -310,13 +312,15 @@ function reporte(){
             "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
     }
     cadena = cadena +
-//        "&total=" + total +
+        "&total=" + total +
         "&codProveedor=" + codProveedor +
+        "&Proveedor=" + nombrepro +
+        "&rif=" + rifpro +
         "&numFactura=" + numFactura +
         "&fechaDeIng=" + fechaDeIng +
-        "&numero=" + numero ;
-//        "&subtotal=" + document.getElementById("totalFinal").innerHTML +
-//        "&subtotalIva=" + document.getElementById("TotalIva").innerHTML;
+        "&numero=" + numero +
+        "&subtotal=" + document.getElementById("totalFinal").innerHTML +
+        "&subtotalIva=" + document.getElementById("TotalIva").innerHTML;
     
     $.ajax({
             type: 'POST',
@@ -357,8 +361,9 @@ function enviarDatos() {
         variante = document.getElementById("totalConIva").innerHTML,
         codProveedor = document.getElementById("codigopro").value,
         numFactura = document.getElementById("numeroFactura").value,
-        fechaDeIng = document.getElementById("fechadeing").value;
-
+        fechaDeIng = document.getElementById("fechadeing").value,
+		usuario = localStorage.getItem("getvalue");
+		console.log(usuario);
     for (var z = 10; z < variante.length; z++) {
         total = total + variante[z]
     };
@@ -367,7 +372,6 @@ function enviarDatos() {
         let initialUnit = document.getElementById("medida_" + n).value;
         let  finalUnit = document.getElementById("unidad_" + n).value;
 		let newValue = value;
-		console.log(finalUnit);
 		if (finalUnit === "Unidades"){
 
 		} else {
@@ -399,7 +403,8 @@ function enviarDatos() {
         "&fechaDeIng=" + fechaDeIng +
         "&numero=" + numero +
         "&subtotal=" + document.getElementById("totalFinal").innerHTML +
-        "&subtotalIva=" + document.getElementById("TotalIva").innerHTML;
+        "&subtotalIva=" + document.getElementById("TotalIva").innerHTML +
+		"&usuario=" + usuario;
     
     
     

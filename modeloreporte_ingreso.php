@@ -67,16 +67,22 @@ $fs = 0;
 
 
     $pdf->SetFont('Times','B',10);
-    //preguntar 
-    $pdf->SetFillColor(0, 0, 255);
-    //
+	$pdf->cell(32.5,8,'Codigo proveedor',1,0,'C',0);
+	$pdf->cell(81.25,8,'Proveedor nombre',1,0,'C',0);
+	$pdf->cell(81.25,8,'Rif del proveedor',1,0,'C',0);
+	$pdf->Ln(8);
+	$pdf->Cell(32.5,8,$_POST['codProveedor'],1,0,'C');
+	$pdf->Cell(81.25,8,$_POST['Proveedor'],1,0,'C');
+	$pdf->Cell(81.25,8,$_POST['rif'],1,0,'C');
+	$pdf->Ln(10);
+		
     $pdf->Cell(32.5,8,'Codigo',1,0,'C',0);
-    $pdf->Cell(32.5,8,'producto',1,0,'C');
+    $pdf->Cell(32.5,8,'Producto',1,0,'C');
     $pdf->Cell(32.5,8,'Cantidad',1,0,'C');
-    $pdf->Cell(24.375,8,'precio',1,0,'C');
+    $pdf->Cell(24.375,8,'Precio',1,0,'C');
     $pdf->Cell(24.375,8,'IVA',1,0,'C');
-    $pdf->Cell(24.375,8,'deposito',1,0,'C');
-    $pdf->Cell(24.375,8,'ubicacion',1,0,'C');
+    $pdf->Cell(24.375,8,'Deposito',1,0,'C');
+    $pdf->Cell(24.375,8,'Ubicacion',1,0,'C');
     $pdf->Ln(8);
 
 
@@ -101,7 +107,16 @@ $fs = 0;
         $pdf->Cell(24.375,8,$ubicacion,1,0,'C');
         $pdf->Ln(8);
     }
-
+	
+	$pdf->Cell(132.5,8,'Subtotal costo productos',1,0,'L',0);
+	$pdf->Cell(62.5,8,$_POST['subtotal'].'$'.' ',1,0,'R',0);
+	$pdf->Ln(8);
+    $pdf->Cell(132.5,8,'Subtotal del Iva',1,0,'L');
+	$pdf->Cell(62.5,8,$_POST['subtotalIva'].'$'.' ',1,0,'R',0);
+	$pdf->Ln(8);
+    $pdf->Cell(132.5,8,'Total de factura',1,0,'L');
+	$pdf->Cell(62.5,8,$_POST['total'].'$'.' ',1,0,'R',0);
+	$pdf->Ln(10);
 
     $najuste = $_POST['numFactura'];
     $nb_pages = $pdf->PageNo();

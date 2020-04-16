@@ -347,7 +347,7 @@ header .contenedor--flex {
         display: flex;    
     }
     .v1 {
-        height: 125px;
+        height: 130px;
     }
     .u1 {
         width: 50%;
@@ -377,10 +377,10 @@ header .contenedor--flex {
 }
 @media screen and (min-width:1400px) {
     .cuerpa {
-        width: 8%;
+        width: 7%;
     }
     .ut1 h3 {
-        font-size: 22px;
+        font-size: 18px;
     }
     .v3 {
         height: 100px
@@ -397,26 +397,11 @@ header .contenedor--flex {
         width: 70%;
         margin: auto;
     }
-}
-@media screen and (min-width:1400px) {
-    .cuerpa {
-        width: 7%;
-    }
-    .ut1 h3 {
-        font-size: 20px;
-    }
-    .v3 a {
-        font-size: 18px;
-    }
-    .v3 label {
-        font-size: 18px;
-    }
-    
-    .u1 {
-        width: 70%;
-        margin: auto;
+    .v1 {
+        height: 170px;
     }
 }
+
 
 @keyframes bar{
     0% {

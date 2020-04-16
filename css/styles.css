@@ -20,6 +20,21 @@ section {
     width: 100%;
     margin-bottom: 25px;
 }
+::-webkit-scrollbar {
+    width: 12px; 
+    height: 8px; 
+}
+::-webkit-scrollbar-thumb {
+    background: #555;
+	border: 2px solid #fff;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #666
+}
+::-webkit-scrollbar-track {
+	background: #fff;
+}
 
 .contenedor {
     width: 98%;

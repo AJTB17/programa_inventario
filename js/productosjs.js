@@ -17,11 +17,12 @@ $("#productCancelButton").click(quitarFormularioProductos);
 
 function quitarFormularioProductos() {
     document.getElementById("GrayBackgroundProduct").classList.add("hidden");
-};
-
+}
 function desplegarDepositos(caracts, datos, producto) {
     document.getElementById("ventanaDeDepositos").classList.remove("hidden");
     document.getElementById("depositosTitle").innerHTML = producto;
+	
+	const caract = caracts.split("||");
     if (datos != "") {
         let depositos = datos.split("__");
         let tabla = document.getElementById("depositos");
@@ -33,9 +34,10 @@ function desplegarDepositos(caracts, datos, producto) {
                 contenido2 = document.createElement("td"),
                 contenido3 = document.createElement("td");
 
-            let cont1 = document.createTextNode(d[2]),
+            let cont1 = document.createTextNode(d[2] + " " + caract[0]),
                 cont2 = document.createTextNode(d[1]),
                 cont3 = document.createTextNode(d[0]);
+
 
             contenido1.appendChild(cont1);
             contenido2.appendChild(cont2);
@@ -45,6 +47,7 @@ function desplegarDepositos(caracts, datos, producto) {
             element.appendChild(contenido2);
             element.appendChild(contenido1);
 
+
             element.classList.add("row");
 
             tabla.appendChild(element, tableHeader);
@@ -53,24 +56,15 @@ function desplegarDepositos(caracts, datos, producto) {
         };
     };
 
-    const caract = caracts.split("||");
-
-    document.getElementById("codigoInput").value = caract[0];
-    document.getElementById("nombreInput").value = caract[1];
-    document.getElementById("undInput").value = caract[2];
-    document.getElementById("costoInput").value = caract[3];
-    document.getElementById("descuentoInput").value = caract[4];
-    document.getElementById("departamentoInput").value = caract[5];
-    document.getElementById("ctaInput").value = caract[6];
-    document.getElementById("ctapreviaInput").value = caract[7];
-    document.getElementById("reordenInput").value = caract[8];
-    document.getElementById("fechaultpedidoInput").value = caract[9];
-    document.getElementById("noultimopedidoInput").value = caract[10];
-    document.getElementById("IVAInput").value = caract[11];
+    
+    document.getElementById("descuentoInput").value = caract[1] + "%";
+    document.getElementById("departamentoInput").value = caract[2];
+    document.getElementById("reordenInput").value = caract[3] + " " + caract[0];
+    document.getElementById("fechaultpedidoInput").value = caract[4];
+    document.getElementById("noultimopedidoInput").value = caract[5];
 
     document.getElementById("depositCancelButton").addEventListener("click", cerrarDepositos);
-};
-
+}
 function cerrarDepositos() {
     if (numero != 0) {
         let rows = document.getElementsByClassName("row");
@@ -81,8 +75,7 @@ function cerrarDepositos() {
     };
     numero = 0;
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
-};
-
+}
 function addProducto() {
     document.getElementById("GrayBackgroundProduct").classList.remove("hidden");
     $("#productAcceptButton").click(aceptarNuevoProducto);
@@ -96,8 +89,7 @@ function addProducto() {
     $("#departamentoProductInput").val("");
     $("#reordenProductInput").val("");
     $("#IVAinput").val("");
-};
-
+}
 function aceptarNuevoProducto() {
     cadena = "id=" + $('#idProductInput').val() +
         "&codigo=" + $('#codigoProductInput').val() +
@@ -127,8 +119,7 @@ function aceptarNuevoProducto() {
     $("#addProducto").click(addProducto);
     $(".modProducto").click(modProducto);
     $("#productCancelButton").click(quitarFormularioProductos);
-};
-
+}
 function clearProduct(datos) {
     d = datos.split("||");
     cadena = "id=" + d[0]
@@ -146,7 +137,6 @@ function clearProduct(datos) {
         })
     }
 }
-
 function modProducto(datos) {
     $("#productAcceptButton").off();
     $("#productAcceptButton").click(modDatosProducto);
@@ -164,8 +154,7 @@ function modProducto(datos) {
     $("#departamentoProductInput").val(d[5]);
     $("#reordenProductInput").val(d[6]);
     $("#IVAinput").val(d[7]);
-};
-
+}
 function modDatosProducto() {
     if ($('#codigoProductInput').val() == codigoProduct) {
         cadena = "id=" + $('#idProductInput').val() +
@@ -202,16 +191,14 @@ function modDatosProducto() {
         }
     })
     quitarFormularioProductos();
-};
-
+}
 function toAngloDecimalNotation(str) {
     if (str.includes(".")) {
         let numberWithoutDots = str.replace(".", "").replace(",", ".");
         return numberWithoutDots;
     }
     return str;
-};
-
+}
 function toEspDecimalNotation(str) {
     let stringChanged = str.replace(".", ",");
     if (stringChanged.split(",")[0].length > 3) {
@@ -227,4 +214,4 @@ function toEspDecimalNotation(str) {
         }
         return cadena.reverse() + "," + stringChanged.split(",")[1];
     }
-};
+}

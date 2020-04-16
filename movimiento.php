@@ -10,7 +10,6 @@
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/BF.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
-        <link href="css/ingreso.css" rel="stylesheet">
 <!----- Estilos de css end -----> 
         
         <link href='packages/core/main.css' rel='stylesheet' />
@@ -216,6 +215,8 @@
 									$link = "";
                                     $cadena = "";
                                     $calculos = "";
+									$nombrep  = "";
+
                                     if ($row['movimiento'] === "Traslado") {
 										$burqueda_link="SELECT direccion FROM `trasladoreporte` WHERE id=".$row['id']."";
 										$result=$conexion->query($burqueda_link);
@@ -286,7 +287,7 @@
 									
 									else if ($row['movimiento'] === "Auditoria") {
 										
-										$burqueda_link="SELECT `direccion` FROM `auditoria` WHERE numerodeAjuste = '1'";
+										$burqueda_link="SELECT `direccion` FROM `auditoria` WHERE numerodeAjuste =".$row['id']."";
 										$result=$conexion->query($burqueda_link);
 										
 										$row3 = $result->fetch_assoc();
@@ -295,9 +296,6 @@
                                         $query2 = "SELECT * FROM movimientoskardexauditoria WHERE numerodereferencia=".$row['id']."";
                                         $resultado2=$conexion->query($query2);
                                         while ($row2 = $resultado2->fetch_assoc()) {
-											$row3 = $result->fetch_assoc();
-											$link = $row3['direccion'];
-
 											
                                             $cadena = $cadena.$row2['producto']."||".
 													  $row2['deposito']."||".
@@ -308,16 +306,32 @@
 
                                         }
                                     }
-									
-									if($row['id'] !== "0" ){
+									if ($row['movimiento'] !== "Ingreso"){
+										if($row['id'] !== "0" ){
 								?>
-									<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
-										<td><?php echo $row['id']; ?></td>
-										<td><?php echo $row["solicitante"]; ?></td>
-										<td><?php echo $row["fechadesalida"]; ?></td>
-										<td><?php echo $row["movimiento"]; ?></td>
-									</tr>
-                                <?php
+											<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
+												<td><?php echo $row['id']; ?></td>
+												<td><?php echo $row["solicitante"]; ?></td>
+												<td><?php echo $row["fechadesalida"]; ?></td>
+												<td><?php echo $row["movimiento"]; ?></td>
+											</tr>
+								<?php
+										}
+									} 
+									else {
+										$pro="SELECT `nombre` FROM `proveedor` WHERE codigo=".$row['solicitante']."";
+										$r=$conexion->query($pro);
+										
+										$nombres = $r->fetch_assoc();
+										$nombrep = $nombres['nombre'];
+								?>
+										<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
+											<td><?php echo $row['id']; ?></td>
+											<td><?php echo $nombrep; ?></td>
+											<td><?php echo $row["fechadesalida"]; ?></td>
+											<td><?php echo $row["movimiento"]; ?></td>
+										</tr>
+								<?php
 									}
                                 }
                                 ?>									
