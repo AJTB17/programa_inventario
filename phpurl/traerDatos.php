@@ -8,7 +8,7 @@
     $contador_4=0;
     $contador_6=0;
     $html="";
-    $arr = array("codigo"=>"","producto"=>"","departamento"=>"","unidad"=>"","iva"=>"","costo"=>"","cantidad"=>"");
+    $arr = array("codigo"=>"","producto"=>"","departamento"=>"","unidad"=>"","iva"=>"","costo"=>"","und"=>"","cantidad"=>"");
     include('bdacceso.php');
     
     $resultado1 = mysqli_query($conexion, "SELECT * FROM productos WHERE nombre='$id' OR codigo='$id'");
@@ -38,12 +38,13 @@
                 "unidad"=>$row['und'],
                 "iva"=>$row['IVA'],
                 "costo"=>$row['costo'],
+                "und"=>$row['und'],
                 "cantidad"=>$row['cta']);
             }
             $numero++;    
         } 
         else {
-            $query="SELECT depositos.id, productos.codigo, depositos.producto, productos.departamento, depositos.deposito, productos.costo,                          depositos.cantidad 
+            $query="SELECT depositos.id, productos.codigo, depositos.producto, productos.departamento, depositos.deposito, productos.costo, productos.und, depositos.cantidad 
                     FROM `depositos` 
                     INNER JOIN `productos` 
                     ON productos.nombre = depositos.producto  
@@ -74,7 +75,26 @@
                         <td><input class='co' id='costo_$numero' readonly='true' placeholder='Precio' value='".$row['costo']."'></td>
                         <td><input class='co' id='coston_$numero' placeholder='Precio'></td>
                         <td><input class='cap' id='cant_$numero' placeholder='Ctd' value='".$row['cantidad']."'></td>
+                        <td><input class='und' id='und_$numero' placeholder='Unidad' value='".$row['und']."' readonly></td>
                         <td><input class='cantn' id='cantidadn_$numero' placeholder='Ctd'></<td>
+						<td>
+							<select class='und' id='undn_$numero' value='".$row['und']."'>
+								<option>Centímetros</option>
+								<option>Mililitros</option>
+								<option>Litros</option>
+								<option>Metros</option>
+								<option>Kilogramos</option>
+								<option>Gramos</option>
+								<option>Pulgadas</option>
+								<option>Pies</option>
+								<option>Yarda</option>
+								<option>Toneladas</option>
+								<option>Onzas</option>
+								<option>Libras</option>
+								<option>Galones</option>
+								<option>Unidades</option>
+							</select>
+						</td>
                         <td class='clearRow'>X</td>
                     </tr>";
                 $numero_2++;

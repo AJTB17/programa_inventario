@@ -79,7 +79,7 @@
             </div>
             <div id="ventanaDeDepositos_auditoria" class="GrayBackground hidden">
                 <div id="muestraDeDepositos_auditoria">
-                    <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
+                    <h1 id="depositosTitle" class="titlemodal">Auditoria</h1>
                     <table id="depositos_auditoria">
                         <thead id="tableHeader">
                             <th>Producto</th><th>Deposito</th><th>Cantidad pasada</th><th>Cantidad actual</th><th>Precio pasado</th><th>Precio actual</th>
@@ -191,6 +191,7 @@
                             <thead>
                                <tr>
                                     <th>Número de Movimiento</th>
+                                    <th>Usuario</th>
                                     <th>Solicitante</th>
                                     <th>Fecha de Acción</th>
                                     <th>Movimiento</th>                                   
@@ -200,13 +201,13 @@
                                 <?php
                                 $conexion = mysqli_connect("localhost", "root", "lp12345..", "bdlospotros");
 								
-                                $query="SELECT id,solicitante,fechadesalida,movimiento 
+                                $query="SELECT id,usuario,solicitante,fechadesalida,movimiento 
 										FROM `kardexsalidas` 
-										UNION ALL SELECT id,solicitante,fechadetraslado,movimiento 
+										UNION ALL SELECT id,usuario,solicitante,fechadetraslado,movimiento 
 										FROM `kardextraslados` 
-										UNION ALL SELECT numerodefactura,codproveedor,fechadeingreso,movimiento 
+										UNION ALL SELECT numerodefactura,usuario,codproveedor,fechadeingreso,movimiento 
 										FROM `kardexingresos`
-										UNION ALL SELECT numerodeAjuste,usuario,fecha,nombreMovimiento
+										UNION ALL SELECT numerodeAjuste,usercode,usuario,fecha,nombreMovimiento
 										FROM `auditoria` 
 										ORDER BY fechadesalida DESC";
 								
@@ -302,7 +303,8 @@
                                                       $row2['cantidad']."||".
                                                       $row2['nuevacantidad']."||".
                                                       $row2['precio']."||".
-                                                      $row2['nuevoprecio']."--";
+                                                      $row2['nuevoprecio']."||".
+													  $row2['und']."--";
 
                                         }
                                     }
@@ -311,6 +313,7 @@
 								?>
 											<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
 												<td><?php echo $row['id']; ?></td>
+												<td><?php echo $row['usuario']; ?></td>
 												<td><?php echo $row["solicitante"]; ?></td>
 												<td><?php echo $row["fechadesalida"]; ?></td>
 												<td><?php echo $row["movimiento"]; ?></td>
@@ -327,6 +330,7 @@
 								?>
 										<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
 											<td><?php echo $row['id']; ?></td>
+											<td><?php echo $row['usuario']; ?></td>
 											<td><?php echo $nombrep; ?></td>
 											<td><?php echo $row["fechadesalida"]; ?></td>
 											<td><?php echo $row["movimiento"]; ?></td>

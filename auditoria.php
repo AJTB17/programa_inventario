@@ -118,12 +118,14 @@
                 <thead id="reference">
                     <tr>
                         <th colspan="1">Codigo</th>
-                        <th width="40%">Producto</th>
+                        <th width="25%">Producto</th>
                         <th colspan="1">Deposito</th>
                         <th colspan="1">Costo actual</th>
                         <th colspan="1">Costo nuevo</th>
                         <th colspan="1">Existencia<br> anterior</th>
+                        <th colspan="1">Unidad<br> anterior</th>
                         <th colspan="1">Existencia<br> nueva</th>
+                        <th colspan="1">Unidad<br> nueva</th>
                         <th colspan="1">Eliminar</th>
                     </tr>
                 </thead>
@@ -146,6 +148,8 @@
                         <td>
                             <button id="clearAll">Borrar</button>
                         </td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

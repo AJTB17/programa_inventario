@@ -18,50 +18,46 @@ function desplegarMovimientos(datos) {
         let tableHeader = document.getElementById("tableHeader");
         for (let i = 0; i < datosDeFactura.length - 1; i++) {
             let dato = datosDeFactura[i].split("||");
-            let element = document.createElement("tr"),
-                contenido1 = document.createElement("td"),
-                contenido2 = document.createElement("td"),
-                contenido3 = document.createElement("td"),
-                contenido4 = document.createElement("td");
-
-            let cont1 = document.createTextNode(dato[3]),
-                cont2 = document.createTextNode(dato[2]),
-                cont3 = document.createTextNode(dato[1] + " " + dato[4]),
-                cont4 = document.createTextNode(dato[0]);
-
-            contenido1.appendChild(cont1);
-            contenido2.appendChild(cont2);
-            contenido3.appendChild(cont3);
-            contenido4.appendChild(cont4);
-
-            element.appendChild(contenido4);
-            element.appendChild(contenido3);
-            element.appendChild(contenido2);
-            element.appendChild(contenido1);
-
-            element.classList.add("row");
-
-            tabla.appendChild(element, tableHeader);
-
+            let html = `<tbody class="tableBody">
+                            <tr>
+                                <td>${dato[0]}</td>
+                                <td>${dato[1] + " " + dato[4]}</td>
+                                <td>${dato[2] + "$"}</td>
+                                <td>${dato[3]}</td>
+                            </tr>
+                        </tbody>`
+            document.getElementById("depositos").innerHTML += html;
             numero++
+			
+			html = `<tfoot id="depositTableFoot">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>`;
+			document.getElementById("depositos").innerHTML += html;
         }
         document.getElementById("depositosTitle").innerHTML = facturaProveedor;
-    };
-    document.getElementById("depositCancelButton").addEventListener("click", cerrarDepositos);
+    };     
+
+    document.getElementById("depositCancelButton").addEventListener("click", cerrarInformacion);
 }
-
-function cerrarDepositos() {
+function cerrarInformacion() {
+    let tabla = document.getElementById("depositos"),
+        tableFoot = document.getElementById("depositTableFoot");
+	
     if (numero != 0) {
-        let rows = document.getElementsByClassName("row");
-        let tabla = document.getElementById("depositos");
+        let tableBody = document.getElementsByClassName("tableBody");
         for (let i = 0; i < numero; i++) {
-            tabla.removeChild(rows[0]);
-        };
+			tabla.removeChild(tableBody[0]);  
+        }
     };
-    document.getElementById("ventanaDeDepositos").classList.add("hidden");
+	tabla.removeChild(tableFoot);
+	document.getElementById("ventanaDeDepositos").classList.add("hidden");
     numero = 0;
-};
-
+}
 function filter() {
     let cadena = "movementNumber=" + movementNumberFilter.value +
         "&fecha=" + fechaFilter.value +

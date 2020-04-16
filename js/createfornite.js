@@ -363,7 +363,6 @@ function enviarDatos() {
         numFactura = document.getElementById("numeroFactura").value,
         fechaDeIng = document.getElementById("fechadeing").value,
 		usuario = localStorage.getItem("getvalue");
-		console.log(usuario);
     for (var z = 10; z < variante.length; z++) {
         total = total + variante[z]
     };

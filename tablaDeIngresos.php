@@ -68,10 +68,12 @@
                     <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
                     <table id="depositos">
                         <thead id="tableHeader">
-                            <th>Código De Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Depósito de Entrada</th>
+                        	<tr>
+								<th>Código De Producto</th>
+								<th>Cantidad</th>
+								<th>Precio</th>
+								<th>Depósito de Entrada</th>
+                            </tr>
                         </thead>
                     </table>
                     <button id="depositCancelButton" class="productCancelButton 
@@ -172,7 +174,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Número de Factura</th><th>Fecha de Ingreso</th>
+                                <th>Usuario</th><th>Número de Factura</th><th>Fecha de Ingreso</th>
                                 <th>Código de Proveedor</th><th>Nombre de proveedor</th><th>Subtotal</th>
                                 <th>IVA</th><th>Total</th>
                             </tr>
@@ -182,6 +184,7 @@
                             include("phpurl/bdacceso.php");
                             $query="SELECT kardexingresos.numerodefactura,
                                 kardexingresos.fechadeingreso,
+                                kardexingresos.usuario,
                                 kardexingresos.codproveedor,
                                 proveedor.nombre,
                                 kardexingresos.subtotal,
@@ -206,21 +209,15 @@
 													$row2['und']."--";
                                 };
                             ?>
-                            <tr>
-                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                                <?php echo $numeroDeFactura; ?></td>
-                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                                <?php echo $row["fechadeingreso"]; ?></td>
-                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                                <?php echo $row["codproveedor"]; ?></td>
-                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                                <?php echo $row["nombre"]; ?></td>
-                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                                <?php echo $row["subtotal"]; ?></td>
-                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                                <?php echo $row["iva"]; ?></td>
-                                <td onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
-                                <?php echo $row["total"]; ?></td>
+                            <tr onclick='desplegarMovimientos("<?php echo $movimientos; ?>")'>
+                                <td><?php echo $row["usuario"]; ?></td>
+                                <td><?php echo $numeroDeFactura; ?></td>
+                                <td><?php echo $row["fechadeingreso"]; ?></td>
+                                <td><?php echo $row["codproveedor"]; ?></td>
+                                <td><?php echo $row["nombre"]; ?></td>
+                                <td><?php echo $row["subtotal"]. "$"; ?></td>
+                                <td><?php echo $row["iva"]. "$"; ?></td>
+                                <td><?php echo $row["total"]. "$"; ?></td>
                             </tr>
                             <?php
                             }

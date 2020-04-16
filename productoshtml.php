@@ -64,7 +64,7 @@
         <main>
         
             <!---ventana modal start-->
-            <div id="GrayBackgroundProduct" class="hidden GrayBackground" style="margin-top:120px">
+            <div id="GrayBackgroundProduct" class="hidden GrayBackground" style="margin-top:80px">
                 <div id="ContenedorDeFormulario">
                     
                     <h1 class="titlemodal">Productos</h1>

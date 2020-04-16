@@ -66,7 +66,7 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
                             <tr>
                                 <td>${dato[0]}</td>
                                 <td>${dato[1] + " " + dato[4]}</td>
-                                <td>${dato[2]}</td>
+                                <td>${dato[2] + "$"}</td>
                                 <td>${dato[3]}</td>
                             </tr>
                         </tbody>`
@@ -76,9 +76,9 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
         let html = `<tfoot id="depositTableFoot">
                         <tr>
                             <td></td>
-                            <td id="subtotal">Subtotal:${calcs[0]}</td>
-                            <td id="iva">IVA:${calcs[1]}</td>
-                            <td id="total">Total:${calcs[2]}</td>
+                            <td id="subtotal">Subtotal:${calcs[0] + "$"}</td>
+                            <td id="iva">IVA:${calcs[1] + "$"}</td>
+                            <td id="total">Total:${calcs[2] + "$"}</td>
                         </tr>
                     </tfoot>`;
         document.getElementById("depositos").innerHTML += html;
@@ -100,10 +100,10 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
                             <tr>
                                 <td>${dato[0]}</td>
                                 <td>${dato[1]}</td>
-                                <td>${dato[2]}</td>
-                                <td>${dato[3]}</td>
-                                <td>${dato[4]}</td>
-                                <td>${dato[5]}</td>
+                                <td>${dato[2] + " " + dato[6]}</td>
+                                <td>${dato[3] + " " + dato[6]}</td>
+                                <td>${dato[4] + "$"}</td>
+                                <td>${dato[5] + "$"}</td>
                             </tr>
                         </tbody>`
             document.getElementById("depositos_auditoria").innerHTML += html;

@@ -308,7 +308,7 @@ h5 {
 }
 /*diseño general tabla end*/
 
-.tablemain input {
+.tablemain input, .tablemain select {
     background: rgba(0,0,0,0);
     border: 0;
     font-size: 14px;
@@ -325,7 +325,9 @@ h5 {
 .tablemain .desc {
     width: 100%;
 }
-
+.tablemain .und {
+    width: 110px;
+}
 .tablemain .co, .cap, .cant, .cantn{
     width: 70px
 }

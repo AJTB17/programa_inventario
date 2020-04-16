@@ -175,7 +175,7 @@
                     <table>
                         <tr style="background-color: #222">
                             <thead>
-                                <th>Solicitante</th><th>Fecha De Acción</th>
+                                <th>Usuario</th><th>Solicitante</th><th>Fecha De Acción</th>
                                 <th>Movimiento</th><th>Razón</th>
                             </thead>
                         </tr>
@@ -207,6 +207,7 @@
                             }
                         ?>
                         <tr onclick="desplegarInformacion('<?php echo $cadena ?>','<?php echo $row['movimiento'] ?>')">
+                            <td> <?php echo $row["usuario"]; ?></td>
                             <td> <?php echo $row["solicitante"]; ?></td>
                             <td> <?php echo $row["fechadesalida"]; ?></td>
                             <td> <?php echo $row['movimiento']?> </td>

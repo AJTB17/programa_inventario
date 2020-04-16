@@ -69,7 +69,7 @@
         <main>
             
             <!---ventana modal start-->
-            <div id="GrayBackground" class="hidden GrayBackground" style="margin-top:120px">
+            <div id="GrayBackground" class="hidden GrayBackground" style="margin-top:60px">
                 <div id="ContenedorDeFormulario">
                     
                     <h1 class="titlemodal">Proveedores</h1>
