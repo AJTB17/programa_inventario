@@ -310,10 +310,18 @@ function reporte() {
     };
     $.ajax({
         type: 'POST',
+<<<<<<< HEAD
         url: "/inventariogg/modeloreporte_egresos.php",
         data: cadena,
         success: function() {
             moverarchivo();
+=======
+        url: "/inventariogg/phpurl/moverarchivo.php",
+        data:dato,
+        success: function(){
+            window.open("./phpurl/comprobantes" + accion + "/" + accion + "-comprobante" + numRef + ".pdf", '_blank');
+			location.reload();
+>>>>>>> a5174694a86c12c5ed014178f3a57a83aebcac9d
         },
         error: function() {
             alert("Reporte no realizado");

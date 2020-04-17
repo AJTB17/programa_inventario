@@ -40,13 +40,16 @@
     if ($boolean){
         for ($x = 1 ; $x <= $filas ; $x++){
             $id = $_POST['id' .$x];
-            $cantidad = $_POST['cantidad' .$x];
+            $cantidad = (float)$_POST['cantidad' .$x];
+            $unidad = $_POST['unidad' .$x];
             $preciou = $_POST['preciou' .$x];
+            $iva = $_POST['iva' .$x];
             $deposito = $_POST['deposito' .$x];
             $ubicacion = $_POST['ubicacion' .$x];
 
             // Creando nuevo registro de producto en depósito
-            
+            $boolean2 = false;
+			
             $und2 = mysqli_query($conexion, "SELECT nombre FROM productos WHERE codigo='$id'");
             $row2 = mysqli_fetch_array($und2);
             $nombreDeProducto = $row2['nombre'];
@@ -60,10 +63,13 @@
                 };
             };
             if ($boolean2){
-                $und3 = mysqli_query($conexion, "SELECT cantidad FROM depositos WHERE
-                producto='$nombreDeProducto'");
+                $und3 = mysqli_query($conexion, "SELECT cantidad 
+												 FROM depositos 
+												 WHERE producto='$nombreDeProducto' 
+												 AND deposito='$deposito'");
+				
                 $row3 = mysqli_fetch_array($und3);
-                $cantidadInStock = $row3['cantidad'];
+                $cantidadInStock = (float)$row3['cantidad'];
                 $nuevaCantidad2 = $cantidadInStock + $cantidad;
                 $query4="UPDATE depositos SET ubicacion='$ubicacion',
                                               cantidad='$nuevaCantidad2'
@@ -71,47 +77,43 @@
                                               AND deposito='$deposito'";
                 $resultado4=$conexion->query($query4);
             } else {
-                $query4 = "INSERT INTO 
-                            depositos(producto,
-                            deposito,
-                            ubicacion,
-                            cantidad)
-                            VALUES ('$nombreDeProducto',
-                            '$deposito',
-                            '$ubicacion',
-                            '$cantidad')";
+                $query4 = "INSERT INTO depositos(producto, deposito, ubicacion, cantidad)
+                           VALUES ('$nombreDeProducto', '$deposito', '$ubicacion', '$cantidad')";
                 $resultado4=$conexion->query($query4);
             }
             
             // Actualizando la cantidad actual del producto
-            
-            $und = mysqli_query($conexion, "SELECT cta FROM productos WHERE codigo='$id'");
+            $und = mysqli_query($conexion, "SELECT * FROM `productos` WHERE codigo='$id'");
             $row = mysqli_fetch_array($und);
             $cantidadAct = $row['cta'];
             $nuevaCantidad = $cantidadAct + $cantidad;
-            $query="UPDATE productos SET cta='$nuevaCantidad',
-                                         ctaprevia='$cantidadAct',
-                                         fechaultpedido='$fechaDeIng',
-                                         noultimopedido='$numFactura',
-                                         costo='$preciou'
-                                         WHERE codigo='$id'";
-            $resultado=$conexion->query($query);
+            $query1="UPDATE `productos` SET cta='$nuevaCantidad',
+											ctaprevia='$cantidadAct',
+											und='$unidad',
+											fechaultpedido='$fechaDeIng',
+											noultimopedido='$numFactura',
+											costo='$preciou',
+											IVA='$iva'
+											WHERE codigo='$id'";
+            $resultado=$conexion->query($query1);
             
             // Creando los movimientos específicos de la factura
-            
             $query2 = "INSERT INTO 
-            movimientoskardexi(numerodefactura,
+            `movimientoskardexi`(numerodefactura,
             codigoproveedor,
             producto,
             deposito,
             cantidad,
-            precio) 
+            und,
+            precio, iva) 
             VALUES ('$numFactura',
             '$codProveedor',
             '$nombreDeProducto',
             '$deposito',
             '$cantidad',
-            '$preciou')";
+            '$unidad',
+            '$preciou',
+			'$iva')";
             $resultado2=$conexion->query($query2);
         };
         

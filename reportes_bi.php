@@ -43,7 +43,8 @@ class PDF extends FPDF{
             $this->Ln(10);
             $this->SetFont('Arial','B',23);
             $this->Cell(195,10,utf8_decode('Reporte de ingreso del mes inventario'),0,0,'C',0);
-            $this->Ln(8);
+            $this->Ln(10);
+            $this->Ln(10);
     }
 
     
@@ -67,7 +68,6 @@ $fi = 0;
 $fs = 0;
 
 
-    $pdf->Ln(10);
     $pdf->SetFont('Times','B',10);
 
 

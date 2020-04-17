@@ -478,7 +478,7 @@ function moverarchivo(){
         data:dato,
         success: function(){
             window.open("./phpurl/comprobantesauditoria/auditoria-comprobante" + n_ajuste.innerHTML + ".pdf", '_blank');
-            setTimeout(location.reload, 3000);
+            location.reload();
 			
         },
         error: function(){

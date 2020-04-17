@@ -25,7 +25,7 @@ function desplegarInformacion(datos, movimiento) {
 
             let cont1 = document.createTextNode(dato[3]),
                 cont2 = document.createTextNode(dato[2]),
-                cont3 = document.createTextNode(dato[1]),
+                cont3 = document.createTextNode(dato[1] + " " + dato[4]),
                 cont4 = document.createTextNode(dato[0]);
 
             contenido1.appendChild(cont1);

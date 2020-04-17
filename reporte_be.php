@@ -43,7 +43,8 @@ class PDF extends FPDF{
             $this->Ln(10);
             $this->SetFont('Arial','B',23);
             $this->Cell(195,10,utf8_decode('Reporte de egresos del mes de inventario'),0,0,'C',0);
-            $this->Ln(8);
+            $this->Ln(10);
+            $this->Ln(10);
     }
 
     
@@ -68,7 +69,6 @@ $pdf->AddPage();
     $margen_p= date ( "d-m-Y" , $nuevafecha );
     
     
-    $pdf->Ln(10);
     $pdf->SetFont('Arial','B',16);
     $pdf->Cell(195,10,utf8_decode('Salidas'),0,0,'L',0);
 

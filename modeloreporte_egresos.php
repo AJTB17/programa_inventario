@@ -49,7 +49,8 @@ class PDF extends FPDF{
             $this->Ln(10);
             $this->SetFont('Arial','B',23);
             $this->Cell(195,10,utf8_decode( $accion.' de inventario'),0,0,'C',0);
-            $this->Ln(8);
+            $this->Ln(10);
+            $this->Ln(10);
     }
 
 // Pie de página
@@ -74,7 +75,6 @@ $fs = 0;
 $solicitante= $_POST['solicitante'];
 $razon= $_POST['razon']; 
 
-    $pdf->Ln(10);
     $pdf->SetFont('Times','B',10);
     //preguntar 
     $pdf->SetFillColor(0, 0, 255);

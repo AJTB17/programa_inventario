@@ -56,7 +56,7 @@
                     <a href="proveedoreshtml.php"  id="btna">Provedores</a>
                     <a href="productoshtml.php" id="btnc">Productos</a>
                     <a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
-                    <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+                    <a href="tablaDeEgresos.php" id="btnd">Egresos</a>
                     <a href="movimiento.php" id="btne">Movimientos</a> 
                 </nav>
             </div>    
@@ -103,7 +103,7 @@
 						<a href="auditoria.php">Auditoria de inventario</a>
 					</div>
 					<div class="v3">
-						<a href="#">Cerrar sesión</a>
+						<a href="index.html">Cerrar sesión</a>
 					</div>
                 </div>
                 <div class="caja-exe" style="margin-top:140px">

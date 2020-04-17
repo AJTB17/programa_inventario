@@ -40,7 +40,9 @@ class PDF extends FPDF{
             $this->Ln(10);
             $this->SetFont('Arial','B',23);
             $this->Cell(195,10,utf8_decode('Ingreso de inventario'),0,0,'C',0);
-            $this->Ln(8);
+            $this->Ln(10);
+            $this->Ln(10);
+		
     }
 
 // Pie de página
@@ -63,7 +65,7 @@ $fi = 0;
 $fs = 0;
 
 
-    $pdf->Ln(10);
+
     $pdf->SetFont('Times','B',10);
     //preguntar 
     $pdf->SetFillColor(0, 0, 255);
@@ -71,9 +73,10 @@ $fs = 0;
     $pdf->Cell(32.5,8,'Codigo',1,0,'C',0);
     $pdf->Cell(32.5,8,'producto',1,0,'C');
     $pdf->Cell(32.5,8,'Cantidad',1,0,'C');
-    $pdf->Cell(32,8,'precio',1,0,'C');
-    $pdf->Cell(32.5,8,'deposito',1,0,'C');
-    $pdf->Cell(32.5,8,'ubicacion',1,0,'C');
+    $pdf->Cell(24.375,8,'precio',1,0,'C');
+    $pdf->Cell(24.375,8,'IVA',1,0,'C');
+    $pdf->Cell(24.375,8,'deposito',1,0,'C');
+    $pdf->Cell(24.375,8,'ubicacion',1,0,'C');
     $pdf->Ln(8);
 
 
@@ -84,16 +87,18 @@ $fs = 0;
         $cantidad = $_POST['cantidad' .$x];
         $unidad = $_POST['unidad' .$x];
         $costo = $_POST['preciou' .$x];
+        $IVA = $_POST['iva' .$x];
         $deposito = $_POST['deposito' .$x];
         $ubicacion = $_POST['ubicacion' .$x];
         
 
-        $pdf->Cell(32.5,8,$id,1,0,'L',0);
-        $pdf->Cell(32.5,8,$producto,1,0,'L');
-        $pdf->Cell(32.5,8,$cantidad.' '.$unidad,1,0,'l');
-        $pdf->Cell(32,8,$costo.'$',1,0,'l');
-        $pdf->Cell(32.5,8,$deposito,1,0,'l');
-        $pdf->Cell(32.5,8,$ubicacion,1,0,'l');
+        $pdf->Cell(32.5,8,$id,1,0,'C',0);
+        $pdf->Cell(32.5,8,$producto,1,0,'C');
+        $pdf->Cell(32.5,8,$cantidad.' '.$unidad,1,0,'C');
+        $pdf->Cell(24.375,8,$costo.'$',1,0,'C');
+        $pdf->Cell(24.375,8,$IVA.'%',1,0,'C');
+        $pdf->Cell(24.375,8,$deposito,1,0,'C');
+        $pdf->Cell(24.375,8,$ubicacion,1,0,'C');
         $pdf->Ln(8);
     }
 

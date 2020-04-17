@@ -58,7 +58,7 @@
                         <a href="proveedoreshtml.php"  id="btna">Provedores</a>
                         <a href="productoshtml.php" id="btnc">Productos</a>
                         <a href="tablaDeIngresos.php"  id="btnb">Ingresos</a>
-                        <a href="tablaDeEgresos.php" id="btnd">Traslados</a>
+                        <a href="tablaDeEgresos.php" id="btnd">Egresos</a>
                         <a href="movimiento.php" class="active" id="btne">Movimientos</a> 
                     </nav>
                 </div>    
@@ -130,7 +130,7 @@
                             <a href="auditoria.php">Auditoria de inventario</a>
                         </div>                       
                         <div class="v3">
-                            <a href="#">Cerrar sesión</a>
+                            <a href="index.html">Cerrar sesión</a>
                         </div>
                 </div> 
                 <div style="margin-top: 130px">
@@ -231,7 +231,8 @@
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
                                                       $row2['antiguodeposito']."||".
-                                                      $row2['nuevodeposito']."--";
+                                                      $row2['nuevodeposito']."||".
+													  $row2['und']."--";
 
                                         }
                                     } 
@@ -250,7 +251,8 @@
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
                                                       $row2['antiguodeposito']."||".
-                                                      $row2['motivo']."--";
+                                                      $row2['motivo']."||".
+													  $row2['und']."--";
 
                                         }
                                     }
@@ -266,15 +268,18 @@
 
                                         $query2 = "SELECT * FROM movimientoskardexi WHERE numerodefactura=".$row['id']." AND codigoproveedor=".$row['solicitante'];
                                         $resultado2=$conexion->query($query2);
+										
+										
                                         while ($row2 = $resultado2->fetch_assoc()) {
+											
 											$row3 = $result->fetch_assoc();
 											$link = $row3['direccion'];
-											
 
                                             $cadena = $cadena.$row2['producto']."||".
                                                       $row2['cantidad']."||".
                                                       $row2['precio']."||".
-                                                      $row2['deposito']."--";
+                                                      $row2['deposito']."||".
+													  $row2['und']."--";
 
                                         };
                                     } 
