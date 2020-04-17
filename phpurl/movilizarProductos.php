@@ -53,8 +53,7 @@
                            $conjunto['deposito'] == $deposito &&
                            $conjunto['cantidad'] < $cantidad){
                     $boolean2 = false;
-                    echo "Cantidad en depósito insuficiente para producto " .$codigo ."
-";
+                    echo "Cantidad en depósito insuficiente para producto " .$codigo;
                     break;
                 };
             };
@@ -63,8 +62,7 @@
             $contar = mysqli_num_rows($variable);
             if($contar == 0){
                 $boolean2 = false;
-                echo "Producto " .$codigo ." no existe en deposito " .$deposito ."
-";
+                echo "Producto " .$codigo ." no existe en deposito " .$deposito;
             };
         };
         if ($boolean2){
@@ -98,7 +96,7 @@
                 $cantidad = $_POST['cantidad' .$n];
                 $deposito = $_POST['deposito' .$n];
                 $ubicacion = $_POST['ubicacion' .$n];
-                $doDepositExist = true;
+                $doDepositExist = false;
                 $busquedaNombre = mysqli_fetch_array(mysqli_query($conexion, "SELECT nombre FROM
                 productos WHERE codigo='$codigo'"));
                 $producto = $busquedaNombre['nombre'];
@@ -107,7 +105,7 @@
                 while($conjunto=$result->fetch_assoc()){
                     if ($conjunto['producto'] == $producto &&
                         $conjunto['deposito'] == $deposito){
-                        $doDepositExist = false;
+                        $doDepositExist = true;
                     };
                 };
                 if($boolean){
