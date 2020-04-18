@@ -127,40 +127,52 @@
                 <div id="muestraDeDepositos">
                     <h1 id="depositosTitle" class="titlemodal">Muestra</h1>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="codigoLabel" class="formularioLabel">Código</label><br>
+                        <input id="codigoInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="nombreLabel" class="formularioLabel">Nombre</label><br>
+                        <input id="nombreInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="undLabel" class="formularioLabel">Unidad</label><br>
+                        <input id="undInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="costoLabel" class="formularioLabel">Costo</label><br>
+                        <input id="costoInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="descuentoLabel" class="formularioLabel">Descuento</label><br>
+                        <input id="descuentoInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="departamentoLabel" class="formularioLabel">Departamento</label><br>
+                        <input id="departamentoInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="ctaLabel" class="formularioLabel">Cantidad</label><br>
+                        <input id="ctaInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="ctapreviaLabel" class="formularioLabel">Cantidad previa</label><br>
+                        <input id="ctapreviaInput" type="text" readonly class="formularioInput">
                     </div>
                     <div class="inpcont" style="width: 50%">
-                        <label id="IVAlabel" class="formularioLabel">IVA</label><br>
-                        <input id="IVAinput" type="text" readonly class="formularioInput">
+                        <label id="reordenLabel" class="formularioLabel">Reorden</label><br>
+                        <input id="reordenInput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="fechaultpedidoLabel" class="formularioLabel">Fecha de último pedido</label><br>
+                        <input id="fechaultpedidoInput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="noultimopedidoLabel" class="formularioLabel">Número de último pedido</label><br>
+                        <input id="noultimopedidoInput" type="text" readonly class="formularioInput">
+                    </div>
+                    <div class="inpcont" style="width: 50%">
+                        <label id="IVALabel" class="formularioLabel">IVA</label><br>
+                        <input id="IVAInput" type="text" readonly class="formularioInput">
                     </div>
                     <table id="depositos">
                         <thead id="tableHeader">
@@ -241,6 +253,7 @@
                         $query="SELECT * FROM productos ORDER BY codigo";
                         $resultado=$conexion->query($query);
                         while($row=$resultado->fetch_assoc()){
+                            $isOnReorder = $row['cta'] <= $row['reorden'];
                             
                             $decimalCta = changeDecimalNotation($row['cta']);
                             $decimalCosto = changeDecimalNotation($row['costo']);
@@ -253,6 +266,19 @@
                                     $row["departamento"]."||".
                                     $row["reorden"]."||".
                                     $row["IVA"]."||";
+
+                            $caracts = $row['codigo']."||".
+                                    $row['nombre']."||".
+                                    $row['und']."||".
+                                    $row['costo']."||".
+                                    $row['descuento']."||".
+                                    $row['departamento']."||".
+                                    $row['cta']."||".
+                                    $row['ctaprevia']."||".
+                                    $row['reorden']."||".
+                                    $row['fechaultpedido']."||".
+                                    $row['noultimopedido']."||".
+                                    $row['IVA'];
                             
                             $nombre = $row['nombre'];
                             
@@ -266,21 +292,14 @@
                                         $row2['cantidad']."__";
                             };
                         ?>
-                        <tr>
-                            <td onclick=" desplegarDepositos('<?php echo $depositos ?>',
+                        <tr onclick="desplegarDepositos('<?php echo $caracts; ?>',
+                            '<?php echo $depositos ?>',
                             '<?php echo $row['nombre'] ?>')">
-                            <?php echo $row['codigo']; ?></td>
-                            <td onclick=" desplegarDepositos('<?php echo $depositos ?>',
-                            '<?php echo $row['nombre'] ?>')">
-                            <?php echo $row["nombre"]; ?></td>
-                            <td onclick=" desplegarDepositos('<?php echo $depositos ?>',
-                            '<?php echo $row['nombre'] ?>')">
-                            <?php echo $decimalCta; ?></td>
-                            <td onclick=" desplegarDepositos('<?php echo $depositos ?>',
-                            '<?php echo $row['nombre'] ?>')">
-                            <?php echo $row["und"]; ?></td>
-                            <td class="modProducto" onclick=" modProducto('<?php echo $productos
-                            ?>')">Modificar</td>
+                            <td><?php echo $row['codigo']; ?></td>
+                            <td><?php echo $row["nombre"]; ?></td>
+                            <td class="<?php echo ($isOnReorder ? "reorden" : ""); ?>"><?php echo $decimalCta; ?></td>
+                            <td><?php echo $row["und"]; ?></td>
+                            <td>Modificar</td>
                             <td class="clearProducto" onclick="clearProduct('<?php echo $productos
                             ?>')">X</td>
                         </tr>

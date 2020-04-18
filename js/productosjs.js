@@ -1,7 +1,7 @@
-String.prototype.reverse = function(){
+String.prototype.reverse = function() {
     let x = this.length;
     let cadena = "";
-    while (x >= 0){
+    while (x >= 0) {
         cadena += this.charAt(x);
         x--;
     }
@@ -15,17 +15,18 @@ $("#addProducto").click(addProducto);
 $(".modProducto").click(modProducto);
 $("#productCancelButton").click(quitarFormularioProductos);
 
-function quitarFormularioProductos(){
+function quitarFormularioProductos() {
     document.getElementById("GrayBackgroundProduct").classList.add("hidden");
 };
-function desplegarDepositos(datos, producto){
+
+function desplegarDepositos(caracts, datos, producto) {
     document.getElementById("ventanaDeDepositos").classList.remove("hidden");
     document.getElementById("depositosTitle").innerHTML = producto;
-    if (datos != ""){
+    if (datos != "") {
         let depositos = datos.split("__");
         let tabla = document.getElementById("depositos");
         let tableHeader = document.getElementById("tableHeader");
-        for (let i = 0; i < depositos.length - 1 ; i++){
+        for (let i = 0; i < depositos.length - 1; i++) {
             let d = depositos[i].split("||");
             let element = document.createElement("tr"),
                 contenido1 = document.createElement("td"),
@@ -47,28 +48,46 @@ function desplegarDepositos(datos, producto){
             element.classList.add("row");
 
             tabla.appendChild(element, tableHeader);
-            
+
             numero++;
         };
     };
+
+    const caract = caracts.split("||");
+
+    document.getElementById("codigoInput").value = caract[0];
+    document.getElementById("nombreInput").value = caract[1];
+    document.getElementById("undInput").value = caract[2];
+    document.getElementById("costoInput").value = caract[3];
+    document.getElementById("descuentoInput").value = caract[4];
+    document.getElementById("departamentoInput").value = caract[5];
+    document.getElementById("ctaInput").value = caract[6];
+    document.getElementById("ctapreviaInput").value = caract[7];
+    document.getElementById("reordenInput").value = caract[8];
+    document.getElementById("fechaultpedidoInput").value = caract[9];
+    document.getElementById("noultimopedidoInput").value = caract[10];
+    document.getElementById("IVAInput").value = caract[11];
+
     document.getElementById("depositCancelButton").addEventListener("click", cerrarDepositos);
 };
-function cerrarDepositos(){
-    if (numero != 0){
+
+function cerrarDepositos() {
+    if (numero != 0) {
         let rows = document.getElementsByClassName("row");
         let tabla = document.getElementById("depositos");
-        for (let i = 0 ; i < numero ; i++){
+        for (let i = 0; i < numero; i++) {
             tabla.removeChild(rows[0]);
         };
     };
     numero = 0;
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
 };
-function addProducto(){
+
+function addProducto() {
     document.getElementById("GrayBackgroundProduct").classList.remove("hidden");
     $("#productAcceptButton").click(aceptarNuevoProducto);
-    
-    
+
+
     $("#idProductInput").val("");
     $("#codigoProductInput").val("");
     $("#nombreProductInput").val("");
@@ -78,28 +97,29 @@ function addProducto(){
     $("#reordenProductInput").val("");
     $("#IVAinput").val("");
 };
+
 function aceptarNuevoProducto() {
     cadena = "id=" + $('#idProductInput').val() +
-             "&codigo=" + $('#codigoProductInput').val() +
-             "&nombre=" + $('#nombreProductInput').val() +
-             "&unidades=" + $('#unidadesProductInput').val() +
-             "&descuento=" + $('#descuentoProductInput').val() +
-             "&departamento=" + $('#departamentoProductInput').val() +
-             "&reorden=" + $('#reordenProductInput').val() +
-             "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
-    
+        "&codigo=" + $('#codigoProductInput').val() +
+        "&nombre=" + $('#nombreProductInput').val() +
+        "&unidades=" + $('#unidadesProductInput').val() +
+        "&descuento=" + $('#descuentoProductInput').val() +
+        "&departamento=" + $('#departamentoProductInput').val() +
+        "&reorden=" + $('#reordenProductInput').val() +
+        "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
+
     $.ajax({
-        type:'POST',
-        url:'/inventariogg/phpurl/agregarProducto.php',
-        data:cadena,
-        success: function(data){
-            if(data == "Codigo existente"){
+        type: 'POST',
+        url: '/inventariogg/phpurl/agregarProducto.php',
+        data: cadena,
+        success: function(data) {
+            if (data == "Codigo existente") {
                 alert("El codigo que ha puesto ya existe");
             } else {
                 location.reload();
             }
         },
-        error: function(){
+        error: function() {
             alert("Hubo un error al conectar con la base de datos")
         }
     })
@@ -108,32 +128,34 @@ function aceptarNuevoProducto() {
     $(".modProducto").click(modProducto);
     $("#productCancelButton").click(quitarFormularioProductos);
 };
-function clearProduct(datos){
-    d=datos.split("||");
-    cadena= "id=" + d[0]
-    if(confirm("Desea eliminar el producto " + d[1] + "?")){
+
+function clearProduct(datos) {
+    d = datos.split("||");
+    cadena = "id=" + d[0]
+    if (confirm("Desea eliminar el producto " + d[1] + "?")) {
         $.ajax({
-            type:'POST',
-            url:'/inventariogg/phpurl/eliminarProducto.php',
-            data:cadena,
-            success: function(){
+            type: 'POST',
+            url: '/inventariogg/phpurl/eliminarProducto.php',
+            data: cadena,
+            success: function() {
                 location.reload();
             },
-            error: function(){
+            error: function() {
                 alert("Hubo un error al conectar con la base de datos");
             }
         })
-    } 
+    }
 }
-function modProducto(datos){
+
+function modProducto(datos) {
     $("#productAcceptButton").off();
     $("#productAcceptButton").click(modDatosProducto);
     document.getElementById("GrayBackgroundProduct").classList.remove("hidden");
-    
+
     let d = datos.split("||");
-    
+
     codigoProduct = d[1];
-    
+
     $("#idProductInput").val(d[0]);
     $("#codigoProductInput").val(d[1]);
     $("#nombreProductInput").val(d[2]);
@@ -143,58 +165,61 @@ function modProducto(datos){
     $("#reordenProductInput").val(d[6]);
     $("#IVAinput").val(d[7]);
 };
-function modDatosProducto(){
-    if($('#codigoProductInput').val() == codigoProduct){
+
+function modDatosProducto() {
+    if ($('#codigoProductInput').val() == codigoProduct) {
         cadena = "id=" + $('#idProductInput').val() +
-             "&codigo=" + "NotAct" +
-             "&nombre=" + $('#nombreProductInput').val() +
-             "&unidades=" + $('#unidadesProductInput').val() +
-             "&descuento=" + $('#descuentoProductInput').val() +
-             "&departamento=" + $('#departamentoProductInput').val() +
-             "&reorden=" + $('#reordenProductInput').val() +
-             "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
+            "&codigo=" + "NotAct" +
+            "&nombre=" + $('#nombreProductInput').val() +
+            "&unidades=" + $('#unidadesProductInput').val() +
+            "&descuento=" + $('#descuentoProductInput').val() +
+            "&departamento=" + $('#departamentoProductInput').val() +
+            "&reorden=" + $('#reordenProductInput').val() +
+            "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
     } else {
         cadena = "id=" + $('#idProductInput').val() +
-                 "&codigo=" + $('#codigoProductInput').val() +
-                 "&nombre=" + $('#nombreProductInput').val() +
-                 "&unidades=" + $('#unidadesProductInput').val() +
-                 "&descuento=" + $('#descuentoProductInput').val() +
-                 "&departamento=" + $('#departamentoProductInput').val() +
-                 "&reorden=" + $('#reordenProductInput').val() +
-                 "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
+            "&codigo=" + $('#codigoProductInput').val() +
+            "&nombre=" + $('#nombreProductInput').val() +
+            "&unidades=" + $('#unidadesProductInput').val() +
+            "&descuento=" + $('#descuentoProductInput').val() +
+            "&departamento=" + $('#departamentoProductInput').val() +
+            "&reorden=" + $('#reordenProductInput').val() +
+            "&IVA=" + toAngloDecimalNotation($('#IVAinput').val());
     }
     $.ajax({
-        type:'POST',
-        url:'/inventariogg/phpurl/modificarProducto.php',
-        data:cadena,
-        success: function(data){
-            if(data === "Codigo existente"){
+        type: 'POST',
+        url: '/inventariogg/phpurl/modificarProducto.php',
+        data: cadena,
+        success: function(data) {
+            if (data === "Codigo existente") {
                 alert("El codigo que ha puesto ya existe");
             } else {
                 location.reload();
             }
         },
-        error: function(){
+        error: function() {
             alert("Hubo un error al conectar con la base de datos")
         }
     })
     quitarFormularioProductos();
 };
-function toAngloDecimalNotation(str){
-    if (str.includes(".")){
+
+function toAngloDecimalNotation(str) {
+    if (str.includes(".")) {
         let numberWithoutDots = str.replace(".", "").replace(",", ".");
         return numberWithoutDots;
     }
     return str;
 };
-function toEspDecimalNotation(str){
-    let stringChanged = str.replace(".",",");
-    if (stringChanged.split(",")[0].length > 3){
+
+function toEspDecimalNotation(str) {
+    let stringChanged = str.replace(".", ",");
+    if (stringChanged.split(",")[0].length > 3) {
         let inversedString = stringChanged.split(",")[0].reverse();
         let arrayOfStrings = inversedString.match(/.{1,3}/g);
         let cadena = "";
-        for (let i = 0 ; i < arrayOfStrings.length ; i++){
-            if(i == 0){
+        for (let i = 0; i < arrayOfStrings.length; i++) {
+            if (i == 0) {
                 cadena += arrayOfStrings[i];
             } else {
                 cadena += "." + arrayOfStrings[i];
