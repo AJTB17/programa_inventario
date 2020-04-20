@@ -7,6 +7,7 @@
     $fecha = date("Y-m-d");
     $numRef = $_POST['numRef'];
     $boolean3 = true;
+    $usuario = $_POST['usuario'];
 
     /* Determinación de acción */
 
@@ -69,11 +70,13 @@
             if(!$boolean){
                 $query = "INSERT INTO kardextraslados(id,
                                                       solicitante,
+                                                      usuario,
                                                       razon,
                                                       fechadetraslado,
                                                       movimiento) VALUES 
                                                       ('$numRef',
                                                       '$solicitante',
+                                                      '$usuario',
                                                       '$razon',
                                                       '$fecha',
                                                       'Traslado')";
@@ -81,10 +84,12 @@
             } else if ($boolean){
                 $query = "INSERT INTO kardexsalidas(id,
                                                     solicitante,
+                                                    usuario,
                                                     razon,
                                                     fechadesalida,
                                                     movimiento) VALUES 
                                                     ('$numRef',
+                                                    '$usuario',
                                                     '$solicitante',
                                                     '$razon',
                                                     '$fecha',
