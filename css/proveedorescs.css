@@ -33,7 +33,7 @@ td {
 }
 
 thead {
-    background-color: #22aa33;
+    background-color: #20498f;
     color: #fff;
     border-bottom: solid 5px #222222;
     font-size: 14px;
@@ -76,13 +76,13 @@ tfoot {
 }
 
 .add:hover {
-    background: #22aa33;
-    border: #22aa33;
+    background: #20498f;
+    border: #20498f;
 }
 
 #addProducto:hover {
-    background: #22aa33;
-    border: #22aa33;
+    background: #20498f;
+    border: #20498f;
 }
 
 tr:nth-child(even) {
@@ -90,7 +90,7 @@ tr:nth-child(even) {
 }
 
 tr:hover td {
-    background: #119933;
+    background: #19699f;
     color: #fff;
 }
 
@@ -114,7 +114,7 @@ tr:hover td {
 
 .mod:hover,
 .modProducto:hover {
-    color: #22aa33;
+    color: #20498f;
 }
 
 .clear,
@@ -289,7 +289,7 @@ tr:hover td {
 }
 
 .reorden {
-    color: red;
+    color: #dd1111;
 }
 
 @media screen and (min-width: 768px) {

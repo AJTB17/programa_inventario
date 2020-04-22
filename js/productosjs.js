@@ -122,7 +122,7 @@ function aceptarNuevoProducto() {
 }
 function clearProduct(datos) {
     d = datos.split("||");
-    cadena = "id=" + d[0]
+    cadena = "id=" + d[0] + "&usuario=" + localStorage.getItem("getvalue");
     if (confirm("Desea eliminar el producto " + d[1] + "?")) {
         $.ajax({
             type: 'POST',

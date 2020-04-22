@@ -170,7 +170,7 @@ function aceptarDatos(){
 }
 function clearUser(datos){
     d=datos.split("||");
-    cadena= "codigo=" + d[0]
+    cadena= "codigo=" + d[0] + "&usuario=" + localStorage.getItem("getvalue");
     if(confirm("Desea eliminar el proveedor " + d[0] + "?")){
         $.ajax({
             type:'POST',
