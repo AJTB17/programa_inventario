@@ -307,7 +307,7 @@ td {
 }
 
 thead {
-    background-color: #22aa33;
+    background-color: #20498f;
     color: #fff;
     border-bottom: solid 5px #222222;
     font-size: 14px;
@@ -332,8 +332,8 @@ tr:nth-child(even) {
     background-color: #ddd;
 }
 
-tr:hover{
-    background: #119933;
+tr:hover td {
+    background: #19699f;
     color: #fff;
 }
 
@@ -350,7 +350,7 @@ tr:hover{
     background: #fff;
 }
 .mod:hover  {
-    color: #22aa33;
+    color: #19699f;
 }
 .clear {
     color: #dd1111;
@@ -382,7 +382,7 @@ tr:hover ::placeholder{
 }
 .clearRow:hover {
     background: #fff;
-    color: #ff0000;
+    color: #dd1111;
 }
 table .cp {
     width: 55px;

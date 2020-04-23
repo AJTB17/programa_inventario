@@ -95,8 +95,8 @@
                                                     fechadesalida,
                                                     movimiento) VALUES 
                                                     ('$numRef',
-                                                    '$usuario',
                                                     '$solicitante',
+                                                    '$usuario',
                                                     '$razon',
                                                     '$fecha',
                                                     'Salida')";

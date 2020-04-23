@@ -24,7 +24,6 @@ function desplegarTraslados() {
         document.getElementById("ubicacion_" + n).setAttribute("list", "DepositosExistentes");
     }
 }
-
 function desplegarSalidas() {
     document.getElementById("changer").innerHTML = "Motivo";
     document.getElementById("trasp").checked = false;
@@ -40,7 +39,6 @@ function desplegarSalidas() {
 
     }
 }
-
 function createTable() {
     if (document.getElementById("sacarp").checked) {
         var table = document.getElementById("mesa"),
@@ -57,7 +55,6 @@ function createTable() {
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
 }
-
 function onerow() {
     if (document.getElementById("sacarp").checked) {
         var table = document.getElementById("mesa"),
@@ -151,7 +148,6 @@ function onerow() {
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
 }
-
 function clearRow() {
     var mensaje = confirm("¿Desea eliminar ésta fila?");
     if (this.parentNode.id == numero && mensaje == true) {
@@ -177,7 +173,6 @@ function clearRow() {
         numero--;
     };
 }
-
 function autocomplete() {
     var cadena = "id=" + this.value;
     var codigo = this.parentNode.parentNode.id;
@@ -204,7 +199,6 @@ function autocomplete() {
         }
     })
 }
-
 function enviarDatos() {
     var cadena = "";
     for (var n = 1; n <= numero; n++) {
@@ -261,7 +255,6 @@ function enviarDatos() {
         }
     });
 }
-
 function reporte() {
     var cadena = "";
     for (var n = 1; n <= numero; n++) {
@@ -321,7 +314,6 @@ function reporte() {
         }
     });
 }
-
 function moverarchivo() {
     let dato = "n_ajuste=" + numRef +
         "&posicion=" + positon +

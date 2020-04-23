@@ -16,7 +16,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    background:#00aa00;
+    background:#10408f;
     color: #fff;
     font-weight: bold;
     font-size: 13.5px;
@@ -33,12 +33,12 @@ nav a {
     -moz-transition: 0.3s;
 }
 nav a:hover {
-    background: #fff;
-    color: #00aa00;
+    background: #fafafa;
+    color: #10408f;
 }
 .active {
-    background: #fff;
-    color: #00aa00;   
+    background: #fafafa;
+    color: #10408f;   
 }
 #btna {
     box-shadow: inset 0px 0px 0px 0 #333; 

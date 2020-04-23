@@ -39,13 +39,13 @@
             <div class="contenedor index">
                 <div class="contenedor--flex">
                         <div class="clm-33">
-                            <img class="img" src="img/logos/logo0.PNG">
+                            <img class="img" src="img/logos/logoIST.jpg">
                         </div>
-                        <div align="center" class="clm-33">
-                            <h1 class="logo">Estancía los Potros <br><h5 class="logo">Un lugar para soñar</h5> </h1>
+                        <div align="center" class="clm-33 mid">
+                            <h1 class="logo">Sistema de control de inventario<br></h1>
                         </div>
                         <div class="clm-33">
-
+							<img class="img2" src="img/logos/logo0.PNG">
                         </div>
                 </div>
             </div>
@@ -192,7 +192,8 @@
                                     $cadena = $cadena.$row2['producto']."||".
                                               $row2['cantidad']."||".
                                               $row2['antiguodeposito']."||".
-                                              $row2['nuevodeposito']."--";
+                                              $row2['nuevodeposito']."||".
+											  $row2['und']."--";
                                 }
                             } else {
                                 $query2 = "SELECT * FROM movimientoskardexs WHERE id=".$row['id']."";

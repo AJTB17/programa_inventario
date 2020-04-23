@@ -86,9 +86,9 @@ $pdf->AddPage();
             $originalDate = $row['fechaultpedido'];
             $newDate = date("d-m-Y", strtotime($originalDate));
 
-            $pdf->Cell(48.75,8,$row['nombre'],1,0,'L');
+            $pdf->Cell(48.75,8,$row['nombre'],1,0,'C');
             $pdf->Cell(36.562,8,$row['cta']. " " .$row['und'],1,0,'C');
-            $pdf->Cell(24.375,8,$row['reorden'],1,0,'C');
+            $pdf->Cell(24.375,8,$row['reorden']. " " .$row['und'],1,0,'C');
             $pdf->Cell(36.562,8,$row['noultimopedido'],1,0,'C');
             $pdf->Cell(48.75,8,$newDate,1,0,'C');
             $pdf->Ln(8); 

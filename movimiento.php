@@ -41,13 +41,13 @@
             <div class="contenedor index">
                 <div class="contenedor--flex">
                         <div class="clm-33">
-                            <img class="img" src="img/logos/logo0.PNG">
+                            <img class="img" src="img/logos/logoIST.jpg">
                         </div>
-                        <div align="center" class="clm-33">
-                            <h1 class="logo">Estancía los Potros <br><h5 class="logo">Un lugar para soñar</h5> </h1>
+                        <div align="center" class="clm-33 mid">
+                            <h1 class="logo">Sistema de control de inventario<br></h1>
                         </div>
                         <div class="clm-33">
-
+							<img class="img2" src="img/logos/logo0.PNG">
                         </div>
                 </div>
             </div>
@@ -209,6 +209,8 @@
 										FROM `kardexingresos`
 										UNION ALL SELECT numerodeAjuste,usercode,usuario,fecha,nombreMovimiento
 										FROM `auditoria` 
+										UNION ALL SELECT id,usuario,nombre,fecha,POoPR
+										FROM `pypeliminados` 
 										ORDER BY fechadesalida DESC";
 								
                                 $resultado=$conexion->query($query);
@@ -308,7 +310,7 @@
 
                                         }
                                     }
-									if ($row['movimiento'] !== "Ingreso"){
+									if ($row['movimiento'] === "Traslado" || $row['movimiento'] === "Salida" || $row['movimiento'] === "Auditoria"){
 										if($row['id'] !== "0" ){
 								?>
 											<tr onclick="desplegarInformacion('<?php echo $cadena ?>', '<?php echo $row["movimiento"]; ?>','<?php echo $calculos; ?>','<?php echo $link; ?>')">
@@ -320,8 +322,8 @@
 											</tr>
 								<?php
 										}
-									} 
-									else {
+									}
+									else if ($row['movimiento'] === "Ingreso"){
 										$pro="SELECT `nombre` FROM `proveedor` WHERE codigo=".$row['solicitante']."";
 										$r=$conexion->query($pro);
 										
@@ -337,6 +339,20 @@
 										</tr>
 								<?php
 									}
+									else {
+										if($row['id'] !== "0" ){
+								?>
+											<tr>
+												<td><?php echo $row["movimiento"]; ?> eliminado</td>
+												<td><?php echo $row['usuario']; ?></td>
+												<td><?php echo $row["solicitante"]; ?></td>
+												<td><?php echo $row["fechadesalida"]; ?></td>
+												<td class="clear">Eliminado</td>
+											</tr>
+								<?php
+										}
+									}
+
                                 }
                                 ?>									
                             </tbody>
