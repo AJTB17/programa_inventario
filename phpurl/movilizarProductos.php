@@ -10,6 +10,12 @@
     $usuario = $_POST['usuario'];
 
     /* Determinación de acción */
+    for ($n = 1 ; $n <= $numero ; $n++) {
+        $goingToRestaurant = $_POST['ubicacion' .$n] === "Consumo Restaurant";
+        if ($goingToRestaurant) {
+        break;
+        }
+    }
 
     if ($accion == "egreso"){
         $boolean = true;
@@ -96,16 +102,35 @@
                                                     'Salida')";
                 $resultado = $conexion->query($query);
             }
+
+            if ($goingToRestaurant) {
+                $insertion = "INSERT INTO restkardexenlaceinv(solicitante,
+                                                            razon,
+                                                            fechadesalida,
+                                                            movimiento) VALUES('$solicitante',
+                                                                                '$razon',
+                                                                                '$fecha',
+                                                                                'Salida')";
+                $conexion->query($insertion);
+                $idQuery = "SELECT MAX(id) FROM restkardexenlaceinv";
+                $restId = $conexion->query($idQuery);
+            }
+
             for ($n = 1 ; $n <= $numero ; $n++){
                 $codigo = $_POST['id' .$n];
                 $cantidad = $_POST['cantidad' .$n];
                 $deposito = $_POST['deposito' .$n];
                 $ubicacion = $_POST['ubicacion' .$n];
+
+                $goingToRestaurant = $ubicacion === "Consumo Restaurant";
+
                 $doDepositExist = false;
+
                 $busquedaNombre = mysqli_fetch_array(mysqli_query($conexion, "SELECT und,nombre FROM
                 productos WHERE codigo='$codigo'"));
                 $producto = $busquedaNombre['nombre'];
                 $unidad = $busquedaNombre['und'];
+
                 $busquedaDepositos="SELECT producto,deposito,cantidad FROM depositos";
                 $result=$conexion->query($busquedaDepositos);
                 while($conjunto=$result->fetch_assoc()){
@@ -114,6 +139,7 @@
                         $doDepositExist = true;
                     };
                 };
+
                 if($boolean){
 
                     /* Actualización de cantidad en depósitos */
@@ -148,6 +174,19 @@
                     '$deposito',
                     '$ubicacion')";
                     $resultado = $conexion->query($query);
+
+                    if ($goingToRestaurant) {
+                        $insertion = "INSERT INTO restkardexenlaceinvmov(id,
+                                                                        codigo,
+                                                                        producto,
+                                                                        cantidad,
+                                                                        unidad) VALUES('$restId',
+                                                                                        '$codigo',
+                                                                                        '$producto',
+                                                                                        '$cantidad',
+                                                                                        '$unidad')";
+                        $conexion->query($insertion);
+                    };
 
                 } else if (!$boolean){
 
