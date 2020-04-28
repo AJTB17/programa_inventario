@@ -93,6 +93,11 @@
                                 <a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
                             </div>
                         </li>
+						<li>
+						   <div class="v4">
+								<a id="Reporte_4"><hr><span>Producto especifico</span></a>
+							</div>
+						</li>
                     </ul>
                     <div class="v3 v3active">
                         <a href="ingreso.php">Entradas</a>

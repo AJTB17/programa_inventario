@@ -72,7 +72,9 @@ $fs = 0;
 
 
     $fecha = date("d-m-Y");
-    $nuevafecha = strtotime ( "-30 day" , strtotime ( $fecha ) ) ;
+	$ext= $_POST['lenght'];
+	$extencion= strval($ext); 
+    $nuevafecha = strtotime ( "-". $extencion ." day" , strtotime ( $fecha ) ) ;
     $margen_p= date ( "d-m-Y" , $nuevafecha );
     
      

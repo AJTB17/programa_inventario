@@ -46,9 +46,9 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
 			html = `<tfoot id="depositTableFoot">
 					<tr>
 						<td></td>
-						<td id="subtotal">subtotal:</td>
-						<td id="iva">iva:</td>
-						<td id="total">total:</td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</tfoot>`;			
 		}
@@ -100,7 +100,7 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
                             <tr>
                                 <td>${dato[0]}</td>
                                 <td>${dato[1]}</td>
-                                <td>${dato[2] + " " + dato[6]}</td>
+                                <td>${dato[2] + " " + dato[7]}</td>
                                 <td>${dato[3] + " " + dato[6]}</td>
                                 <td>${dato[4] + "$"}</td>
                                 <td>${dato[5] + "$"}</td>

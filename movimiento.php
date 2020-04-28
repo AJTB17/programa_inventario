@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="v3">
-                            <label for="maa" onclick="ovejo">Reportes</label>
+                            <label for="maa">Reportes</label>
                         </div> 
                         <input class="checkeo" type="checkbox" id="maa">
 						<ul class="menuext">
@@ -116,6 +116,11 @@
 							<li>
 							   <div class="v4">
 									<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+								</div>
+							</li>
+							<li>
+							   <div class="v4">
+									<a id="Reporte_4"><hr><span>Producto especifico</span></a>
 								</div>
 							</li>
 						</ul>
@@ -306,7 +311,8 @@
                                                       $row2['nuevacantidad']."||".
                                                       $row2['precio']."||".
                                                       $row2['nuevoprecio']."||".
-													  $row2['und']."--";
+                                                      $row2['und']."||".
+													  $row2['undN']."--";
 
                                         }
                                     }

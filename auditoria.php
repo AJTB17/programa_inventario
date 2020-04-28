@@ -13,7 +13,6 @@
         <link href="css/auditoria.css" rel="stylesheet">
         <link href="img/logos/logo0.ico" rel="icon">
 <!------css end ------->
-
         <script src='js2/jquery-3.4.1.min.js'></script>
         <title>Estancia Los Potros</title>
      </head>
@@ -139,6 +138,18 @@
                         <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
                     <?php
                     };
+                    ?>
+                </datalist>  
+                <datalist id="codigos">
+                    <?php
+                        include("phpurl/bdacceso.php");
+                        $query="SELECT codigo FROM productos ORDER BY nombre";
+                        $resultado=$conexion->query($query);
+                        while($row=$resultado->fetch_assoc()){
+                    ?>
+                        <option value="<?php echo $row['codigo']; ?>"><?php echo $row['codigo']; ?></option>
+                    <?php
+                    	};
                     ?>
                 </datalist>  
                 <tbody id="bodyud">

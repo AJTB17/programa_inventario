@@ -17,7 +17,7 @@
         $deposito = $_POST['deposito' .$x];
         $cantidadactual = $_POST['cantidad' .$x];
         $cantidadnueva = $_POST['cantidad2' .$x];
-        $und = $_POST['und' .$x];
+        $und = $_POST['undN' .$x];
         $costo2 = $_POST['costo2' .$x];
       
         $query="UPDATE productos SET cta='$cantidad_total',
@@ -32,7 +32,7 @@
         $busquedaProducto = mysqli_fetch_array(mysqli_query($conexion, "SELECT nombre FROM productos WHERE codigo='$id'"));
         $producto = $busquedaProducto['nombre'];
         
-        $query="UPDATE depositos SET cantidad='$cantidadnueva'
+        $query="UPDATE depositos SET cantidad='$cantidadnueva',
                 WHERE producto='$producto' AND deposito='$deposito'";
         $resultado=$conexion->query($query);        
     }

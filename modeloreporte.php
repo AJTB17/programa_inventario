@@ -89,6 +89,7 @@ $fs = 0;
         $cantidadactual = $_POST['cantidad' .$x];
         $cantidadnueva = $_POST['cantidad2' .$x];
         $und = $_POST['und' .$x];
+        $undN = $_POST['undN' .$x];
         
 
         $pdf->Cell(28.5,8,$id,1,0,'C',0);
@@ -97,11 +98,11 @@ $fs = 0;
         $pdf->Cell(26,8,$costo1. "$",1,0,'C');
         $pdf->Cell(26,8,$costo2. "$",1,0,'C');
         $pdf->Cell(28,8,$cantidadactual. " " . $und,1,0,'C');
-        $pdf->Cell(28,8,$cantidadnueva. " " . $und,1,0,'C');
+        $pdf->Cell(28,8,$cantidadnueva. " " . $undN,1,0,'C');
         $pdf->Ln(8);
 		
-		$query="INSERT INTO movimientoskardexauditoria(numerodereferencia, producto, deposito, cantidad, nuevacantidad, und, precio, nuevoprecio) 
-				VALUES ('$najuste', '$producto', '$deposito','$cantidadactual','$cantidadnueva','$und','$costo1','$costo2')";
+		$query="INSERT INTO movimientoskardexauditoria(numerodereferencia, producto, deposito, cantidad, nuevacantidad, und, undN, precio, nuevoprecio) 
+				VALUES ('$najuste', '$producto', '$deposito','$cantidadactual','$cantidadnueva','$und','$undN','$costo1','$costo2')";
         $resultado=$conexion->query($query);
     }
 

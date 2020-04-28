@@ -17,7 +17,6 @@ cuadroinfoajuste();
 function onerow(){
     var table = document.getElementById("bodyud"),
         pata = document.getElementById("reference"); 
-        //fornite = document.getElementById("cant-prod").value,
                
         
     var elemento = document.createElement("tr"),
@@ -38,6 +37,7 @@ function onerow(){
     cont1.classList.add("cp");
     cont1.placeholder = "Codigo";
     cont1.addEventListener("dblclick", autocomplete);
+	cont1.setAttribute("list", "codigos");
         
     var cont2 = document.createElement("input");
     cont2.id = "descripcion_" + numero;
@@ -162,157 +162,153 @@ function autocomplete() {
             url:"/inventariogg/phpurl/traerDatos.php",
             data:cadena,
             success:function(data){
+				var everything = JSON.parse(data);
+				if(everything.codigo == "" || everything.producto == ""){
+					alert("Error, información de producto no encontrada. La información pudo ser borrada o manipulada");
+				}
                 if (negativoparce === false){
                     borrar();
-                } else if (id === codi){
-                    var everything = JSON.parse(data);
+                } 
+				else if (id === codi){
                     document.getElementById("descripcion_" + codigo).value = everything.producto;
-                    document.getElementById("costo_" + codigo).value = everything.costo;
-					document.getElementById("und_" + codigo).value = everything.und;
-                    document.getElementById("undn_" + codigo).value = everything.und;
-					
-                    camino = "hermanos";
-                    buscar_deposito();
-                    
-                    var prueba = document.createElement("tbody");
-                    prueba.innerHTML = everything.html;
-                    
-                    var hijo = prueba.childNodes,
-                        ref = document.getElementById("descripcion_" + codigo).parentNode.parentNode;
-                    
-                    for (var i = 0; i < hijo.length; i++){
-                        tbody.insertBefore(hijo[i], ref.nextSibling);
-                        i--;
-                    }
-                    numero = everything.numero;
-
-                    for (var i = 1; i <= numero; i++){
-                        var cuerpo = document.getElementById(i);       
-                        cuerpo.addEventListener("keyup", actcosto);
-                        cuerpo.addEventListener("click", actcosto);
-                        $(".clearRow").off();
-                        $('.clearRow').click(clearRow);
-
-                    };
-                    var num1 = parseInt(ref.id);
-                    var num2 = parseInt(ref.nextSibling.id);
-
-                    for (var i = num1; i < numero ; i++){
-                        var x = i + 1;
-                        if(num2 !== x){
-                            document.getElementById(x).id = num2;
-                            document.getElementById("codigo_" + x).id = "codigo_" + num2;
-                            document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
-                            document.getElementById("deposito_" + x).id = "deposito_" + num2;
-                            document.getElementById("costo_" + x).id = "costo_" + num2;
-                            document.getElementById("coston_" + x).id = "coston_" + num2;
-                            document.getElementById("cant_" + x).id = "cant_" + num2;
-                            document.getElementById("cantidadn_" + x).id = "cantidadn_" + num2;
-                            document.getElementById("und_" + x).id = "und_" + num2;
-                            document.getElementById("undn_" + x).id = "undn_" + num2;
-
-                            document.getElementById(num2).id = x;
-                            document.getElementById("codigo_" + num2).id = "codigo_" + x;
-                            document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
-                            document.getElementById("deposito_" + num2).id = "deposito_" + x;
-                            document.getElementById("costo_" + num2).id = "costo_" + x;
-                            document.getElementById("coston_" + num2).id = "coston_" + x;
-                            document.getElementById("cant_" + num2).id = "cant_" + x;
-                            document.getElementById("cantidadn_" + num2).id = "cantidadn_" + x;
-                            document.getElementById("und_" + num2).id = "und_" + x;
-                            document.getElementById("undn_" + num2).id = "undn_" + x;
-
-                            var ref_i = document.getElementById(x);
-                            if(i !== numero -1){
-                               num2 = ref_i.nextSibling.id;
-                            }
-                        }
-                        else {
-                            var ref_i = document.getElementById(x);
-                            num2 = ref_i.nextSibling.id;
-                        }
-                    };
-					var cuenta = parseInt(codigo);
-					for (var i = cuenta + 1; i <= numero; i++){
-						document.getElementById("undn_" + i).value = document.getElementById("und_" + i).value;
-					}
-                    actcosto();
-                } else if (id === descripcion){
-                    var everything = JSON.parse(data);
+                } 
+				else if (id === descripcion){
                     document.getElementById("codigo_" + codigo).value = everything.codigo;     
-                    document.getElementById("costo_" + codigo).value = everything.costo;
-					document.getElementById("und_" + codigo).value = everything.und;
-                    document.getElementById("undn_" + codigo).value = everything.und;
+				}
+				
+				document.getElementById("costo_" + codigo).value = everything.costo;
+				document.getElementById("und_" + codigo).value = everything.und;
+				document.getElementById("undn_" + codigo).innerHTML = "";
+				
+				var und = everything.und;					
+				if(und == "Unidades" || und == "Decenas" || und == "Docenas"){
 
-                    camino = "hermanos";
-                    buscar_deposito();
-                    
-                    var prueba = document.createElement("tbody");
-                    prueba.innerHTML = everything.html;
-                    
-                    var hijo = prueba.childNodes,
-                        ref = document.getElementById("descripcion_" + codigo).parentNode.parentNode;
-                    
-                    for (var i = 0; i < hijo.length; i++){
-                        tbody.insertBefore(hijo[i], ref.nextSibling);
-                        i--;
-                    }
-                    numero = everything.numero;
+					let options = ["Unidades","Decenas","Docenas"];
+					for (let i = 0; i < options.length; i++) {
+						let option = document.createElement("option");
+						let text = document.createTextNode(options[i]);
 
-                    for (var i = 1; i <= numero; i++){
-                        var cuerpo = document.getElementById(i);       
-                        cuerpo.addEventListener("keyup", actcosto);
-                        cuerpo.addEventListener("click", actcosto);
-                        $(".clearRow").off();
-                        $('.clearRow').click(clearRow);
+						option.appendChild(text);
+						document.getElementById("undn_" + codigo).appendChild(option);
+					}
+				} 
+				else if(und == "Mililitros" || und == "Litros" || und == "Galones"){
 
-                    };
-                    var num1 = parseInt(ref.id);
-                    var num2 = parseInt(ref.nextSibling.id);
+					let options = ["Mililitros","Litros","Galones"];
+					for (let i = 0; i < options.length; i++) {
+						let option = document.createElement("option");
+						let text = document.createTextNode(options[i]);
 
-                    for (var i = num1; i < numero ; i++){
-                        var x = i + 1;
-                        if(num2 !== x){
-                            document.getElementById(x).id = num2;
-                            document.getElementById("codigo_" + x).id = "codigo_" + num2;
-                            document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
+						option.appendChild(text);
+						document.getElementById("undn_" + codigo).appendChild(option);
+					}
+				} 
+				else if(und == "Centímetros" || und == "Metros" || und == "Pulgadas" || und == "Pies" || und == "Yarda"){
+
+					let options = ["Centímetros","Metros","Pulgadas","Pies","Yarda"];
+					for (let i = 0; i < options.length; i++) {
+						let option = document.createElement("option");
+						let text = document.createTextNode(options[i]);
+
+						option.appendChild(text);
+						document.getElementById("undn_" + codigo).appendChild(option);
+					}
+				} 
+				else if(und == "Kilogramos" || und == "Gramos" || und == "Toneladas" || und == "Onzas" || und == "Libras"){
+
+					let options = ["Kilogramos","Gramos","Toneladas","Onzas","Libras"];
+					for (let i = 0; i < options.length; i++) {
+						let option = document.createElement("option");
+						let text = document.createTextNode(options[i]);
+
+						option.appendChild(text);
+						document.getElementById("undn_" + codigo).appendChild(option);
+					}
+				}
+
+				document.getElementById("undn_" + codigo).value = everything.und;
+				
+				camino = "hermanos";
+                buscar_deposito();
+                if (everything.numero != null){
+					numero = everything.numero;
+				}
+				if (numero > 1 && everything.con > 1){
+					var prueba = document.createElement("tbody");
+					prueba.innerHTML = everything.html;
+
+					var hijo = prueba.childNodes,
+						ref = document.getElementById("descripcion_" + codigo).parentNode.parentNode;
+
+					for (var i = 0; i < hijo.length; i++){
+						tbody.insertBefore(hijo[i], ref.nextSibling);
+						i--;
+					}
+					var num1 = parseInt(ref.id);
+					var num2 = parseInt(ref.nextSibling.id);
+					
+					for (var i = num1; i < numero ; i++){
+						var x = i + 1;
+						if(num2 !== x){
+							console.log(x + "ultimo");
+							document.getElementById(x).id = num2;
+							document.getElementById("codigo_" + x).id = "codigo_" + num2;
+							document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
 							document.getElementById("deposito_" + x).id = "deposito_" + num2;
-                            document.getElementById("costo_" + x).id = "costo_" + num2;
-                            document.getElementById("coston_" + x).id = "coston_" + num2;
-                            document.getElementById("cant_" + x).id = "cant_" + num2;
-                            document.getElementById("cantidadn_" + x).id = "cantidadn_" + num2;
+							document.getElementById("costo_" + x).id = "costo_" + num2;
+							document.getElementById("coston_" + x).id = "coston_" + num2;
+							document.getElementById("cant_" + x).id = "cant_" + num2;
+							document.getElementById("cantidadn_" + x).id = "cantidadn_" + num2;
+							document.getElementById("und_" + x).id = "und_" + num2;
+							document.getElementById("undn_" + x).id = "undn_" + num2;
 
-                            document.getElementById(num2).id = x;
-                            document.getElementById("codigo_" + num2).id = "codigo_" + x;
-                            document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
-                            document.getElementById("deposito_" + num2).id = "deposito_" + x;
-                            document.getElementById("costo_" + num2).id = "costo_" + x;
-                            document.getElementById("coston_" + num2).id = "coston_" + x;
-                            document.getElementById("cant_" + num2).id = "cant_" + x;
-                            document.getElementById("cantidadn_" + num2).id = "cantidadn_" + x;
+							document.getElementById(num2).id = x;
+							document.getElementById("codigo_" + num2).id = "codigo_" + x;
+							document.getElementById("descripcion_" + num2).id = "descripcion_" + x;
+							document.getElementById("deposito_" + num2).id = "deposito_" + x;
+							document.getElementById("costo_" + num2).id = "costo_" + x;
+							document.getElementById("coston_" + num2).id = "coston_" + x;
+							document.getElementById("cant_" + num2).id = "cant_" + x;
+							document.getElementById("cantidadn_" + num2).id = "cantidadn_" + x;
+							document.getElementById("und_" + num2).id = "und_" + x;
+							document.getElementById("undn_" + num2).id = "undn_" + x;
 
-                            var ref_i = document.getElementById(x);
-                            if(i !== numero -1){
-                               num2 = ref_i.nextSibling.id;
-                            }
-                        }
-                        else {
-                            var ref_i = document.getElementById(x);
-                            num2 = ref_i.nextSibling.id;
-                        }
-                    };
+							var ref_i = document.getElementById(x);
+							if(i !== numero -1){
+							   num2 = ref_i.nextSibling.id;
+							}
+						}
+						else {
+							var ref_i = document.getElementById(x);
+							num2 = ref_i.nextSibling.id;
+						}
+					}
+					for (var i = 1; i <= numero; i++){
+						console.log(i + "add");
+						document.getElementById(i).addEventListener("keyup", actcosto);
+						document.getElementById(i).addEventListener("click", actcosto);
+						
+						document.getElementById("codigo_" + i).addEventListener("dblclick", autocomplete);
+						document.getElementById("descripcion_" + i).addEventListener("dblclick", autocomplete);
+						
+						$(".clearRow").off();
+						$('.clearRow').click(clearRow);
+
+					}
 					var cuenta = parseInt(codigo);
 					for (var i = cuenta + 1; i <= numero; i++){
+						console.log(i + "und");
 						document.getElementById("undn_" + i).value = document.getElementById("und_" + i).value;
 					}
-                    actcosto();
-                }
+				}
+				actcosto();
             },
             error:function(){
-                        alert("Error, producto no encontrado");
+                alert("Error, producto no encontrado");
             }
         })
-    } else if (id === deposito){
+    } 
+	else if (id === deposito){
         camino = "deposito";
         let descripcion = "descripcion=" + document.getElementById("descripcion_" + codigo).value + "&deposito=" + this.value + "&camino=" + camino;
             
@@ -460,7 +456,8 @@ function reporte(){
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-                         "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                         "&und" + n + "=" + document.getElementById("und_" + n).value +
+                         "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             } else{
                 cadenar = cadenar +
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
@@ -470,7 +467,8 @@ function reporte(){
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-						 "&und" + n + "=" + document.getElementById("undn_" + n).value;
+						 "&und" + n + "=" + document.getElementById("und_" + n).value +
+						 "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             };
         } else if (costoN === "" && cantidadN != ""){
         	if(n==1){
@@ -481,7 +479,8 @@ function reporte(){
                          "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-                         "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                         "&und" + n + "=" + document.getElementById("und_" + n).value +
+                         "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             } else{
                 cadenar = cadenar +
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
@@ -491,7 +490,8 @@ function reporte(){
                          "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-                         "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                         "&und" + n + "=" + document.getElementById("und_" + n).value +
+                         "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             };
         } else if (costoN != "" && cantidadN === ""){
         	if(n==1){
@@ -502,7 +502,8 @@ function reporte(){
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value +
-                         "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                         "&und" + n + "=" + document.getElementById("und_" + n).value +
+                         "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             } else{
                 cadenar = cadenar +
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
@@ -512,7 +513,8 @@ function reporte(){
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value +
-                         "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                         "&und" + n + "=" + document.getElementById("und_" + n).value +
+                         "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             };
 		}
     }
@@ -557,7 +559,7 @@ function actualizarDatos(){
         
     
     for(var n = 1; n<=numero; n++) {
-        console.log("&und" + n + "=" + document.getElementById("undn_" + n).value)
+        console.log("&undN" + n + "=" + document.getElementById("undn_" + n).value)
         let costoN = document.getElementById("coston_" + n).value,
             cantidadN = document.getElementById("cantidadn_" + n).value;
             
@@ -569,8 +571,8 @@ function actualizarDatos(){
                          "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
 						 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
-                         "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-                         "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                         "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).val +
+                         "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             } else{
                 cadena = cadena +
                          "&id" + n + "=" + document.getElementById("codigo_" + n).value +
@@ -579,7 +581,7 @@ function actualizarDatos(){
 						 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                          "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                          "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-						 "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                         "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             };
         } else if (costoN === "" && cantidadN != ""){
             if(n==1){
@@ -589,7 +591,7 @@ function actualizarDatos(){
                             "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                             "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                             "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-                            "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                        	"&undN" + n + "=" + document.getElementById("undn_" + n).value;
                 } else{
                     cadena = cadena +
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
@@ -598,7 +600,7 @@ function actualizarDatos(){
                              "&costo2" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cantidadn_" + n).value +
-                             "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                        	 "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             };
         } else if (costoN != "" && cantidadN === ""){
             if(n==1){
@@ -607,8 +609,8 @@ function actualizarDatos(){
                              "&costo2" + n + "=" + document.getElementById("coston_" + n).value +
 							 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
-                             "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value;
-                             "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                             "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value +
+                        	 "&undN" + n + "=" + document.getElementById("undn_" + n).value;
                 } else{
                     cadena = cadena +
                              "&id" + n + "=" + document.getElementById("codigo_" + n).value +
@@ -617,7 +619,7 @@ function actualizarDatos(){
 							 "&costo1" + n + "=" + document.getElementById("costo_" + n).value +
                              "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
                              "&cantidad2" + n + "=" + document.getElementById("cant_" + n).value +
-                             "&und" + n + "=" + document.getElementById("undn_" + n).value;
+                        	 "&undN" + n + "=" + document.getElementById("undn_" + n).value;
             };     
         } else if (costoN === "" && cantidadN === ""){
             alert("Valores sin rellenar. Por favor rellenar para continuar");
