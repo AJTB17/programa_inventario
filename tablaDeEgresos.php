@@ -71,6 +71,8 @@
                             <th>Producto</th><th>Cantidad</th><th>Antiguo Depósito</th>
                             <th id="tableHeaderVariable">Nuevo Depósito</th>
                         </thead>
+                        <tbody id="tb" ></tbody>
+                        <tfoot><th></th><th></th><th></th><th></th></tfoot>
                     </table>
                     <button id="depositCancelButton" class="productCancelButton 
                     formularioButton">Cerrar</button>

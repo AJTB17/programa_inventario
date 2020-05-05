@@ -39,40 +39,28 @@ function desplegarSalidas() {
 
     }
 }
-function createTable() {
+function createTable() {        
     if (document.getElementById("sacarp").checked) {
-        var table = document.getElementById("mesa"),
-            fornite = document.getElementById("cantpro2").value,
-            pata = document.getElementById("reference");
+        var fornite = document.getElementById("cantpro2").value;
     } else if (document.getElementById("trasp").checked) {
-        var table = document.getElementById("mesa"),
-            fornite = document.getElementById("cantpro1").value,
-            pata = document.getElementById("reference");
+        var fornite = document.getElementById("cantpro1").value;
     };
     for (var i = 0; i < fornite; i++) {
         onerow()
     }
-    $(".clearRow").off();
-    $('.clearRow').click(clearRow);
 }
 function onerow() {
-    if (document.getElementById("sacarp").checked) {
-        var table = document.getElementById("mesa"),
-            fornite = document.getElementById("cantpro2").value,
-            pata = document.getElementById("reference");
-    } else if (document.getElementById("trasp").checked) {
-        var table = document.getElementById("mesa"),
-            fornite = document.getElementById("cantpro1").value,
-            pata = document.getElementById("reference");
-    };
-    var elemento = document.createElement("tr"),
+    var table = document.getElementById("mesa"),
+		elemento = document.createElement("tr"),
         contenido1 = document.createElement("td"),
         contenido2 = document.createElement("td"),
         contenido3 = document.createElement("td"),
         contenido4 = document.createElement("td"),
         contenido5 = document.createElement("td"),
         contenido6 = document.createElement("td"),
-        contenido7 = document.createElement("td");
+        contenido7 = document.createElement("td"),
+        contenido8 = document.createElement("td"),
+        contenido9 = document.createElement("td");
     numero++
 
     var cont1 = document.createElement("input");
@@ -98,26 +86,60 @@ function onerow() {
     cont4.id = "cant_" + numero;
     cont4.classList.add("cap");
     cont4.placeholder = "Cantidad";
+	
+	var cont5 = document.createElement("input");
+    cont5.id = "medida_" + numero;
+    cont5.classList.add("med");
+    cont5.placeholder = "Medida";
+    cont5.readOnly = true;
+	
+    var cont6 = document.createElement("select");
+	cont6.id = "unidad_" + numero;
+    cont6.classList.add("und");
+    cont6.placeholder = "Unidad";
+    let options = ["Centímetros",
+        "Mililitros",
+        "Litros",
+        "Metros",
+        "Kilogramos",
+        "Gramos",
+        "Pulgadas",
+        "Pies",
+        "Yarda",
+        "Toneladas",
+        "Onzas",
+        "Libras",
+        "Galones",
+        "Docenas",
+        "Decenas",
+		"Unidades"
+    ];
+	for (let i = 0; i < options.length; i++) {
+        let option = document.createElement("option");
+        let text = document.createTextNode(options[i]);
+        option.appendChild(text);
+        cont6.appendChild(option);
+    }	
 
-    var cont5 = document.createElement("input");
-    cont5.id = "deposito_" + numero;
-    cont5.classList.add("depp");
-    cont5.placeholder = "Deposito";
-    cont5.setAttribute("list", "DepositosExistentes");
+    var cont7 = document.createElement("input");
+    cont7.id = "deposito_" + numero;
+    cont7.classList.add("depp");
+    cont7.placeholder = "Deposito";
+    cont7.setAttribute("list", "DepositosExistentes");
 
-    var cont6 = document.createElement("input");
-    cont6.id = "ubicacion_" + numero;
-    cont6.classList.add("ubip");
+    var cont8 = document.createElement("input");
+    cont8.id = "ubicacion_" + numero;
+    cont8.classList.add("ubip");
     if (document.getElementById("sacarp").checked) {
-        cont6.placeholder = "Motivo";
-        cont6.setAttribute("list", "Motivos");
+        cont8.placeholder = "Motivo";
+        cont8.setAttribute("list", "Motivos");
     } else {
-        cont6.placeholder = "Nuevo depósito";
-        cont6.setAttribute("list", "DepositosExistentes");
+        cont8.placeholder = "Nuevo depósito";
+        cont8.setAttribute("list", "DepositosExistentes");
 
     };
 
-    var cont7 = document.createTextNode("X");
+    var cont9 = document.createTextNode("X");
 
 
     contenido1.appendChild(cont1);
@@ -127,7 +149,9 @@ function onerow() {
     contenido5.appendChild(cont5);
     contenido6.appendChild(cont6);
     contenido7.appendChild(cont7);
-    contenido7.classList.add("clearRow");
+    contenido8.appendChild(cont8);
+    contenido9.appendChild(cont9);
+    contenido9.classList.add("clearRow");
 
 
 
@@ -140,10 +164,11 @@ function onerow() {
     elemento.appendChild(contenido5);
     elemento.appendChild(contenido6);
     elemento.appendChild(contenido7);
+    elemento.appendChild(contenido8);
+    elemento.appendChild(contenido9);
 
 
-    table.appendChild(elemento, pata);
-
+    table.appendChild(elemento);
 
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
@@ -167,6 +192,7 @@ function clearRow() {
             document.getElementById("producto_" + i).id = "producto_" + x;
             document.getElementById("departamento_" + i).id = "departamento_" + x;
             document.getElementById("cant_" + i).id = "cant_" + x;
+            document.getElementById("unidad_" + i).id = "unidad_" + x;
             document.getElementById("deposito_" + i).id = "deposito_" + x;
             document.getElementById("ubicacion_" + i).id = "ubicacion_" + x;
         };
@@ -192,7 +218,52 @@ function autocomplete() {
                 var everything = JSON.parse(data);
                 document.getElementById("producto_" + codigo).value = everything.producto;
                 document.getElementById("departamento_" + codigo).value = everything.departamento;
-            };
+            }
+			document.getElementById("unidad_" + codigo).innerHTML = "";
+			
+			var und = everything.unidad;					
+			if(und == "Unidades" || und == "Decenas" || und == "Docenas"){
+				let options = ["Unidades","Decenas","Docenas"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
+
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			} 
+			else if(und == "Mililitros" || und == "Litros" || und == "Galones"){
+				let options = ["Mililitros","Litros","Galones"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
+
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			} 
+			else if(und == "Centímetros" || und == "Metros" || und == "Pulgadas" || und == "Pies" || und == "Yarda"){
+				let options = ["Centímetros","Metros","Pulgadas","Pies","Yarda"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
+
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			} 
+			else if(und == "Kilogramos" || und == "Gramos" || und == "Toneladas" || und == "Onzas" || und == "Libras"){
+				let options = ["Kilogramos","Gramos","Toneladas","Onzas","Libras"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
+
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			}
+			document.getElementById("unidad_" + codigo).value = everything.unidad;
+			document.getElementById("medida_" + codigo).value = everything.unidad;
         },
         error: function() {
             alert("Error, producto no encontrado");
@@ -202,15 +273,24 @@ function autocomplete() {
 function enviarDatos() {
     var cadena = "";
     for (var n = 1; n <= numero; n++) {
+		let value = document.getElementById("cant_" + n).value,
+            initialUnit = document.getElementById("medida_" + n).value,
+            finalUnit = document.getElementById("unidad_" + n).value,
+            newValue = value;
+        newValue = convertUnits(initialUnit, finalUnit, value);
+        if (!newValue) {
+            return;
+        }
+		
         if (n == 1) {
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
-                "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                "&cantidad" + n + "=" + newValue +
                 "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                 "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
         } else {
             cadena = cadena +
                 "&id" + n + "=" + document.getElementById("codigo_" + n).value +
-                "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+                "&cantidad" + n + "=" + newValue +
                 "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
                 "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
         };
@@ -226,7 +306,8 @@ function enviarDatos() {
             "&accion=" + accion +
             "&numero=" + numero +
             "&numRef=" + numRef;
-    } else if (document.getElementById("trasp").checked) {
+    }
+	else if (document.getElementById("trasp").checked) {
         var solicitante = document.getElementById("solicitanteTras1").value;
         var razon = document.getElementById("razpro1").value;
         var accion = "traslado";
@@ -257,7 +338,17 @@ function enviarDatos() {
 }
 function reporte() {
     var cadena = "";
+	
     for (var n = 1; n <= numero; n++) {
+		let value = document.getElementById("cant_" + n).value,
+            initialUnit = document.getElementById("medida_" + n).value,
+            finalUnit = document.getElementById("unidad_" + n).value,
+            newValue = value;
+        newValue = convertUnits(initialUnit, finalUnit, value);
+        if (!newValue) {
+            return;
+        }
+		
         if (n == 1) {
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value;
         } else {
@@ -266,7 +357,8 @@ function reporte() {
         };
         cadena = cadena +
             "&producto" + n + "=" + document.getElementById("producto_" + n).value +
-            "&cantidad" + n + "=" + document.getElementById("cant_" + n).value +
+            "&cantidad" + n + "=" + newValue +
+            "&undn" + n + "=" + initialUnit +
             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
             "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
     };
@@ -333,4 +425,68 @@ function moverarchivo() {
         });
     }, 1000);
 
+}
+function convertUnits(initialUnit, finalUnit, value) {
+    const equivalencies = {
+        Centímetros: {
+            Centímetros: 1,
+            Metros: 100,
+            Pulgadas: 2.54,
+            Pies: 30.48,
+            Yarda: 91.44,
+        },
+        Metros: {
+            Centímetros: 100,
+            Metros: 1,
+            Pulgadas: 0.0254,
+            Pies: 0.3047992424196,
+            Yarda: 0.9144,
+        },
+        Mililitros: {
+            Mililitros: 1,
+            Litros: 1000,
+            Galones: 3785.41,
+        },
+        Litros: {
+            Mililitros: 0.001,
+            Litros: 1,
+            Galones: 3.78541,
+        },
+        Kilogramos: {
+            Kilogramos: 1,
+            Gramos: 0.001,
+            Toneladas: 1000,
+            Onzas: 0.0283495,
+            Libras: 0.453592,
+        },
+        Gramos: {
+            Kilogramos: 1000,
+            Gramos: 1,
+            Toneladas: 1000000,
+            Onzas: 28.3495,
+            Libras: 453.592,
+        },
+        Unidades: {
+            Unidades: 1,
+            Decenas: 10,
+            Docenas: 12,
+        },
+		Decenas: {
+            Unidades: 10,
+			Decenas: 1,
+			Docenas: 1.2,
+        },
+		Docenas: {
+            Unidades: 12,
+			Decenas: 1.2,
+			Docenas: 1,
+        },
+    };
+    const newValue = value * equivalencies[initialUnit][finalUnit];
+    if (!newValue) {
+        alert(`No se puede convertir de ${initialUnit} a ${finalUnit}`);
+        return null;
+    } else {
+        return newValue;
+    };
 }

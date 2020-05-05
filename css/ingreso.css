@@ -332,7 +332,7 @@ tr:nth-child(even) {
     background-color: #ddd;
 }
 
-tr:hover td {
+tr:hover td, tr:hover td input, tr:hover td select {
     background: #19699f;
     color: #fff;
 }

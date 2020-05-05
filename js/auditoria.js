@@ -15,8 +15,7 @@ cuadroinfoajuste();
 
 
 function onerow(){
-    var table = document.getElementById("bodyud"),
-        pata = document.getElementById("reference"); 
+    var table = document.getElementById("bodyud"); 
                
         
     var elemento = document.createElement("tr"),
@@ -97,6 +96,8 @@ function onerow(){
         "Onzas",
         "Libras",
         "Galones",
+        "Docenas",
+        "Decenas",
 		"Unidades"
     ];
 	for (let i = 0; i < options.length; i++) {
@@ -145,7 +146,30 @@ function autocomplete() {
     var num = parseFloat(numero),
         tbody = document.getElementById("bodyud"),
         negativoparce = true;
-
+	
+	// verificacion de existencia
+	if(this.id == "descripcion_" + this.parentNode.parentNode.id){
+		for(var n = 1; n <= numero; n++){
+			if(n != this.parentNode.parentNode.id){
+				if(document.getElementById(this.id).value === document.getElementById("descripcion_" + n).value){
+					alert("codigo ya ingresado");
+					return
+				}	
+			}
+		}
+	}
+	else if (this.id === "codigo_" + this.parentNode.parentNode.id){
+		for(var n = 1; n <= numero; n++){
+			console.log(n);
+			if(n != this.parentNode.parentNode.id){
+				if(document.getElementById(this.id).value === document.getElementById("codigo_"+ n).value){
+					alert("codigo ya ingresado");
+					return
+				}	
+			}
+		}
+	}
+	
     //variables de auto completado por td-codigo o td-descripcion por ajax
     let codigo = this.parentNode.parentNode.id,
         descripcion = "descripcion_" + codigo,
@@ -250,7 +274,6 @@ function autocomplete() {
 					for (var i = num1; i < numero ; i++){
 						var x = i + 1;
 						if(num2 !== x){
-							console.log(x + "ultimo");
 							document.getElementById(x).id = num2;
 							document.getElementById("codigo_" + x).id = "codigo_" + num2;
 							document.getElementById("descripcion_" + x).id = "descripcion_" + num2;
@@ -284,7 +307,6 @@ function autocomplete() {
 						}
 					}
 					for (var i = 1; i <= numero; i++){
-						console.log(i + "add");
 						document.getElementById(i).addEventListener("keyup", actcosto);
 						document.getElementById(i).addEventListener("click", actcosto);
 						
@@ -297,7 +319,6 @@ function autocomplete() {
 					}
 					var cuenta = parseInt(codigo);
 					for (var i = cuenta + 1; i <= numero; i++){
-						console.log(i + "und");
 						document.getElementById("undn_" + i).value = document.getElementById("und_" + i).value;
 					}
 				}
@@ -386,7 +407,6 @@ function rellebartabla(){
             numero = split[1];
             
             for (var i = 1; i <= numero; i++){
-                console.log(i);
                 var cuerpo = document.getElementById(i);       
                 cuerpo.addEventListener("keyup", actcosto);
                 cuerpo.addEventListener("click", actcosto);
@@ -398,8 +418,6 @@ function rellebartabla(){
 				document.getElementById("undn_" + i).value = document.getElementById("und_" + i).value;
 			}
 			actcosto();
-            $('#actualizarbd').click(actualizarDatos);
-            $('#clearAll').click(clearall);
         },
         error:function(){
             alert("Error, productos no encontrado");
@@ -559,7 +577,6 @@ function actualizarDatos(){
         
     
     for(var n = 1; n<=numero; n++) {
-        console.log("&undN" + n + "=" + document.getElementById("undn_" + n).value)
         let costoN = document.getElementById("coston_" + n).value,
             cantidadN = document.getElementById("cantidadn_" + n).value;
             

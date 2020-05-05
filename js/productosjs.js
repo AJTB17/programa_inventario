@@ -12,7 +12,6 @@ var codigoProduct;
 let numero = 0;
 
 $("#addProducto").click(addProducto);
-$(".modProducto").click(modProducto);
 $("#productCancelButton").click(quitarFormularioProductos);
 
 function quitarFormularioProductos() {

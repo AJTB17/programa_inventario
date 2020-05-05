@@ -100,13 +100,14 @@ $razon= $_POST['razon'];
         $producto = $_POST['producto' .$x];
         $cantidad = $_POST['cantidad' .$x];
         $deposito = $_POST['deposito' .$x];
-        $ubicacion = $_POST['ubicacion' .$x];      
+        $ubicacion = $_POST['ubicacion' .$x];     
+        $undn = $_POST['undn' .$x];      
 
-        $pdf->Cell(39,8,$id,1,0,'L',0);
-        $pdf->Cell(39,8,$producto,1,0,'L');
-        $pdf->Cell(39,8,$cantidad,1,0,'l');
-        $pdf->Cell(39,8,$deposito,1,0,'l');
-        $pdf->Cell(39,8,$ubicacion,1,0,'l');
+        $pdf->Cell(39,8,$id,1,0,'C',0);
+        $pdf->Cell(39,8,$producto,1,0,'C');
+        $pdf->Cell(39,8,$cantidad. " " . $undn,1,0,'C');
+        $pdf->Cell(39,8,$deposito,1,0,'C');
+        $pdf->Cell(39,8,$ubicacion,1,0,'C');
         $pdf->Ln(8);
     }
 

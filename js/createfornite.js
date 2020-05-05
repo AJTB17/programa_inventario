@@ -12,13 +12,10 @@ function createTable() {
         fornite = document.getElementById("cant-prod").value,
         pata = document.getElementById("reference");
 
-
     for (var i = 0; i < fornite; i++) {
         onerow();
 
     }
-    $(".clearRow").off();
-    $('.clearRow').click(clearRow);
 }
 function onerow() {
     var table = document.getElementById("mesa"),
@@ -79,7 +76,9 @@ function onerow() {
         "Onzas",
         "Libras",
         "Galones",
-        "Unidades"
+        "Docenas",
+        "Decenas",
+		"Unidades"
     ];
     for (let i = 0; i < options.length; i++) {
         let option = document.createElement("option");
@@ -238,8 +237,51 @@ function autocomplete() {
                 document.getElementById("producto_" + codigo).value = everything.producto;
             }
             document.getElementById("medida_" + codigo).value = everything.unidad;
+			document.getElementById("unidad_" + codigo).innerHTML = "";
             document.getElementById("iva_" + codigo).value = everything.iva;
+			
+			var und = everything.unidad;					
+			if(und == "Unidades" || und == "Decenas" || und == "Docenas"){
+				let options = ["Unidades","Decenas","Docenas"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
 
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			} 
+			else if(und == "Mililitros" || und == "Litros" || und == "Galones"){
+				let options = ["Mililitros","Litros","Galones"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
+
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			} 
+			else if(und == "Centímetros" || und == "Metros" || und == "Pulgadas" || und == "Pies" || und == "Yarda"){
+				let options = ["Centímetros","Metros","Pulgadas","Pies","Yarda"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
+
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			} 
+			else if(und == "Kilogramos" || und == "Gramos" || und == "Toneladas" || und == "Onzas" || und == "Libras"){
+				let options = ["Kilogramos","Gramos","Toneladas","Onzas","Libras"];
+				for (let i = 0; i < options.length; i++) {
+					let option = document.createElement("option");
+					let text = document.createTextNode(options[i]);
+
+					option.appendChild(text);
+					document.getElementById("unidad_" + codigo).appendChild(option);
+				}
+			}
+			document.getElementById("unidad_" + codigo).value = everything.unidad;
             calculate();
         },
         error: function() {
@@ -304,7 +346,7 @@ function reporte() {
         };
         cadena = cadena +
             "&cantidad" + n + "=" + newValue +
-            "&unidad" + n + "=" + finalUnit +
+            "&unidad" + n + "=" + initialUnit +
             "&preciou" + n + "=" + document.getElementById("p/u_" + n).value +
             "&iva" + n + "=" + document.getElementById("iva_" + n).value +
             "&producto" + n + "=" + document.getElementById("producto_" + n).value +
@@ -384,7 +426,7 @@ function enviarDatos() {
         };
         cadena = cadena +
             "&cantidad" + n + "=" + newValue +
-            "&unidad" + n + "=" + finalUnit +
+            "&unidad" + n + "=" + initialUnit +
             "&preciou" + n + "=" + document.getElementById("p/u_" + n).value +
             "&iva" + n + "=" + document.getElementById("iva_" + n).value +
             "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
@@ -482,6 +524,18 @@ function convertUnits(initialUnit, finalUnit, value) {
         },
         Unidades: {
             Unidades: 1,
+            Decenas: 10,
+            Docenas: 12,
+        },
+		Decenas: {
+            Unidades: 10,
+			Decenas: 1,
+			Docenas: 1.2,
+        },
+		Docenas: {
+            Unidades: 12,
+			Decenas: 1.2,
+			Docenas: 1,
         },
     };
     const newValue = value * equivalencies[initialUnit][finalUnit];

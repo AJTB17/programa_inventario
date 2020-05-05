@@ -1,5 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet);
 @import url('https://fonts.googleapis.com/css?family=Catamaran&display=swap');
+* {
+	outline: none;
+}
 body {
     font-family: 'Poppins', sans-serif, cursive;
     margin: 0;

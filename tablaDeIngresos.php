@@ -75,6 +75,7 @@
 								<th>Depósito de Entrada</th>
                             </tr>
                         </thead>
+                        <tbody class="tableBody" id="tb"></tbody>
                     </table>
                     <button id="depositCancelButton" class="productCancelButton 
                     formularioButton">Cerrar</button>

@@ -21,56 +21,44 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
         let tabla = document.getElementById("depositos");
         for (let i = 0; i < cantidadDeDatos.length - 1; i++) {
             let dato = cantidadDeDatos[i].split("||");
-            let html = `<tbody class="tableBody">
-                            <tr>
-                                <td>${dato[0]}</td>
-                                <td>${dato[1] + " " + dato[4]}</td>
-                                <td>${dato[2]}</td>
-                                <td>${dato[3]}</td>
-                            </tr>
-                        </tbody>`
-            document.getElementById("depositos").innerHTML += html;
+            let html = `<tr>
+							<td>${dato[0]}</td>
+							<td>${dato[1] + " " + dato[4]}</td>
+							<td>${dato[2]}</td>
+							<td>${dato[3]}</td>
+						</tr>`
+            document.getElementById("tb").innerHTML += html;
             numero++
         };
 		let html;
-		if (movimiento === "Traslado"){
+		if (movimiento === "Traslado" || movimiento === "Salida"){
             html = `<tfoot id="depositTableFoot">
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
                         </tr>
                     </tfoot>`;			
-		} else if (movimiento === "Salida"){
-			html = `<tfoot id="depositTableFoot">
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tfoot>`;			
 		}
 
         document.getElementById("depositos").innerHTML += html;
         document.getElementById("tableHeaderVariable2").innerHTML = "Antiguo Depósito";
     }
 	else if (movimiento === "Ingreso") {
-        let cantidadDeDatos = datos.split("--");
-        let tabla = document.getElementById("depositos");
-        let calcs = calculos.split("!!");
+        let cantidadDeDatos = datos.split("--"),
+            tabla = document.getElementById("depositos"),
+            calcs = calculos.split("!!");
+		
         for (let i = 0; i < cantidadDeDatos.length - 1; i++) {
             let dato = cantidadDeDatos[i].split("||");
-            let html = `<tbody class="tableBody">
-                            <tr>
-                                <td>${dato[0]}</td>
-                                <td>${dato[1] + " " + dato[4]}</td>
-                                <td>${dato[2] + "$"}</td>
-                                <td>${dato[3]}</td>
-                            </tr>
-                        </tbody>`
-            document.getElementById("depositos").innerHTML += html;
+            let html = `<tr>
+							<td>${dato[0]}</td>
+							<td>${dato[1] + " " + dato[4]}</td>
+							<td>${dato[2] + "$"}</td>
+							<td>${dato[3]}</td>
+                        </tr>`
+            document.getElementById("tb").innerHTML += html;
             numero++
         };
         let html = `<tfoot id="depositTableFoot">
@@ -96,17 +84,15 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
         let tabla = document.getElementById("depositos_auditoria");
         for (let i = 0; i < cantidadDeDatos.length - 1; i++) {
             let dato = cantidadDeDatos[i].split("||");
-            let html = `<tbody class="tableBody_auditoria">
-                            <tr>
-                                <td>${dato[0]}</td>
-                                <td>${dato[1]}</td>
-                                <td>${dato[2] + " " + dato[7]}</td>
-                                <td>${dato[3] + " " + dato[6]}</td>
-                                <td>${dato[4] + "$"}</td>
-                                <td>${dato[5] + "$"}</td>
-                            </tr>
-                        </tbody>`
-            document.getElementById("depositos_auditoria").innerHTML += html;
+            let html = `<tr>
+							<td>${dato[0]}</td>
+							<td>${dato[1]}</td>
+							<td>${dato[2] + " " + dato[7]}</td>
+							<td>${dato[3] + " " + dato[6]}</td>
+							<td>${dato[4] + "$"}</td>
+							<td>${dato[5] + "$"}</td>
+						</tr>`
+            document.getElementById("tb2").innerHTML += html;
             numero++
         };
         let html = `<tfoot id="depositTableFoot_auditoria">
@@ -135,14 +121,14 @@ function cerrarInformacion() {
 	    ventanaapagada = document.getElementsByClassName("hidden")[0].id;
 	
     if (numero != 0) {
-        let tableBody = document.getElementsByClassName("tableBody");
-        let tableBody2 = document.getElementsByClassName("tableBody_auditoria");
+        let tableBody = document.getElementById("tb");
+        let tableBody2 = document.getElementById("tb2");
         for (let i = 0; i < numero; i++) {
 			
 			if(ventanaapagada === "ventanaDeDepositos_auditoria"){
-				tabla.removeChild(tableBody[0]);
+				tableBody.innerHTML = "";
 			} else if (ventanaapagada === "ventanaDeDepositos") {
-				tabla2.removeChild(tableBody2[0]);
+				tableBody2.innerHTML = "";
 			}
             
         }

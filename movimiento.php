@@ -71,6 +71,7 @@
                             <th>Producto</th><th>Cantidad</th><th id="tableHeaderVariable2">Antiguo Depósito</th>
                             <th id="tableHeaderVariable">Nuevo Depósito</th>
                         </thead>
+                        <tbody class="tableBody" id="tb"></tbody>
                     </table>
                     <button id="descargar" class="descargar">Descargar comprobante</button>
                     <button id="depositCancelButton" class="productCancelButton 
@@ -84,6 +85,7 @@
                         <thead id="tableHeader">
                             <th>Producto</th><th>Deposito</th><th>Cantidad pasada</th><th>Cantidad actual</th><th>Precio pasado</th><th>Precio actual</th>
                         </thead>
+                        <tbody class="tableBody" id="tb2"></tbody>
                     </table>
                     <button id="descargar_auditoria" class="descargar">Descargar comprobante</button>
                     <button id="depositCancelButton_auditoria" class="productCancelButton 

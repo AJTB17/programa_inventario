@@ -52,6 +52,8 @@
 						<option>Onzas</option>
 						<option>Libras</option>
 						<option>Galones</option>
+						<option>Docenas</option>
+						<option>Decenas</option>
 						<option>Unidades</option>
 					</select>
 				</td>

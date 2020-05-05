@@ -11,9 +11,8 @@ let movementNumberFilter = document.getElementById("movementNumberFilter"),
 function desplegarInformacion(datos, movimiento) {
     document.getElementById("ventanaDeDepositos").classList.remove("hidden");
     if (datos != "") {
-        let cantidadDeDatos = datos.split("--");
-        let tabla = document.getElementById("depositos");
-        let tableHeader = document.getElementById("tableHeader");
+        let cantidadDeDatos = datos.split("--"),
+            tabla = document.getElementById("tb");
         for (let i = 0; i < cantidadDeDatos.length - 1; i++) {
             let dato = cantidadDeDatos[i].split("||");
 
@@ -40,9 +39,8 @@ function desplegarInformacion(datos, movimiento) {
 
             element.classList.add("row");
 
-            tabla.appendChild(element, tableHeader);
-
-            numero++
+            tabla.appendChild(element);
+            numero++;
         };
     };
     if (movimiento === "Traslado") {
@@ -55,11 +53,9 @@ function desplegarInformacion(datos, movimiento) {
 
 function cerrarInformacion() {
     if (numero != 0) {
-        let rows = document.getElementsByClassName("row");
-        let tabla = document.getElementById("depositos");
-        for (let i = 0; i < numero; i++) {
-            tabla.removeChild(rows[0]);
-        };
+        let rows = document.getElementsByClassName("row"),
+            tabla = document.getElementById("tb");
+        tabla.innerHTML = "";
     };
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
     numero = 0;

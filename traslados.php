@@ -211,48 +211,51 @@
                         </div>
                         
                         <div class="contenedor--t">
-                            <table id="mesa">
-                                <tr style="background-color: #222" id="reference">
-                                    <thead>
-                                        <th>Código</th><th>Producto</th><th>Departamento</th><th>Cantidad</th>
-                                        <th>Depósito</th><th id="changer">Nuevo depósito</th><th>Eliminar</th>     
-                                    </thead>
-                                </tr>
-                                <datalist id="Productos">
-                                <?php
-                                    include("phpurl/bdacceso.php");
-                                    $query="SELECT nombre FROM productos ORDER BY nombre";
-                                    $resultado=$conexion->query($query);
-                                    while($row=$resultado->fetch_assoc()){
-                                ?>
-                                    <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
-                                <?php
-                                    };
-                                ?>
-                                </datalist>
-                                <datalist id="DepositosExistentes">
-                                <?php
-                                    include("phpurl/bdacceso.php");
-                                    $query="SELECT DISTINCT deposito FROM depositos ORDER BY deposito";
-                                    $resultado=$conexion->query($query);
-                                    while($row=$resultado->fetch_assoc()){
-                                ?>
-                                    <option><?php echo $row['deposito']; ?></option>
-                                <?php
-                                    };
-                                ?>
-                                </datalist>
-                                <datalist id="Motivos">
-                                    <option>Consumo Restaurant</option>
-                                    <option>Consumo Piscina playita</option>
-                                    <option>Consumo Piscina pequeña</option>
-                                    <option>Consumo Hotel</option>
-                                    <option>Daño</option>
-                                    <option>Robo</option>
-                                </datalist>
+                            <table>
+								<thead>
+								   <tr>
+										<th>Código</th><th>Producto</th><th>Departamento</th><th>Cantidad</th><th>Unidad actual</th><th>Unidad a sacar</th>
+										<th>Depósito</th><th id="changer">Nuevo depósito</th><th>Eliminar</th> 
+								   </tr>  
+								</thead>
+                                <tbody id="mesa">
+                                	<datalist id="Productos">
+									<?php
+										include("phpurl/bdacceso.php");
+										$query="SELECT nombre FROM productos ORDER BY nombre";
+										$resultado=$conexion->query($query);
+										while($row=$resultado->fetch_assoc()){
+									?>
+										<option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
+									<?php
+										};
+									?>
+									</datalist>
+									<datalist id="DepositosExistentes">
+									<?php
+										include("phpurl/bdacceso.php");
+										$query="SELECT DISTINCT deposito FROM depositos ORDER BY deposito";
+										$resultado=$conexion->query($query);
+										while($row=$resultado->fetch_assoc()){
+									?>
+										<option><?php echo $row['deposito']; ?></option>
+									<?php
+										};
+									?>
+									</datalist>
+									<datalist id="Motivos">
+										<option>Consumo Restaurant</option>
+										<option>Consumo Piscina playita</option>
+										<option>Consumo Piscina pequeña</option>
+										<option>Consumo Hotel</option>
+										<option>Daño</option>
+										<option>Robo</option>
+									</datalist>
+                                </tbody>
+                                
                                 <tfoot>
                                     <tr>
-                                        <td></td><td></td><td></td><td></td><td></td><td></td><td><button class="verde" style="font-weight: bold; color: #fff; background: #11aa11; width: 80px; margin: 0; padding: 8px 15px; border-radius: 5px; border: 2px solid #222222;" id="send" >Enviar</button></td>
+                                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><button class="verde" style="font-weight: bold; color: #fff; background: #11aa11; width: 80px; margin: 0; padding: 8px 15px; border-radius: 5px; border: 2px solid #222222;" id="send" >Enviar</button></td>
                                     </tr>
                                 </tfoot>
                             </table>

@@ -85,12 +85,22 @@
                             <label id="unidadesProductLabel" class="formularioLabel">Unidad</label>
                             <br>
                             <select value="1" type="text" list="unidadesExistentes" id="unidadesProductInput" class="formularioInput">
+                            	<option value="Toneladas">Toneladas</option>
                                 <option value="Kilogramos">Kilogramos</option>
-                                <option value="Litros">Litros</option>
                                 <option value="Gramos">Gramos</option>
-                                <option value="Metros">Metros</option>
+                                <option value="Libras">Libras</option>
+                                <option value="Onzas">Onzas</option>
+                                <option value="Galones">Galones</option>
+                                <option value="Litros">Litros</option>
                                 <option value="Mililitros">Mililitros</option>
+                                <option value="Yarda">Yarda</option>
+                                <option value="Metros">Metros</option>
                                 <option value="Centímetros">Centímetros</option>
+                                <option value="Pies">Pies</option>
+                                <option value="Pulgadas">Pulgadas</option>
+                                <option value="Docenas">Docenas</option>
+                                <option value="Decenas">Decenas</option>
+                                <option value="Unidades">Unidades</option>
                             </select>
                         </div>
                         
@@ -277,18 +287,17 @@
 											$row2['ubicacion']."||".
 											$row2['cantidad']."__";
 								};
+								
 							?>
-							<tr onclick="desplegarDepositos('<?php echo $caracts; ?>',
-								'<?php echo $depositos ?>',
-								'<?php echo $row['nombre'] ?>')">
-								<td><?php echo $row['codigo']; ?></td>
-								<td><?php echo $row["nombre"]; ?></td>
-								<td class="<?php echo ($isOnReorder ? "reorden" : ""); ?>"><?php echo $decimalCta; ?></td>
-								<td><?php echo $row['ctaprevia']; ?></td>
-								<td><?php echo $row["und"]; ?></td>
-								<td><?php echo $row['costo']."$"; ?></td>
-								<td><?php echo $row["IVA"]."%"; ?></td>
-								<td>Modificar</td>
+							<tr>
+								<td onclick="desplegarDepositos('<?php echo $caracts; ?>','<?php echo $depositos ?>','<?php echo $row['nombre'] ?>')"><?php echo $row['codigo']; ?></td>
+								<td onclick="desplegarDepositos('<?php echo $caracts; ?>','<?php echo $depositos ?>','<?php echo $row['nombre'] ?>')"><?php echo $row["nombre"]; ?></td>
+								<td onclick="desplegarDepositos('<?php echo $caracts; ?>','<?php echo $depositos ?>','<?php echo $row['nombre'] ?>')" class="<?php echo ($isOnReorder ? "reorden" : ""); ?>"><?php echo $decimalCta; ?></td>
+								<td onclick="desplegarDepositos('<?php echo $caracts; ?>','<?php echo $depositos ?>','<?php echo $row['nombre'] ?>')"><?php echo $row['ctaprevia']; ?></td>
+								<td onclick="desplegarDepositos('<?php echo $caracts; ?>','<?php echo $depositos ?>','<?php echo $row['nombre'] ?>')"><?php echo $row["und"]; ?></td>
+								<td onclick="desplegarDepositos('<?php echo $caracts; ?>','<?php echo $depositos ?>','<?php echo $row['nombre'] ?>')"><?php echo $row['costo']."$"; ?></td>
+								<td onclick="desplegarDepositos('<?php echo $caracts; ?>','<?php echo $depositos ?>','<?php echo $row['nombre'] ?>')"><?php echo $row["IVA"]."%"; ?></td>
+								<td  onclick="modProducto('<?php echo $productos ?>')"class="modProducto">Modificar</td>
 								<td class="clearProducto" onclick="clearProduct('<?php echo $productos
 								?>')">X</td>
 							</tr>
