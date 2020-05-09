@@ -171,11 +171,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="contenedor--flex">
-                            <div class="eb">
-                                <button id="filterButton">Buscar</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="contenedor--t">

@@ -186,11 +186,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="contenedor--flex">
-                                <div class="eb">
-                                    <button id="filterButton">Buscar</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="contenedor--t">
@@ -199,7 +194,7 @@
                                <tr>
                                     <th>Número de Movimiento</th>
                                     <th>Usuario</th>
-                                    <th>Solicitante</th>
+                                    <th>Solicitante / origen</th>
                                     <th>Fecha de Acción</th>
                                     <th>Movimiento</th>                                   
                                </tr>
