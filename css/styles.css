@@ -9,8 +9,23 @@ body {
     padding: 0;
     color: #fff;
     background: #222222;
+	display: none;
 }
-
+.hidden {
+    display: none;
+}
+.entrada {
+	display: block;
+	animation: entrada 1s linear 0s 1 forwards; 
+}
+@keyframes entrada {
+	from {
+		filter: brightness(0);
+	}
+	to {
+		filter: brightness(1);
+	}
+}
 main {
     font-size: 12px;
     display: flex;

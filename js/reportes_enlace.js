@@ -2,9 +2,23 @@ $('#Reporte_1').click(reporte_1);
 $('#Reporte_2').click(reporte_2);
 $('#Reporte_3').click(reporte_3);
 $('#Reporte_4').click(reporte_4);
-//console.log(localStorage.getItem("getvalue"));
-//console.log(localStorage.getItem("getvalue2"));
+window.addEventListener('load', SV, true);
 
+function SV(){
+	if (localStorage.length == 0){
+		window.open("/inventariogg/index.html", "_self");
+	} else {
+		var est = localStorage.getItem("getvalue4"),
+			name = localStorage.getItem("getvalue2"),
+			user = localStorage.getItem("getvalue");
+	}
+	if(est != "permitido"){
+		setTimeout(window.open("/inventariogg/index.html", "_self"), 5000);
+	} else if ( est == "permitido"){
+		document.getElementsByTagName("body")[0].style.display = "block";
+		document.getElementsByTagName("body")[0].classList.add("entrada");
+	}
+}
 function reporte_1(){
 	let dia_cant = prompt("¿Cuantos dias de hoy hacia atras, quiere que cubra el reporte? (por favor solo ingresas la cantidad de dias en numeros)");
 		
@@ -96,7 +110,7 @@ function reporte_4(){
         }
     });
 }
-function usuario() {
+function usuario(){
 	document.getElementById("txtusuarionombre").innerHTML = localStorage.getItem("getvalue2");
 }
 usuario();

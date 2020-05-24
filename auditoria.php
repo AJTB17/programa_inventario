@@ -179,5 +179,6 @@
             </div>
         </main>
         <script src="js/auditoria.js"></script>
+        <script src="js/reportes_enlace.js"></script>
     </body>
 </html>

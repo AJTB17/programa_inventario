@@ -1,0 +1,86 @@
+<!-- menu principal -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+         <meta charset='utf-8' />
+         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+        <link href='packages/core/main.css' rel='stylesheet' />
+        <link href='packages-premium/timeline/main.css' rel='stylesheet' />
+        <link href='packages-premium/resource-timeline/main.css' rel='stylesheet' />
+        
+        <link href='js2/bootstrap.min.css' rel='stylesheet'>
+        <link href="js2/jquery-ui.min.css" rel="stylesheet">
+        
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="css/iconobienvenida.css" rel="stylesheet">
+        <link href="css/menuaccesoC.css" rel="stylesheet">
+        <script src='packages/core/main.js'></script>
+        <script src='packages/interaction/main.js'></script>
+        <script src='packages-premium/timeline/main.js'></script>
+        <script src='packages-premium/resource-common/main.js'></script>
+        <script src='packages-premium/resource-timeline/main.js'></script>
+        
+        <script src='packages/core/locales/es.js'></script>
+        <script src='moment-timezone/main.js'></script>
+        <script src='js2/jquery-3.4.1.min.js'></script>
+        <script src='js2/jquery-ui.min.js'></script>
+        <script src='js2/popper.min.js'></script>
+        <script src='js2/moment.min.js'></script>
+        <script src='js2/bootstrap.min.js'></script>
+        <script src='js2/jquery.maskedinput.js'></script>
+        <script src="js2/date-and-time.min.js"></script>
+       
+
+        <title>Estancia Los Potros</title>
+        
+     </head>
+    <body>
+       <header class="header">
+        <!-- Cabecera start -->
+        <div class="contenedor">
+                <div class="contenedor--flex">
+                        <div class="clm-33">
+                            <img class="img" src="img/logos/logoIST.jpg">
+                        </div>
+                        <div align="center" class="clm-33 mid">
+                            <h1 class="logo">Sistema de control de inventario<br></h1>
+                        </div>
+                        <div class="clm-33">
+                        <div class="cuadro hidden" id="userB">
+                            <div><img class="icoB" src="img/logos/bu.jpg"></div>
+                            <div class="barra">
+                                Hola,<span id="inombre"></span>.
+                                <br>
+                                <a onclick='location.reload(true); return false;'>Cerrar sección</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+         <!-- Cabecera End -->
+    </header>
+         <main id="moduloentrada">
+            <div class="banner">
+                <h1>Modulo central administrativo HOTELERO</h1>
+            </div>
+            <div class="contenedor contenedor--flex cont-box">
+                    
+                    <a id="bohio" class="box red" href="istsb01p.html"><h3>Reservas Bohios</h3></a>
+                    <a id="hotelero" href="istsh01p.html" class="box blue"><h3>Modulo Hotelero</h3></a>
+                    <a id="restaurant" href="entredaubicacion.php" class="box azul"><h3>Restaurant</h3></a>
+                    <a id="inventario" href="ingreso.php" class="box naranja"><h3>Inventario</h3></a>
+                    <a id="mantenimiento" href="../mantenimiento/istmant01p.php" class="box verde"><h3>Mantenimiento</h3></a>    
+            </div>
+             <footer class="contenedor--flex ">
+                <div class="contenedor copy">
+                    <p class="copy" style="margin: auto">&copy; 2019 IngSoftelecom@gmail.com| Todos los derechos reservados.</p>
+                </div>
+             </footer> 
+        </main> 
+	<script src="js/menuP.js"></script>
+	<script src="js/reportes_enlace.js"></script>
+</body>
+</html>
+
+
+

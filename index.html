@@ -1,232 +1,47 @@
-<!-- menu principal -->
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-         <meta charset='utf-8' />
-         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
-        <link href='packages/core/main.css' rel='stylesheet' />
-        <link href='packages-premium/timeline/main.css' rel='stylesheet' />
-        <link href='packages-premium/resource-timeline/main.css' rel='stylesheet' />
-        
-        <link href='js2/bootstrap.min.css' rel='stylesheet'>
-        <link href="js2/jquery-ui.min.css" rel="stylesheet">
-        
-        <link href="css/styles.css" rel="stylesheet">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
-        <link href="css/menuaccesoC.css" rel="stylesheet">
-        <script src='packages/core/main.js'></script>
-        <script src='packages/interaction/main.js'></script>
-        <script src='packages-premium/timeline/main.js'></script>
-        <script src='packages-premium/resource-common/main.js'></script>
-        <script src='packages-premium/resource-timeline/main.js'></script>
-        
-        <script src='packages/core/locales/es.js'></script>
-        <script src='moment-timezone/main.js'></script>
-        <script src='js2/jquery-3.4.1.min.js'></script>
-        <script src='js2/jquery-ui.min.js'></script>
-        <script src='js2/popper.min.js'></script>
-        <script src='js2/moment.min.js'></script>
-        <script src='js2/bootstrap.min.js'></script>
-        <script src='js2/jquery.maskedinput.js'></script>
-        <script src="js2/date-and-time.min.js"></script>
-       
-
-       
-        <title>Estancia Los Potros</title>
-        
-     </head>
-    <body>
-       <header class="header">
-        <!-- Cabecera start -->
-        <div class="contenedor">
-                <div class="contenedor--flex">
-                        <div class="clm-33">
-                            <img class="img" src="img/logos/logoIST.jpg">
-                        </div>
-                        <div align="center" class="clm-33 mid">
-                            <h1 class="logo">Sistema de control de inventario<br></h1>
-                        </div>
-                        <div class="clm-33">
-                        <div class="cuadro hidden" id="userB">
-                            <div><img class="icoB" src="img/logos/bu.jpg"></div>
-                            <div class="barra">
-                                Hola,<span id="inombre"></span>.
-                                <br>
-                                <a onclick='location.reload(true); return false;'>Cerrar sección</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-         <!-- Cabecera End -->
-    </header>
-        <div>
-            <div id="cont">
-              <form>
-                <h1>Modulo de acceso</h1>
-                <label class="label">Usuario o Correo:</label><br>
-                <input class="input" id="txtuser"><br>
-                <input type="hidden" id="txtnombre"><br>
-                <input type="hidden" id="txtubicacion"><br>
-                <label class="label" id="clavelabel">Clave:</label><br>
-                <input type="password" name="txtclave" id="txtclave" ><br>
-                <span id="estatusacceso"></span>
-                <span id="estatusnombre"></span>
-                <span id="estatusapellido"></span>
-               
-                <input type="button" id="enterbutton" value="Ingresar"/>
-              </form>
-            </div>
-        </div>
-        
-         <main class="hidden" id="moduloentrada">
-            <div class="banner">
-                <h1>Modulo central administrativo HOTELERO</h1>
-            </div>
-            <div class="contenedor contenedor--flex cont-box">
-                    
-                    <a id="bohio" class="box red" href="istsb01p.html"><h3>Reservas Bohios</h3></a>
-                    <a id="hotelero" href="istsh01p.html" class="box blue"><h3>Modulo Hotelero</h3></a>
-                    <a id="restaurant" href="entredaubicacion.php" class="box azul"><h3>Restaurant</h3></a>
-                    <a id="inventario" href="ingreso.php" class="box naranja"><h3>Inventario</h3></a>
-                    <a id="mantenimiento" href="../mantenimiento/istmant01p.php" class="box verde"><h3>Mantenimiento</h3></a>    
-            </div>
-             <footer class="contenedor--flex ">
-                <div class="contenedor copy">
-                    <p class="copy" style="margin: auto">&copy; 2019 IngSoftelecom@gmail.com| Todos los derechos reservados.</p>
-                </div>
-             </footer> 
-        </main> 
-    
-<script>
-$(document).ready(function(){  
-    
-})
-$('#enterbutton').click(function(){
-    prove();
-})
-$('#bohio').click(function(){
-    var username=$('#txtuser').val();
-    var usernombre=$('#txtnombre').val();
-    localStorage.setItem("getvalue",username);
-    localStorage.setItem("getvalue2",usernombre);
-})
-$('#hotelero').click(function(){
-    var username=$('#txtuser').val();
-    var usernombre=$('#txtnombre').val();
-    localStorage.setItem("getvalue",username);
-    localStorage.setItem("getvalue2",usernombre);
-})
-$('#mantenimiento').click(function(){
-    var username=$('#txtuser').val();
-    var usernombre=$('#txtnombre').val();
-    localStorage.setItem("getvalue",username);
-    localStorage.setItem("getvalue2",usernombre);
-})
-$('#restaurant').click(function(){
-    var username=$('#txtuser').val();
-    var usernombre=$('#txtnombre').val();
-    var userubicacion=$('#txtubicacion').val();
-    localStorage.setItem("getvalue",username);
-    localStorage.setItem("getvalue2",usernombre);
-    localStorage.setItem("getvalue21",userubicacion);
-})
-
-function prove(){
-    $.ajax({
-    url:'phpurl/inicioseccion.php?accion=acceso',
-    type: 'POST',
-    data:({
-         user:$('#txtuser').val(),
-         clave:$('#txtclave').val(),
-        
-    }),
-    success: function(resultado){	
-		
-           var javaobj = JSON.parse(resultado);
-           var usu = document.getElementById('txtuser').innerHTML= javaobj.Usuario;
-           var cla = document.getElementById('txtclave').innerHTML= javaobj.Clave;
-           var nom = document.getElementById('estatusnombre').innerHTML= javaobj.Nombres;
-           var ape = document.getElementById('estatusapellido').innerHTML= javaobj.Apellidos;
-           var cor = document.getElementById('txtuser').innerHTML= javaobj.Correo;
-           var est = document.getElementById('estatusacceso').innerHTML= javaobj.Estatus;
-           var niv1 = document.getElementById('txtuser').innerHTML= javaobj.Nivel1;
-           var niv2 = document.getElementById('txtuser').innerHTML= javaobj.Nivel2;
-           var niv3 = document.getElementById('txtuser').innerHTML= javaobj.Nivel3;
-           var niv4 = document.getElementById('txtuser').innerHTML= javaobj.Nivel4;
-           var niv5 = document.getElementById('txtuser').innerHTML= javaobj.Nivel5;
-           var ubicacion = document.getElementById('txtuser').innerHTML= javaobj.Ubicacion;
-           var nombre = "";
-            
-			var conjugacion = javaobj.Nombres + " " + javaobj.Apellidos;
-			localStorage.setItem("getvalue",javaobj.Usuario);
-    		localStorage.setItem("getvalue2", conjugacion);
-		
-           $("#estatusacceso").val(est);
-            for (var i = 0; i < nom.length; i++){
-                nombre = nombre + nom[i];
-                if(nom[i] === " "){
-                   // alert(nombre)
-                    break
-                }
-            }
-           $("#inombre").val(nombre);
-           $("#txtnombre").val(nombre);
-           $("#estatusnombre").val(nom);
-           $("#estatusapellido").val(ape);
-           $("#txtubicacion").val(ubicacion);
-           document.getElementById('inombre').innerHTML=nombre;
-           document.getElementById("txtclave").value= "";
-          
-           if(est == "permitido"){
-             
-               document.getElementById("cont").classList.add("hiddenentry2");
-               document.getElementById("userB").classList.add("hiddenentry3");
-               document.getElementById("moduloentrada").classList.remove("hidden");
-               document.getElementById("userB").classList.remove("hidden");
-               document.getElementById("moduloentrada").classList.add("hiddenentry");
-              
-               if(niv1=="0"){
-                   document.getElementById("bohio").href="";
-                   document.getElementById("bohio").innerHTML="Reservas Bohio No Autorizado";
-                   document.getElementById("bohio").classList="box noauto";
-                   document.getElementById("mantenimiento").href="";
-                   document.getElementById("mantenimiento").innerHTML="Mantenimiento No Autorizado";
-                   document.getElementById("mantenimiento").classList="box noauto";
-
-               }
-               if(niv2=="0"){
-                   document.getElementById("hotelero").href="";
-                   document.getElementById("hotelero").innerHTML="Modulo Hotelero No Autorizado";
-                   document.getElementById("hotelero").classList="box noauto";
-               }
-               if(niv3=="0"){
-                   document.getElementById("restaurant").href="";
-                   document.getElementById("restaurant").innerHTML="Modulo Restaurant No Autorizado";
-                   document.getElementById("restaurant").classList="box noauto";
-               }
-               if(niv4=="0"){
-                   document.getElementById("inventario").href="";
-                   document.getElementById("inventario").innerHTML="Modulo Inventario No Autorizado";
-                   document.getElementById("inventario").classList="box noauto";
-               }
-               if(niv5=="0"){
-                   document.getElementById("mantenimiento").href="";
-                   document.getElementById("mantenimiento").innerHTML="Modulo Mantenimiento No Autorizado";
-                   document.getElementById("mantenimiento").classList="box noauto";
-               }
-               
-           }
-             
-              
-        },
-    
- });
- 
-}
-</script>
-</body>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta http-equiv="pragma" content="no-cache" />
+<!------metas end ----->
+		<link href="css/iconos.css" rel="stylesheet">
+		<link href="css/acceso.css" rel="stylesheet">
+<!------css end ------->
+		<script src='js2/jquery-3.4.1.min.js'></script>
+		<title>
+		</title>
+	 </head>
+	 <body>
+		<header>
+			<h1>IST</h1>
+		</header>
+		<main>
+			<div class="contenido">
+				<div class="cont-form">
+					<div class="cont-form--inputbox">
+						<label for="user-lb">Usuario o correo</label>
+						<input type="text" id="user-lb">
+					</div>
+					<div class="cont-form--inputbox">
+						<label for="pass-lb">Clave</label>
+						<input type="password" id="pass-lb">
+						<label id="eyebt" for="check-lb" class="icon-eye-slash"></label>
+						<input type="checkbox" id="check-lb">
+					</div>
+					<button class="submit" id="enterbutton">Iniciar sección</button>
+					<div class="estatus">
+						<span id="estatusacceso"></span><span id="estatusnombre"></span><span id="estatusapellido"></span>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+		</footer>
+	 </body>
+	 <script src="js/registro-analisis.js"></script>
 </html>
-
-
-
