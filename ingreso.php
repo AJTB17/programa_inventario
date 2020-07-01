@@ -6,7 +6,6 @@
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/ingreso.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
@@ -111,12 +110,14 @@
                     <div class="v3">
                         <a href="index.html">Cerrar sesión</a>
                     </div>
+                    <div class="v3">
+                        <a href="#" id="co">Cierre de operaciones</a>
+                    </div>
                 </div>
                 <div class="caja-exe" style="margin-top:130px">
                     <h2 class="ti">Cargo de inventario</h2>
                     <div class="factura" id="factura">
                         <div class="contenedor--flex">
-                            <div class="panel-1">
                                 <div class="cont-input">
                                     <label>Código de proveedor:</label>
                                     <br>
@@ -132,9 +133,6 @@
                                     <br>
                                     <input readonly type="text" id="rifpro">
                                 </div>
-                            </div>
-
-                            <div class="panel-2">
                                 <div class="cont-input">
                                     <label>Cantidad de items:</label>
                                     <br>
@@ -150,15 +148,13 @@
                                     <br>
                                     <input type="date" id="fechadeing">
                                 </div>
-                            </div>
-                            
-                            <div class="panel-3">
-                                <div class="cont-submit">
-                                    <button class="rojo" value="Limpiar">Limpiar</button>
-                                    <button class="verde" value="Ingresar" id="add2" >Ingresar</button>
-                                </div>
-                            </div>
                         </div>
+						<div class="panel-3">
+							<div class="cont-submit">
+								<button class="rojo" value="Limpiar">Limpiar</button>
+								<button class="verde" value="Ingresar" id="add2" >Ingresar</button>
+							</div>
+						</div>
                     </div>
                     <div class="ingresoProductos">
                         <div class="contenedor--flex">

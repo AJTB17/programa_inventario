@@ -2,6 +2,8 @@ $('#Reporte_1').click(reporte_1);
 $('#Reporte_2').click(reporte_2);
 $('#Reporte_3').click(reporte_3);
 $('#Reporte_4').click(reporte_4);
+$('#co').click(co);
+$('#cerrarS').click(cerrar);
 window.addEventListener('load', SV, true);
 
 function SV(){
@@ -87,9 +89,12 @@ function reporte_4(){
 	let producto = prompt("Escriba el codigo del producto del cual quiere hacer el reporte"),
 		dia_cant = prompt("¿Cuantos dias de hoy hacia atras, quiere que cubra el reporte? (por favor solo ingresas la cantidad de dias en numeros)"),
 		data;
-		
+	console.log(producto)
 	if(isNaN(producto)){
 	   alert("codigo erroneo");
+	} else if( producto == ""){
+		alert("Campo o campos vacios")
+		return
 	} else{
 		if(isNaN(dia_cant)){
 	   		alert("ingrese solo la cantidad en numeros, o si no el reporte no se realizara.")
@@ -97,7 +102,7 @@ function reporte_4(){
 			alert("entre");
 			data = "lenght=" + dia_cant + "&codigo=" + producto;
 		}
-	}
+	} 
     $.ajax ({
         type: 'POST',
         url: "/inventariogg/reporte_pp.php",
@@ -110,7 +115,33 @@ function reporte_4(){
         }
     });
 }
+function co(){
+	let accion = confirm("Se procedera a realizar un cierre de operaciones, que vaciara las bases de datos de historiales de movimientos y se realizara un informe de estado de todos los productos en inventario y del sistema. ¿Esta seguro que desea continuar con esta operación?");
+	
+	if (accion === true){	
+    $.ajax ({
+        type: 'POST',
+        url: "/inventariogg/phpurl/cierre_operacional.php",
+		data:data,
+        success: function() {
+//            window.open("./phpurl/reportep.pdf", '_blank');
+        },
+        error: function() {
+            alert("No se ha podido establecer conexión con la base de datos");
+        }
+    });	
+	} else {
+		return
+	}
+
+}
 function usuario(){
 	document.getElementById("txtusuarionombre").innerHTML = localStorage.getItem("getvalue2");
 }
+function cerrar(){
+	alert("nel")
+	var varibles = document.clear(localStorage);
+	window.open("/inventariogg/index.html", "_self");
+}
+
 usuario();

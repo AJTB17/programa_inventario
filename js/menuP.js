@@ -41,3 +41,8 @@ function nivel(){
 		man.classList="box noauto";
 	} 	
 }
+function usuarioentrante(){
+	var userA = localStorage.getItem("getvalue2");
+	document.getElementById("inombre").innerHTML = userA;
+}
+usuarioentrante();

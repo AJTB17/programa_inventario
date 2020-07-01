@@ -4,12 +4,13 @@
 .ti {
     font-size: 30px;
     font-weight: 100;
+	margin-bottom: 10px;
+	margin-top: 5px;
 }
 
 .caja-exe {
     margin: auto;
     width: auto;
-    max-width: auto;
     border-radius: 5px;
     padding: 10px;
         
@@ -43,56 +44,27 @@ input:focus {
     font-size: 14px;
     font-weight: 100;
 }
-/*-------panel 1 start---------*/
 .factura {
     padding-bottom: 10px;
     border-bottom: 1px solid #aaa;
 }
-.panel-1 {
-    display:flex; 
-    align-content: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    
-    width: 100%;
-    margin: 10px;
-    padding: 0;
-}
-.panel-1 .cont-input {
+.cont-input {
+	min-width: 150px;
     width: 31.5%;
-
-    
+	max-width: 300px;
 }
-.panel-1 .cont-input label {
+.cont-input label {
     width: 100%;
     margin-bottom: 0;
 }
-.panel-1 .cont-input input {
+.cont-input input {
     width: 100%;
     margin-top: 0;
     border: 1px solid #aaa;
     border-radius: 3px;
 }
-/*-------panel 2 start---------*/
-.panel-2 {
-    display:flex; 
-    align-content: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    
-    width: 100%;
-    margin: 10px;
-    padding: 0;
-}
-.panel-2b {
-    width: 100%;
-    margin: 10px;
-    padding: 0;
-}
 
-.panel-2 .cont-input {
-    width: 31.5%;
-}
+
 .panel-2b .cont-input {
     width: 31.5%;
 }
@@ -295,7 +267,6 @@ table {
     text-align: center;
     border-collapse: collapse;
     width: 100%;
-
 }
 
 th, td {
@@ -385,10 +356,10 @@ tr:hover ::placeholder{
     color: #dd1111;
 }
 table .cp {
-    width: 55px;
+	min-width: 40px;
 }
 table .pp {
-    width: 150px;
+	width: 100px;
 }
 table .dp {
     width: 100px;
@@ -406,13 +377,13 @@ table .und {
     width: 80px
 }
 table .ubip {
-    width: 100px;
+    width: 80px;
 }
 table .pup {
     width: 50px;
 }
 table .ip {
-    width: 50px;
+    width: 45px;
 }
 table .top {
     text-align: center;
@@ -424,6 +395,16 @@ tfoot:hover tr {
     background-color: #aaa;
     color: #000;
 }
+
+@media screen and (min-width:1024px) {
+	table .cp {
+		width: 55px;
+	}
+	table .pp {
+		width: 150px;
+	}
+}
+
 /*--------funciones js------*/
 .hidden {
     display: none;
