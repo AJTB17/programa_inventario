@@ -1,4 +1,4 @@
-|<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset='utf-8' />
@@ -11,27 +11,7 @@
         <link href="css/barralateral.css" rel="stylesheet">
 <!----- Estilos de css end -----> 
         
-        <link href='packages/core/main.css' rel='stylesheet' />
-        <link href='packages-premium/timeline/main.css' rel='stylesheet' />
-        <link href='packages-premium/resource-timeline/main.css' rel='stylesheet' />
-        <link href="js2/jquery-ui.min.css" rel="stylesheet">
-
-<!----- Estilos de bootstrap end -->    
-    
-        <script src='packages/core/main.js'></script>
-        <script src='packages/interaction/main.js'></script>
-        <script src='packages-premium/timeline/main.js'></script>
-        <script src='packages-premium/resource-common/main.js'></script>
-        <script src='packages-premium/resource-timeline/main.js'></script>
-<!--        <script src='moment-timezone/main.js'></script>-->
         <script src='js2/jquery-3.4.1.min.js'></script>
-        <script src='js2/jquery-ui.min.js'></script>
-        <script src='js2/popper.min.js'></script>
-        <script src='js2/moment.min.js'></script>
-        <script src='js2/bootstrap.min.js'></script>
-        <script src='js2/jquery.maskedinput.js'></script>
-        <script src='packages/core/locales/es.js'></script>
-        <script src="js2/date-and-time.min.js"></script>
 <!----- Script de librerias end -->
     </head>
     <body>
@@ -64,6 +44,22 @@
 			</div>
         </header>
         <main>
+            <div id="modal_admin" class="GrayBackground-2 hidden">
+                <div class="cuadro-1">
+                    <div class="contF">
+                        <h2>funciones administrativas</h2><div class="cerrar" id="cerrarAdmin">X</div>
+                    </div>
+                    <ul>
+                        <li id="backup" class="ind1"><p>Respaldar base de datos</p></li>
+                        <li>
+                            <label for="arc" id="file_label">Cargar archivo</label>
+                            <label class="mid" id="restaura">Restaurar base de datos</label>
+                            <input type="file" id="arc" style="display: none">
+                        </li>
+                        <li id="co" class="ind2"><p>Cierre mensual</p></li>
+                    </ul>
+                </div>
+            </div>
             <div class="contenedor--flex contenedor">
                 <div id="menuvertical" class="cuerpa">
                     <div class="v1">
@@ -108,10 +104,10 @@
                         <a href="auditoria.php">Auditoria de inventario</a>
                     </div>
                     <div class="v3">
-                        <a href="index.html">Cerrar sesión</a>
-                    </div>
-                    <div class="v3">
-                        <a href="#" id="co">Cierre de operaciones</a>
+                        <a id="adminWindow">funciones de admin</a>
+                    </div>                       
+                    <div class="v3" style="background: #a11">
+                        <a id="cerrarS">Cerrar sesión</a>
                     </div>
                 </div>
                 <div class="caja-exe" style="margin-top:130px">

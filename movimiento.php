@@ -12,28 +12,9 @@
         <link href="css/barralateral.css" rel="stylesheet">
 <!----- Estilos de css end -----> 
         
-        <link href='packages/core/main.css' rel='stylesheet' />
-        <link href='packages-premium/timeline/main.css' rel='stylesheet' />
-        <link href='packages-premium/resource-timeline/main.css' rel='stylesheet' />
-        <link href="js2/jquery-ui.min.css" rel="stylesheet">
-
-<!----- Estilos de bootstrap end -->    
-    
-        <script src='packages/core/main.js'></script>
-        <script src='packages/interaction/main.js'></script>
-        <script src='packages-premium/timeline/main.js'></script>
-        <script src='packages-premium/resource-common/main.js'></script>
-        <script src='packages-premium/resource-timeline/main.js'></script>
-<!--        <script src='moment-timezone/main.js'></script>-->
         <script src='js2/jquery-3.4.1.min.js'></script>
-        <script src='js2/jquery-ui.min.js'></script>
-        <script src='js2/popper.min.js'></script>
-        <script src='js2/moment.min.js'></script>
-        <script src='js2/bootstrap.min.js'></script>
-        <script src='js2/jquery.maskedinput.js'></script>
-        <script src='packages/core/locales/es.js'></script>
-        <script src="js2/date-and-time.min.js"></script>
 <!----- Script de librerias end -->
+       <title>movimientos</title>
     </head>
 
     <body>
@@ -92,52 +73,71 @@
                     formularioButton">Cerrar</button>
                 </div>
             </div>
+            <div id="modal_admin" class="GrayBackground-2 hidden">
+                <div class="cuadro-1">
+                    <div class="contF">
+                        <h2>funciones administrativas</h2><div class="cerrar" id="cerrarAdmin">X</div>
+                    </div>
+                    <ul>
+                        <li id="backup" class="ind1"><p>Respaldar base de datos</p></li>
+                        <li>
+                            <label for="arc" id="file_label">Cargar archivo</label>
+                            <label class="mid" id="restaura">Restaurar base de datos</label>
+                            <input type="file" id="arc" style="display: none">
+                        </li>
+                        <li id="co" class="ind2"><p>Cierre mensual</p></li>
+                    </ul>
+                </div>
+            </div>
             <div class="contenedor--flex">
                 <div id="menuvertical" class="cuerpa">
-                        <div class="v1">
-                            <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
-                            <div class="ut1">
-                                <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
+                    <div class="v1">
+                        <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
+                        <div class="ut1">
+                            <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
+                        </div>
+                    </div>
+                    <div class="v3">
+                        <label for="maa">Reportes</label>
+                    </div> 
+                    <input class="checkeo" type="checkbox" id="maa">
+                    <ul class="menuext">
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
                             </div>
-                        </div>
-                        <div class="v3">
-                            <label for="maa">Reportes</label>
-                        </div> 
-                        <input class="checkeo" type="checkbox" id="maa">
-						<ul class="menuext">
-							<li>
-							   <div class="v4">
-									<a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
-								</div>
-							</li>
-							<li>
-							   <div class="v4">
-									<a id="Reporte_2"><hr><span>Egresos del mes</span></a>
-								</div>
-							</li>
-							<li>
-							   <div class="v4">
-									<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
-								</div>
-							</li>
-							<li>
-							   <div class="v4">
-									<a id="Reporte_4"><hr><span>Producto especifico</span></a>
-								</div>
-							</li>
-						</ul>
-                        <div class="v3">
-                            <a href="ingreso.php">Entradas</a>
-                        </div>
-                        <div class="v3">
-                            <a href="traslados.php">Salidas o traslados</a>
-                        </div>
-                        <div class="v3">
-                            <a href="auditoria.php">Auditoria de inventario</a>
-                        </div>                       
-                        <div class="v3">
-                            <a href="index.html">Cerrar sesión</a>
-                        </div>
+                        </li>
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_2"><hr><span>Egresos del mes</span></a>
+                            </div>
+                        </li>
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+                            </div>
+                        </li>
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_4"><hr><span>Producto especifico</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="v3">
+                        <a href="ingreso.php">Entradas</a>
+                    </div>
+                    <div class="v3">
+                        <a href="traslados.php">Salidas o traslados</a>
+                    </div>
+                    <div class="v3">
+                        <a href="auditoria.php">Auditoria de inventario</a>
+                    </div>
+                    <div class="v3">
+                        <a id="adminWindow">funciones de admin</a>
+                    </div>                       
+                    <div class="v3" style="background: #a11">
+                        <a id="cerrarS">Cerrar sesión</a>
+                    </div>
                 </div> 
                 <div style="margin-top: 130px">
                     <div class="ban"><h2>Control administrativo de los movimientos</h2></div>

@@ -19,6 +19,7 @@ function prove(){
 		userubicacion = "",
 		nom = document.getElementById('estatusnombre'),
 		ape = document.getElementById('estatusapellido'),
+		adm,
 		est = document.getElementById('estatusacceso'),
 		niv1 = "",
 		niv2 = "",
@@ -37,6 +38,7 @@ function prove(){
 		success: function(resultado){	
 			var javaobj = JSON.parse(resultado);
 			console.log(javaobj)
+				adm = javaobj.Admin;
 				username = javaobj.Usuario;
 				usernombre = javaobj.Nombres + " " + javaobj.Apellidos;
 				userubicacion = javaobj.Ubicacion;
@@ -60,6 +62,7 @@ function prove(){
 			localStorage.setItem("getvalue7",niv3);
 			localStorage.setItem("getvalue8",niv4);
 			localStorage.setItem("getvalue9",niv5);
+			localStorage.setItem("getvalue10",adm);
 
 			for (var i = 0; i < nom.length; i++){
 				nombre = nombre + nom[i];

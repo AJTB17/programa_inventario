@@ -192,6 +192,119 @@ header h1 {
 .barra, .icoB {
 	display: none;
 }
+.GrayBackground-2 {
+    width: 100%;
+    height: 1100px;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.cuadro-1 {
+    background: #fff;
+    color: #fff;
+    margin-top: 0px;
+    padding: 10px;
+    width: 400px;
+    height: 200px;
+    border-radius: 3px;
+    margin-top: 15%;
+}
+.cuadro-1 .contF {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.contF .cerrar {
+    width: 30px;
+    height: 30px;
+    background: #a11;
+    border-radius: 0px;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    justify-content: space-around;
+    padding: 5px;
+    padding-left: 7.5px;
+    text-align: center;
+    
+    position: relative;
+    transform: translateX(10px) translateY(-10px);
+}
+.contF .cerrar:hover {
+    background: #911;
+}
+.contF h2 {
+    color: #000;
+    text-align: left;
+    margin: auto;
+    margin-left: 0;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size: 22px;
+    height: 20%;
+    width: 80%;
+    display: inline-block;
+}
+.cuadro-1 ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.cuadro-1 li {
+    padding: 0;
+    
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 32.5%;
+    
+    font-weight: 100;
+    letter-spacing: 1.5px;
+}
+.cuadro-1 .ind1 {
+    background: #237;
+}
+.cuadro-1 .ind2 {
+    background: #a12;
+}.cuadro-1 .ind1:hover {
+    background: #126;
+}
+.cuadro-1 .ind2:hover {
+    background: #912;
+}
+.cuadro-1 li label {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: #555;
+    box-shadow: inset -1px 0px 0px 0 #113;
+    display: inline-flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+}
+.cuadro-1 label:hover {
+    background: #444;
+}
+.cuadro-1 li .mid {
+    color: #fff;
+    background: #0a0
+}
+.cuadro-1 li .mid:hover {
+    background: #090
+}
 /*--------style responsive------*/
 
 @media screen and (min-width:768px) {
