@@ -121,8 +121,8 @@
                         <th colspan="1">Deposito</th>
                         <th colspan="1">Costo actual</th>
                         <th colspan="1">Costo nuevo</th>
-                        <th colspan="1">Existencia<br> anterior</th>
-                        <th colspan="1">Unidad<br> anterior</th>
+                        <th colspan="1">Existencia<br> actual</th>
+                        <th colspan="1">Unidad<br> actual</th>
                         <th colspan="1">Existencia<br> nueva</th>
                         <th colspan="1">Unidad<br> nueva</th>
                         <th colspan="1">Eliminar</th>
@@ -179,6 +179,5 @@
             </div>
         </main>
         <script src="js/auditoria.js"></script>
-        <script src="js/reportes_enlace.js"></script>
     </body>
 </html>

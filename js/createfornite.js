@@ -1,8 +1,8 @@
 var numero = 0,
     positon = "ingreso";
 
-$('#add2').click(createTable);
-$('#one').click(onerow);
+document.querySelector("#add2").addEventListener("click", CExistencia);
+document.querySelector("#one").addEventListener("click", onerow);
 document.querySelector("#codigopro").addEventListener("input", autocompletePro);
 document.querySelector("#nombrepro").addEventListener("input", autocompletePro);
 document.querySelector("#send").addEventListener("click", enviarDatos);
@@ -16,6 +16,30 @@ function createTable() {
         onerow();
 
     }
+}
+function CExistencia(){
+    var codProveedor = document.getElementById("codigopro").value,
+        numFactura = document.getElementById("numeroFactura").value,
+        fechaDeIng = document.getElementById("fechadeing").value,
+        cadena = "&codProveedor=" + codProveedor +
+        "&numFactura=" + numFactura +
+        "&fechaDeIng=" + fechaDeIng;
+    
+    $.ajax({
+        type: 'POST',
+        url: "/inventariogg/phpurl/CExistencia.php",
+        data: cadena,
+        success: function(dato) {
+            if (dato != "") {
+                alert(dato);
+            } else {
+                createTable();
+            }
+        },
+        error: function() {
+            alert("No se ha podido establecer conexión con la base de datos");
+        }
+    });
 }
 function onerow() {
     var table = document.getElementById("mesa"),
@@ -400,6 +424,7 @@ function moverarchivo() {
 function enviarDatos() {
     var cadena = "",
         total = "",
+        estado_pago = $("input[type='radio'][name='pago']:checked").val(),
         variante = document.getElementById("totalConIva").innerHTML,
         codProveedor = document.getElementById("codigopro").value,
         numFactura = document.getElementById("numeroFactura").value,
@@ -440,8 +465,8 @@ function enviarDatos() {
         "&numero=" + numero +
         "&subtotal=" + document.getElementById("totalFinal").innerHTML +
         "&subtotalIva=" + document.getElementById("TotalIva").innerHTML +
+        "&EstadoPago=" + estado_pago +
         "&usuario=" + usuario;
-
 
 
     $.ajax({

@@ -10,10 +10,61 @@ $('#one').click(onerow);
 $('#add2').click(rellebartabla);
 $('#actualizarbd').click(actualizarDatos);
 $('#clearAll').click(clearall);
-
+window.addEventListener('load', SV, true);
 cuadroinfoajuste();
 
 
+function SV(){
+    var est,
+        name,
+        user;
+    
+	if (localStorage.length === 0){
+		window.open("/inventariogg/index.html", "_self");
+	} else {
+        est = localStorage.getItem("getvalue4");
+        name = localStorage.getItem("getvalue2");
+        user = localStorage.getItem("getvalue");
+	}
+	if(est != "permitido"){
+		setTimeout(window.open("/inventariogg/index.html", "_self"), 5000);
+	} else if ( est == "permitido"){
+		document.getElementsByTagName("body")[0].style.display = "block";
+		document.getElementsByTagName("body")[0].classList.add("entrada");
+	}
+    
+    let fechaact = new Date(),
+        mes = fechaact.getMonth() + 1,
+        mesbd,
+        mesPrevbd,
+        trued = true;
+    
+    $.ajax ({
+        type: 'POST',
+        url: "/inventariogg/phpurl/mesReview.php",
+        success:function(data){
+            let split = data.split("||");
+            
+            mesbd = parseInt(split[0]);
+            mesPrevbd = parseInt(split[1]);  
+
+            if (mes === mesbd + 1){
+                while(trued){
+                    let notificación = confirm("ya el mes " + mesbd + " termino. Por favor proceda a hacer el cierre mensual de inventario. Al presionar aceptar se realizara el cierre.");
+
+                    if (notificación === true){
+                        trued = false;
+                        co();
+                    }
+                }
+            } 
+        },
+        error: function(){
+            alert("No se ha podido establecer conexión con la base de datos");
+        }
+    });
+
+}
 function onerow(){
     var table = document.getElementById("bodyud"); 
                
@@ -160,7 +211,6 @@ function autocomplete() {
 	}
 	else if (this.id === "codigo_" + this.parentNode.parentNode.id){
 		for(var n = 1; n <= numero; n++){
-			console.log(n);
 			if(n != this.parentNode.parentNode.id){
 				if(document.getElementById(this.id).value === document.getElementById("codigo_"+ n).value){
 					alert("codigo ya ingresado");
@@ -698,6 +748,8 @@ function clearRow(){
             document.getElementById("coston_" + i).id = "coston_" + x;
             document.getElementById("cant_" + i).id = "cant_" + x;
             document.getElementById("cantidadn_" + i).id = "cantidadn_" + x;
+            document.getElementById("und_" + i).id = "und_" + x;
+            document.getElementById("undn_" + i).id = "undn_" + x;
         };
         numero--;
         actcosto();

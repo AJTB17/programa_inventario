@@ -63,8 +63,35 @@ input:focus {
     border: 1px solid #aaa;
     border-radius: 3px;
 }
+.cont-input2 {
+    margin-top: 6px;
+	min-width: 150px;
+    width: 31.5%;
+	max-width: 300px;
+}
+.cont-input2 .ra-espe {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin: 0;
+}
+.cont-input2 .ra-espe div {
+    width: 50%;
+}
+.cont-input2 .ra-espe div p {
+    display: inline-block;
+    margin: 0;
+    margin-left: 5px ;
+}
+.cont-input2 .ra-espe div input {
+    display: inline-block;
+    margin: 0;
+    margin-right: 0;
+}
 
-
+.panel-2b {
+    width: 100%;
+}
 .panel-2b .cont-input {
     width: 31.5%;
 }

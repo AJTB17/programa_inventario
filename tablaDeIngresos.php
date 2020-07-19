@@ -77,6 +77,7 @@
                         </thead>
                         <tbody class="tableBody" id="tb"></tbody>
                     </table>
+                    <button id="changeE" class="formularioButton estado_pago">Cambiar estado</button>
                     <button id="depositCancelButton" class="productCancelButton 
                     formularioButton">Cerrar</button>
                 </div>
@@ -196,7 +197,7 @@
                             <tr>
                                 <th>Usuario</th><th>Número de Factura</th><th>Fecha de Ingreso</th>
                                 <th>Código de Proveedor</th><th>Nombre de proveedor</th><th>Subtotal</th>
-                                <th>IVA</th><th>Total</th>
+                                <th>IVA</th><th>Total</th><th>Estado de factura</th>
                             </tr>
                         </thead>
                         <tbody id="incomesTableBody">
@@ -209,7 +210,8 @@
                                 proveedor.nombre,
                                 kardexingresos.subtotal,
                                 kardexingresos.iva,
-                                kardexingresos.total
+                                kardexingresos.total,
+                                kardexingresos.estadopago
                                 FROM kardexingresos INNER JOIN proveedor ON proveedor.codigo = kardexingresos.codproveedor
                                 ORDER BY fechadeingreso DESC";
                             $resultado=$conexion->query($query);
@@ -238,6 +240,17 @@
                                 <td><?php echo $row["subtotal"]. "$"; ?></td>
                                 <td><?php echo $row["iva"]. "$"; ?></td>
                                 <td><?php echo $row["total"]. "$"; ?></td>
+                                <?php
+                                if($row["estadopago"] == "pago"){
+                                ?>
+                                    <td class="<?php echo $row["estadopago"]; ?>">Paga</td>
+                                <?php
+                                }else if($row["estadopago"] == "porpagar"){
+                                ?>
+                                    <td class="<?php echo $row["estadopago"]; ?>">Por pagar</td>
+                                <?php
+                                }
+                                ?>
                             </tr>
                             <?php
                             }

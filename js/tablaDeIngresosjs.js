@@ -6,6 +6,7 @@ let movementNumberFilter = document.getElementById("movementNumberFilter"),
     productNameFilter = document.getElementById("productNameFilter"),
     departmentFilter = document.getElementById("departmentFilter"),
     orderFilter = document.getElementById("orderFilter"),
+    estadoFact = document.getElementById("changeE"),
     depositFilter = document.getElementById("depositFilter");
 
 function desplegarMovimientos(datos) {
@@ -74,8 +75,30 @@ function filter() {
         }
     })
 }
+function cambiarEstado(){
+    var title = document.getElementById("depositosTitle").innerHTML,
+        split = title.split("--"),
+        fact = "fact=" + split[0];
+    
+        $.ajax({
+        type: 'POST',
+        url: "/inventariogg/phpurl/cambiarEstado.php",
+        data: fact,
+        success: function(dato) {
+            if (dato != "") {
+                alert(dato);
+            } else {
+                location.reload();
+            }
+        },
+        error: function() {
+            alert("No se ha podido establecer conexión con la base de datos");
+        }
+    });
+}
 
 movementNumberFilter.addEventListener("input", filter);
+estadoFact.addEventListener("click", cambiarEstado);
 fechaFilter.addEventListener("input", filter);
 proveedorCodeFilter.addEventListener("input", filter);
 nameFilter.addEventListener("input", filter);

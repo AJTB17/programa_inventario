@@ -135,10 +135,10 @@
                         <div class="contenedor--flex">
                             <div class="">
                                 <h2>¿Que acción desea realizar?</h2>
-                                <div class="">
+                                <div>
                                     <input type="radio" id="trasp">Trasladar producto
                                 </div>
-                                <div class="">
+                                <div>
                                     <input type="radio" id="sacarp">Sacar producto
                                 </div>
                             </div>

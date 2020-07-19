@@ -144,6 +144,18 @@
                                     <br>
                                     <input type="date" id="fechadeing">
                                 </div>
+                                <div class="cont-input2">
+                                    <label>Estado</label>
+                                    <br>
+                                    <div class="ra-espe">
+                                        <div>
+                                            <input type="radio" id="pago" value="pago" name="pago"><p>Paga</p>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="porpagar" value="porpagar" name="pago"><p>Por pagar</p>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
 						<div class="panel-3">
 							<div class="cont-submit">
