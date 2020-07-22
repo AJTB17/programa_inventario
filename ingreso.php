@@ -1,4 +1,4 @@
-|<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset='utf-8' />
@@ -6,33 +6,12 @@
         
         <link href="css/nav.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/iconobienvenida.css" rel="stylesheet">
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/ingreso.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
 <!----- Estilos de css end -----> 
         
-        <link href='packages/core/main.css' rel='stylesheet' />
-        <link href='packages-premium/timeline/main.css' rel='stylesheet' />
-        <link href='packages-premium/resource-timeline/main.css' rel='stylesheet' />
-        <link href="js2/jquery-ui.min.css" rel="stylesheet">
-
-<!----- Estilos de bootstrap end -->    
-    
-        <script src='packages/core/main.js'></script>
-        <script src='packages/interaction/main.js'></script>
-        <script src='packages-premium/timeline/main.js'></script>
-        <script src='packages-premium/resource-common/main.js'></script>
-        <script src='packages-premium/resource-timeline/main.js'></script>
-<!--        <script src='moment-timezone/main.js'></script>-->
         <script src='js2/jquery-3.4.1.min.js'></script>
-        <script src='js2/jquery-ui.min.js'></script>
-        <script src='js2/popper.min.js'></script>
-        <script src='js2/moment.min.js'></script>
-        <script src='js2/bootstrap.min.js'></script>
-        <script src='js2/jquery.maskedinput.js'></script>
-        <script src='packages/core/locales/es.js'></script>
-        <script src="js2/date-and-time.min.js"></script>
 <!----- Script de librerias end -->
     </head>
     <body>
@@ -65,6 +44,22 @@
 			</div>
         </header>
         <main>
+            <div id="modal_admin" class="GrayBackground-2 hidden">
+                <div class="cuadro-1">
+                    <div class="contF">
+                        <h2>funciones administrativas</h2><div class="cerrar" id="cerrarAdmin">X</div>
+                    </div>
+                    <ul>
+                        <li id="backup" class="ind1"><p>Respaldar base de datos</p></li>
+                        <li>
+                            <label for="arc" id="file_label">Cargar archivo</label>
+                            <label class="mid" id="restaura">Restaurar base de datos</label>
+                            <input type="file" id="arc" style="display: none">
+                        </li>
+                        <li id="co" class="ind2"><p>Cierre mensual</p></li>
+                    </ul>
+                </div>
+            </div>
             <div class="contenedor--flex contenedor">
                 <div id="menuvertical" class="cuerpa">
                     <div class="v1">
@@ -109,14 +104,16 @@
                         <a href="auditoria.php">Auditoria de inventario</a>
                     </div>
                     <div class="v3">
-                        <a href="index.html">Cerrar sesión</a>
+                        <a id="adminWindow">funciones de admin</a>
+                    </div>                       
+                    <div class="v3" style="background: #a11">
+                        <a id="cerrarS">Cerrar sesión</a>
                     </div>
                 </div>
                 <div class="caja-exe" style="margin-top:130px">
                     <h2 class="ti">Cargo de inventario</h2>
                     <div class="factura" id="factura">
                         <div class="contenedor--flex">
-                            <div class="panel-1">
                                 <div class="cont-input">
                                     <label>Código de proveedor:</label>
                                     <br>
@@ -132,9 +129,6 @@
                                     <br>
                                     <input readonly type="text" id="rifpro">
                                 </div>
-                            </div>
-
-                            <div class="panel-2">
                                 <div class="cont-input">
                                     <label>Cantidad de items:</label>
                                     <br>
@@ -150,15 +144,25 @@
                                     <br>
                                     <input type="date" id="fechadeing">
                                 </div>
-                            </div>
-                            
-                            <div class="panel-3">
-                                <div class="cont-submit">
-                                    <button class="rojo" value="Limpiar">Limpiar</button>
-                                    <button class="verde" value="Ingresar" id="add2" >Ingresar</button>
+                                <div class="cont-input2">
+                                    <label>Estado</label>
+                                    <br>
+                                    <div class="ra-espe">
+                                        <div>
+                                            <input type="radio" id="pago" value="pago" name="pago"><p>Paga</p>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="porpagar" value="porpagar" name="pago"><p>Por pagar</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
+						<div class="panel-3">
+							<div class="cont-submit">
+								<button class="rojo" value="Limpiar">Limpiar</button>
+								<button class="verde" value="Ingresar" id="add2" >Ingresar</button>
+							</div>
+						</div>
                     </div>
                     <div class="ingresoProductos">
                         <div class="contenedor--flex">

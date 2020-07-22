@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Catamaran&display=swap');
 * {
 	outline: none;
+	box-sizing: border-box;
+	user-select: none;
 }
 body {
     font-family: 'Poppins', sans-serif, cursive;
@@ -77,10 +79,19 @@ section {
     font-weight:100;
     letter-spacing: 5px;
 }
-
+.contenedor--flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
 .cont-box {
+	justify-content: space-between;
+	align-items:flex-start;
+	align-content:space-between;
+	box-sizing: border-box;
     margin: 10px;
-    height: 400px
+    height: auto;
 }
 .box {
     width: 43%;
@@ -108,8 +119,14 @@ section {
 .red {
     background: rgba(235,30,85)
 }
+.out{
+    background: rgba(200,30,30)
+}
 .blue {
     background: rgba(10,210,180)
+}
+.mora {
+    background: rgba(180,10,170)
 }
 .verde {
     background: rgba(10,215,85)
@@ -123,7 +140,6 @@ section {
     color: white;
     border: 5px solid #fff;
     height: 150px;
-    width: 43%;
 }
 /*----modulo central end----*/
 /*--------style header-----------*/
@@ -131,25 +147,19 @@ header .contenedor {
     width: 100%;
     height: 85px;
     color: #fff;
-    display: table;
+    display: block;
     background: linear-gradient(rgba(15,15,50,1), rgba(9,9,32,1));
     position: fixed;
     top: 0;
     left: 0;
     z-index:100;       
 }
-
 header .contenedor--flex {
     width: 100%;
+	flex-wrap: nowrap;
 }
 header .clm-33 {
     width: auto;
-}
-.contenedor--flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .img, .img2 {
@@ -168,20 +178,146 @@ header .clm-33 {
     margin: 0;
 }
 .mid {
-	margin: auto;
-	margin-left: auto;
+	margin: 0;
+	margin-left: 0;
+	width: auto;
 }
-h1 {
+header h1 {
 	font-family: sans-serif;
 	letter-spacing: 2px;
-    font-size: 2em;
+    font-size: 1em;
     font-weight: 100;
+	width: auto;
 }
-
+.barra, .icoB {
+	display: none;
+}
+.GrayBackground-2 {
+    width: 100%;
+    height: 1100px;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.cuadro-1 {
+    background: #fff;
+    color: #fff;
+    margin-top: 0px;
+    padding: 10px;
+    width: 400px;
+    height: 200px;
+    border-radius: 3px;
+    margin-top: 15%;
+}
+.cuadro-1 .contF {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.contF .cerrar {
+    width: 30px;
+    height: 30px;
+    background: #a11;
+    border-radius: 0px;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    justify-content: space-around;
+    padding: 5px;
+    padding-left: 7.5px;
+    text-align: center;
+    
+    position: relative;
+    transform: translateX(10px) translateY(-10px);
+}
+.contF .cerrar:hover {
+    background: #911;
+}
+.contF h2 {
+    color: #000;
+    text-align: left;
+    margin: auto;
+    margin-left: 0;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size: 22px;
+    height: 20%;
+    width: 80%;
+    display: inline-block;
+}
+.cuadro-1 ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.cuadro-1 li {
+    padding: 0;
+    
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 32.5%;
+    
+    font-weight: 100;
+    letter-spacing: 1.5px;
+}
+.cuadro-1 .ind1 {
+    background: #237;
+}
+.cuadro-1 .ind2 {
+    background: #a12;
+}.cuadro-1 .ind1:hover {
+    background: #126;
+}
+.cuadro-1 .ind2:hover {
+    background: #912;
+}
+.cuadro-1 li label {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: #555;
+    box-shadow: inset -1px 0px 0px 0 #113;
+    display: inline-flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+}
+.cuadro-1 label:hover {
+    background: #444;
+}
+.cuadro-1 li .mid {
+    color: #fff;
+    background: #0a0
+}
+.cuadro-1 li .mid:hover {
+    background: #090
+}
 /*--------style responsive------*/
 
 @media screen and (min-width:768px) {
-    
+
+	header h1 {
+		font-size: 1.25em
+	}
+	.mid {
+		margin: auto;
+	}
+	.barra, .icoB {
+		display: flex;
+	}
     .banner {
         height: 300px;
     }
@@ -202,12 +338,14 @@ h1 {
 
     .box:hover {
         border: 10px solid #fff;
-        height: 230px;
-        width: 45%;
+        height: 230px;;
     }
 }
 
 @media screen and (min-width:1024px) {
+	header h1 {
+		font-size: 1.5em
+	}
     main p {
         font-size: 15px;
     }
@@ -224,7 +362,7 @@ h1 {
 
     .cont-box {
         margin: 20px;
-        height: 270px;
+        height: auto;
     }
     .box {
         width: 22%;
@@ -236,10 +374,12 @@ h1 {
     .box:hover {
         border: 8px solid #fff;
         height: 225px;
-        width: 22.5%;
     }
 }
 @media screen and (min-width:1280px) {
+	header h1 {
+		font-size: 2em
+	}
     .banner {
         height: 350px;
     }
@@ -250,7 +390,7 @@ h1 {
 
     .cont-box {
         margin: 20px;
-        height: 270px;
+        height: auto;
     }
     .box {
         width: 23%;
@@ -262,7 +402,6 @@ h1 {
     .box:hover {
         border: 8px solid #fff;
         height: 240px;
-        width: 23.5%;
     }
 }
 @media screen and (min-width:1440px) {
@@ -276,7 +415,7 @@ h1 {
 
     .cont-box {
         margin: 30px;
-        height: 270px;
+        height: auto;
     }
     .box {
         width: 22%;
@@ -288,6 +427,5 @@ h1 {
     .box:hover {
         border: 12px solid #fff;
         height: 250px;
-        width: 22.5%;
     }
 }

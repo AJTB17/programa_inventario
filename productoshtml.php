@@ -62,7 +62,6 @@
                 
         </header>
         <main>
-        
             <!---ventana modal start-->
             <div id="GrayBackgroundProduct" class="hidden GrayBackground" style="margin-top:80px">
                 <div id="ContenedorDeFormulario">
@@ -175,6 +174,22 @@
                     formularioButton">Cerrar</button>
                 </div>
             </div>
+            <div id="modal_admin" class="GrayBackground-2 hidden">
+                <div class="cuadro-1">
+                    <div class="contF">
+                        <h2>funciones administrativas</h2><div class="cerrar" id="cerrarAdmin">X</div>
+                    </div>
+                    <ul>
+                        <li id="backup" class="ind1"><p>Respaldar base de datos</p></li>
+                        <li>
+                            <label for="arc" id="file_label">Cargar archivo</label>
+                            <label class="mid" id="restaura">Restaurar base de datos</label>
+                            <input type="file" id="arc" style="display: none">
+                        </li>
+                        <li id="co" class="ind2"><p>Cierre mensual</p></li>
+                    </ul>
+                </div>
+            </div>
             <div id="menuvertical" class="cuerpa">
 				<div class="v1">
 					<div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
@@ -216,10 +231,13 @@
 				</div>
 				<div class="v3">
 					<a href="auditoria.php">Auditoria de inventario</a>
-				</div>                       
-				<div class="v3">
-					<a href="index.html">Cerrar sesión</a>
 				</div>
+                <div class="v3">
+                    <a id="adminWindow">funciones de admin</a>
+                </div>                       
+                <div class="v3" style="background: #a11">
+                    <a id="cerrarS">Cerrar sesión</a>
+                </div>
             </div>
             <div style="margin-top:120px">
                 <div class="ban"><h2>Productos</h2></div>

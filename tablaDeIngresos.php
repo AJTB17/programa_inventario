@@ -77,8 +77,25 @@
                         </thead>
                         <tbody class="tableBody" id="tb"></tbody>
                     </table>
+                    <button id="changeE" class="formularioButton estado_pago">Cambiar estado</button>
                     <button id="depositCancelButton" class="productCancelButton 
                     formularioButton">Cerrar</button>
+                </div>
+            </div>
+            <div id="modal_admin" class="GrayBackground-2 hidden">
+                <div class="cuadro-1">
+                    <div class="contF">
+                        <h2>funciones administrativas</h2><div class="cerrar" id="cerrarAdmin">X</div>
+                    </div>
+                    <ul>
+                        <li id="backup" class="ind1"><p>Respaldar base de datos</p></li>
+                        <li>
+                            <label for="arc" id="file_label">Cargar archivo</label>
+                            <label class="mid" id="restaura">Restaurar base de datos</label>
+                            <input type="file" id="arc" style="display: none">
+                        </li>
+                        <li id="co" class="ind2"><p>Cierre mensual</p></li>
+                    </ul>
                 </div>
             </div>
             <div id="menuvertical" class="cuerpa">
@@ -123,9 +140,12 @@
 				<div class="v3">
 					<a href="auditoria.php">Auditoria de inventario</a>
 				</div>
-				<div class="v3">
-					<a href="index.html">Cerrar sesión</a>
-				</div>
+                <div class="v3">
+                    <a id="adminWindow">funciones de admin</a>
+                </div>                       
+                <div class="v3" style="background: #a11">
+                    <a id="cerrarS">Cerrar sesión</a>
+                </div>
             </div>
             <div style="margin-top:130px">
                 <div class="ban"><h2>Ingresos</h2></div>
@@ -177,7 +197,7 @@
                             <tr>
                                 <th>Usuario</th><th>Número de Factura</th><th>Fecha de Ingreso</th>
                                 <th>Código de Proveedor</th><th>Nombre de proveedor</th><th>Subtotal</th>
-                                <th>IVA</th><th>Total</th>
+                                <th>IVA</th><th>Total</th><th>Estado de factura</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -190,7 +210,8 @@
                                 proveedor.nombre,
                                 kardexingresos.subtotal,
                                 kardexingresos.iva,
-                                kardexingresos.total
+                                kardexingresos.total,
+                                kardexingresos.estadopago
                                 FROM kardexingresos INNER JOIN proveedor ON proveedor.codigo = kardexingresos.codproveedor
                                 ORDER BY fechadeingreso DESC";
                             $resultado=$conexion->query($query);
@@ -219,6 +240,17 @@
                                 <td><?php echo $row["subtotal"]. "$"; ?></td>
                                 <td><?php echo $row["iva"]. "$"; ?></td>
                                 <td><?php echo $row["total"]. "$"; ?></td>
+                                <?php
+                                if($row["estadopago"] == "pago"){
+                                ?>
+                                    <td class="<?php echo $row["estadopago"]; ?>">Paga</td>
+                                <?php
+                                }else if($row["estadopago"] == "porpagar"){
+                                ?>
+                                    <td class="<?php echo $row["estadopago"]; ?>">Por pagar</td>
+                                <?php
+                                }
+                                ?>
                             </tr>
                             <?php
                             }

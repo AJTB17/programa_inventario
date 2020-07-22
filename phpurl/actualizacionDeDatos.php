@@ -4,6 +4,7 @@
     $boolean2 = false;
     $filas = $_POST['numero'];
     $total = $_POST['total'];
+    $EstadoPago = $_POST['EstadoPago'];
     $codProveedor = $_POST['codProveedor'];
     $numFactura = $_POST['numFactura'];
     $fechaDeIng = $_POST['fechaDeIng'];
@@ -121,7 +122,7 @@
         // Creando el movimiento de entrada en el kardex
         
         $query3="INSERT INTO 
-        kardexingresos(numerodefactura, usuario, fechadeingreso, codproveedor, subtotal, iva, total, movimiento)
+        kardexingresos(numerodefactura, usuario, fechadeingreso, codproveedor, subtotal, iva, total, movimiento, estadopago)
         VALUES('$numFactura', 
 		'$user',
         '$fechaDeIng',
@@ -129,7 +130,8 @@
         '$subtotal',
         '$subtotalIva',
         '$total',
-        'Ingreso')";
+        'Ingreso',
+        '$EstadoPago')";
         $resultado3=$conexion->query($query3);
     };
 ?>

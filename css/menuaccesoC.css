@@ -58,8 +58,6 @@
         height: 25px;
     }
 }
-
-
 @media screen and (min-width:1000px) {
     #cont {
         margin-top: 200px;
@@ -107,99 +105,5 @@
     #enterbutton:hover {
         background-color: black;
         transition-duration: 0.5s;
-    }
-    .hidden {
-        display: none;
-    }
-    .hiddenentry{
-        width: 100%;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        animation: add forwards;
-        animation-iteration-count: 1;
-        animation-duration: 0.5s;
-        animation-delay: 1.5s;
-    }
-    .hiddenentry3{
-        opacity: 0;
-        animation: add2 forwards;
-        animation-iteration-count: 1;
-        animation-duration: 0.5s;
-        animation-delay: 1.5s;
-    }
-    .hiddenentry2{
-        display:block;
-        animation: hid forwards;
-        animation-iteration-count: 1;
-        animation-duration: 0.5s;
-        animation-delay: 1s;
-    }
-
-    @keyframes add {
-        0% {
-            display: none;
-            opacity: 0;
-        }
-        25% {
-            display: block;
-            opacity: 0.25;
-        }
-        50% {
-            display: block;
-            opacity: 0.5;
-        }
-        75% {
-            display: block;
-            opacity: 0.75;
-        }
-        100% {
-            display: block;
-            opacity: 1;
-        }
-    }
-    @keyframes add2 {
-        0% {
-            display: none;
-            opacity: 0;
-        }
-        25% {
-            display: flex;
-            opacity: 0.25;
-        }
-        50% {
-            display: flex;
-            opacity: 0.5;
-        }
-        75% {
-            display: flex;
-            opacity: 0.75;
-        }
-        100% {
-            display: flex;
-            opacity: 1;
-        }
-    }
-    @keyframes hid {
-        0% {
-            display: block;
-            opacity: 1;
-        }
-        25% {
-            display: block;
-            opacity: 0.75;
-        }
-        50% {
-            display: block;
-            opacity: 0.50;
-        }
-        75% {
-            display: block;
-            opacity: 0.25;
-        }
-        100% {
-            display: none;
-            opacity: 0;
-        }
     }
 }

@@ -48,3 +48,25 @@ function cerrarInformacion() {
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
     numero = 0;
 }
+
+function cambiarEstado() {
+    var title = document.getElementById("depositosTitle").innerHTML,
+        split = title.split("--"),
+        fact = "fact=" + split[0];
+
+    $.ajax({
+        type: 'POST',
+        url: "/inventariogg/phpurl/cambiarEstado.php",
+        data: fact,
+        success: function(dato) {
+            if (dato != "") {
+                alert(dato);
+            } else {
+                location.reload();
+            }
+        },
+        error: function() {
+            alert("No se ha podido establecer conexión con la base de datos");
+        }
+    });
+}

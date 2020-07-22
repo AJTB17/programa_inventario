@@ -243,6 +243,10 @@ tr:hover td {
     border: 2px solid;
     border-color: rgba(0, 0, 0, 0.9);
 }
+.estado_pago {
+    float: left;
+    background: #00aa00;
+}
 
 .descargar {
     float: left;
@@ -289,6 +293,12 @@ tr:hover td {
 }
 
 .reorden {
+    color: #dd1111;
+}
+.pago {
+    color: #119911;
+}
+.porpagar {
     color: #dd1111;
 }
 

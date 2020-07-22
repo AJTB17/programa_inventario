@@ -63,52 +63,71 @@
                 
         </header>
         <main>
+           <div id="modal_admin" class="GrayBackground-2 hidden">
+                <div class="cuadro-1">
+                    <div class="contF">
+                        <h2>funciones administrativas</h2><div class="cerrar" id="cerrarAdmin">X</div>
+                    </div>
+                    <ul>
+                        <li id="backup" class="ind1"><p>Respaldar base de datos</p></li>
+                        <li>
+                            <label for="arc" id="file_label">Cargar archivo</label>
+                            <label class="mid" id="restaura">Restaurar base de datos</label>
+                            <input type="file" id="arc" style="display: none">
+                        </li>
+                        <li id="co" class="ind2"><p>Cierre mensual</p></li>
+                    </ul>
+                </div>
+            </div>
             <div class="contenedor--flex contenedor">
                 <div id="menuvertical" class="cuerpa">
-					<div class="v1">
-						<div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
-						<div class="ut1">
-							<h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
-						</div>
-					</div>
-					<div class="v3">
-						<label for="maa" onclick="ovejo">Reportes</label>
-					</div> 
-					<input class="checkeo" type="checkbox" id="maa">
-					<ul class="menuext">
-						<li>
-						   <div class="v4">
-								<a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
-							</div>
-						</li>
-						<li>
-						   <div class="v4">
-								<a id="Reporte_2"><hr><span>Egresos del mes</span></a>
-							</div>
-						</li>
-						<li>
-						   <div class="v4">
-								<a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
-							</div>
-						</li>
-						<li>
-						   <div class="v4">
-								<a id="Reporte_4"><hr><span>Producto especifico</span></a>
-							</div>
-						</li>
-					</ul>
-					<div class="v3">
-						<a href="ingreso.php">Entradas</a>
-					</div>
-					<div class="v3 v3active">
-						<a href="traslados.php">Salidas o traslados</a>
-					</div>
-					<div class="v3">
-						<a href="auditoria.php">Auditoria de inventario</a>
-					</div>
-					<div class="v3">
-						<a href="index.html">Cerrar sesión</a>
-					</div>
+                    <div class="v1">
+                        <div class="u1cont"><img class="u1" src="img/logos/bu.jpg"></div>
+                        <div class="ut1">
+                            <h3>Hola <span style="display: none" id="txtusuario"></span><span id="txtusuarionombre">usuario</span></h3>
+                        </div>
+                    </div>
+                    <div class="v3">
+                        <label for="maa" onclick="ovejo">Reportes</label>
+                    </div> 
+                    <input class="checkeo" type="checkbox" id="maa">
+                    <ul class="menuext">
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_1"><hr><span>Ingresos del mes</span></a>
+                            </div>
+                        </li>
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_2"><hr><span>Egresos del mes</span></a>
+                            </div>
+                        </li>
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_3"><hr><span>Productos  en cta de reorden</span></a>
+                            </div>
+                        </li>
+                        <li>
+                           <div class="v4">
+                                <a id="Reporte_4"><hr><span>Producto especifico</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="v3">
+                        <a href="ingreso.php">Entradas</a>
+                    </div>
+                    <div class="v3 v3active">
+                        <a href="traslados.php">Salidas o traslados</a>
+                    </div>
+                    <div class="v3">
+                        <a href="auditoria.php">Auditoria de inventario</a>
+                    </div>
+                    <div class="v3">
+                        <a id="adminWindow">funciones de admin</a>
+                    </div>                       
+                    <div class="v3" style="background: #a11">
+                        <a id="cerrarS">Cerrar sesión</a>
+                    </div>
                 </div>
                 <div class="caja-exe" style="margin-top:140px">
                     <h2 class="ti" style="margin-top: 0">Traslados y salidas del inventario</h2>
@@ -116,10 +135,10 @@
                         <div class="contenedor--flex">
                             <div class="">
                                 <h2>¿Que acción desea realizar?</h2>
-                                <div class="">
+                                <div>
                                     <input type="radio" id="trasp">Trasladar producto
                                 </div>
-                                <div class="">
+                                <div>
                                     <input type="radio" id="sacarp">Sacar producto
                                 </div>
                             </div>
@@ -209,50 +228,50 @@
                             <h2 class="ti">Productos a sacar</h2>
                             <button id="one">Agregar fila <span>+</span></button>
                         </div>
-                        
+
                         <div class="contenedor--t">
                             <table>
-								<thead>
-								   <tr>
-										<th>Código</th><th>Producto</th><th>Departamento</th><th>Cantidad</th><th>Unidad actual</th><th>Unidad a sacar</th>
-										<th>Depósito</th><th id="changer">Nuevo depósito</th><th>Eliminar</th> 
-								   </tr>  
-								</thead>
+                                <thead>
+                                   <tr>
+                                        <th>Código</th><th>Producto</th><th>Departamento</th><th>Cantidad</th><th>Unidad actual</th><th>Unidad a sacar</th>
+                                        <th>Depósito</th><th id="changer">Nuevo depósito</th><th>Eliminar</th> 
+                                   </tr>  
+                                </thead>
                                 <tbody id="mesa">
-                                	<datalist id="Productos">
-									<?php
-										include("phpurl/bdacceso.php");
-										$query="SELECT nombre FROM productos ORDER BY nombre";
-										$resultado=$conexion->query($query);
-										while($row=$resultado->fetch_assoc()){
-									?>
-										<option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
-									<?php
-										};
-									?>
-									</datalist>
-									<datalist id="DepositosExistentes">
-									<?php
-										include("phpurl/bdacceso.php");
-										$query="SELECT DISTINCT deposito FROM depositos ORDER BY deposito";
-										$resultado=$conexion->query($query);
-										while($row=$resultado->fetch_assoc()){
-									?>
-										<option><?php echo $row['deposito']; ?></option>
-									<?php
-										};
-									?>
-									</datalist>
-									<datalist id="Motivos">
-										<option>Consumo Restaurant</option>
-										<option>Consumo Piscina playita</option>
-										<option>Consumo Piscina pequeña</option>
-										<option>Consumo Hotel</option>
-										<option>Daño</option>
-										<option>Robo</option>
-									</datalist>
+                                    <datalist id="Productos">
+                                    <?php
+                                        include("phpurl/bdacceso.php");
+                                        $query="SELECT nombre FROM productos ORDER BY nombre";
+                                        $resultado=$conexion->query($query);
+                                        while($row=$resultado->fetch_assoc()){
+                                    ?>
+                                        <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
+                                    <?php
+                                        };
+                                    ?>
+                                    </datalist>
+                                    <datalist id="DepositosExistentes">
+                                    <?php
+                                        include("phpurl/bdacceso.php");
+                                        $query="SELECT DISTINCT deposito FROM depositos ORDER BY deposito";
+                                        $resultado=$conexion->query($query);
+                                        while($row=$resultado->fetch_assoc()){
+                                    ?>
+                                        <option><?php echo $row['deposito']; ?></option>
+                                    <?php
+                                        };
+                                    ?>
+                                    </datalist>
+                                    <datalist id="Motivos">
+                                        <option>Consumo Restaurant</option>
+                                        <option>Consumo Piscina playita</option>
+                                        <option>Consumo Piscina pequeña</option>
+                                        <option>Consumo Hotel</option>
+                                        <option>Daño</option>
+                                        <option>Robo</option>
+                                    </datalist>
                                 </tbody>
-                                
+
                                 <tfoot>
                                     <tr>
                                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><button class="verde" style="font-weight: bold; color: #fff; background: #11aa11; width: 80px; margin: 0; padding: 8px 15px; border-radius: 5px; border: 2px solid #222222;" id="send" >Enviar</button></td>
