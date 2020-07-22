@@ -127,43 +127,43 @@
             <div style="margin-top:130px">
                 <div class="ban"><h2>Egresos</h2></div>
                 <div class="contenedor--flex">
-                    <div class="back2">
+                    <div class="back2" id="filterBlock">
                         <h2>Busqueda filtrada</h2>
                         <div class="contenedor--flex">
                             <div class="Cinput">
                                 <label for="nameFilter">Nombre:</label><br>
-                                <input type="text" placeholder="Producto nombre" id="nameFilter">
+                                <input type="text" placeholder="Producto nombre" id="name" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="movementNumberFilter">Número de Movimiento</label><br>
-                                <input type="number" placeholder="Codigo producto" id="movementNumberFilter">
+                                <input type="number" placeholder="Codigo producto" id="movementNumber" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="solicitanteFilter">Solicitante:</label><br>
-                                <input type="text" placeholder="Solicitante" id="solicitanteFilter">
+                                <input type="text" placeholder="Solicitante" id="solicitante" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="fechaFilter">Fecha:</label><br>
-                                <input type="date" placeholder="fecha de entrada" id="fechaFilter">
+                                <input type="date" placeholder="fecha de entrada" id="fecha" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="departmentFilter">Departamento:</label><br>
-                                <input type="text" placeholder="Departamento" id="departmentFilter">
+                                <input type="text" placeholder="Departamento" id="department" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="orderFilter">Ordenar por:</label><br>
-                                <select name="orden" id="orderFilter">
+                                <select name="orden" id="order" class="filterField">
                                     <option>Más recientes</option>
                                     <option>Más antiguos</option>
                                 </select>
                             </div>
                             <div class="Cinput">
                                 <label for="depositFilter">Deposito:</label><br>
-                                <input type="number" placeholder="numero de deposito" id="depositFilter">
+                                <input type="number" placeholder="numero de deposito" id="deposit" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="movementFilter">Movimiento:</label><br>
-                                <select name="movement" id="movementFilter">
+                                <select name="movement" id="movement" class="filterField">
                                     <option>Todos</option>
                                     <option>Salida</option>
                                     <option>Ingreso</option>
@@ -175,54 +175,63 @@
                 </div>
                 <div class="contenedor--t">
                     <table>
-                        <tr style="background-color: #222">
-                            <thead>
-                                <th>Usuario</th><th>Solicitante</th><th>Fecha De Acción</th>
-                                <th>Movimiento</th><th>Razón</th>
-                            </thead>
-                        </tr>
-                        <?php
-                        include("phpurl/bdacceso.php");
-                        $query="SELECT * FROM kardexsalidas UNION ALL SELECT * FROM kardextraslados ORDER BY fechadesalida DESC";
-                        $resultado=$conexion->query($query);
-                        while($row=$resultado->fetch_assoc()){
-                            $cadena = "";
-                            if ($row['movimiento'] === "Traslado") {
-                                $query2 = "SELECT * FROM movimientoskardext WHERE id=".$row['id']."";
-                                $resultado2=$conexion->query($query2);
-                                while ($row2 = $resultado2->fetch_assoc()) {
-                                    $cadena = $cadena.$row2['producto']."||".
-                                              $row2['cantidad']."||".
-                                              $row2['antiguodeposito']."||".
-                                              $row2['nuevodeposito']."||".
-											  $row2['und']."--";
+                        <thead>
+                            <tr>
+                                <th>Número de movimiento</th>
+                                <th>Usuario</th>
+                                <th>Solicitante</th>
+                                <th>Fecha De Acción</th>
+                                <th>Movimiento</th>
+                                <th>Razón</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <?php
+                            include("phpurl/bdacceso.php");
+                            $query="SELECT * FROM kardexsalidas UNION ALL SELECT * FROM kardextraslados ORDER BY fechadesalida DESC";
+                            $resultado=$conexion->query($query);
+                            while($row=$resultado->fetch_assoc()){
+                                $cadena = "";
+                                if ($row['movimiento'] === "Traslado") {
+                                    $query2 = "SELECT * FROM movimientoskardext WHERE id=".$row['id']."";
+                                    $resultado2=$conexion->query($query2);
+                                    while ($row2 = $resultado2->fetch_assoc()) {
+                                        $cadena = $cadena.$row2['producto']."||".
+                                                $row2['cantidad']."||".
+                                                $row2['antiguodeposito']."||".
+                                                $row2['nuevodeposito']."||".
+                                                $row2['und']."--";
+                                    }
+                                } else {
+                                    $query2 = "SELECT * FROM movimientoskardexs WHERE id=".$row['id']."";
+                                    $resultado2=$conexion->query($query2);
+                                    while ($row2 = $resultado2->fetch_assoc()) {
+                                        $cadena = $cadena.$row2['producto']."||".
+                                                $row2['cantidad']."||".
+                                                $row2['antiguodeposito']."||".
+                                                $row2['motivo']."||".
+                                                $row2['und']."--";
+                                    }
                                 }
-                            } else {
-                                $query2 = "SELECT * FROM movimientoskardexs WHERE id=".$row['id']."";
-                                $resultado2=$conexion->query($query2);
-                                while ($row2 = $resultado2->fetch_assoc()) {
-                                    $cadena = $cadena.$row2['producto']."||".
-                                              $row2['cantidad']."||".
-                                              $row2['antiguodeposito']."||".
-                                              $row2['motivo']."||".
-											  $row2['und']."--";
-                                }
+                            ?>
+                            <tr onclick="desplegarInformacion('<?php echo $cadena ?>','<?php echo $row['movimiento'] ?>')">
+                                <td> <?php echo $row['id']; ?></td>
+                                <td> <?php echo $row["usuario"]; ?></td>
+                                <td> <?php echo $row["solicitante"]; ?></td>
+                                <td> <?php echo $row["fechadesalida"]; ?></td>
+                                <td> <?php echo $row['movimiento']?> </td>
+                                <td> <?php echo $row["razon"]; ?></td>
+                            </tr>
+                            <?php
                             }
-                        ?>
-                        <tr onclick="desplegarInformacion('<?php echo $cadena ?>','<?php echo $row['movimiento'] ?>')">
-                            <td> <?php echo $row["usuario"]; ?></td>
-                            <td> <?php echo $row["solicitante"]; ?></td>
-                            <td> <?php echo $row["fechadesalida"]; ?></td>
-                            <td> <?php echo $row['movimiento']?> </td>
-                            <td> <?php echo $row["razon"]; ?></td>
-                        </tr>
-                        <?php
-                        }
-                        ?>
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </main>
+        <script type="module" src="js/modules.js"></script>
+        <script type="module" src="js/filter.js"></script>
         <script src="js/reportes_enlace.js"></script>
         <script src="js/tablaDeEgresosjs.js"></script>
     </body>

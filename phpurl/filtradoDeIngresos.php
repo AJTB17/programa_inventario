@@ -17,6 +17,7 @@
     $query = "SELECT kardexingresos.numerodefactura,
                     kardexingresos.fechadeingreso,
                     kardexingresos.codproveedor,
+                    kardexingresos.usuario,
                     proveedor.nombre,
                     kardexingresos.subtotal,
                     kardexingresos.iva,
@@ -54,13 +55,14 @@
         }
         if ($doExist) {
             $html = $html  ."<tr onclick='desplegarMovimientos(`$cadena`)'>
+                                <td>".$row['usuario']."</td>
                                 <td>".$row['numerodefactura']."</td>
                                 <td>".$row["fechadeingreso"]."</td>
                                 <td>".$row["codproveedor"]."</td>
                                 <td>".$row["nombre"]."</td>
-                                <td>".$row["subtotal"]."</td>
-                                <td>".$row["iva"]."</td>
-                                <td>".$row["total"]."</td>
+                                <td>".$row["subtotal"]."$</td>
+                                <td>".$row["iva"]."$</td>
+                                <td>".$row["total"]."$</td>
                             </tr>";
         }
     }

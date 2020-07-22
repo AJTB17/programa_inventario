@@ -147,38 +147,38 @@
                             <div class="contenedor--flex">
                                 <div class="Cinput">
                                     <label for="nameFilter">Nombre:</label><br>
-                                    <input type="text" placeholder="Producto nombre" id="nameFilter">
+                                    <input type="text" placeholder="Producto nombre" id="name" class="filterField">
                                 </div>
                                 <div class="Cinput">
                                     <label for="movementNumberFilter">Número de Movimiento</label><br>
-                                    <input type="number" placeholder="Número Movimiento" id="movementNumberFilter">
+                                    <input type="number" placeholder="Número Movimiento" id="movementNumber" class="filterField">
                                 </div>
                                 <div class="Cinput">
                                     <label for="solicitanteFilter">Solicitante:</label><br>
-                                    <input type="text" placeholder="Solicitante" id="solicitanteFilter">
+                                    <input type="text" placeholder="Solicitante" id="solicitante" class="filterField">
                                 </div>
                                 <div class="Cinput">
                                     <label for="fechaFilter">Fecha:</label><br>
-                                    <input type="date" placeholder="fecha de entrada" id="fechaFilter">
+                                    <input type="date" placeholder="fecha de entrada" id="fecha" class="filterField">
                                 </div>
                                 <div class="Cinput">
                                     <label for="departmentFilter">Departamento:</label><br>
-                                    <input type="text" placeholder="Departamento" id="departmentFilter">
+                                    <input type="text" placeholder="Departamento" id="department" class="filterField">
                                 </div>
                                 <div class="Cinput">
                                     <label for="orderFilter">Ordenar por:</label><br>
-                                    <select name="orden" id="orderFilter">
+                                    <select name="orden" id="order" class="filterField">
                                         <option>Más recientes</option>
                                         <option>Más antiguos</option>
                                     </select>
                                 </div>
                                 <div class="Cinput">
                                     <label for="depositFilter">Deposito:</label><br>
-                                    <input type="number" placeholder="numero de deposito" id="depositFilter">
+                                    <input type="number" placeholder="numero de deposito" id="deposit" class="filterField">
                                 </div>
                                 <div class="Cinput">
                                     <label for="movementFilter">Movimiento:</label><br>
-                                    <select name="movement" id="movementFilter">
+                                    <select name="movement" id="movement" class="filterField">
                                         <option>Todos</option>
                                         <option>Salida</option>
                                         <option>Ingreso</option>
@@ -199,7 +199,7 @@
                                     <th>Movimiento</th>                                   
                                </tr>
                             </thead>
-                            <tbody id="movementsTableBody">
+                            <tbody id="tableBody">
                                 <?php
                                 $conexion = mysqli_connect("localhost", "root", "lp12345..", "bdlospotros");
 								
@@ -364,6 +364,8 @@
                 </div>
             </div>
         </main>
+        <script type="module" src="js/modules.js"></script>
+        <script type="module" src="js/filter.js"></script>
         <script src="js/reportes_enlace.js"></script>
         <script src="js/movimientojs.js"></script> 
     </body>

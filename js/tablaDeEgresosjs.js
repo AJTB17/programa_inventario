@@ -75,7 +75,7 @@ function filter() {
         url: '/inventariogg/phpurl/filtradoDeEgresos.php',
         data: cadena,
         success: function(data) {
-            let table = document.getElementById("expensesTableBody");
+            let table = document.getElementById("tableBody");
             table.innerHTML = data;
         }
     })

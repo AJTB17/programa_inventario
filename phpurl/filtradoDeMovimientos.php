@@ -18,19 +18,19 @@
     } else {
         $movement = $_POST['movement'];
     }
-    $query = "SELECT id,solicitante,fechadesalida,movimiento FROM `kardexsalidas`WHERE 
+    $query = "SELECT id,solicitante,fechadesalida,movimiento,usuario FROM `kardexsalidas`WHERE 
     id LIKE '%$movementNumber%'AND
     solicitante LIKE '%$solicitante%' AND
     fechadesalida LIKE '%$fecha%' AND
     movimiento LIKE '%$movement%'
     UNION ALL 
-    SELECT id,solicitante,fechadetraslado,movimiento FROM `kardextraslados` WHERE 
+    SELECT id,solicitante,fechadetraslado,movimiento,usuario FROM `kardextraslados` WHERE 
     id LIKE '%$movementNumber%'AND
     solicitante LIKE '%$solicitante%' AND
     fechadetraslado LIKE '%$fecha%' AND
     movimiento LIKE '%$movement%'
     UNION ALL 
-    SELECT numerodefactura,codproveedor,fechadeingreso,movimiento FROM `kardexingresos` WHERE 
+    SELECT numerodefactura,codproveedor,fechadeingreso,movimiento,usuario FROM `kardexingresos` WHERE 
     numerodefactura LIKE '%$movementNumber%'AND
     codproveedor LIKE '%$solicitante%' AND
     fechadeingreso LIKE '%$fecha%' AND
@@ -46,6 +46,7 @@
                        movimientoskardext.producto,
                        movimientoskardext.antiguodeposito,
                        movimientoskardext.nuevodeposito,
+                       movimientoskardext.und,
                        kardextraslados.fechadetraslado,
                        productos.departamento FROM ((movimientoskardext INNER JOIN
                        productos ON movimientoskardext.producto = productos.nombre) INNER JOIN
@@ -66,7 +67,7 @@
             while ($row2 = $resultado2->fetch_assoc()) {
 
                 $cadena = $cadena.$row2['producto']."||".
-                          $row2['cantidad']."||".
+                          $row2['cantidad']." ".$row2['und']."||".
                           $row2['antiguodeposito']."||".
                           $row2['nuevodeposito']."--";
 
@@ -77,6 +78,7 @@
                        movimientoskardexs.producto,
                        movimientoskardexs.antiguodeposito,
                        kardexsalidas.fechadesalida,
+                       movimientoskardexs.und,
                        productos.departamento FROM ((movimientoskardexs INNER JOIN
                        productos ON movimientoskardexs.producto = productos.nombre) INNER JOIN
                        kardexsalidas ON movimientoskardexs.id = kardexsalidas.id) WHERE 
@@ -95,7 +97,7 @@
             while ($row2 = $resultado2->fetch_assoc()) {
 
                 $cadena = $cadena.$row2['producto']."||".
-                          $row2['cantidad']."||".
+                          $row2['cantidad']." ".$row2['und']."||".
                           $row2['antiguodeposito']."||".
                           $row2['motivo']."--";
 
@@ -106,6 +108,7 @@
             movimientoskardexi.producto,
             movimientoskardexi.deposito,
             productos.departamento,
+            movimientoskardexi.und,
             kardexingresos.fechadeingreso FROM ((movimientoskardexi INNER JOIN
             productos ON movimientoskardexi.producto = productos.nombre) INNER JOIN
             kardexingresos ON movimientoskardexi.numerodefactura = kardexingresos.numerodefactura AND
@@ -133,15 +136,19 @@
             while ($row2 = $resultado2->fetch_assoc()) {
 
                 $cadena = $cadena.$row2['producto']."||".
-                          $row2['cantidad']."||".
+                          $row2['cantidad']." ".$row2['und']."||".
                           $row2['precio']."||".
                           $row2['deposito']."--";
 
             };
+
+            $query2 = mysqli_fetch_array(mysqli_query($conexion, "SELECT nombre FROM proveedor WHERE codigo=".$row['solicitante']));
+            $row['solicitante'] = $query2['nombre'];
         };
         if($doExist){
             $html = $html  ."<tr onclick='desplegarInformacion(`$cadena`,`".$row['movimiento']."`,`$calculos`)'>
                                 <td>".$row['id']."</td>
+                                <td>".$row['usuario']."</td>
                                 <td>".$row["solicitante"]."</td>
                                 <td>".$row["fechadesalida"]."</td>
                                 <td>".$row["movimiento"]."</td>

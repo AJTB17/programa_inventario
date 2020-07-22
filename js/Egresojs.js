@@ -24,6 +24,7 @@ function desplegarTraslados() {
         document.getElementById("ubicacion_" + n).setAttribute("list", "DepositosExistentes");
     }
 }
+
 function desplegarSalidas() {
     document.getElementById("changer").innerHTML = "Motivo";
     document.getElementById("trasp").checked = false;
@@ -39,7 +40,8 @@ function desplegarSalidas() {
 
     }
 }
-function createTable() {        
+
+function createTable() {
     if (document.getElementById("sacarp").checked) {
         var fornite = document.getElementById("cantpro2").value;
     } else if (document.getElementById("trasp").checked) {
@@ -49,9 +51,10 @@ function createTable() {
         onerow()
     }
 }
+
 function onerow() {
     var table = document.getElementById("mesa"),
-		elemento = document.createElement("tr"),
+        elemento = document.createElement("tr"),
         contenido1 = document.createElement("td"),
         contenido2 = document.createElement("td"),
         contenido3 = document.createElement("td"),
@@ -86,15 +89,15 @@ function onerow() {
     cont4.id = "cant_" + numero;
     cont4.classList.add("cap");
     cont4.placeholder = "Cantidad";
-	
-	var cont5 = document.createElement("input");
+
+    var cont5 = document.createElement("input");
     cont5.id = "medida_" + numero;
     cont5.classList.add("med");
     cont5.placeholder = "Medida";
     cont5.readOnly = true;
-	
+
     var cont6 = document.createElement("select");
-	cont6.id = "unidad_" + numero;
+    cont6.id = "unidad_" + numero;
     cont6.classList.add("und");
     cont6.placeholder = "Unidad";
     let options = ["Centímetros",
@@ -112,14 +115,14 @@ function onerow() {
         "Galones",
         "Docenas",
         "Decenas",
-		"Unidades"
+        "Unidades"
     ];
-	for (let i = 0; i < options.length; i++) {
+    for (let i = 0; i < options.length; i++) {
         let option = document.createElement("option");
         let text = document.createTextNode(options[i]);
         option.appendChild(text);
         cont6.appendChild(option);
-    }	
+    }
 
     var cont7 = document.createElement("input");
     cont7.id = "deposito_" + numero;
@@ -173,6 +176,7 @@ function onerow() {
     $(".clearRow").off();
     $('.clearRow').click(clearRow);
 }
+
 function clearRow() {
     var mensaje = confirm("¿Desea eliminar ésta fila?");
     if (this.parentNode.id == numero && mensaje == true) {
@@ -199,6 +203,7 @@ function clearRow() {
         numero--;
     };
 }
+
 function autocomplete() {
     var cadena = "id=" + this.value;
     var codigo = this.parentNode.parentNode.id;
@@ -219,106 +224,109 @@ function autocomplete() {
                 document.getElementById("producto_" + codigo).value = everything.producto;
                 document.getElementById("departamento_" + codigo).value = everything.departamento;
             }
-			document.getElementById("unidad_" + codigo).innerHTML = "";
-			
-			var und = everything.unidad;					
-			if(und == "Unidades" || und == "Decenas" || und == "Docenas"){
-				let options = ["Unidades","Decenas","Docenas"];
-				for (let i = 0; i < options.length; i++) {
-					let option = document.createElement("option");
-					let text = document.createTextNode(options[i]);
+            document.getElementById("unidad_" + codigo).innerHTML = "";
 
-					option.appendChild(text);
-					document.getElementById("unidad_" + codigo).appendChild(option);
-				}
-			} 
-			else if(und == "Mililitros" || und == "Litros" || und == "Galones"){
-				let options = ["Mililitros","Litros","Galones"];
-				for (let i = 0; i < options.length; i++) {
-					let option = document.createElement("option");
-					let text = document.createTextNode(options[i]);
+            var und = everything.unidad;
+            if (und == "Unidades" || und == "Decenas" || und == "Docenas") {
+                let options = ["Unidades", "Decenas", "Docenas"];
+                for (let i = 0; i < options.length; i++) {
+                    let option = document.createElement("option");
+                    let text = document.createTextNode(options[i]);
 
-					option.appendChild(text);
-					document.getElementById("unidad_" + codigo).appendChild(option);
-				}
-			} 
-			else if(und == "Centímetros" || und == "Metros" || und == "Pulgadas" || und == "Pies" || und == "Yarda"){
-				let options = ["Centímetros","Metros","Pulgadas","Pies","Yarda"];
-				for (let i = 0; i < options.length; i++) {
-					let option = document.createElement("option");
-					let text = document.createTextNode(options[i]);
+                    option.appendChild(text);
+                    document.getElementById("unidad_" + codigo).appendChild(option);
+                }
+            } else if (und == "Mililitros" || und == "Litros" || und == "Galones") {
+                let options = ["Mililitros", "Litros", "Galones"];
+                for (let i = 0; i < options.length; i++) {
+                    let option = document.createElement("option");
+                    let text = document.createTextNode(options[i]);
 
-					option.appendChild(text);
-					document.getElementById("unidad_" + codigo).appendChild(option);
-				}
-			} 
-			else if(und == "Kilogramos" || und == "Gramos" || und == "Toneladas" || und == "Onzas" || und == "Libras"){
-				let options = ["Kilogramos","Gramos","Toneladas","Onzas","Libras"];
-				for (let i = 0; i < options.length; i++) {
-					let option = document.createElement("option");
-					let text = document.createTextNode(options[i]);
+                    option.appendChild(text);
+                    document.getElementById("unidad_" + codigo).appendChild(option);
+                }
+            } else if (und == "Centímetros" || und == "Metros" || und == "Pulgadas" || und == "Pies" || und == "Yarda") {
+                let options = ["Centímetros", "Metros", "Pulgadas", "Pies", "Yarda"];
+                for (let i = 0; i < options.length; i++) {
+                    let option = document.createElement("option");
+                    let text = document.createTextNode(options[i]);
 
-					option.appendChild(text);
-					document.getElementById("unidad_" + codigo).appendChild(option);
-				}
-			}
-			document.getElementById("unidad_" + codigo).value = everything.unidad;
-			document.getElementById("medida_" + codigo).value = everything.unidad;
+                    option.appendChild(text);
+                    document.getElementById("unidad_" + codigo).appendChild(option);
+                }
+            } else if (und == "Kilogramos" || und == "Gramos" || und == "Toneladas" || und == "Onzas" || und == "Libras") {
+                let options = ["Kilogramos", "Gramos", "Toneladas", "Onzas", "Libras"];
+                for (let i = 0; i < options.length; i++) {
+                    let option = document.createElement("option");
+                    let text = document.createTextNode(options[i]);
+
+                    option.appendChild(text);
+                    document.getElementById("unidad_" + codigo).appendChild(option);
+                }
+            }
+            document.getElementById("unidad_" + codigo).value = everything.unidad;
+            document.getElementById("medida_" + codigo).value = everything.unidad;
         },
         error: function() {
             alert("Error, producto no encontrado");
         }
     })
 }
+
 function enviarDatos() {
     var cadena = "";
     for (var n = 1; n <= numero; n++) {
-		let value = document.getElementById("cant_" + n).value,
+
+        // Datos iniciales: Cantidad, Unidad inicial y Unidad a convertir
+        let value = document.getElementById("cant_" + n).value,
             initialUnit = document.getElementById("medida_" + n).value,
-            finalUnit = document.getElementById("unidad_" + n).value,
-            newValue = value;
-        newValue = convertUnits(initialUnit, finalUnit, value);
+            finalUnit = document.getElementById("unidad_" + n).value
+
+        // Convirtiendo de una unidad a otra
+        let newValue = convertUnits(initialUnit, finalUnit, value);
+
+        // Sino se puede transformar se detiendo el ciclo
         if (!newValue) {
-            return;
+            return
         }
-		
+
+        // Definiendo el producto que se pasara y sus datos de traslado
+        // ----------------------------------------------------------------------------
         if (n == 1) {
-            cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value +
-                "&cantidad" + n + "=" + newValue +
-                "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
-                "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
+            cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value
         } else {
-            cadena = cadena +
-                "&id" + n + "=" + document.getElementById("codigo_" + n).value +
-                "&cantidad" + n + "=" + newValue +
-                "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
-                "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
+            cadena = cadena + "&id" + n + "=" + document.getElementById("codigo_" + n).value
         };
+
+        "&cantidad" + n + "=" + newValue +
+            "&deposito" + n + "=" + document.getElementById("deposito_" + n).value +
+            "&ubicacion" + n + "=" + document.getElementById("ubicacion_" + n).value;
+        // -----------------------------------------------------------------------------
+
     };
-    if (document.getElementById("sacarp").checked) {
-        var solicitante = document.getElementById("solicitanteTras2").value;
-        var razon = document.getElementById("razpro2").value;
-        var accion = "egreso";
-        let numRef = document.getElementById("numref2").value;
-        cadena = cadena +
-            "&solicitante=" + solicitante +
-            "&razon=" + razon +
-            "&accion=" + accion +
+
+    // Comprobando si es un egreso o un traslado, y dependiendo de ello registramos unos datos u otros
+    // -----------------------------------------------------------------------------------------------
+    const action = document.getElementById("sacarp").checked ? "egreso" : "Traslado"
+
+    if (action = "egreso") {
+
+        cadena += "&solicitante=" + document.getElementById("solicitanteTras2").value +
+            "&razon=" + document.getElementById("razpro2").value +
+            "&accion=" + "egreso" +
             "&numero=" + numero +
-            "&numRef=" + numRef;
-    }
-	else if (document.getElementById("trasp").checked) {
-        var solicitante = document.getElementById("solicitanteTras1").value;
-        var razon = document.getElementById("razpro1").value;
-        var accion = "traslado";
-        let numRef = document.getElementById("numref1").value;
-        cadena = cadena +
-            "&solicitante=" + solicitante +
-            "&razon=" + razon +
-            "&accion=" + accion +
+            "&numRef=" + document.getElementById("numref2").value;
+
+    } else if (document.getElementById("trasp").checked) {
+
+        cadena += "&solicitante=" + document.getElementById("solicitanteTras1").value +
+            "&razon=" + document.getElementById("razpro1").value +
+            "&accion=" + "traslado" +
             "&numero=" + numero +
-            "&numRef=" + numRef;
+            "&numRef=" + document.getElementById("numref1").value;
+
     };
+    // -----------------------------------------------------------------------------------------------
     cadena += "&usuario=" + localStorage.getItem("getvalue");
     $.ajax({
         type: 'POST',
@@ -336,11 +344,12 @@ function enviarDatos() {
         }
     });
 }
+
 function reporte() {
     var cadena = "";
-	
+
     for (var n = 1; n <= numero; n++) {
-		let value = document.getElementById("cant_" + n).value,
+        let value = document.getElementById("cant_" + n).value,
             initialUnit = document.getElementById("medida_" + n).value,
             finalUnit = document.getElementById("unidad_" + n).value,
             newValue = value;
@@ -348,7 +357,7 @@ function reporte() {
         if (!newValue) {
             return;
         }
-		
+
         if (n == 1) {
             cadena = "id" + n + "=" + document.getElementById("codigo_" + n).value;
         } else {
@@ -406,6 +415,7 @@ function reporte() {
         }
     });
 }
+
 function moverarchivo() {
     let dato = "n_ajuste=" + numRef +
         "&posicion=" + positon +
@@ -426,6 +436,7 @@ function moverarchivo() {
     }, 1000);
 
 }
+
 function convertUnits(initialUnit, finalUnit, value) {
     const equivalencies = {
         Centímetros: {
@@ -471,15 +482,15 @@ function convertUnits(initialUnit, finalUnit, value) {
             Decenas: 10,
             Docenas: 12,
         },
-		Decenas: {
+        Decenas: {
             Unidades: 10,
-			Decenas: 1,
-			Docenas: 1.2,
+            Decenas: 1,
+            Docenas: 1.2,
         },
-		Docenas: {
+        Docenas: {
             Unidades: 12,
-			Decenas: 1.2,
-			Docenas: 1,
+            Decenas: 1.2,
+            Docenas: 1,
         },
     };
     const newValue = value * equivalencies[initialUnit][finalUnit];

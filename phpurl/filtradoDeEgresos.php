@@ -80,6 +80,7 @@
         if ($doExist) {
             $html = $html  ."<tr onclick='desplegarInformacion(`$cadena`,`".$row['movimiento']."`)'>
                                 <td>".$row['id']."</td>
+                                <td>".$row['usuario']."</td>
                                 <td>".$row["solicitante"]."</td>
                                 <td>".$row["fechadesalida"]."</td>
                                 <td>".$row["movimiento"]."</td>
