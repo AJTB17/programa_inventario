@@ -10,12 +10,6 @@
     $usuario = $_POST['usuario'];
 
     /* Determinación de acción */
-    for ($n = 1 ; $n <= $numero ; $n++) {
-        $goingToRestaurant = $_POST['ubicacion' .$n] === "Consumo Restaurant";
-        if ($goingToRestaurant) {
-        break;
-        }
-    }
 
     if ($accion == "egreso"){
         $boolean = true;
@@ -46,6 +40,8 @@
             $cantidad = $_POST['cantidad' .$n];
             $deposito = $_POST['deposito' .$n];
             $ubicacion = $_POST['ubicacion' .$n];
+
+            $goingToRestaurant = $ubicacion == "Consumo Restaurant";
             $busquedaNombre = mysqli_fetch_array(mysqli_query($conexion, "SELECT nombre FROM productos 
                                                                          WHERE codigo='$codigo'"));
             $producto = $busquedaNombre['nombre'];
@@ -112,8 +108,8 @@
                                                                                 '$fecha',
                                                                                 'Salida')";
                 $conexion->query($insertion);
-                $idQuery = "SELECT MAX(id) FROM restkardexenlaceinv";
-                $restId = $conexion->query($idQuery);
+                $idQuery = mysqli_fetch_array(mysqli_query($conexion, "SELECT MAX(id) FROM restkardexenlaceinv"));
+                $restId = $idQuery['MAX(id)'];
             }
 
             for ($n = 1 ; $n <= $numero ; $n++){

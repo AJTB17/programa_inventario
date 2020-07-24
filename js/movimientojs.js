@@ -1,21 +1,62 @@
 let numero = 0;
-let nameFilter = document.getElementById("nameFilter"),
-    movementNumberFilter = document.getElementById("movementNumberFilter"),
-    solicitanteFilter = document.getElementById("solicitanteFilter"),
-    fechaFilter = document.getElementById("fechaFilter"),
-    departmentFilter = document.getElementById("departmentFilter"),
-    orderFilter = document.getElementById("orderFilter"),
-    depositFilter = document.getElementById("depositFilter"),
-    movementFilter = document.getElementById("movementFilter"),
-	link_click = "";
+let filterFields = [document.getElementById("nameFilter"),
+    document.getElementById("movementNumberFilter"),
+    document.getElementById("solicitanteFilter"),
+    document.getElementById("fechaFilter"),
+    document.getElementById("departmentFilter"),
+    document.getElementById("orderFilter"),
+    document.getElementById("depositFilter"),
+    document.getElementById("movementFilter")
+]
+
+let link_click = "";
+
+function cerrarInformacion() {
+    let tabla = document.getElementById("depositos"),
+        tabla2 = document.getElementById("depositos_auditoria"),
+        tableFoot = document.getElementById("depositTableFoot"),
+        tableFoot2 = document.getElementById("depositTableFoot_auditoria"),
+        ventanaapagada = document.getElementsByClassName("hidden")[0].id;
+
+    if (numero != 0) {
+        let tableBody = document.getElementById("tb");
+        let tableBody2 = document.getElementById("tb2");
+        for (let i = 0; i < numero; i++) {
+
+            if (ventanaapagada === "ventanaDeDepositos_auditoria") {
+                tableBody.innerHTML = "";
+            } else if (ventanaapagada === "ventanaDeDepositos") {
+                tableBody2.innerHTML = "";
+            }
+
+        }
+    };
+    if (tableFoot !== null) {
+        tabla.removeChild(tableFoot);
+    } else if (tableFoot2 !== null) {
+        tabla2.removeChild(tableFoot2);
+    }
+
+
+
+    if (ventanaapagada === "ventanaDeDepositos_auditoria") {
+        document.getElementById("ventanaDeDepositos").classList.add("hidden");
+        document.getElementById("descargar").removeEventListener("click", downfile);
+    } else if (ventanaapagada === "ventanaDeDepositos") {
+        document.getElementById("ventanaDeDepositos_auditoria").classList.add("hidden");
+        document.getElementById("descargar_auditoria").removeEventListener("click", downfile);
+    }
+    numero = 0;
+    link_click = "";
+}
 
 function desplegarInformacion(datos, movimiento, calculos, link) {
-	if(movimiento === "Auditoria"){
-		document.getElementById("ventanaDeDepositos_auditoria").classList.remove("hidden");
-	} else {
-		document.getElementById("ventanaDeDepositos").classList.remove("hidden");
-	}
-	
+    if (movimiento === "Auditoria") {
+        document.getElementById("ventanaDeDepositos_auditoria").classList.remove("hidden");
+    } else {
+        document.getElementById("ventanaDeDepositos").classList.remove("hidden");
+    }
+
     if (datos != "" && movimiento === "Traslado" || movimiento === "Salida") {
         let cantidadDeDatos = datos.split("--");
         let tabla = document.getElementById("depositos");
@@ -23,15 +64,15 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
             let dato = cantidadDeDatos[i].split("||");
             let html = `<tr>
 							<td>${dato[0]}</td>
-							<td>${dato[1] + " " + dato[4]}</td>
+							<td>${dato[1]}</td>
 							<td>${dato[2]}</td>
 							<td>${dato[3]}</td>
 						</tr>`
             document.getElementById("tb").innerHTML += html;
             numero++
         };
-		let html;
-		if (movimiento === "Traslado" || movimiento === "Salida"){
+        let html;
+        if (movimiento === "Traslado" || movimiento === "Salida") {
             html = `<tfoot id="depositTableFoot">
                         <tr>
 							<td></td>
@@ -39,22 +80,21 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
 							<td></td>
 							<td></td>
                         </tr>
-                    </tfoot>`;			
-		}
+                    </tfoot>`;
+        }
 
         document.getElementById("depositos").innerHTML += html;
         document.getElementById("tableHeaderVariable2").innerHTML = "Antiguo Depósito";
-    }
-	else if (movimiento === "Ingreso") {
+    } else if (movimiento === "Ingreso") {
         let cantidadDeDatos = datos.split("--"),
             tabla = document.getElementById("depositos"),
             calcs = calculos.split("!!");
-		
+
         for (let i = 0; i < cantidadDeDatos.length - 1; i++) {
             let dato = cantidadDeDatos[i].split("||");
             let html = `<tr>
 							<td>${dato[0]}</td>
-							<td>${dato[1] + " " + dato[4]}</td>
+							<td>${dato[1]}</td>
 							<td>${dato[2] + "$"}</td>
 							<td>${dato[3]}</td>
                         </tr>`
@@ -75,11 +115,9 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
     };
     if (movimiento === "Traslado") {
         document.getElementById("tableHeaderVariable").innerHTML = "Nuevo Depósito";
-    }
-	else if (movimiento === "Salida") {
+    } else if (movimiento === "Salida") {
         document.getElementById("tableHeaderVariable").innerHTML = "Razón";
-    }
-	else if (movimiento === "Auditoria"){
+    } else if (movimiento === "Auditoria") {
         let cantidadDeDatos = datos.split("--");
         let tabla = document.getElementById("depositos_auditoria");
         for (let i = 0; i < cantidadDeDatos.length - 1; i++) {
@@ -106,83 +144,14 @@ function desplegarInformacion(datos, movimiento, calculos, link) {
                         </tr>
                     </tfoot>`;
         document.getElementById("depositos_auditoria").innerHTML += html;
-		document.getElementById("depositCancelButton_auditoria").addEventListener("click", cerrarInformacion);
-		document.getElementById("descargar_auditoria").addEventListener("click", downfile)
-	}
+        document.getElementById("depositCancelButton_auditoria").addEventListener("click", cerrarInformacion);
+        document.getElementById("descargar_auditoria").addEventListener("click", downfile)
+    }
     document.getElementById("depositCancelButton").addEventListener("click", cerrarInformacion);
-	document.getElementById("descargar").addEventListener("click", downfile);
-	link_click = link;
-}
-function cerrarInformacion() {
-    let tabla = document.getElementById("depositos"),
-        tabla2 = document.getElementById("depositos_auditoria"),
-        tableFoot = document.getElementById("depositTableFoot"),
-        tableFoot2 = document.getElementById("depositTableFoot_auditoria"),
-	    ventanaapagada = document.getElementsByClassName("hidden")[0].id;
-	
-    if (numero != 0) {
-        let tableBody = document.getElementById("tb");
-        let tableBody2 = document.getElementById("tb2");
-        for (let i = 0; i < numero; i++) {
-			
-			if(ventanaapagada === "ventanaDeDepositos_auditoria"){
-				tableBody.innerHTML = "";
-			} else if (ventanaapagada === "ventanaDeDepositos") {
-				tableBody2.innerHTML = "";
-			}
-            
-        }
-    };
-	if(tableFoot !== null){
-		tabla.removeChild(tableFoot);
-	} else if (tableFoot2 !== null){
-		tabla2.removeChild(tableFoot2);
-	}
-	
-    
-
-	if(ventanaapagada === "ventanaDeDepositos_auditoria"){
-		document.getElementById("ventanaDeDepositos").classList.add("hidden");
-		document.getElementById("descargar").removeEventListener("click", downfile);
-	}
-	else if(ventanaapagada === "ventanaDeDepositos"){
-		document.getElementById("ventanaDeDepositos_auditoria").classList.add("hidden");
-		document.getElementById("descargar_auditoria").removeEventListener("click", downfile);
-	}
-    numero = 0;
-	link_click = "";
-}
-function filtrado() {
-    let cadena = "name=" + nameFilter.value +
-        "&movementNumber=" + movementNumberFilter.value +
-        "&solicitante=" + solicitanteFilter.value +
-        "&fecha=" + fechaFilter.value +
-        "&department=" + departmentFilter.value +
-        "&order=" + orderFilter.value +
-        "&deposit=" + depositFilter.value +
-        "&movement=" + movementFilter.value;
-    $.ajax({
-        type: 'POST',
-        url: '/inventariogg/phpurl/filtrar.php',
-        data: cadena,
-        success: function(data) {
-            let tableBody = document.getElementById("movementsTableBody");
-            tableBody.innerHTML = data;
-        },
-        error: function() {
-            alert("Not connected");
-        }
-    });
-}
-function downfile(){
-	window.open(link_click, '_blank');
+    document.getElementById("descargar").addEventListener("click", downfile);
+    link_click = link;
 }
 
-nameFilter.addEventListener("input", filtrado);
-movementNumberFilter.addEventListener("input", filtrado);
-solicitanteFilter.addEventListener("input", filtrado);
-fechaFilter.addEventListener("input", filtrado);
-departmentFilter.addEventListener("input", filtrado);
-orderFilter.addEventListener("input", filtrado);
-depositFilter.addEventListener("input", filtrado);
-movementFilter.addEventListener("input", filtrado);
+function downfile() {
+    window.open(link_click, '_blank');
+}

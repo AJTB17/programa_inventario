@@ -36,6 +36,7 @@
                             movimientoskardexs.producto,
                             productos.departamento,
                             movimientoskardexs.cantidad,
+                            movimientoskardexs.und,
                             movimientoskardexs.antiguodeposito,
                             movimientoskardexs.motivo FROM movimientoskardexs INNER JOIN
                             productos ON movimientoskardexs.producto = productos.nombre 
@@ -49,7 +50,7 @@
             };
             while ($row2 = $result2->fetch_assoc()) {
                 $cadena = $cadena.$row2['producto']."||".
-                          $row2['cantidad']."||".
+                          $row2['cantidad']." ".$row2['und']."||".
                           $row2['antiguodeposito']."||".
                           $row2['motivo']."--";
             }
@@ -58,6 +59,7 @@
                             movimientoskardext.producto,
                             productos.departamento,
                             movimientoskardext.cantidad,
+                            movimientoskardext.und,
                             movimientoskardext.antiguodeposito,
                             movimientoskardext.nuevodeposito FROM movimientoskardext INNER JOIN
                             productos ON movimientoskardext.producto = productos.nombre 
@@ -72,7 +74,7 @@
             };
             while ($row2 = $result2->fetch_assoc()) {
                 $cadena = $cadena.$row2['producto']."||".
-                          $row2['cantidad']."||".
+                          $row2['cantidad']." ".$row2['und']."||".
                           $row2['antiguodeposito']."||".
                           $row2['nuevodeposito']."--";
             }
@@ -80,6 +82,7 @@
         if ($doExist) {
             $html = $html  ."<tr onclick='desplegarInformacion(`$cadena`,`".$row['movimiento']."`)'>
                                 <td>".$row['id']."</td>
+                                <td>".$row['usuario']."</td>
                                 <td>".$row["solicitante"]."</td>
                                 <td>".$row["fechadesalida"]."</td>
                                 <td>".$row["movimiento"]."</td>

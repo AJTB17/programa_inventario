@@ -150,43 +150,43 @@
             <div style="margin-top:130px">
                 <div class="ban"><h2>Ingresos</h2></div>
                 <div class="contenedor--flex">
-                    <div class="back2">
+                    <div class="back2" id="filterBlock">
                         <h2>Busqueda filtrada</h2>
                         <div class="contenedor--flex">
                             <div class="Cinput">
                                 <label for="movementNumberFilter">Número de factura</label><br>
-                                <input type="number" placeholder="Número de factura" id="movementNumberFilter">
+                                <input type="number" placeholder="Número de factura" id="movementNumber" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="fechaFilter">Fecha:</label><br>
-                                <input type="date" placeholder="fecha de entrada" id="fechaFilter">
+                                <input type="date" placeholder="fecha de entrada" id="fecha" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="proveedorCodeFilter">Código de proveedor:</label><br>
-                                <input type="text" placeholder="Código" id="proveedorCodeFilter">
+                                <input type="text" placeholder="Código" id="proveedorCode" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="nameFilter">Nombre:</label><br>
-                                <input type="text" placeholder="Nombre de proveedor" id="nameFilter">
+                                <input type="text" placeholder="Nombre de proveedor" id="name" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="solicitanteFilter">Nombre de producto:</label><br>
-                                <input type="text" placeholder="Nombre de producto" id="productNameFilter">
+                                <input type="text" placeholder="Nombre de producto" id="productName" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="departmentFilter">Departamento:</label><br>
-                                <input type="text" placeholder="Departamento" id="departmentFilter">
+                                <input type="text" placeholder="Departamento" id="department" class="filterField">
                             </div>
                             <div class="Cinput">
                                 <label for="orderFilter">Ordenar por:</label><br>
-                                <select name="orden" id="orderFilter">
+                                <select name="orden" id="order" class="filterField">
                                     <option>Más recientes</option>
                                     <option>Más antiguos</option>
                                 </select>
                             </div>
                             <div class="Cinput">
                                 <label for="depositFilter">Deposito:</label><br>
-                                <input type="number" placeholder="numero de deposito" id="depositFilter">
+                                <input type="number" placeholder="numero de deposito" id="deposit" class="filterField">
                             </div>
                         </div>
                     </div>
@@ -200,7 +200,7 @@
                                 <th>IVA</th><th>Total</th><th>Estado de factura</th>
                             </tr>
                         </thead>
-                        <tbody id="incomesTableBody">
+                        <tbody id="tableBody">
                             <?php
                             include("phpurl/bdacceso.php");
                             $query="SELECT kardexingresos.numerodefactura,
@@ -260,6 +260,8 @@
                 </div>
             </div>
         </main>
+        <script type="module" src="js/modules.js"></script>
+        <script type="module" src="js/filter.js"></script>
         <script src="js/reportes_enlace.js"></script>
         <script src="js/tablaDeIngresosjs.js"></script>
     </body>

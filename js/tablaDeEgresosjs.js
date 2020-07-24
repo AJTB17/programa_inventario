@@ -1,12 +1,4 @@
 let numero = 0;
-let movementNumberFilter = document.getElementById("movementNumberFilter"),
-    solicitanteFilter = document.getElementById("solicitanteFilter"),
-    fechaFilter = document.getElementById("fechaFilter"),
-    movementFilter = document.getElementById("movementFilter"),
-    nameFilter = document.getElementById("nameFilter"),
-    departmentFilter = document.getElementById("departmentFilter"),
-    depositFilter = document.getElementById("depositFilter"),
-    orderFilter = document.getElementById("orderFilter");
 
 function desplegarInformacion(datos, movimiento) {
     document.getElementById("ventanaDeDepositos").classList.remove("hidden");
@@ -24,7 +16,7 @@ function desplegarInformacion(datos, movimiento) {
 
             let cont1 = document.createTextNode(dato[3]),
                 cont2 = document.createTextNode(dato[2]),
-                cont3 = document.createTextNode(dato[1] + " " + dato[4]),
+                cont3 = document.createTextNode(dato[1]),
                 cont4 = document.createTextNode(dato[0]);
 
             contenido1.appendChild(cont1);
@@ -60,32 +52,3 @@ function cerrarInformacion() {
     document.getElementById("ventanaDeDepositos").classList.add("hidden");
     numero = 0;
 };
-
-function filter() {
-    let cadena = "movementNumber=" + movementNumberFilter.value +
-        "&solicitante=" + solicitanteFilter.value +
-        "&fecha=" + fechaFilter.value +
-        "&movement=" + movementFilter.value +
-        "&name=" + nameFilter.value +
-        "&department=" + departmentFilter.value +
-        "&deposit=" + depositFilter.value +
-        "&order=" + orderFilter.value;
-    $.ajax({
-        type: 'POST',
-        url: '/inventariogg/phpurl/filtradoDeEgresos.php',
-        data: cadena,
-        success: function(data) {
-            let table = document.getElementById("expensesTableBody");
-            table.innerHTML = data;
-        }
-    })
-}
-
-movementNumberFilter.addEventListener("input", filter);
-solicitanteFilter.addEventListener("input", filter);
-fechaFilter.addEventListener("input", filter);
-movementFilter.addEventListener("input", filter);
-nameFilter.addEventListener("input", filter);
-departmentFilter.addEventListener("input", filter);
-depositFilter.addEventListener("input", filter);
-orderFilter.addEventListener("input", filter);
