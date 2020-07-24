@@ -219,7 +219,7 @@
                             </thead>
                         </tr>
                         <?php
-                        $conexion = mysqli_connect("localhost", "root", "lp12345..", "bdlospotros");
+                        include('phpurl/bdacceso.php');
                         $query="SELECT * FROM proveedor";
                         $resultado=$conexion->query($query);
                         while($row=$resultado->fetch_assoc()){

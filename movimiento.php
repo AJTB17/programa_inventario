@@ -201,7 +201,7 @@
                             </thead>
                             <tbody id="movementsTableBody">
                                 <?php
-                                $conexion = mysqli_connect("localhost", "root", "lp12345..", "bdlospotros");
+                                include('phpurl/bdacceso.php');
 								
                                 $query="SELECT id,usuario,solicitante,fechadesalida,movimiento 
 										FROM `kardexsalidas` 
