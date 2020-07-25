@@ -20,6 +20,9 @@ export class Filter {
     }
 }
 
+// Tablas de producto y proveedor del programa
+
+
 export const equivalencies = {
     Centímetros: {
         Centímetros: 1,

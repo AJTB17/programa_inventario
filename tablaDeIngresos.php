@@ -243,7 +243,7 @@
                                 <?php
                                 if($row["estadopago"] == "pago"){
                                 ?>
-                                    <td class="<?php echo $row["estadopago"]; ?>">Paga</td>
+                                    <td class="<?php echo $row["estadopago"]; ?>">Pagado</td>
                                 <?php
                                 }else if($row["estadopago"] == "porpagar"){
                                 ?>

@@ -8,6 +8,7 @@
         <link href="css/icon.css" rel="stylesheet">
         <link href="css/proveedorescs.css" rel="stylesheet">
         <link href="css/barralateral.css" rel="stylesheet">
+        <link href="css/BF.css" rel="stylesheet">
 <!----- Estilos de css end -----> 
         
         <link href='packages/core/main.css' rel='stylesheet' />
@@ -241,6 +242,34 @@
             </div>
             <div style="margin-top:120px">
                 <div class="ban"><h2>Productos</h2></div>
+                <div class="contenedor--flex">
+                    <div class="back2" id="filterBlock">
+                        <h2>Busqueda filtrada</h2>
+                        <div class="contenedor--flex">
+                            <div class="Cinput">
+                                <label for="movementNumberFilter">Nombre del producto</label><br>
+                                <input type="text" placeholder="Nombre" id="name" class="filterField">
+                            </div>
+                            <div class="Cinput">
+                                <label for="movementNumberFilter">Código del producto</label><br>
+                                <input type="number" placeholder="Código" id="code" class="filterField">
+                            </div>
+                            <div class="Cinput">
+                                <label for="movementNumberFilter">Departamento</label><br>
+                                <input type="text" placeholder="Departamento" id="department" class="filterField">
+                            </div>
+                            <div class="Cinput">
+                                <label for="movementNumberFilter">Fecha de último pedido</label><br>
+                                <input type="date" placeholder="Fecha de último pedido" id="lastDate" class="filterField">
+                            </div>
+                            <div class="Cinput">
+                                <label for="movementNumberFilter">Nro de factura de último pedido</label><br>
+                                <input type="number" placeholder="Número de factura" id="lastRequest" class="filterField">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
                 <div class="contenedor--t">
                     <table>
                         <thead class="ext">
@@ -266,7 +295,7 @@
 							<th>Editar</th>
 							<th>Eliminar</th>
 						</thead>
-                       	<tbody>
+                       	<tbody id="tableBody">
 							<?php
 							include("phpurl/bdacceso.php");
 							include("phpurl/functions.php");
@@ -338,6 +367,8 @@
                 ?>
             </datalist>
         </main>
+        <script type="module" src="js/modules.js"></script>
+        <script type="module" src="js/filter.js"></script>
         <script src="js/reportes_enlace.js"></script>
         <script src="js/productosjs.js"></script>
     </body>
