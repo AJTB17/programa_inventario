@@ -41,19 +41,22 @@ section {
     margin-bottom: 25px;
 }
 ::-webkit-scrollbar {
-    width: 12px; 
+    width: 8px; 
     height: 8px; 
 }
 ::-webkit-scrollbar-thumb {
-    background: #555;
+    background: #eee;
 	border: 2px solid #fff;
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #666
+    background: #fff;
+	border: 1px solid #1af;
 }
 ::-webkit-scrollbar-track {
-	background: #fff;
+    background: -webkit-linear-gradient(rgba(15,15,50,1), rgba(9,9,32,1));
+    background: -o-linear-gradient(rgba(15,15,50,1), rgba(9,9,32,1));
+    background: linear-gradient(rgba(15,15,50,1), rgba(9,9,32,1));
 }
 
 .contenedor {

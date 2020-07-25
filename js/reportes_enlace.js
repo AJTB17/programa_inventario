@@ -50,10 +50,36 @@ function SV(){
             if (mes === mesbd + 1){
                 while(trued){
                     let notificación = confirm("ya el mes " + mesbd + " termino. Por favor proceda a hacer el cierre mensual de inventario. Al presionar aceptar se realizara el cierre.");
-
+                    
                     if (notificación === true){
+                        let backup = confirm("¿Desea hacer un respaldo de la base de datos antes de hacer el cierre?");
+                        if (backup === true){
+                            $.ajax ({
+                                type: 'POST',
+                                url: "/inventariogg/phpurl/backoutBD.php",
+                                success: function(){
+                                    alert("Se a guardado un archivo de respaldo con exito en los archivos del programa.");
+                                },
+                                error: function() {
+                                    alert("No se ha podido establecer conexión con la base de datos");
+                                }
+                            });
+                        } 
+                        
                         trued = false;
-                        co();
+                        $.ajax ({
+                            type: 'POST',
+                            url: "cierre_operacional.php",
+                            success: function(data) {
+                                let split2 = data.split("||"),
+                                    fechar = split2[1];
+
+                                window.open("./phpurl/cierresOperacion/reporte_cierre_mensual_de" + fechar + ".pdf", '_blank');
+                            },
+                            error: function() {
+                                alert("No se ha podido establecer conexión con la base de datos");
+                            }
+                        });
                     }
                 }
             } 
@@ -130,19 +156,24 @@ function reporte_3(){
 }
 function reporte_4(){
 	let producto = prompt("Escriba el codigo del producto del cual quiere hacer el reporte"),
-		dia_cant = prompt("¿Cuantos dias de hoy hacia atras, quiere que cubra el reporte? (por favor solo ingresas la cantidad de dias en numeros)"),
+		dia_cant,
 		data;
 	console.log(producto);
 	if(isNaN(producto)){
 	   alert("codigo erroneo");
-	} else if( producto === ""){
-		alert("Campo o campos vacios");
+	} else if( producto === "" || producto === null){
+		alert("Campo o campos vacios.");
 		return;
 	} else{
+        dia_cant = prompt("¿Cuantos dias de hoy hacia atras, quiere que cubra el reporte? (por favor solo ingresas la cantidad de dias en numeros)");
+        
 		if(isNaN(dia_cant)){
-	   		alert("ingrese solo la cantidad en numeros, o si no el reporte no se realizara.");
-		} else{
-			alert("entre");
+	   		alert("Ingrese solo la cantidad en numeros, o si no el reporte no se realizara.");
+            return;
+		} else if (dia_cant === null || dia_cant === ""){
+            alert("Por favor, no deje el campo de extención en el tiempo vacio.");
+            return;
+        } else{
 			data = "lenght=" + dia_cant + "&codigo=" + producto;
 		}
 	} 

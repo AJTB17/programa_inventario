@@ -102,7 +102,7 @@
 					</div>
 				</div>
 				<div class="v3">
-					<label for="maa" onclick="ovejo">Reportes</label>
+					<label for="maa">Reportes</label>
 				</div> 
 				<input class="checkeo" type="checkbox" id="maa">
 				<ul class="menuext">
@@ -185,7 +185,6 @@
                                 <select name="movement" id="movement" class="filterField">
                                     <option>Todos</option>
                                     <option>Salida</option>
-                                    <option>Ingreso</option>
                                     <option>Traslado</option>
                                 </select>
                             </div>

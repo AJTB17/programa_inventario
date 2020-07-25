@@ -1,183 +1,79 @@
-$(document).ready(function(){
-    
-	$("li[id=btna]").click(proveter);
-    function proveter() {
-        document.getElementById("provedor").classList.remove("hidden") ;
-        document.getElementById("provedor").classList.add("hiddentry") ;
-        document.getElementById("btna").classList.add("active") ; 
-        
-        document.getElementById("ingreso").classList.add("hidden") ;
-        document.getElementById("ingreso").classList.remove("hiddentry");
-        document.getElementById("btnb").classList.remove("active") ;
-                                        
-        document.getElementById("producto").classList.add("hidden") ;
-        document.getElementById("producto").classList.remove("hiddentry");
-        document.getElementById("btnc").classList.remove("active") ;
-                                        
-        document.getElementById("traslado").classList.add("hidden") ;
-        document.getElementById("traslado").classList.remove("hiddentry");
-        document.getElementById("btnd").classList.remove("active") ;
-                                        
-        document.getElementById("movimiento").classList.add("hidden") ;
-        document.getElementById("movimiento").classList.remove("hiddentry");
-        document.getElementById("btne").classList.remove("active") ;
-                                        
-	}
-	$("li[id=btnb]").click(function () {
-                alert("2");
-        document.getElementById("ingreso").classList.remove("hidden") ;
-         document.getElementById("ingreso").classList.add("hiddentry") ;
-         document.getElementById("btnb").classList.add("active") ;
-        
-        document.getElementById("provedor").classList.add("hidden") ;
-        document.getElementById("provedor").classList.remove("hiddentry");
-        document.getElementById("btna").classList.remove("active") ;
-                                        
-        document.getElementById("producto").classList.add("hidden") ;
-        document.getElementById("producto").classList.remove("hiddentry");
-        document.getElementById("btnc").classList.remove("active") ;
-                                        
-        document.getElementById("traslado").classList.add("hidden") ;
-        document.getElementById("traslado").classList.remove("hiddentry");
-        document.getElementById("btnd").classList.remove("active") ;
-                                        
-        document.getElementById("movimiento").classList.add("hidden") ;
-        document.getElementById("movimiento").classList.remove("hiddentry");
-        document.getElementById("btne").classList.remove("active") ;
-	});
-    
-    $("li[id=btnc]").click(function () {
-        alert("3");
-        document.getElementById("producto").classList.remove("hidden") ;
-         document.getElementById("producto").classList.add("hiddentry") ;
-         document.getElementById("btnc").classList.add("active") ;
-        
-        document.getElementById("ingreso").classList.add("hidden") ;
-        document.getElementById("ingreso").classList.remove("hiddentry") ;
-        document.getElementById("btnb").classList.remove("active") ;
-                                        
-        document.getElementById("provedor").classList.add("hidden") ;
-        document.getElementById("provedor").classList.remove("hiddentry");
-        document.getElementById("btna").classList.remove("active") ;
-                                        
-        document.getElementById("traslado").classList.add("hidden") ;
-        document.getElementById("traslado").classList.remove("hiddentry");
-        document.getElementById("btnd").classList.remove("active") ;
-                                        
-        document.getElementById("movimiento").classList.add("hidden") ;
-        document.getElementById("movimiento").classList.remove("hiddentry");
-        document.getElementById("btne").classList.remove("active") ;
-	});
-    
-	$("li[id=btnd]").click(function () {
-        alert("4");
-        document.getElementById("traslado").classList.remove("hidden") ;
-        document.getElementById("traslado").classList.add("hiddentry") ;
-        document.getElementById("btnd").classList.add("active") ;
-        
-                 
-        document.getElementById("producto").classList.add("hidden") ;
-        document.getElementById("producto").classList.remove("hiddentry");
-        document.getElementById("btnc").classList.remove("active") ;
-        
-        document.getElementById("ingreso").classList.add("hidden") ;
-        document.getElementById("ingreso").classList.remove("hiddentry") ;
-        document.getElementById("btnb").classList.remove("active") ;
-                                     
-        document.getElementById("provedor").classList.add("hidden") ;
-        document.getElementById("provedor").classList.remove("hiddentry");
-        document.getElementById("btna").classList.remove("active") ;
-                      
-        document.getElementById("movimiento").classList.add("hidden") ;
-        document.getElementById("movimiento").classList.remove("hiddentry");
-        document.getElementById("btne").classList.remove("active") ;
-	});
-    
-	$("li[id=btne]").click(function () {
-        alert("5");
-        document.getElementById("movimiento").classList.remove("hidden") ;
-        document.getElementById("movimiento").classList.add("hiddentry") ;
-        document.getElementById("btne").classList.add("active") ;
-        
-        document.getElementById("traslado").classList.add("hidden") ;
-        document.getElementById("traslado").classList.remove("hiddentry");
-        document.getElementById("btnd").classList.remove("active") ;
-        
-        document.getElementById("producto").classList.add("hidden") ;
-        document.getElementById("producto").classList.remove("hiddentry");
-        document.getElementById("btnc").classList.remove("active") ;
-        
-        document.getElementById("ingreso").classList.add("hidden") ;
-        document.getElementById("ingreso").classList.remove("hiddentry") ;
-        document.getElementById("btnb").classList.remove("active") ;
-                                        
-        document.getElementById("provedor").classList.add("hidden") ;
-        document.getElementById("provedor").classList.remove("hiddentry");
-        document.getElementById("btna").classList.remove("active") ;
-	});
-    
-});
-
-$(".mod").click(modUser);
 $(".add").click(abrirFormulario);
 $("#proveedorCancelButton").click(quitarFormulario);
 
+var inputs = new Array (),
+    muestra = new Array ();
+for (var i=0; i<11 ; i++){
+    muestra[i] = document.getElementsByClassName("muestraModal")[i];
+}
+for (var i=11; i<23 ; i++){
+    if(i === 11){
+        inputs[i] = document.getElementById("idInput");
+    }else {
+        inputs[i] = document.getElementsByClassName("formularioInput")[i-1];  
+    }
+}
+console.log(inputs)
 function abrirFormulario(){
-    $("#idInput").val("");
-    $("#nombreInput").val("");
-    $("#rifInput").val("");
-    $("#direccionfisInput").val("");
-    $("#direccionofiInput").val("");
-    $("#telefonoofiInput").val("");   
-    $("#telefonocelInput").val("");
-    $("#correoInput").val("");
-    $("#contactoInput").val("");
-    $("#cargoconInput").val("");
-    $("#telefonoconInput").val("");
-    
+    for (var i=11; i<inputs.length ;i++){
+        inputs[i].value = "";
+    }
     $("#proveedorAcceptButton").click(aceptarDatos);
     document.getElementById("GrayBackground").classList.remove("hidden");
-};
+}
 function quitarFormulario(){
     document.getElementById("GrayBackground").classList.add("hidden");
-};
+}
 function aceptarDatos(){
-    var cadena = "codigo=" + $('#codigoInput').val() +
-             "&nombre=" + $('#nombreInput').val() +
-             "&rif=" + $('#rifInput').val() +
-             "&direccionfis=" + $('#direccionfisInput').val() +
-             "&direccionofi=" + $('#direccionofiInput').val() +
-             "&telefonoofi=" + $('#telefonoofiInput').val() +
-             "&telefonocel=" + $('#telefonocelInput').val() +
-             "&correo=" + $('#correoInput').val() +
-             "&contacto=" + $('#contactoInput').val() +
-             "&cargocon=" + $('#cargoconInput').val() +
-             "&telefonocon=" + $('#telefonoconInput').val();
+    var cadena;
+    for (var i=12; i<inputs.length ; i++){
+        var split = inputs[i].id.split("In"),
+            part1 = split[0],
+            datos = inputs[i].value;
+
+        if (datos === "" || datos === null || datos === undefined){
+            alert("Datos no reyenados completamente");
+            return;
+        }
+        if(i === 11){
+            cadena = part1 + "=" + datos;
+        } else {
+            cadena += "&"+ part1 + "=" + datos;  
+        }
+    }
     $.ajax({
         type:'POST',
-        url:'/inventariogg/phpurl/agregarProveedor.php?accion=agregar',
+        url:'/inventariogg/phpurl/agregarProveedor.php',
         data:cadena,
-        success: function(){
-            location.reload();
+        success: function(data){
+            if(data === "Existe"){
+                alert("Este codigo proveedor ya esta asignado en la base de datos.");
+            } else {
+                location.reload();   
+            }
         },
         error: function(){
-            alert("Hubo un error al conectar con la base de datos")
+            alert("Hubo un error al conectar con la base de datos");
         }
-    })
-    quitarFormulario();
+    });
+    
     $(".add").click(abrirFormulario);
     $("#proveedorCancelButton").click(quitarFormulario);
 }
 function clearUser(datos){
-    d=datos.split("||");
-    cadena= "codigo=" + d[0] + "&usuario=" + localStorage.getItem("getvalue");
+    let d= datos.split("||"),
+        cadena= "codigo=" + d[0] + "&id=" + d[1] + "&usuario=" + localStorage.getItem("getvalue");
     if(confirm("Desea eliminar el proveedor " + d[0] + "?")){
         $.ajax({
             type:'POST',
             url:'/inventariogg/phpurl/eliminarProveedor.php',
             data:cadena,
-            success: function(){
-                location.reload();
+            success: function(data){
+                if(data === "negativo"){
+                    alert("Este proveedor tiene movimientos presentes no puede ser eliminado.");
+                } else{  
+                    location.reload();
+                }
             },
             error: function(){
                 alert("Hubo un error al conectar con la base de datos")
@@ -185,38 +81,29 @@ function clearUser(datos){
         })
     } 
 }
-function modUser(datos){
+function modifiDatos(datos){
     $("#proveedorAcceptButton").click(modDatos);
     document.getElementById("GrayBackground").classList.remove("hidden");
     
-    d=datos.split("||");
+    var split = datos.split("||");
     
-    $("#idInput").val(d[0]);
-    $("#codigoInput").val(d[1]);
-    $("#nombreInput").val(d[2]);
-    $("#rifInput").val(d[3]);
-    $("#direccionfisInput").val(d[4]);
-    $("#direccionofiInput").val(d[5]);
-    $("#telefonoofiInput").val(d[6]);   
-    $("#telefonocelInput").val(d[7]);
-    $("#correoInput").val(d[8]);
-    $("#contactoInput").val(d[9]);
-    $("#cargoconInput").val(d[10]);
-    $("#telefonoconInput").val(d[11]); 
-};
+    for(var i=0; i<inputs.length ;i++){
+        inputs[i+11].value = split[i]; 
+    }
+}
 function modDatos(){
-    cadena = "id=" + $('#idInput').val() +
-             "&codigo=" + $('#codigoInput').val() +
-             "&nombre=" + $('#nombreInput').val() +
-             "&rif=" + $('#rifInput').val() +
-             "&direccionfis=" + $('#direccionfisInput').val() +
-             "&direccionofi=" + $('#direccionofiInput').val() +
-             "&telefonoofi=" + $('#telefonoofiInput').val() +
-             "&telefonocel=" + $('#telefonocelInput').val() +
-             "&correo=" + $('#correoInput').val() +
-             "&contacto=" + $('#contactoInput').val() +
-             "&cargocon=" + $('#cargoconInput').val() +
-             "&telefonocon=" + $('#telefonoconInput').val();
+    var cadena;
+    for (var i=12; i<inputs.length ; i++){
+        var split = inputs[i].id.split("In"),
+            part1 = split[0],
+            datos = inputs[i].value;
+        
+        if(i === 12){
+            cadena = part1 + "=" + datos;
+        } else {
+            cadena += "&"+ part1 + "=" + datos;  
+        }
+    }
     $.ajax({
         type:'POST',
         url:'/inventariogg/phpurl/modificarProveedor.php',
@@ -227,6 +114,22 @@ function modDatos(){
         error: function(){
             alert("Hubo un error al conectar con la base de datos")
         }
-    })
+    });
     quitarFormulario();
+}
+function desplegarMovimientos(datos) {
+    document.getElementById("ventanaDeDepositos").classList.remove("hidden");
+    let split = datos.split("||");
+
+    for (var i=0; i<muestra.length ;i++){
+        muestra[i].value = split[i+1];
+    }
+    
+    document.getElementById("depositCancelButton").addEventListener("click", cerrarInformacion);
+}
+function cerrarInformacion() {
+    for (var i=0; i<muestra.length ;i++){
+        muestra[i].value = "";
+    }
+    document.getElementById("ventanaDeDepositos").classList.add("hidden");
 }

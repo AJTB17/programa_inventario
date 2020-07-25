@@ -32,10 +32,6 @@
         <script src='packages/core/locales/es.js'></script>
         <script src="js2/date-and-time.min.js"></script>
 <!----- Script de librerias end -->        
-
-        <script src="js/navfun.js"></script>
-        <script src="js/proveedoresjsC.js"></script>
-<!----- Script de funciones end -->
         <title>Estancia Los Potros</title>
      </head>
     <body>
@@ -67,8 +63,70 @@
                 
         </header>
         <main>
-            
-            <!---ventana modal start-->
+           <!---ventana modal start-->
+            <div id="ventanaDeDepositos" class="GrayBackground hidden">
+                <div id="muestraDeDepositos">
+                    <h1 id="depositosTitle" class="titlemodal">Información</h1>
+                    <div id="ContenedorDePeticiones" class="contenedor--flex">
+                        <div class="inpcont" style="width: 50%">
+                            <label id="codigoLabel" class="formularioLabel">Código</label><br>
+                            <input readonly id="codigoModal" class="formularioInput muestraModal">
+                        </div>
+                           
+                        <div class="inpcont" style="width: 50%">
+                            <label id="nombreLabel" class="formularioLabel">Nombre</label><br>
+                            <input readonly id="nombreModal" class="formularioInput muestraModal">
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                            <label id="rifLabel" class="formularioLabel">RIF</label><br>
+                            <input readonly id="rifModal" class="formularioInput muestraModal">
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                            <label id="direccionfisLabel" class="formularioLabel">Dirección Fiscal</label><br>
+                            <input readonly id="direccionfisModal" class="formularioInput muestraModal">
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                            <label id="direccionofiLabel" class="formularioLabel">Dirección de Oficina</label><br>
+                            <input readonly id="direccionofiModal" class="formularioInput muestraModal">
+                        </div>
+                         
+                        <div class="inpcont" style="width: 50%">
+                            <label id="telefonoofiLabel" class="formularioLabel">Teléfono de Oficina</label> <br>
+                            <input readonly id="telefonoofiModal" class="formularioInput muestraModal">  
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                           <label id="teléfonocelLabel" class="formularioLabel">Teléfono Celular</label><br>
+                            <input readonly id="telefonocelModal" class="formularioInput muestraModal"> 
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                            <label id="correoLabel" class="formularioLabel">Correo</label><br>
+                            <input readonly id="correoModal" class="formularioInput muestraModal">
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                            <label id="contactoLabel" class="formularioLabel">Contacto</label><br>
+                            <input readonly id="contactoModal" class="formularioInput muestraModal">
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                            <label id="cargoconLabel" class="formularioLabel">Cargo del Contacto</label><br>
+                            <input readonly id="cargoconModal" class="formularioInput muestraModal">
+                        </div>
+                        
+                        <div class="inpcont" style="width: 50%">
+                            <label id="telefonoconLabel" class="formularioLabel">Teléfono del contacto</label><br>
+                            <input readonly id="telefonoconModal" class="formularioInput muestraModal">
+                        </div>
+                    </div>
+                    <button id="depositCancelButton" class="productCancelButton 
+                    formularioButton">Cerrar</button>
+                </div>
+            </div>
             <div id="GrayBackground" class="hidden GrayBackground" style="margin-top:60px">
                 <div id="ContenedorDeFormulario">
                     
@@ -78,57 +136,57 @@
                         <input type="text" hidden="" id="idInput" name="">
                         <div class="inpcont" style="width: 50%">
                             <label id="codigoLabel" class="formularioLabel">Código</label><br>
-                            <input id="codigoInput" class="formularioInput">
+                            <input autocomplete="off" required id="codigoInput" class="formularioInput">
                         </div>
                            
                         <div class="inpcont" style="width: 50%">
                             <label id="nombreLabel" class="formularioLabel">Nombre</label><br>
-                            <input id="nombreInput" class="formularioInput">
+                            <input autocomplete="off" required id="nombreInput" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="rifLabel" class="formularioLabel">RIF</label><br>
-                            <input id="rifInput" class="formularioInput">
+                            <input autocomplete="off" required id="rifInput" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="direccionfisLabel" class="formularioLabel">Dirección Fiscal</label><br>
-                            <input id="direccionfisInput" class="formularioInput">
+                            <input autocomplete="off" required id="direccionfisInput" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="direccionofiLabel" class="formularioLabel">Dirección de Oficina</label><br>
-                            <input id="direccionofiInput" class="formularioInput">
+                            <input autocomplete="off" required id="direccionofiInput" class="formularioInput">
                         </div>
-                        
+                         
                         <div class="inpcont" style="width: 50%">
                             <label id="telefonoofiLabel" class="formularioLabel">Teléfono de Oficina</label> <br>
-                            <input id="telefonoofiInput" class="formularioInput">  
+                            <input autocomplete="off" required id="telefonoofiInput" class="formularioInput">  
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                            <label id="teléfonocelLabel" class="formularioLabel">Teléfono Celular</label><br>
-                            <input id="telefonocelInput" class="formularioInput"> 
+                            <input autocomplete="off" required id="telefonocelInput" class="formularioInput"> 
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="correoLabel" class="formularioLabel">Correo</label><br>
-                            <input id="correoInput" class="formularioInput">
+                            <input autocomplete="off" required id="correoInput" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="contactoLabel" class="formularioLabel">Contacto</label><br>
-                            <input id="contactoInput" class="formularioInput">
+                            <input autocomplete="off" required id="contactoInput" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="cargoconLabel" class="formularioLabel">Cargo del Contacto</label><br>
-                            <input id="cargoconInput" class="formularioInput">
+                            <input autocomplete="off" required id="cargoconInput" class="formularioInput">
                         </div>
                         
                         <div class="inpcont" style="width: 50%">
                             <label id="telefonoconLabel" class="formularioLabel">Teléfono del contacto</label><br>
-                            <input id="telefonoconInput" class="formularioInput">
+                            <input autocomplete="off" required id="telefonoconInput" class="formularioInput">
                         </div>
                         
                         <div class="cont-formularioButton">
@@ -238,12 +296,12 @@
                                     $row["telefonocontacto"]."||";
                         ?>
                         <tr>
-                            <td><?php echo $row['codigo']; ?></td>
-                            <td><?php echo $row["nombre"]; ?></td>
-                            <td><?php echo $row["direccionoficina"]; ?></td>
-                            <td><?php echo $row["telefonooficina"]; ?></td>
-                            <td><?php echo $row["correo"]; ?></td>
-                            <td class="mod" onclick=" modUser('<?php echo $datos ?>')">Modificar</td>
+                            <td onclick="desplegarMovimientos('<?php echo $datos ?>')"><?php echo $row['codigo']; ?></td>
+                            <td onclick="desplegarMovimientos('<?php echo $datos ?>')"><?php echo $row["nombre"]; ?></td>
+                            <td onclick="desplegarMovimientos('<?php echo $datos ?>')"><?php echo $row["direccionoficina"]; ?></td>
+                            <td onclick="desplegarMovimientos('<?php echo $datos ?>')"><?php echo $row["telefonooficina"]; ?></td>
+                            <td onclick="desplegarMovimientos('<?php echo $datos ?>')"><?php echo $row["correo"]; ?></td>
+                            <td class="mod" onclick="modifiDatos('<?php echo $datos ?>')">Modificar</td>
                             <td class="clear" onclick="clearUser('<?php echo $datos ?>')">X</td>
                         </tr>
                         <?php

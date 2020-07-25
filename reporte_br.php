@@ -84,8 +84,12 @@ $pdf->AddPage();
         } 
         else {
             $originalDate = $row['fechaultpedido'];
-            $newDate = date("d-m-Y", strtotime($originalDate));
-
+            if ($originalDate !== "0000-00-00"){
+                $newDate = date("d-m-Y", strtotime($originalDate));  
+            } else {
+                $newDate = $originalDate;
+            }
+            
             $pdf->Cell(48.75,8,$row['nombre'],1,0,'C');
             $pdf->Cell(36.562,8,$row['cta']. " " .$row['und'],1,0,'C');
             $pdf->Cell(24.375,8,$row['reorden']. " " .$row['und'],1,0,'C');
